@@ -111,6 +111,7 @@
     var b = ensureBox();
     var cap = b.querySelector('figcaption');
     var a = items[cur];
+    if (window.__lazyNow) window.__lazyNow(a);   // 目标图若尚未懒加载，立即加载（跳过队列）
     img.src = a.getAttribute('data-full') || a.getAttribute('href');
     img.alt = a.getAttribute('data-alt') || '';
     cap.textContent = a.getAttribute('data-cap') || '';
@@ -155,4 +156,101 @@
     else if (e.key === 'ArrowLeft') show(cur - 1);
     else if (e.key === 'ArrowRight') show(cur + 1);
   });
+})();
+
+/* ---------- 图片懒加载（GitHub / github.io 加载优化） ----------
+ * github.io 单域名带宽有限，一页几十张图同时抢连接会出现
+ * 「从上往下一点点加载」、首屏长时间转圈、点开大图也打不开。
+ * 用 IntersectionObserver 接管全部 <img>：
+ *   - 仅加载进入视口（含 300px 预载边缘）的图片，其余滚动到附近再加载；
+ *   - 请求并发限制为 4，失败自动退避重试 2 次；
+ *   - 折叠区（未展开的 <details>）内的图片不预载，展开时才加载；
+ *   - 灯箱打开时经 window.__lazyNow 立即加载目标图，跳过等待队列。
+ * 注意：本段在 lightbox.js 与 search.js 各有一份（改动需保持同步），
+ * window.__lazyReady 保证同页两份共存时只初始化一次。
+ */
+(function () {
+  if (window.__lazyReady) return;
+  window.__lazyReady = true;
+
+  var BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+  var MAX_PARALLEL = 4;
+  var queue = [], running = 0, io = null;
+
+  function pump() {
+    while (running < MAX_PARALLEL && queue.length) start(queue.shift());
+  }
+
+  function start(im) {
+    var src = im.getAttribute('data-src');
+    if (!src) return;
+    im.removeAttribute('data-src');
+    running++;
+    im.__lazyWant = src;
+    var finish = function () {
+      if (im.__lazyWant !== src) return;   // 占位图(data:)触发的事件，忽略
+      im.__lazyWant = null;
+      running--;
+      pump();
+    };
+    im.addEventListener('load', finish);
+    im.addEventListener('error', function onErr() {
+      if (im.__lazyWant !== src) return;
+      var n = (im.__lazyRetry || 0) + 1;
+      if (n <= 2) {
+        im.__lazyRetry = n;
+        // 同值 src 不会重新发起请求，加查询参数强制重试
+        var retry = src + (src.indexOf('?') < 0 ? '?' : '&') + 'retry=' + n;
+        setTimeout(function () { im.src = retry; }, 500 * n);
+      } else {
+        im.__lazyWant = null;
+        running--;
+        pump();
+      }
+    });
+    im.src = src;
+  }
+
+  function onSeen(entries) {
+    for (var i = 0; i < entries.length; i++) {
+      var im = entries[i].target;
+      if (!entries[i].isIntersecting || !im.hasAttribute('data-src')) continue;
+      io.unobserve(im);
+      queue.push(im);
+    }
+    pump();
+  }
+
+  function init() {
+    if (!('IntersectionObserver' in window)) return;   // 老浏览器：保持原生加载行为
+    io = new IntersectionObserver(onSeen, { rootMargin: '300px 0px', threshold: 0 });
+    var imgs = document.querySelectorAll('img[src]');
+    for (var i = 0; i < imgs.length; i++) {
+      var im = imgs[i];
+      var src = im.getAttribute('src');
+      if (!src || src.indexOf('data:') === 0) continue;
+      im.setAttribute('data-src', src);
+      im.src = BLANK;
+      io.observe(im);
+    }
+  }
+
+  // 立即加载指定图片（灯箱打开时调用，跳过等待队列）
+  window.__lazyNow = function (el) {
+    if (!io) return;
+    var im = el && el.tagName
+      ? (el.tagName === 'IMG' ? el : el.querySelector('img[data-src]')) : null;
+    if (!im) return;
+    io.unobserve(im);
+    var k = queue.indexOf(im);
+    if (k >= 0) queue.splice(k, 1);
+    start(im);
+    pump();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
