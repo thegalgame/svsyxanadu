@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>永久より永遠に</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../assets/style.css">
+<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
+   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
+      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
+   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
+      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
+   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
+(function () {
+  function run() {
+    var root = document.documentElement;
+    var hd = document.querySelector('.hd');
+
+    function sync() {
+      if (!hd) return;
+      var h = Math.round(hd.getBoundingClientRect().height);
+      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
+
+    function target() {
+      var h = location.hash;
+      if (!h || h.length < 2) return null;
+      var id = h.slice(1);
+      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
+      return document.getElementById(id);
+    }
+
+    var prev = root.style.scrollBehavior;
+
+    function instantJump() {
+      var t = target();
+      if (!t) return;
+      root.style.scrollBehavior = 'auto';
+      sync();                              /* 先更新 --hdr-h，再对齐 */
+      t.scrollIntoView({ block: 'start' });
+    }
+    function restore() {
+      root.style.scrollBehavior = prev;
+    }
+
+    if (location.hash.length > 1) {
+      instantJump();
+      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
+      window.addEventListener('load', function () {
+        instantJump();
+        setTimeout(restore, 60);
+      });
+      setTimeout(restore, 1500);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+</head>
+<body>
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="../index.html">少女神域<span>用语词典</span></a>
+    <nav class="nav"><a href="../index.html">首页</a><a href="../cat/规.html">编纂说明</a><a href="../cat/歌.html" class="on">歌词</a><a href="../cat/世.html">世界线用语</a><a href="../cat/神.html">世界观用语</a><a href="../cat/祭.html">祭礼·神事</a><a href="../cat/人.html">登场人物</a><a href="../cat/家.html">四家·门第</a><a href="../cat/场.html">佳城市·地名</a><a href="../cat/学.html">学校·机构</a><a href="../cat/宝.html">神具·古玉·宝刀</a><a href="../cat/食.html">饮食·店铺</a><a href="../cat/杂.html">杂学</a><a href="../gallery.html">图片资料</a><a href="../story.html">参考资料</a></nav>
+  </div>
+</header>
+<main class="main">
+<article class="entry">
+  <p class="crumb"><a href="../index.html">首页</a> / <a href="../cat/歌.html">歌词</a> / 永久より永遠に</p>
+  <h1>永久より永遠に</h1>
+  <p class="catline"><span class="cat">歌词</span><span class="src-name">186_x_永久より永遠に.txt</span></p>
+<div class="kv"><b>歌词</b>永久より<ruby>永遠<rt>とわ</rt></ruby>に</div>
+<div class="kv"><b>直译</b>从「永久」，走向「<ruby>永远<rt>とわ</rt></ruby>」</div>
+<div class="kv"><b>翻译</b>越过「永久」，向「とわ」而行</div>
+
+<div class="kv"><b>歌词</b><ruby>赦<rt>ゆる</rt></ruby>されたくはないのに</div>
+<div class="kv"><b>直译</b><ruby>明明并不想被赦免<rt>ゆる</rt></ruby></div>
+<div class="kv"><b>翻译</b>明明，我并不想被宽恕——</div>
+
+<div class="kv"><b>歌词</b>なぜに惑うかこの心</div>
+<div class="kv"><b>直译</b>这颗心，为何要迷惘</div>
+<div class="kv"><b>翻译</b>这颗心啊，究竟为何还在动摇</div>
+
+<div class="kv"><b>歌词</b>忌まわしき罪宿した　<ruby>肉体<rt>からだ</rt></ruby>ごと捕食して</div>
+<div class="kv"><b>直译</b><ruby>把那具栖着可憎之罪的身体<rt>からだ</rt></ruby>，连它一起捕食</div>
+<div class="kv"><b>翻译</b>连同这具栖着可憎之罪的身体，一并吞下</div>
+
+<div class="kv"><b>歌词</b>あなたの内に潜んだ　獣のごとき愛も</div>
+<div class="kv"><b>直译</b>藏在你之中的、那如野兽般的爱，也</div>
+<div class="kv"><b>翻译</b>连同藏在你体内的、那野兽般的爱——</div>
+
+<div class="kv"><b>歌词</b>奮い立つ悲しみも怒りも全部</div>
+<div class="kv"><b>直译</b>翻涌而起的悲伤与愤怒，也全部</div>
+<div class="kv"><b>翻译</b>连同翻涌的悲伤与愤怒，全部——</div>
+
+<div class="kv"><b>歌词</b>この身の奥深く　飲み込んで消し去ってあげる</div>
+<div class="kv"><b>直译</b>都吞进这副身体深处，替你消去</div>
+<div class="kv"><b>翻译</b>我都吞进这副身躯的最深处，替你抹掉</div>
+
+<div class="kv"><b>歌词</b>いつの日か人の欲望が　<ruby>地上<rt>ここ</rt></ruby>から消える日まで</div>
+<div class="kv"><b>直译</b>直到某一天，<ruby>人的欲望从大地<rt>ここ</rt></ruby>上消失的那日</div>
+<div class="kv"><b>翻译</b>直到某天，人的欲望从这片「此处」的大地上散尽</div>
+
+<div class="kv"><b>歌词</b>どれほど深い愛なら　願い叶うだろう</div>
+<div class="kv"><b>直译</b>要多深的爱，愿望才能实现呢</div>
+<div class="kv"><b>翻译</b>要多深的爱，才能让这心愿成真</div>
+
+<div class="kv"><b>歌词</b>あなたを失くした　ないと</div>
+<div class="kv"><b>直译</b>说是不想失去你</div>
+<div class="kv"><b>翻译</b>因为，我不想失去你——</div>
+
+<div class="kv"><b>歌词</b>私の<ruby>肉体<rt>からだ</rt></ruby>に入りなさい</div>
+<div class="kv"><b>直译</b><ruby>请进入我的身体<rt>からだ</rt></ruby></div>
+<div class="kv"><b>翻译</b>请住进我这具身体里吧</div>
+
+<div class="kv"><b>歌词</b>あなたの爪痕ここに残して</div>
+<div class="kv"><b>直译</b>把爪痕留在此处</div>
+<div class="kv"><b>翻译</b>把你的爪痕，留在我身上</div>
+
+<div class="kv"><b>歌词</b>報われないもの知っても</div>
+<div class="kv"><b>直译</b>即便知道有些付出没有回报</div>
+<div class="kv"><b>翻译</b>纵使早已明白，有些爱终无回响</div>
+
+<div class="kv"><b>歌词</b>止めらないこの利己的衝動を</div>
+<div class="kv"><b>直译</b>把这停不下来的利己冲动</div>
+<div class="kv"><b>翻译</b>连同这股无法遏止的、利己的冲动</div>
+
+<div class="kv"><b>歌词</b>愛と呼べるのならあなたを孕んで</div>
+<div class="kv"><b>直译</b>若能称之为爱，便将你怀于身中</div>
+<div class="kv"><b>翻译</b>若这也能叫作爱，我就把你孕育在体内</div>
+
+<div class="kv"><b>歌词</b>幾千の時を超えて逝くから</div>
+<div class="kv"><b>直译</b>因为要越过几千重时光而去</div>
+<div class="kv"><b>翻译</b>因为我将越过几千重时光，先行远去</div>
+
+<div class="kv"><b>歌词</b><ruby>永遠<rt>とわ</rt></ruby>に続く愛の連鎖が人の世を紡ぐ</div>
+<div class="kv"><b>直译</b><ruby>永远<rt>とわ</rt></ruby>延续的爱之连锁，编织出人世</div>
+<div class="kv"><b>翻译</b>以「とわ」绵延不绝的爱之锁链，织就这人间</div>
+
+<div class="kv"><b>歌词</b>その螺旋の渦に</div>
+<div class="kv"><b>直译</b>在那螺旋的漩涡之中</div>
+<div class="kv"><b>翻译</b>卷进那道螺旋的漩涡里</div>
+
+<div class="kv"><b>歌词</b>あなたが生きた痕転すため</div>
+<div class="kv"><b>直译</b>为了翻转你曾活过的痕迹</div>
+<div class="kv"><b>翻译</b>只为将你活过的痕迹，扭转过来</div>
+
+<div class="kv"><b>歌词</b>命など惜しくはない</div>
+<div class="kv"><b>直译</b>性命之类，并不可惜</div>
+<div class="kv"><b>翻译</b>性命什么的，根本不值得吝惜</div>
+
+<div class="kv"><b>歌词</b>私だけに問われるなら</div>
+<div class="kv"><b>直译</b>若这份质问只落在我一人身上</div>
+<div class="kv"><b>翻译</b>若这诘问，只朝我一人而来</div>
+
+<div class="kv"><b>歌词</b>狂おしく<ruby>疼<rt>うず</rt></ruby>いた肌</div>
+<div class="kv"><b>直译</b>疯狂地、刺痛着的肌肤</div>
+<div class="kv"><b>翻译</b>这疯狂作痛的肌肤</div>
+
+<div class="kv"><b>歌词</b>その手で止めさして</div>
+<div class="kv"><b>直译</b>请用那只手，让我停下</div>
+<div class="kv"><b>翻译</b>就用那只手，让我停下来吧</div>
+
+<div class="kv"><b>歌词</b>遺伝子の中踊る　生死をかけた交合</div>
+<div class="kv"><b>直译</b>在基因之中起舞的、以生死为赌注的交合</div>
+<div class="kv"><b>翻译</b>在基因深处起舞的，以生死为注的交合</div>
+
+<div class="kv"><b>歌词</b>あなたの全てをここに閉じ込めたい</div>
+<div class="kv"><b>直译</b>想把你的全部，都封进此处</div>
+<div class="kv"><b>翻译</b>我想把你的一切，都封存在此</div>
+
+<div class="kv"><b>歌词</b>でもそれじゃいけないと</div>
+<div class="kv"><b>直译</b>可（灵魂说）那样并不行</div>
+<div class="kv"><b>翻译</b>可是——那样是不行的</div>
+
+<div class="kv"><b>歌词</b>魂が語り始める</div>
+<div class="kv"><b>直译</b>灵魂开始诉说</div>
+<div class="kv"><b>翻译</b>于是灵魂，开始低语</div>
+
+<div class="kv"><b>歌词</b>たとえもう二度とその旨に</div>
+<div class="kv"><b>直译</b>即便再也无法触及那意旨</div>
+<div class="kv"><b>翻译</b>纵使再也无法触及那份心意</div>
+
+<div class="kv"><b>歌词</b>触れることなくても</div>
+<div class="kv"><b>直译</b>即便无法触碰</div>
+<div class="kv"><b>翻译</b>纵使再也无法相触</div>
+
+<div class="kv"><b>歌词</b>いつまでもこの血流せば</div>
+<div class="kv"><b>直译</b>只要这血流永不停息</div>
+<div class="kv"><b>翻译</b>只要这血脉长流不歇</div>
+
+<div class="kv"><b>歌词</b>悲しみ癒えるの</div>
+<div class="kv"><b>直译</b>悲伤就会痊愈吗</div>
+<div class="kv"><b>翻译</b>悲伤，就终能痊愈吗</div>
+
+<div class="kv"><b>歌词</b>あなたを失くして</div>
+<div class="kv"><b>直译</b>失去了你</div>
+<div class="kv"><b>翻译</b>失去你之后——</div>
+
+<div class="kv"><b>歌词</b>記憶を失くすくらいなら</div>
+<div class="kv"><b>直译</b>与其失去记忆</div>
+<div class="kv"><b>翻译</b>与其让我失去记忆</div>
+
+<div class="kv"><b>歌词</b>悲しみ抱えて生きようこのまま</div>
+<div class="kv"><b>直译</b>就这般，怀抱悲伤活下去吧</div>
+<div class="kv"><b>翻译</b>那就这样，怀抱着悲伤活下去</div>
+
+<div class="kv"><b>歌词</b><ruby>永遠<rt>とわ</rt></ruby>に</div>
+<div class="kv"><b>直译</b><ruby>永远<rt>とわ</rt></ruby></div>
+<div class="kv"><b>翻译</b>直到「とわ」——</div>
+
+<div class="kv"><b>歌词</b>私を思って眠りなさい</div>
+<div class="kv"><b>直译</b>想着我，睡去吧</div>
+<div class="kv"><b>翻译</b>请想着我，睡去吧</div>
+
+<div class="kv"><b>歌词</b>この身が生き抜く糧と<ruby>為<rt>な</rt></ruby>すように</div>
+<div class="kv"><b>直译</b>愿这副身躯，<ruby>成为活下去的食粮<rt>な</rt></ruby></div>
+<div class="kv"><b>翻译</b>让这副身躯，化作你活下去的食粮</div>
+
+<div class="kv"><b>歌词</b>永久より<ruby>永遠<rt>とわ</rt></ruby>に<ruby>継<rt>つ</rt></ruby>がれゆくもの</div>
+<div class="kv"><b>直译</b>自永久，<ruby>向永远<rt>とわ</rt></ruby>被承继而去之物</div>
+<div class="kv"><b>翻译</b>从「永久」渡向「とわ」，被代代承袭之物</div>
+
+<div class="kv"><b>歌词</b>この形もなき未完の感情を</div>
+<div class="kv"><b>直译</b>这份无形而未完的感情</div>
+<div class="kv"><b>翻译</b>这份不成形状、也未能完成的感情</div>
+
+<div class="kv"><b>歌词</b>愛と呼べるならあなたを含んで</div>
+<div class="kv"><b>直译</b>若能称之为爱，便将你含纳</div>
+<div class="kv"><b>翻译</b>若这也能叫作爱，我便将你含在口中</div>
+
+<div class="kv"><b>歌词</b>幾千の時を超えて逝くから</div>
+<div class="kv"><b>直译</b>因为要越过几千重时光而去（同第15句）</div>
+<div class="kv"><b>翻译</b>因为我将越过几千重时光，先行远去</div>
+
+<div class="kv"><b>歌词</b>終わりのない愛の連鎖が人の世を繋ぐ</div>
+<div class="kv"><b>直译</b>无尽的爱的连锁，连结人世</div>
+<div class="kv"><b>翻译</b>那无终的爱之锁链，系住这人间</div>
+
+<div class="kv"><b>歌词</b>その螺旋の渦に</div>
+<div class="kv"><b>直译</b>在那螺旋的漩涡之中（同第17句）</div>
+<div class="kv"><b>翻译</b>卷进那道螺旋的漩涡里</div>
+
+<div class="kv"><b>歌词</b>二人が生きた痕残すなら</div>
+<div class="kv"><b>直译</b>若留下两人曾活过的痕迹</div>
+<div class="kv"><b>翻译</b>若你我能留下，曾一同活过的痕迹</div>
+
+<p class="src">（出处：出自《少女神域∽少女天獄》ED1；总结.txt（歌词直译与翻译））</p>
+</article>
+
+</main>
+<footer class="ft">
+  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
+  <p>共 192 词条 / 12 分类 · 收录依据与资料来源见 <a href="../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
+</footer>
+</body>
+</html>
