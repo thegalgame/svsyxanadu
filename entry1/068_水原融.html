@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>水原融</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../assets/style.css">
+<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
+   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
+      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
+   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
+      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
+   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
+(function () {
+  function run() {
+    var root = document.documentElement;
+    var hd = document.querySelector('.hd');
+
+    function sync() {
+      if (!hd) return;
+      var h = Math.round(hd.getBoundingClientRect().height);
+      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
+
+    function target() {
+      var h = location.hash;
+      if (!h || h.length < 2) return null;
+      var id = h.slice(1);
+      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
+      return document.getElementById(id);
+    }
+
+    var prev = root.style.scrollBehavior;
+
+    function instantJump() {
+      var t = target();
+      if (!t) return;
+      root.style.scrollBehavior = 'auto';
+      sync();                              /* 先更新 --hdr-h，再对齐 */
+      t.scrollIntoView({ block: 'start' });
+    }
+    function restore() {
+      root.style.scrollBehavior = prev;
+    }
+
+    if (location.hash.length > 1) {
+      instantJump();
+      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
+      window.addEventListener('load', function () {
+        instantJump();
+        setTimeout(restore, 60);
+      });
+      setTimeout(restore, 1500);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+</head>
+<body>
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="../index.html">少女神域<span>用语词典</span></a>
+    <nav class="nav"><a href="../index.html">首页</a><a href="../cat/规.html">编纂说明</a><a href="../cat/歌.html">歌词</a><a href="../cat/世.html">世界线用语</a><a href="../cat/神.html">世界观用语</a><a href="../cat/祭.html">祭礼·神事</a><a href="../cat/人.html" class="on">登场人物</a><a href="../cat/家.html">四家·门第</a><a href="../cat/场.html">佳城市·地名</a><a href="../cat/学.html">学校·机构</a><a href="../cat/宝.html">神具·古玉·宝刀</a><a href="../cat/食.html">饮食·店铺</a><a href="../cat/杂.html">杂学</a><a href="../gallery.html">图片资料</a><a href="../story.html">参考资料</a></nav>
+  </div>
+</header>
+<main class="main">
+<article class="entry">
+  <p class="crumb"><a href="../index.html">首页</a> / <a href="../cat/人.html">登场人物</a> / 水原融</p>
+  <h1>水原融</h1>
+  <p class="catline"><span class="cat">登场人物</span><span class="src-name">068_x_水原融.txt</span></p>
+<p>交友関係の広い飄々とした親友</p>
+
+<p>主人公である<ruby><a class="w" href="../entry1/061_%E7%A8%9C%E7%A5%81%E6%81%82.html">稜祁恂</a><rt>たかぎしゅん</rt></ruby>の親友。大学生。幼い頃、親の都合で<a class="w" href="../entry2/109_%E4%BD%B3%E5%9F%8E%E5%B8%82.html">佳城市</a>に引っ越してきた「外の人間」。恂とは、幼いの頃から付き合いのある、幼なじみ。</p>
+
+<p>軽妙で明るく、その性格から周囲にすぐ馴染み、嫌味のない立ち振る舞いが出来る。二枚目と三枚目を常に行き来するような存在で、男女問わず人気が高い。広い視野を持ち、マニアックな趣味を持つ人間とも濃密な知識を交わすことも出来る。</p>
+
+<p>迪希などからは、その軽薄な言動を咎められることが多いが、聞く耳を持たない。恂は迪希から、付き合いを本気で止めるよう何度も忠告されているが、融は「男同士の友情は所詮女にはわからない」と笑っている状況である。</p>
+
+<p>Character Voice：マーガリン天狗</p>
+
+<p>俺と<ruby>迪希<rt>ゆき</rt></ruby>、そして親友の<ruby>水原<rt>みずはら</rt></ruby>は、<ruby>十都川<rt>とつかわ</rt></ruby>大学という同じ学校に通っていた。</p>
+
+<p>『融 voice=WT001000』　「ったく……余計な仕事が負わされるな、節目に当たった人間は」</p>
+
+<p>恂与迪希的挚友，就读同一所<a class="w" href="../entry2/140_%E5%8D%81%E9%83%BD%E5%B7%9D%E5%A4%A7%E5%AD%A6.html">十都川大学</a>。常与恂一同出行。在<a class="w" href="../entry1/099_%E6%BE%B3%E5%9F%8E%E5%AE%B6.html">澳城家</a>关系者中亦取得相当深入情报之人。表面隐藏真心，以间谍般的存在被卷入祭典内部，最终被小町手刃。</p>
+
+<p class="tagline"><span class="tag">【官网】</span>主人公・<a class="w" href="../entry1/061_%E7%A8%9C%E7%A5%81%E6%81%82.html">稜祁恂</a>的挚友，大学生。幼时因父母的缘故搬到<a class="w" href="../entry2/109_%E4%BD%B3%E5%9F%8E%E5%B8%82.html">佳城市</a>的「外来者」。与恂从幼时起便有往来，是儿时玩伴。为人轻妙开朗，因其性格很快便能融入周围，举手投足不带令人反感的刺。是常在「帅哥」与「丑角」之间来回切换般的存在，男女之中人缘都很好。视野广阔，也能与持有偏门爱好的人交换深厚知识。迪希等人常责备他轻薄的言行，但他充耳不闻。恂屡次被迪希忠告要认真断绝与他的来往，而融则笑着说「男人之间的友情，女人终究是不会懂的」。声优：マーガリン天狗。【机器翻译】</p>
+
+<p class="src" id="s1">（出处：出自《少女神域∽少女天獄》官网角色介绍／出自《少女神域∽少女天獄》；剧本文件名：<a class="src-l" href="../story1/%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F/S001_00_a00.txt.html#L193">S001_00_a00.txt</a>／出自《少女神域∽少女天獄》官方访谈（公式设定书收录））</p>
+<section class="rolefig">
+  <h2 class="gsect-h">官网角色介绍图</h2>
+  <div class="rolefig-in">
+    <figure class="fg fg-role"><a href="../img_opt/role/tooru.webp" class="fg-lb" data-full="../img_opt/role/tooru.webp"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="../img_thumb/role/tooru.webp" alt="水原融 官网角色介绍图" width="400" height="491" decoding="async"></a></figure>
+  </div>
+  <p class="note">原图体积庞大（全部原图总计远超 200 MB），受 GitHub 仓库体积限制无法原样收录，本图已经压缩处理，画质低于官方原图；点击可查看压缩版大图。</p>
+</section>
+</article>
+<script src="../assets/lightbox.js"></script>
+
+</main>
+<footer class="ft">
+  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
+  <p>共 192 词条 / 12 分类 · 收录依据与资料来源见 <a href="../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
+</footer>
+</body>
+</html>

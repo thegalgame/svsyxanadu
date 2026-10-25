@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>稜祁家</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../assets/style.css">
+<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
+   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
+      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
+   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
+      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
+   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
+(function () {
+  function run() {
+    var root = document.documentElement;
+    var hd = document.querySelector('.hd');
+
+    function sync() {
+      if (!hd) return;
+      var h = Math.round(hd.getBoundingClientRect().height);
+      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
+
+    function target() {
+      var h = location.hash;
+      if (!h || h.length < 2) return null;
+      var id = h.slice(1);
+      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
+      return document.getElementById(id);
+    }
+
+    var prev = root.style.scrollBehavior;
+
+    function instantJump() {
+      var t = target();
+      if (!t) return;
+      root.style.scrollBehavior = 'auto';
+      sync();                              /* 先更新 --hdr-h，再对齐 */
+      t.scrollIntoView({ block: 'start' });
+    }
+    function restore() {
+      root.style.scrollBehavior = prev;
+    }
+
+    if (location.hash.length > 1) {
+      instantJump();
+      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
+      window.addEventListener('load', function () {
+        instantJump();
+        setTimeout(restore, 60);
+      });
+      setTimeout(restore, 1500);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+</head>
+<body>
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="../index.html">少女神域<span>用语词典</span></a>
+    <nav class="nav"><a href="../index.html">首页</a><a href="../cat/规.html">编纂说明</a><a href="../cat/歌.html">歌词</a><a href="../cat/世.html">世界线用语</a><a href="../cat/神.html">世界观用语</a><a href="../cat/祭.html">祭礼·神事</a><a href="../cat/人.html">登场人物</a><a href="../cat/家.html" class="on">四家·门第</a><a href="../cat/场.html">佳城市·地名</a><a href="../cat/学.html">学校·机构</a><a href="../cat/宝.html">神具·古玉·宝刀</a><a href="../cat/食.html">饮食·店铺</a><a href="../cat/杂.html">杂学</a><a href="../gallery.html">图片资料</a><a href="../story.html">参考资料</a></nav>
+  </div>
+</header>
+<main class="main">
+<article class="entry">
+  <p class="crumb"><a href="../index.html">首页</a> / <a href="../cat/家.html">四家·门第</a> / 稜祁家</p>
+  <h1>稜祁家</h1>
+  <p class="catline"><span class="cat">四家·门第</span><span class="src-name">097_x_稜祁家.txt</span></p>
+<p>稜祁という姓は、神の威光を示すという意の「稜」と、大いなるという意の「祁」を意味する。稜祁家は元々は佳城という土地一帯の統率していた家系である。</p>
+
+<p>『稜祁』一姓，取意为昭示神之威光的「稜」与意为广大的「祁」。稜祁家本是统率佳城一带土地的家系。如今仅余本家血脉，只有主人公与其亲妹二人。稜祁家旧称<a class="w" href="../entry1/098_%E5%AF%92%E6%B2%B3%E6%B1%9F%E5%AE%B6.html">寒河江家</a>，比起家名，寄宿了『石』的男性之存在更受重视；其为<a class="w" href="../entry2/133_%E5%A4%A7%E5%BF%8C%E6%AF%94%E5%8F%A4%E7%A5%9E%E7%A4%BE.html">大忌比古神社</a>氏子笔头。【机器翻译】</p>
+
+<p class="src">（出处：出自《少女神域∽少女天獄》官方设定集／出自《少女神域∽少女天獄》官方访谈（公式设定书收录））</p>
+</article>
+
+</main>
+<footer class="ft">
+  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
+  <p>共 192 词条 / 12 分类 · 收录依据与资料来源见 <a href="../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
+</footer>
+</body>
+</html>
