@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S021_01_a10.txt</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
+   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
+      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
+   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
+      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
+   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
+(function () {
+  function run() {
+    var root = document.documentElement;
+    var hd = document.querySelector('.hd');
+
+    function sync() {
+      if (!hd) return;
+      var h = Math.round(hd.getBoundingClientRect().height);
+      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
+
+    function target() {
+      var h = location.hash;
+      if (!h || h.length < 2) return null;
+      var id = h.slice(1);
+      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
+      return document.getElementById(id);
+    }
+
+    var prev = root.style.scrollBehavior;
+
+    function instantJump() {
+      var t = target();
+      if (!t) return;
+      root.style.scrollBehavior = 'auto';
+      sync();                              /* 先更新 --hdr-h，再对齐 */
+      t.scrollIntoView({ block: 'start' });
+    }
+    function restore() {
+      root.style.scrollBehavior = prev;
+    }
+
+    if (location.hash.length > 1) {
+      instantJump();
+      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
+      window.addEventListener('load', function () {
+        instantJump();
+        setTimeout(restore, 60);
+      });
+      setTimeout(restore, 1500);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+</head>
+<body>
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
+    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
+  </div>
+</header>
+<main class="main">
+<article class="storypage">
+  <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F">《少女神域∽少女天獄》本篇剧本</a> / S021_01_a10.txt</p>
+  <h1 class="stitle">S021_01_a10.txt</h1>
+  <p class="stmeta">来源：少女神域/data/scenario/S021_01_a10.txt · 165 行 · 被 2 条词条引用</p>
+  <nav class="xj">
+    <p class="xj-h">本页被引用：2 条词条只登记了文件名，未定位到具体句子</p>
+    <ul class="xj-l"><li><a class="xj-e" href="../../entry1/051_%E4%B8%89%E5%BA%A7%E8%88%9E.html">三座舞</a>、<a class="xj-e" href="../../entry1/050_%E5%9B%9B%E5%BA%A7%E8%88%9E.html">四座舞</a></li></ul>
+  </nav>
+  <p class="note">本页为剧本文件的完整原样内容（含注释与演出指令；仅由原编码转换为 UTF-8，文字未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
+  <div class="script">
+    <div class="sl" id="L1"><span class="ln">1</span><span class="tx">;//FILEID=082</span></div>
+    <div class="sl" id="L2"><span class="ln">2</span><span class="tx">*start|巫女のたまごたちⅢ</span></div>
+    <div class="sl" id="L3"><span class="ln">3</span><span class="tx">[initscene]</span></div>
+    <div class="sl" id="L4"><span class="ln">4</span><span class="tx">;[voicebase base=]</span></div>
+    <div class="sl" id="L5"><span class="ln">5</span><span class="tx"></span></div>
+    <div class="sl" id="L6"><span class="ln">6</span><span class="tx">;■■■■■　設定　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L7"><span class="ln">7</span><span class="tx"></span></div>
+    <div class="sl" id="L8"><span class="ln">8</span><span class="tx">;タイトル　　　SN≪021≫日付≪3/12≫シーンタイトル≪巫女のたまごたちⅢ≫</span></div>
+    <div class="sl" id="L9"><span class="ln">9</span><span class="tx">;背景　　　　　SN≪021≫日付≪3/12≫背景の設定≪≫</span></div>
+    <div class="sl" id="L10"><span class="ln">10</span><span class="tx">;時間　　　　　SN≪021≫日付≪3/12≫時間の設定≪昼≫</span></div>
+    <div class="sl" id="L11"><span class="ln">11</span><span class="tx">;登場人物　　　SN≪021≫日付≪3/12≫人物の設定≪迪希（私服）、愛莉（制服）、祥那（制服）≫</span></div>
+    <div class="sl" id="L12"><span class="ln">12</span><span class="tx">;CG　　　　　　SN≪021≫日付≪3/12≫CGfile設定≪≫</span></div>
+    <div class="sl" id="L13"><span class="ln">13</span><span class="tx"></span></div>
+    <div class="sl" id="L14"><span class="ln">14</span><span class="tx">;■■■■■　指示ツール　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L15"><span class="ln">15</span><span class="tx"></span></div>
+    <div class="sl" id="L16"><span class="ln">16</span><span class="tx">;●[ウィンドウ表示]</span></div>
+    <div class="sl" id="L17"><span class="ln">17</span><span class="tx">;○[ノベル表示]</span></div>
+    <div class="sl" id="L18"><span class="ln">18</span><span class="tx">;■CGイベント/;//■CG背景</span></div>
+    <div class="sl" id="L19"><span class="ln">19</span><span class="tx">;□演出画像/;□演出指示</span></div>
+    <div class="sl" id="L20"><span class="ln">20</span><span class="tx">;★BGM</span></div>
+    <div class="sl" id="L21"><span class="ln">21</span><span class="tx">;▼SE</span></div>
+    <div class="sl" id="L22"><span class="ln">22</span><span class="tx">;◇内部用/;◇提案/;◇メモ/;◇バグ（バグの場合、記入者と日付を必ず）</span></div>
+    <div class="sl" id="L23"><span class="ln">23</span><span class="tx"></span></div>
+    <div class="sl" id="L24"><span class="ln">24</span><span class="tx">;■■■■■■■　本文　■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■▽■■■■■■■■■■◎</span></div>
+    <div class="sl" id="L25"><span class="ln">25</span><span class="tx">;//■CG背景。bg_004_00	主人公の家・居間（済）</span></div>
+    <div class="sl" id="L26"><span class="ln">26</span><span class="tx">[背景変更 主人公の家・居間 昼]</span></div>
+    <div class="sl" id="L27"><span class="ln">27</span><span class="tx"></span></div>
+    <div class="sl" id="L28"><span class="ln">28</span><span class="tx">*not_initscene|巫女のたまごたちⅢ</span></div>
+    <div class="sl" id="L29"><span class="ln">29</span><span class="tx"></span></div>
+    <div class="sl" id="L30"><span class="ln">30</span><span class="tx">;●[ウィンドウ表示]（済）</span></div>
+    <div class="sl" id="L31"><span class="ln">31</span><span class="tx">[ウィンドウ窓]</span></div>
+    <div class="sl" id="L32"><span class="ln">32</span><span class="tx"></span></div>
+    <div class="sl" id="L33"><span class="ln">33</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L34"><span class="ln">34</span><span class="tx">「[祥那,さな]たち、もうすぐ帰ってくるんだよね？」</span></div>
+    <div class="sl" id="L35"><span class="ln">35</span><span class="tx"></span></div>
+    <div class="sl" id="L36"><span class="ln">36</span><span class="tx">[迪希 服・私服 正面・腕下組 表情・通常 おじぎ]</span></div>
+    <div class="sl" id="L37"><span class="ln">37</span><span class="tx">[迪希 voice=YK082000]</span></div>
+    <div class="sl" id="L38"><span class="ln">38</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L39"><span class="ln">39</span><span class="tx">「ええ。学園も、[星鴻祭,せいこうさい]に合わせた時間割に、もうなってるそうよ」</span></div>
+    <div class="sl" id="L40"><span class="ln">40</span><span class="tx"></span></div>
+    <div class="sl" id="L41"><span class="ln">41</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L42"><span class="ln">42</span><span class="tx">「ねえ、[迪希,ゆき]。食事のあと、どんなスケジュールで今日は動くの？」</span></div>
+    <div class="sl" id="L43"><span class="ln">43</span><span class="tx"></span></div>
+    <div class="sl" id="L44"><span class="ln">44</span><span class="tx">[迪希 服・私服 右斜・右手顎 表情・苦笑]</span></div>
+    <div class="sl" id="L45"><span class="ln">45</span><span class="tx">[迪希 voice=YK082001]</span></div>
+    <div class="sl" id="L46"><span class="ln">46</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L47"><span class="ln">47</span><span class="tx">「えっと[――]食べたあとは、今日はここで服を着替えて、そのまま神社へ行くって感じね」</span></div>
+    <div class="sl" id="L48"><span class="ln">48</span><span class="tx"></span></div>
+    <div class="sl" id="L49"><span class="ln">49</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L50"><span class="ln">50</span><span class="tx">「これから、いつもそんな感じかい？」</span></div>
+    <div class="sl" id="L51"><span class="ln">51</span><span class="tx"></span></div>
+    <div class="sl" id="L52"><span class="ln">52</span><span class="tx">[迪希 服・私服 右斜・右手顎 表情・悲しい]</span></div>
+    <div class="sl" id="L53"><span class="ln">53</span><span class="tx">[迪希 voice=YK082002]</span></div>
+    <div class="sl" id="L54"><span class="ln">54</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L55"><span class="ln">55</span><span class="tx">「うーん、まちまちだと思う。神社に行ってから、着替える場合もあると思うし」</span></div>
+    <div class="sl" id="L56"><span class="ln">56</span><span class="tx"></span></div>
+    <div class="sl" id="L57"><span class="ln">57</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L58"><span class="ln">58</span><span class="tx">「そうなの？」</span></div>
+    <div class="sl" id="L59"><span class="ln">59</span><span class="tx"></span></div>
+    <div class="sl" id="L60"><span class="ln">60</span><span class="tx">[迪希 服・私服 正面・片手顎 表情・真面目]</span></div>
+    <div class="sl" id="L61"><span class="ln">61</span><span class="tx">[迪希 voice=YK082003]</span></div>
+    <div class="sl" id="L62"><span class="ln">62</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L63"><span class="ln">63</span><span class="tx">「『[三座舞,さんざまい]』と『[四座舞,しざまい]』っていう、二つの[神楽,かぐら]の練習がメインだけど、それ以外にも色んな場所で、心構えとか勉強させられるらしいわ」</span></div>
+    <div class="sl" id="L64"><span class="ln">64</span><span class="tx"></span></div>
+    <div class="sl" id="L65"><span class="ln">65</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L66"><span class="ln">66</span><span class="tx">「そうなんだ。そういや巫女服って……[迪希,ゆき]もか」</span></div>
+    <div class="sl" id="L67"><span class="ln">67</span><span class="tx"></span></div>
+    <div class="sl" id="L68"><span class="ln">68</span><span class="tx">[迪希 服・私服 左斜・左手髪 表情・笑顔照れ]</span></div>
+    <div class="sl" id="L69"><span class="ln">69</span><span class="tx">[迪希 voice=YK082004]</span></div>
+    <div class="sl" id="L70"><span class="ln">70</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L71"><span class="ln">71</span><span class="tx">「ふっふっふ……[恂,しゅん]ちゃん、見たい？」</span></div>
+    <div class="sl" id="L72"><span class="ln">72</span><span class="tx"></span></div>
+    <div class="sl" id="L73"><span class="ln">73</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L74"><span class="ln">74</span><span class="tx">「いやいや、大丈夫」</span></div>
+    <div class="sl" id="L75"><span class="ln">75</span><span class="tx"></span></div>
+    <div class="sl" id="L76"><span class="ln">76</span><span class="tx">[迪希 服・私服 左斜・腕下 表情・怒り]</span></div>
+    <div class="sl" id="L77"><span class="ln">77</span><span class="tx">[迪希 voice=YK082005]</span></div>
+    <div class="sl" id="L78"><span class="ln">78</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L79"><span class="ln">79</span><span class="tx">「大丈夫って、なんだか傷つくわね、それ」</span></div>
+    <div class="sl" id="L80"><span class="ln">80</span><span class="tx"></span></div>
+    <div class="sl" id="L81"><span class="ln">81</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L82"><span class="ln">82</span><span class="tx">「そういう意味じゃないって。あと、この前[祥那,さな]や[愛莉,あいり]ちゃんが見せてくれたし」</span></div>
+    <div class="sl" id="L83"><span class="ln">83</span><span class="tx"></span></div>
+    <div class="sl" id="L84"><span class="ln">84</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・怪訝 もじもじ]</span></div>
+    <div class="sl" id="L85"><span class="ln">85</span><span class="tx">[迪希 voice=YK082006]</span></div>
+    <div class="sl" id="L86"><span class="ln">86</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L87"><span class="ln">87</span><span class="tx">「……あーもう、出遅れた」</span></div>
+    <div class="sl" id="L88"><span class="ln">88</span><span class="tx"></span></div>
+    <div class="sl" id="L89"><span class="ln">89</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L90"><span class="ln">90</span><span class="tx">「でも、神社のほうで、これから毎日練習をするんでしょ？」</span></div>
+    <div class="sl" id="L91"><span class="ln">91</span><span class="tx"></span></div>
+    <div class="sl" id="L92"><span class="ln">92</span><span class="tx">[迪希 服・私服 左斜・腕下 表情・通常]</span></div>
+    <div class="sl" id="L93"><span class="ln">93</span><span class="tx">[迪希 voice=YK082007]</span></div>
+    <div class="sl" id="L94"><span class="ln">94</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L95"><span class="ln">95</span><span class="tx">「毎日、ってわけじゃないと思うけど……」</span></div>
+    <div class="sl" id="L96"><span class="ln">96</span><span class="tx"></span></div>
+    <div class="sl" id="L97"><span class="ln">97</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L98"><span class="ln">98</span><span class="tx">「必ず、陣中見舞いにいくからさ。約束する」</span></div>
+    <div class="sl" id="L99"><span class="ln">99</span><span class="tx"></span></div>
+    <div class="sl" id="L100"><span class="ln">100</span><span class="tx">[迪希 服・私服 左斜・腕下 表情・通常ウィンク Ｙｅｓ]</span></div>
+    <div class="sl" id="L101"><span class="ln">101</span><span class="tx">[迪希 voice=YK082008]</span></div>
+    <div class="sl" id="L102"><span class="ln">102</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L103"><span class="ln">103</span><span class="tx">「うん、約束されたからには、大いに受け止めてあげましょう」</span></div>
+    <div class="sl" id="L104"><span class="ln">104</span><span class="tx"></span></div>
+    <div class="sl" id="L105"><span class="ln">105</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L106"><span class="ln">106</span><span class="tx">「はははっ、なんか[迪希,ゆき]の言葉、[水原,みずはら]みたいなセリフだよ」</span></div>
+    <div class="sl" id="L107"><span class="ln">107</span><span class="tx"></span></div>
+    <div class="sl" id="L108"><span class="ln">108</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L109"><span class="ln">109</span><span class="tx">;//※収録説明用（台本製作後に消去）</span></div>
+    <div class="sl" id="L110"><span class="ln">110</span><span class="tx">;//このセリフの「……ふふっ」は苦笑ではなく、</span></div>
+    <div class="sl" id="L111"><span class="ln">111</span><span class="tx">;//本当に嬉しい笑いのほうです。水原のように、主人公に近しい存在でありたいと、</span></div>
+    <div class="sl" id="L112"><span class="ln">112</span><span class="tx">;//迪希は望んでいるから、憎まれ口のような言葉は、自分のいつもの振る舞いに意識的で、</span></div>
+    <div class="sl" id="L113"><span class="ln">113</span><span class="tx">;//同時に照れ隠しでもあります。</span></div>
+    <div class="sl" id="L114"><span class="ln">114</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L115"><span class="ln">115</span><span class="tx"></span></div>
+    <div class="sl" id="L116"><span class="ln">116</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・通常２]</span></div>
+    <div class="sl" id="L117"><span class="ln">117</span><span class="tx">[迪希 voice=YK082009]</span></div>
+    <div class="sl" id="L118"><span class="ln">118</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L119"><span class="ln">119</span><span class="tx">「喜んでいいのやら、悪いのやら……ふふっ」</span></div>
+    <div class="sl" id="L120"><span class="ln">120</span><span class="tx"></span></div>
+    <div class="sl" id="L121"><span class="ln">121</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L122"><span class="ln">122</span><span class="tx">「さてと、そろそろ台所に向かうかな[――]お茶、ありがとね。旨かったよ」</span></div>
+    <div class="sl" id="L123"><span class="ln">123</span><span class="tx"></span></div>
+    <div class="sl" id="L124"><span class="ln">124</span><span class="tx">[迪希 服・私服 正面・腕下組 表情・笑顔目閉じ口閉じ]</span></div>
+    <div class="sl" id="L125"><span class="ln">125</span><span class="tx">[迪希 voice=YK082010]</span></div>
+    <div class="sl" id="L126"><span class="ln">126</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L127"><span class="ln">127</span><span class="tx">「どういたしまして。お母さまにも、ちゃんと伝えておくわ」</span></div>
+    <div class="sl" id="L128"><span class="ln">128</span><span class="tx"></span></div>
+    <div class="sl" id="L129"><span class="ln">129</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L130"><span class="ln">130</span><span class="tx">「うん。それにしても……作るほうとしては、結構悩みどころなんだよね」</span></div>
+    <div class="sl" id="L131"><span class="ln">131</span><span class="tx"></span></div>
+    <div class="sl" id="L132"><span class="ln">132</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・不機嫌]</span></div>
+    <div class="sl" id="L133"><span class="ln">133</span><span class="tx">[迪希 voice=YK082011]</span></div>
+    <div class="sl" id="L134"><span class="ln">134</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L135"><span class="ln">135</span><span class="tx">「虫じゃないし、野菜だけなんて、遠慮したいわね」</span></div>
+    <div class="sl" id="L136"><span class="ln">136</span><span class="tx"></span></div>
+    <div class="sl" id="L137"><span class="ln">137</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L138"><span class="ln">138</span><span class="tx">「わかってるって」</span></div>
+    <div class="sl" id="L139"><span class="ln">139</span><span class="tx"></span></div>
+    <div class="sl" id="L140"><span class="ln">140</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L141"><span class="ln">141</span><span class="tx">;//※収録説明用（台本製作後に消去）</span></div>
+    <div class="sl" id="L142"><span class="ln">142</span><span class="tx">;//このセリフの「そうよ[――]」は、上で巫女服をみせられなかったので、</span></div>
+    <div class="sl" id="L143"><span class="ln">143</span><span class="tx">;//どうにか他のイベントで、主人公と仲良く一緒に過ごしたいなと頭の中で探し、</span></div>
+    <div class="sl" id="L144"><span class="ln">144</span><span class="tx">;//料理を手伝うというイベントを思いついた、という状況です</span></div>
+    <div class="sl" id="L145"><span class="ln">145</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L146"><span class="ln">146</span><span class="tx"></span></div>
+    <div class="sl" id="L147"><span class="ln">147</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・怒り]</span></div>
+    <div class="sl" id="L148"><span class="ln">148</span><span class="tx">[迪希 voice=YK082012]</span></div>
+    <div class="sl" id="L149"><span class="ln">149</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L150"><span class="ln">150</span><span class="tx">「あっ、そうよ[――]」</span></div>
+    <div class="sl" id="L151"><span class="ln">151</span><span class="tx"></span></div>
+    <div class="sl" id="L152"><span class="ln">152</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L153"><span class="ln">153</span><span class="tx">「どうしたの？」</span></div>
+    <div class="sl" id="L154"><span class="ln">154</span><span class="tx"></span></div>
+    <div class="sl" id="L155"><span class="ln">155</span><span class="tx">[迪希 服・私服 正面・腕下組 表情・笑顔]</span></div>
+    <div class="sl" id="L156"><span class="ln">156</span><span class="tx">[迪希 voice=YK082013]</span></div>
+    <div class="sl" id="L157"><span class="ln">157</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L158"><span class="ln">158</span><span class="tx">「[――]私、[恂,しゅん]ちゃんの料理を手伝ってあげるわ」</span></div>
+    <div class="sl" id="L159"><span class="ln">159</span><span class="tx"></span></div>
+    <div class="sl" id="L160"><span class="ln">160</span><span class="tx">;□演出指示。S021_02_a00.txtへ（済）</span></div>
+    <div class="sl" id="L161"><span class="ln">161</span><span class="tx"></span></div>
+    <div class="sl" id="L162"><span class="ln">162</span><span class="tx">;■■■■■　本文終了　■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L163"><span class="ln">163</span><span class="tx">;■EOF</span></div>
+    <div class="sl" id="L164"><span class="ln">164</span><span class="tx">;[終了]</span></div>
+    <div class="sl" id="L165"><span class="ln">165</span><span class="tx">[next storage=S021_02_a00.txt target=*not_initscene]</span></div>
+  </div>
+  <section class="xref">
+    <h2 class="lst-h">引用本文件的词条（2）</h2>
+    <ul class="lst">
+      <li><a href="../../entry1/051_%E4%B8%89%E5%BA%A7%E8%88%9E.html">三座舞</a></li>
+      <li><a href="../../entry1/050_%E5%9B%9B%E5%BA%A7%E8%88%9E.html">四座舞</a></li>
+    </ul>
+  </section>
+</article>
+
+</main>
+<footer class="ft">
+  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
+  <p>参考资料 · 《少女神域∽少女天獄》本篇剧本 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
+</footer>
+</body>
+</html>

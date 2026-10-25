@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S100_00_a00.txt</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
+   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
+      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
+   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
+      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
+   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
+(function () {
+  function run() {
+    var root = document.documentElement;
+    var hd = document.querySelector('.hd');
+
+    function sync() {
+      if (!hd) return;
+      var h = Math.round(hd.getBoundingClientRect().height);
+      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
+
+    function target() {
+      var h = location.hash;
+      if (!h || h.length < 2) return null;
+      var id = h.slice(1);
+      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
+      return document.getElementById(id);
+    }
+
+    var prev = root.style.scrollBehavior;
+
+    function instantJump() {
+      var t = target();
+      if (!t) return;
+      root.style.scrollBehavior = 'auto';
+      sync();                              /* 先更新 --hdr-h，再对齐 */
+      t.scrollIntoView({ block: 'start' });
+    }
+    function restore() {
+      root.style.scrollBehavior = prev;
+    }
+
+    if (location.hash.length > 1) {
+      instantJump();
+      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
+      window.addEventListener('load', function () {
+        instantJump();
+        setTimeout(restore, 60);
+      });
+      setTimeout(restore, 1500);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+</head>
+<body>
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
+    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
+  </div>
+</header>
+<main class="main">
+<article class="storypage">
+  <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F">《少女神域∽少女天獄》本篇剧本</a> / S100_00_a00.txt</p>
+  <h1 class="stitle">S100_00_a00.txt</h1>
+  <p class="stmeta">来源：少女神域/data/scenario/S100_00_a00.txt · 531 行 · 被 3 条词条引用</p>
+  <nav class="xj">
+    <p class="xj-h">本页被引用的位置：<b>2</b> 处，来自 3 条词条<span class="xj-tip">点行号跳到本页对应行，点词条名进词条</span></p>
+    <ul class="xj-l">
+      <li><a class="xj-ln" href="#L27" title="跳到本页第 27 行">L27</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L376" title="跳到本页第 376 行">L376</a><a class="xj-e" href="../../entry1/036_%E8%8D%92%E9%AD%82%E4%B8%8E%E5%92%8C%E9%AD%82.html#s1">荒魂与和魂</a></li>
+    </ul>
+  </nav>
+  <p class="note">本页为剧本文件的完整原样内容（含注释与演出指令；仅由原编码转换为 UTF-8，文字未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
+  <div class="script">
+    <div class="sl" id="L1"><span class="ln">1</span><span class="tx">;//FILEID=211</span></div>
+    <div class="sl" id="L2"><span class="ln">2</span><span class="tx">*start|縛られたプロメテウス</span></div>
+    <div class="sl" id="L3"><span class="ln">3</span><span class="tx">[initscene]</span></div>
+    <div class="sl" id="L4"><span class="ln">4</span><span class="tx">;[voicebase base=]</span></div>
+    <div class="sl" id="L5"><span class="ln">5</span><span class="tx"></span></div>
+    <div class="sl" id="L6"><span class="ln">6</span><span class="tx">;■■■■■　設定　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L7"><span class="ln">7</span><span class="tx"></span></div>
+    <div class="sl" id="L8"><span class="ln">8</span><span class="tx">;タイトル　　　SN≪100≫日付≪3/30≫シーンタイトル≪縛られたプロメテウス≫</span></div>
+    <div class="sl" id="L9"><span class="ln">9</span><span class="tx">;背景　　　　　SN≪100≫日付≪3/30≫背景の設定≪≫</span></div>
+    <div class="sl" id="L10"><span class="ln">10</span><span class="tx">;時間　　　　　SN≪100≫日付≪3/30≫時間の設定≪夕≫</span></div>
+    <div class="sl" id="L11"><span class="ln">11</span><span class="tx">;登場人物　　　SN≪100≫日付≪3/30≫人物の設定≪迪希（私服）、碧織（私服）、愛莉（私服）、祥那（私服）≫</span></div>
+    <div class="sl" id="L12"><span class="ln">12</span><span class="tx">;CG　　　　　　SN≪100≫日付≪3/30≫CGfile設定≪≫</span></div>
+    <div class="sl" id="L13"><span class="ln">13</span><span class="tx"></span></div>
+    <div class="sl" id="L14"><span class="ln">14</span><span class="tx">;■■■■■■■　本文　■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■▽■■■■■■■■■■◎</span></div>
+    <div class="sl" id="L15"><span class="ln">15</span><span class="tx">;◇内部用。地の文要変更、追加。</span></div>
+    <div class="sl" id="L16"><span class="ln">16</span><span class="tx">;●[ウィンドウ表示](済)</span></div>
+    <div class="sl" id="L17"><span class="ln">17</span><span class="tx">[ウィンドウ窓]</span></div>
+    <div class="sl" id="L18"><span class="ln">18</span><span class="tx"></span></div>
+    <div class="sl" id="L19"><span class="ln">19</span><span class="tx">[BGM再生 storage=BGM16 time=2500]</span></div>
+    <div class="sl" id="L20"><span class="ln">20</span><span class="tx">[wait time=1000]</span></div>
+    <div class="sl" id="L21"><span class="ln">21</span><span class="tx">[セピア開始]</span></div>
+    <div class="sl" id="L22"><span class="ln">22</span><span class="tx"></span></div>
+    <div class="sl" id="L23"><span class="ln">23</span><span class="tx">僕は夢を見ていた。</span></div>
+    <div class="sl" id="L24"><span class="ln">24</span><span class="tx">鮮明な色[――]何度も見たかつての夢だった。</span></div>
+    <div class="sl" id="L25"><span class="ln">25</span><span class="tx">しかし、今見ているのは夢の続きの部分だった。</span></div>
+    <div class="sl" id="L26"><span class="ln">26</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L27"><span class="ln">27</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17" title="词条考据：punitive justice·详解">過去の一瞬一瞬が、形あるものになるように[――</a>]。</span></div>
+    <div class="sl" id="L28"><span class="ln">28</span><span class="tx">気の遠くなるような数の石で、立派な城を作り上げるように[――]。</span></div>
+    <div class="sl" id="L29"><span class="ln">29</span><span class="tx">その夢はとてもなめらかで、宝石のように輝きながら、僕の心の中に飛び込んできた。</span></div>
+    <div class="sl" id="L30"><span class="ln">30</span><span class="tx"></span></div>
+    <div class="sl" id="L31"><span class="ln">31</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L32"><span class="ln">32</span><span class="tx">「おかあさん、なにか光った[――]」</span></div>
+    <div class="sl" id="L33"><span class="ln">33</span><span class="tx"></span></div>
+    <div class="sl" id="L34"><span class="ln">34</span><span class="tx">;□演出指示　猟銃の発射（済）</span></div>
+    <div class="sl" id="L35"><span class="ln">35</span><span class="tx">[猟銃発砲]</span></div>
+    <div class="sl" id="L36"><span class="ln">36</span><span class="tx"></span></div>
+    <div class="sl" id="L37"><span class="ln">37</span><span class="tx">;//(SE要望 猟銃音 山口　3/6)(済 03/21)</span></div>
+    <div class="sl" id="L38"><span class="ln">38</span><span class="tx">;□演出指示。暗転</span></div>
+    <div class="sl" id="L39"><span class="ln">39</span><span class="tx">[演出消去]</span></div>
+    <div class="sl" id="L40"><span class="ln">40</span><span class="tx"></span></div>
+    <div class="sl" id="L41"><span class="ln">41</span><span class="tx">;[暗転]</span></div>
+    <div class="sl" id="L42"><span class="ln">42</span><span class="tx">;□演出指示。それから演出画像のヒメシャガを表示。(済)</span></div>
+    <div class="sl" id="L43"><span class="ln">43</span><span class="tx">;//ヒメシャガの画像の具体指定がなかったので、file=ef13_00を入れてます。　4月1日　宮澤</span></div>
+    <div class="sl" id="L44"><span class="ln">44</span><span class="tx"></span></div>
+    <div class="sl" id="L45"><span class="ln">45</span><span class="tx">[ev file=ef13_00 time=500]</span></div>
+    <div class="sl" id="L46"><span class="ln">46</span><span class="tx">[se buf=0 SE507]</span></div>
+    <div class="sl" id="L47"><span class="ln">47</span><span class="tx">[ev file=ef13_02 time=500 trans=右上左下こすり]</span></div>
+    <div class="sl" id="L48"><span class="ln">48</span><span class="tx"></span></div>
+    <div class="sl" id="L49"><span class="ln">49</span><span class="tx">;//猟銃で背後から撃たれる。母子共々、傷ついてしまう。母親の栄花は致命傷を負う。</span></div>
+    <div class="sl" id="L50"><span class="ln">50</span><span class="tx"></span></div>
+    <div class="sl" id="L51"><span class="ln">51</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L52"><span class="ln">52</span><span class="tx">「きゃあっ！」</span></div>
+    <div class="sl" id="L53"><span class="ln">53</span><span class="tx"></span></div>
+    <div class="sl" id="L54"><span class="ln">54</span><span class="tx">[栄花 voice=EK211000]</span></div>
+    <div class="sl" id="L55"><span class="ln">55</span><span class="tx">【栄花】</span></div>
+    <div class="sl" id="L56"><span class="ln">56</span><span class="tx">「あああっ[――]」</span></div>
+    <div class="sl" id="L57"><span class="ln">57</span><span class="tx"></span></div>
+    <div class="sl" id="L58"><span class="ln">58</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L59"><span class="ln">59</span><span class="tx">「ああっ……いたいよっ、いたいよぉっ……」</span></div>
+    <div class="sl" id="L60"><span class="ln">60</span><span class="tx"></span></div>
+    <div class="sl" id="L61"><span class="ln">61</span><span class="tx">[栄花 voice=EK211001]</span></div>
+    <div class="sl" id="L62"><span class="ln">62</span><span class="tx">【栄花】</span></div>
+    <div class="sl" id="L63"><span class="ln">63</span><span class="tx">「ぐっ、うう……はぁ、はぁ……[恂,しゅん]っ……はぁ……[恂,しゅん]……」</span></div>
+    <div class="sl" id="L64"><span class="ln">64</span><span class="tx"></span></div>
+    <div class="sl" id="L65"><span class="ln">65</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L66"><span class="ln">66</span><span class="tx">「おかあさん、いたい……お腹いたい、いたいっ……ううっ、う……」</span></div>
+    <div class="sl" id="L67"><span class="ln">67</span><span class="tx"></span></div>
+    <div class="sl" id="L68"><span class="ln">68</span><span class="tx">[栄花 voice=EK211002]</span></div>
+    <div class="sl" id="L69"><span class="ln">69</span><span class="tx">【栄花】</span></div>
+    <div class="sl" id="L70"><span class="ln">70</span><span class="tx">「はぁ、はぁ、[恂,しゅん]っ……お母さんがっ、守るからっ……はぁ、はぁ……」</span></div>
+    <div class="sl" id="L71"><span class="ln">71</span><span class="tx"></span></div>
+    <div class="sl" id="L72"><span class="ln">72</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L73"><span class="ln">73</span><span class="tx">「おかあさん……おかあさん……いたい……いたいよぉ……」</span></div>
+    <div class="sl" id="L74"><span class="ln">74</span><span class="tx"></span></div>
+    <div class="sl" id="L75"><span class="ln">75</span><span class="tx">[栄花 voice=EK211003]</span></div>
+    <div class="sl" id="L76"><span class="ln">76</span><span class="tx">【栄花】</span></div>
+    <div class="sl" id="L77"><span class="ln">77</span><span class="tx">「[恂,しゅん]っ……くっ、ああ……はぁ……はぁ……」</span></div>
+    <div class="sl" id="L78"><span class="ln">78</span><span class="tx"></span></div>
+    <div class="sl" id="L79"><span class="ln">79</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L80"><span class="ln">80</span><span class="tx">「いたい……うう……はぁ……はぁ……」</span></div>
+    <div class="sl" id="L81"><span class="ln">81</span><span class="tx"></span></div>
+    <div class="sl" id="L82"><span class="ln">82</span><span class="tx">[栄花 voice=EK211004]</span></div>
+    <div class="sl" id="L83"><span class="ln">83</span><span class="tx">【栄花】</span></div>
+    <div class="sl" id="L84"><span class="ln">84</span><span class="tx">「[恂,しゅん][――]」</span></div>
+    <div class="sl" id="L85"><span class="ln">85</span><span class="tx"></span></div>
+    <div class="sl" id="L86"><span class="ln">86</span><span class="tx">;□演出指示　猟銃の発射（済）</span></div>
+    <div class="sl" id="L87"><span class="ln">87</span><span class="tx">[猟銃発砲]</span></div>
+    <div class="sl" id="L88"><span class="ln">88</span><span class="tx">[演出消去]</span></div>
+    <div class="sl" id="L89"><span class="ln">89</span><span class="tx">;//(SE要望 猟銃音 山口　3/6)（マクロにSEを入れたので調整はそちらで願います（尾上））(済 03/21)</span></div>
+    <div class="sl" id="L90"><span class="ln">90</span><span class="tx">;[ＳＥ待ち]</span></div>
+    <div class="sl" id="L91"><span class="ln">91</span><span class="tx">;[se buf=2 time=1 fade=100 SE404]</span></div>
+    <div class="sl" id="L92"><span class="ln">92</span><span class="tx">;[wait time=1000]</span></div>
+    <div class="sl" id="L93"><span class="ln">93</span><span class="tx">;//猟銃で撃たれる。母親の栄花は即死。</span></div>
+    <div class="sl" id="L94"><span class="ln">94</span><span class="tx"></span></div>
+    <div class="sl" id="L95"><span class="ln">95</span><span class="tx"></span></div>
+    <div class="sl" id="L96"><span class="ln">96</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L97"><span class="ln">97</span><span class="tx">「おかあさん……はぁ、はぁ……おかあさん、いたいよ……」</span></div>
+    <div class="sl" id="L98"><span class="ln">98</span><span class="tx"></span></div>
+    <div class="sl" id="L99"><span class="ln">99</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L100"><span class="ln">100</span><span class="tx">「いたい、いたい……はぁ、はぁ、おかあさん……おかあさん……」</span></div>
+    <div class="sl" id="L101"><span class="ln">101</span><span class="tx"></span></div>
+    <div class="sl" id="L102"><span class="ln">102</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L103"><span class="ln">103</span><span class="tx">「おかあさん[――]」</span></div>
+    <div class="sl" id="L104"><span class="ln">104</span><span class="tx"></span></div>
+    <div class="sl" id="L105"><span class="ln">105</span><span class="tx">;□演出指示。フェードアウト。(済)</span></div>
+    <div class="sl" id="L106"><span class="ln">106</span><span class="tx">[暗転]</span></div>
+    <div class="sl" id="L107"><span class="ln">107</span><span class="tx">;//幼い[恂,しゅん]は痛みと失血から、ゆっくりと目を閉じていく。</span></div>
+    <div class="sl" id="L108"><span class="ln">108</span><span class="tx">;//しばらくすると、どこかから男の声[――][恂,しゅん]の父親の声が聞こえていた。</span></div>
+    <div class="sl" id="L109"><span class="ln">109</span><span class="tx"></span></div>
+    <div class="sl" id="L110"><span class="ln">110</span><span class="tx">[衡 voice=MR211000]</span></div>
+    <div class="sl" id="L111"><span class="ln">111</span><span class="tx">【衡】</span></div>
+    <div class="sl" id="L112"><span class="ln">112</span><span class="tx">「[恂,しゅん]……起きて……[恂,しゅん]……ここは……寒いよ……」</span></div>
+    <div class="sl" id="L113"><span class="ln">113</span><span class="tx"></span></div>
+    <div class="sl" id="L114"><span class="ln">114</span><span class="tx">;ボイス加工</span></div>
+    <div class="sl" id="L115"><span class="ln">115</span><span class="tx"></span></div>
+    <div class="sl" id="L116"><span class="ln">116</span><span class="tx">[衡 voice=MR211001]</span></div>
+    <div class="sl" id="L117"><span class="ln">117</span><span class="tx">【衡】</span></div>
+    <div class="sl" id="L118"><span class="ln">118</span><span class="tx">「体も……冷たい……さあ……火をあげる……お父さんの……火だ……」</span></div>
+    <div class="sl" id="L119"><span class="ln">119</span><span class="tx"></span></div>
+    <div class="sl" id="L120"><span class="ln">120</span><span class="tx">;ボイス加工</span></div>
+    <div class="sl" id="L121"><span class="ln">121</span><span class="tx"></span></div>
+    <div class="sl" id="L122"><span class="ln">122</span><span class="tx">[衡 voice=MR211002]</span></div>
+    <div class="sl" id="L123"><span class="ln">123</span><span class="tx">【衡】</span></div>
+    <div class="sl" id="L124"><span class="ln">124</span><span class="tx">「[恂,しゅん]……起きたら……僕らの家に……帰ろう……みんなで……帰るんだ……」</span></div>
+    <div class="sl" id="L125"><span class="ln">125</span><span class="tx"></span></div>
+    <div class="sl" id="L126"><span class="ln">126</span><span class="tx">;ボイス加工</span></div>
+    <div class="sl" id="L127"><span class="ln">127</span><span class="tx"></span></div>
+    <div class="sl" id="L128"><span class="ln">128</span><span class="tx">;//父の謎めいた声[――]人間でないような声を聞きながら、[恂,しゅん]は再び暗闇へ意識が溶けていくのを感じた。</span></div>
+    <div class="sl" id="L129"><span class="ln">129</span><span class="tx"></span></div>
+    <div class="sl" id="L130"><span class="ln">130</span><span class="tx">[暗転]</span></div>
+    <div class="sl" id="L131"><span class="ln">131</span><span class="tx">[セピア終了]</span></div>
+    <div class="sl" id="L132"><span class="ln">132</span><span class="tx">[ＢＧＭ停止 time=2500]</span></div>
+    <div class="sl" id="L133"><span class="ln">133</span><span class="tx">[wait time=3500]</span></div>
+    <div class="sl" id="L134"><span class="ln">134</span><span class="tx"></span></div>
+    <div class="sl" id="L135"><span class="ln">135</span><span class="tx">;□演出画像。汎用空・朝。ゆっくりフェードして夕差分へ。（済）</span></div>
+    <div class="sl" id="L136"><span class="ln">136</span><span class="tx">[昼から夕]</span></div>
+    <div class="sl" id="L137"><span class="ln">137</span><span class="tx">;//■CG背景。bg_005_00	主人公の家・外観（済）</span></div>
+    <div class="sl" id="L138"><span class="ln">138</span><span class="tx">[背景変更 主人公の家・外観 夕]</span></div>
+    <div class="sl" id="L139"><span class="ln">139</span><span class="tx"></span></div>
+    <div class="sl" id="L140"><span class="ln">140</span><span class="tx">[BGM再生 storage=BGM04]</span></div>
+    <div class="sl" id="L141"><span class="ln">141</span><span class="tx"></span></div>
+    <div class="sl" id="L142"><span class="ln">142</span><span class="tx">;●[ウィンドウ表示](済)</span></div>
+    <div class="sl" id="L143"><span class="ln">143</span><span class="tx">[ウィンドウ窓]</span></div>
+    <div class="sl" id="L144"><span class="ln">144</span><span class="tx"></span></div>
+    <div class="sl" id="L145"><span class="ln">145</span><span class="tx">[視点変更・蘆名]</span></div>
+    <div class="sl" id="L146"><span class="ln">146</span><span class="tx"></span></div>
+    <div class="sl" id="L147"><span class="ln">147</span><span class="tx">[道陵氏子Ｂ voice=DB211000]</span></div>
+    <div class="sl" id="L148"><span class="ln">148</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L149"><span class="ln">149</span><span class="tx">「よし[――]奥社の準備が終わったようだ。これから、[若宮,わかみや]さまをお運びする」</span></div>
+    <div class="sl" id="L150"><span class="ln">150</span><span class="tx"></span></div>
+    <div class="sl" id="L151"><span class="ln">151</span><span class="tx">[道陵氏子Ａ voice=DA211000]</span></div>
+    <div class="sl" id="L152"><span class="ln">152</span><span class="tx">【道陵氏子Ａ/枚岡】</span></div>
+    <div class="sl" id="L153"><span class="ln">153</span><span class="tx">「それでは係りの者を呼んできます」</span></div>
+    <div class="sl" id="L154"><span class="ln">154</span><span class="tx"></span></div>
+    <div class="sl" id="L155"><span class="ln">155</span><span class="tx">[道陵氏子Ｂ voice=DB211001]</span></div>
+    <div class="sl" id="L156"><span class="ln">156</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L157"><span class="ln">157</span><span class="tx">「よろしく頼む。私は先に、[愛莉,あいり]さまたちへお会いしてくる」</span></div>
+    <div class="sl" id="L158"><span class="ln">158</span><span class="tx"></span></div>
+    <div class="sl" id="L159"><span class="ln">159</span><span class="tx">[道陵氏子Ａ voice=DA211001]</span></div>
+    <div class="sl" id="L160"><span class="ln">160</span><span class="tx">【道陵氏子Ａ/枚岡】</span></div>
+    <div class="sl" id="L161"><span class="ln">161</span><span class="tx">「[蘆名,あしな]さん、一人で構いませんか？」</span></div>
+    <div class="sl" id="L162"><span class="ln">162</span><span class="tx"></span></div>
+    <div class="sl" id="L163"><span class="ln">163</span><span class="tx">[道陵氏子Ｂ voice=DB211002]</span></div>
+    <div class="sl" id="L164"><span class="ln">164</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L165"><span class="ln">165</span><span class="tx">「ああ。彼女たちも納得ずくだろう」</span></div>
+    <div class="sl" id="L166"><span class="ln">166</span><span class="tx"></span></div>
+    <div class="sl" id="L167"><span class="ln">167</span><span class="tx">[道陵氏子Ａ voice=DA211002]</span></div>
+    <div class="sl" id="L168"><span class="ln">168</span><span class="tx">【道陵氏子Ａ/枚岡】</span></div>
+    <div class="sl" id="L169"><span class="ln">169</span><span class="tx">「了解しました[――]」</span></div>
+    <div class="sl" id="L170"><span class="ln">170</span><span class="tx"></span></div>
+    <div class="sl" id="L171"><span class="ln">171</span><span class="tx">;□演出画像。ef67_00	玄関（主人公家）(済)</span></div>
+    <div class="sl" id="L172"><span class="ln">172</span><span class="tx">[se buf=2 time=1 fade=100 SE1063][wait time=1000]</span></div>
+    <div class="sl" id="L173"><span class="ln">173</span><span class="tx">;//(SE要望 玄関の音 山口　3/5)(済 03/21)</span></div>
+    <div class="sl" id="L174"><span class="ln">174</span><span class="tx">[ev file=ef67_01]</span></div>
+    <div class="sl" id="L175"><span class="ln">175</span><span class="tx">[se buf=2 stop=1000]</span></div>
+    <div class="sl" id="L176"><span class="ln">176</span><span class="tx"></span></div>
+    <div class="sl" id="L177"><span class="ln">177</span><span class="tx">[道陵氏子Ｂ voice=DB211003]</span></div>
+    <div class="sl" id="L178"><span class="ln">178</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L179"><span class="ln">179</span><span class="tx">「ごめんください[――]」</span></div>
+    <div class="sl" id="L180"><span class="ln">180</span><span class="tx"></span></div>
+    <div class="sl" id="L181"><span class="ln">181</span><span class="tx">;■CG背景。bg_021_00	主人公の家・廊下（済）</span></div>
+    <div class="sl" id="L182"><span class="ln">182</span><span class="tx">[背景変更 主人公の家・廊下 夕]</span></div>
+    <div class="sl" id="L183"><span class="ln">183</span><span class="tx"></span></div>
+    <div class="sl" id="L184"><span class="ln">184</span><span class="tx">[愛莉 出 通常 中 服・私服 正面・手胸 表情・驚き]</span></div>
+    <div class="sl" id="L185"><span class="ln">185</span><span class="tx">[愛莉 voice=AR211000]</span></div>
+    <div class="sl" id="L186"><span class="ln">186</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L187"><span class="ln">187</span><span class="tx">「あっ……」</span></div>
+    <div class="sl" id="L188"><span class="ln">188</span><span class="tx"></span></div>
+    <div class="sl" id="L189"><span class="ln">189</span><span class="tx">[道陵氏子Ｂ voice=DB211004]</span></div>
+    <div class="sl" id="L190"><span class="ln">190</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L191"><span class="ln">191</span><span class="tx">「お疲れ様です、[愛莉,あいり]さま。[得子,とくこ]さまからお聞きになっていると思いますが、[若宮,わかみや]さまをお運びに来ました」</span></div>
+    <div class="sl" id="L192"><span class="ln">192</span><span class="tx"></span></div>
+    <div class="sl" id="L193"><span class="ln">193</span><span class="tx">[愛莉 服・私服 正面・腕後 表情・目閉じ]</span></div>
+    <div class="sl" id="L194"><span class="ln">194</span><span class="tx">[愛莉 voice=AR211001]</span></div>
+    <div class="sl" id="L195"><span class="ln">195</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L196"><span class="ln">196</span><span class="tx">「ご苦労様です」</span></div>
+    <div class="sl" id="L197"><span class="ln">197</span><span class="tx"></span></div>
+    <div class="sl" id="L198"><span class="ln">198</span><span class="tx">[道陵氏子Ｂ voice=DB211005]</span></div>
+    <div class="sl" id="L199"><span class="ln">199</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L200"><span class="ln">200</span><span class="tx">「他の皆様はどちらにおられますか？」</span></div>
+    <div class="sl" id="L201"><span class="ln">201</span><span class="tx"></span></div>
+    <div class="sl" id="L202"><span class="ln">202</span><span class="tx">[愛莉 服・私服 正面・腕後 表情・真面目]</span></div>
+    <div class="sl" id="L203"><span class="ln">203</span><span class="tx">[愛莉 voice=AR211002]</span></div>
+    <div class="sl" id="L204"><span class="ln">204</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L205"><span class="ln">205</span><span class="tx">「[迪希,ゆき]さんが二階に、[碧織,みおり]さんと[祥那,さな]ちゃんは居間にいます」</span></div>
+    <div class="sl" id="L206"><span class="ln">206</span><span class="tx"></span></div>
+    <div class="sl" id="L207"><span class="ln">207</span><span class="tx">[道陵氏子Ｂ voice=DB211006]</span></div>
+    <div class="sl" id="L208"><span class="ln">208</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L209"><span class="ln">209</span><span class="tx">「お運びする際、巫女の方々にお伝えするのが古来の習いでございます。上がっても宜しいでしょうか？」</span></div>
+    <div class="sl" id="L210"><span class="ln">210</span><span class="tx"></span></div>
+    <div class="sl" id="L211"><span class="ln">211</span><span class="tx">[愛莉 服・私服 正面・腕後 表情・目閉じ]</span></div>
+    <div class="sl" id="L212"><span class="ln">212</span><span class="tx">[愛莉 voice=AR211003]</span></div>
+    <div class="sl" id="L213"><span class="ln">213</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L214"><span class="ln">214</span><span class="tx">「……」</span></div>
+    <div class="sl" id="L215"><span class="ln">215</span><span class="tx"></span></div>
+    <div class="sl" id="L216"><span class="ln">216</span><span class="tx">[道陵氏子Ｂ voice=DB211007]</span></div>
+    <div class="sl" id="L217"><span class="ln">217</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L218"><span class="ln">218</span><span class="tx">「[愛莉,あいり]さま？」</span></div>
+    <div class="sl" id="L219"><span class="ln">219</span><span class="tx"></span></div>
+    <div class="sl" id="L220"><span class="ln">220</span><span class="tx">[愛莉 服・私服 左斜・腕下 表情・不機嫌]</span></div>
+    <div class="sl" id="L221"><span class="ln">221</span><span class="tx">[愛莉 voice=AR211004]</span></div>
+    <div class="sl" id="L222"><span class="ln">222</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L223"><span class="ln">223</span><span class="tx">「すいません[――]どうぞ、上がっていただいて結構です」</span></div>
+    <div class="sl" id="L224"><span class="ln">224</span><span class="tx"></span></div>
+    <div class="sl" id="L225"><span class="ln">225</span><span class="tx">;□演出指示。暗転。(済)</span></div>
+    <div class="sl" id="L226"><span class="ln">226</span><span class="tx">[暗転]</span></div>
+    <div class="sl" id="L227"><span class="ln">227</span><span class="tx">;//■CG背景。bg_001_00	主人公の家・主人公の部屋（済）</span></div>
+    <div class="sl" id="L228"><span class="ln">228</span><span class="tx">[背景変更 主人公の部屋 夕]</span></div>
+    <div class="sl" id="L229"><span class="ln">229</span><span class="tx"></span></div>
+    <div class="sl" id="L230"><span class="ln">230</span><span class="tx">[begintrans]</span></div>
+    <div class="sl" id="L231"><span class="ln">231</span><span class="tx">[愛莉 出 通常 左奥 服・私服 右斜・腕下 表情・不機嫌]</span></div>
+    <div class="sl" id="L232"><span class="ln">232</span><span class="tx">[迪希 出 通常 中 服・私服 正面・片腕組 表情・怒り]</span></div>
+    <div class="sl" id="L233"><span class="ln">233</span><span class="tx">[endtrans trans=normal time=200]</span></div>
+    <div class="sl" id="L234"><span class="ln">234</span><span class="tx">[迪希 voice=YK211000]</span></div>
+    <div class="sl" id="L235"><span class="ln">235</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L236"><span class="ln">236</span><span class="tx">「私は、認められません[――]そもそも、[澳城,おくしろ]家からの正式な通達は、まだありません」</span></div>
+    <div class="sl" id="L237"><span class="ln">237</span><span class="tx"></span></div>
+    <div class="sl" id="L238"><span class="ln">238</span><span class="tx">[BGM再生 storage=BGM14]</span></div>
+    <div class="sl" id="L239"><span class="ln">239</span><span class="tx"></span></div>
+    <div class="sl" id="L240"><span class="ln">240</span><span class="tx">[道陵氏子Ｂ voice=DB211008]</span></div>
+    <div class="sl" id="L241"><span class="ln">241</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L242"><span class="ln">242</span><span class="tx">「しかし[――]」</span></div>
+    <div class="sl" id="L243"><span class="ln">243</span><span class="tx"></span></div>
+    <div class="sl" id="L244"><span class="ln">244</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・真面目目閉じ]</span></div>
+    <div class="sl" id="L245"><span class="ln">245</span><span class="tx">[迪希 voice=YK211001]</span></div>
+    <div class="sl" id="L246"><span class="ln">246</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L247"><span class="ln">247</span><span class="tx">「加えて本来の家主であり、彼の保護者でもある[菩乃花,ほのか]さんの許可が必要です。この場にいない以上、[澳城,おくしろ]家の者として、彼をこの場から動かすことに反対です」</span></div>
+    <div class="sl" id="L248"><span class="ln">248</span><span class="tx"></span></div>
+    <div class="sl" id="L249"><span class="ln">249</span><span class="tx">[道陵氏子Ｂ voice=DB211009]</span></div>
+    <div class="sl" id="L250"><span class="ln">250</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L251"><span class="ln">251</span><span class="tx">「我々が[若宮,わかみや]さまをお運びすることは、[澳城,おくしろ]の方々から許可をいただいております」</span></div>
+    <div class="sl" id="L252"><span class="ln">252</span><span class="tx"></span></div>
+    <div class="sl" id="L253"><span class="ln">253</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・無表情]</span></div>
+    <div class="sl" id="L254"><span class="ln">254</span><span class="tx">[迪希 voice=YK211002]</span></div>
+    <div class="sl" id="L255"><span class="ln">255</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L256"><span class="ln">256</span><span class="tx">「証拠はありますか？」</span></div>
+    <div class="sl" id="L257"><span class="ln">257</span><span class="tx"></span></div>
+    <div class="sl" id="L258"><span class="ln">258</span><span class="tx">[道陵氏子Ｂ voice=DB211010]</span></div>
+    <div class="sl" id="L259"><span class="ln">259</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L260"><span class="ln">260</span><span class="tx">「今ここにはございません。しかしですね[――]」</span></div>
+    <div class="sl" id="L261"><span class="ln">261</span><span class="tx"></span></div>
+    <div class="sl" id="L262"><span class="ln">262</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・真面目]</span></div>
+    <div class="sl" id="L263"><span class="ln">263</span><span class="tx">[迪希 voice=YK211003]</span></div>
+    <div class="sl" id="L264"><span class="ln">264</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L265"><span class="ln">265</span><span class="tx">「なら、彼を引き渡すことは、この家を預かる身として[――][澳城,おくしろ]の名において拒否します」</span></div>
+    <div class="sl" id="L266"><span class="ln">266</span><span class="tx"></span></div>
+    <div class="sl" id="L267"><span class="ln">267</span><span class="tx">[道陵氏子Ｂ voice=DB211011]</span></div>
+    <div class="sl" id="L268"><span class="ln">268</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L269"><span class="ln">269</span><span class="tx">「[迪希,ゆき]さま。申し訳ありませんが、論をお立てになり意地を通されても、我々[――][澳城,おくしろ]家と[道陵,みちおか]家は今日、[若宮,わかみや]さまをお運びする予定です」</span></div>
+    <div class="sl" id="L270"><span class="ln">270</span><span class="tx"></span></div>
+    <div class="sl" id="L271"><span class="ln">271</span><span class="tx">[愛莉 服・私服 右斜・腕下 表情・悲しい]</span></div>
+    <div class="sl" id="L272"><span class="ln">272</span><span class="tx">[愛莉 voice=AR211005]</span></div>
+    <div class="sl" id="L273"><span class="ln">273</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L274"><span class="ln">274</span><span class="tx">「……」</span></div>
+    <div class="sl" id="L275"><span class="ln">275</span><span class="tx"></span></div>
+    <div class="sl" id="L276"><span class="ln">276</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・怒り]</span></div>
+    <div class="sl" id="L277"><span class="ln">277</span><span class="tx">[迪希 voice=YK211004]</span></div>
+    <div class="sl" id="L278"><span class="ln">278</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L279"><span class="ln">279</span><span class="tx">「意地ではありません。筋を通してください」</span></div>
+    <div class="sl" id="L280"><span class="ln">280</span><span class="tx"></span></div>
+    <div class="sl" id="L281"><span class="ln">281</span><span class="tx">[道陵氏子Ｂ voice=DB211012]</span></div>
+    <div class="sl" id="L282"><span class="ln">282</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L283"><span class="ln">283</span><span class="tx">「不躾ながら申しますと、それは道理にかわなぬ筋だと思われます」</span></div>
+    <div class="sl" id="L284"><span class="ln">284</span><span class="tx"></span></div>
+    <div class="sl" id="L285"><span class="ln">285</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・驚き口閉じ]</span></div>
+    <div class="sl" id="L286"><span class="ln">286</span><span class="tx">[迪希 voice=YK211005]</span></div>
+    <div class="sl" id="L287"><span class="ln">287</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L288"><span class="ln">288</span><span class="tx">「何ですって[――]」</span></div>
+    <div class="sl" id="L289"><span class="ln">289</span><span class="tx"></span></div>
+    <div class="sl" id="L290"><span class="ln">290</span><span class="tx">;//そのとき、二階へ祥那がやってくる。そのあと碧織も。主人公を連れ去られることを知ると、祥那が取り乱すと思って、碧織が居間で止めていたのだった。不穏な雰囲気を感じ取っている祥那。</span></div>
+    <div class="sl" id="L291"><span class="ln">291</span><span class="tx">[祥那 出 通常 右 服・私服 左斜・腕胸 表情・怒り照れ]</span></div>
+    <div class="sl" id="L292"><span class="ln">292</span><span class="tx">[祥那 voice=SN211000]</span></div>
+    <div class="sl" id="L293"><span class="ln">293</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L294"><span class="ln">294</span><span class="tx">「お兄ちゃん[――]」</span></div>
+    <div class="sl" id="L295"><span class="ln">295</span><span class="tx"></span></div>
+    <div class="sl" id="L296"><span class="ln">296</span><span class="tx">[愛莉 服・私服 右斜・腕下 表情・怒り]</span></div>
+    <div class="sl" id="L297"><span class="ln">297</span><span class="tx">[愛莉 voice=AR211006]</span></div>
+    <div class="sl" id="L298"><span class="ln">298</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L299"><span class="ln">299</span><span class="tx">「[祥那,さな]ちゃん、なんで居間に[――]」</span></div>
+    <div class="sl" id="L300"><span class="ln">300</span><span class="tx"></span></div>
+    <div class="sl" id="L301"><span class="ln">301</span><span class="tx">[碧織 右端 服・私服 正面・腕腰 表情・呆れ目そらし]</span></div>
+    <div class="sl" id="L302"><span class="ln">302</span><span class="tx">[碧織 voice=MO211000]</span></div>
+    <div class="sl" id="L303"><span class="ln">303</span><span class="tx">【碧織】</span></div>
+    <div class="sl" id="L304"><span class="ln">304</span><span class="tx">「ごめんなさい。外がうるさいから、確かめようと思って居間を出たときに、その……一緒にね」</span></div>
+    <div class="sl" id="L305"><span class="ln">305</span><span class="tx"></span></div>
+    <div class="sl" id="L306"><span class="ln">306</span><span class="tx">[迪希 服・私服 正面・片手顎 表情・驚き汗]</span></div>
+    <div class="sl" id="L307"><span class="ln">307</span><span class="tx">[迪希 voice=YK211006]</span></div>
+    <div class="sl" id="L308"><span class="ln">308</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L309"><span class="ln">309</span><span class="tx">「もうっ[――]」</span></div>
+    <div class="sl" id="L310"><span class="ln">310</span><span class="tx"></span></div>
+    <div class="sl" id="L311"><span class="ln">311</span><span class="tx">[愛莉 左端 time=500 accel=-1]</span></div>
+    <div class="sl" id="L312"><span class="ln">312</span><span class="tx">[迪希 左中 time=500 accel=-1]</span></div>
+    <div class="sl" id="L313"><span class="ln">313</span><span class="tx">[祥那 右中 time=500 accel=-1]</span></div>
+    <div class="sl" id="L314"><span class="ln">314</span><span class="tx">;[碧織 右奥 time=500 accel=-1]</span></div>
+    <div class="sl" id="L315"><span class="ln">315</span><span class="tx">[道陵氏子Ｂ voice=DB211013]</span></div>
+    <div class="sl" id="L316"><span class="ln">316</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L317"><span class="ln">317</span><span class="tx">「初めまして、[淡島,あわしま]さま。[御旅所,おたびしょ]へお邪魔させてもらっています」</span></div>
+    <div class="sl" id="L318"><span class="ln">318</span><span class="tx"></span></div>
+    <div class="sl" id="L319"><span class="ln">319</span><span class="tx">[祥那 服・私服 左斜・腕胸 表情・笑顔照れ]</span></div>
+    <div class="sl" id="L320"><span class="ln">320</span><span class="tx">[祥那 voice=SN211001]</span></div>
+    <div class="sl" id="L321"><span class="ln">321</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L322"><span class="ln">322</span><span class="tx">「こ、こんにちは……あと、[淡島,あわしま]さまって？」</span></div>
+    <div class="sl" id="L323"><span class="ln">323</span><span class="tx"></span></div>
+    <div class="sl" id="L324"><span class="ln">324</span><span class="tx">[碧織 服・私服 左斜・手耳開 表情・照れ怒]</span></div>
+    <div class="sl" id="L325"><span class="ln">325</span><span class="tx">[碧織 voice=MO211001]</span></div>
+    <div class="sl" id="L326"><span class="ln">326</span><span class="tx">【碧織】</span></div>
+    <div class="sl" id="L327"><span class="ln">327</span><span class="tx">「来たよ[――]」</span></div>
+    <div class="sl" id="L328"><span class="ln">328</span><span class="tx"></span></div>
+    <div class="sl" id="L329"><span class="ln">329</span><span class="tx">;□演出指示。二階へ男たちが数人あがってきた。というＳＥを使った演出をしてください。あと、準備でバタバタしてる感じも。下に準備が終わったというセリフあり。そこらへんでストップ調整してください(済)</span></div>
+    <div class="sl" id="L330"><span class="ln">330</span><span class="tx">[se buf=0 time=1 fade=100 SE1053][ＳＥ待ち]</span></div>
+    <div class="sl" id="L331"><span class="ln">331</span><span class="tx"></span></div>
+    <div class="sl" id="L332"><span class="ln">332</span><span class="tx">[碧織 服・私服 左斜・腕下 表情・不機嫌]</span></div>
+    <div class="sl" id="L333"><span class="ln">333</span><span class="tx">[道陵氏子Ｂ voice=DB211014]</span></div>
+    <div class="sl" id="L334"><span class="ln">334</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L335"><span class="ln">335</span><span class="tx">「ああ、こっちだ。[行宮板,あんぐういた]に慎重にお乗せしてくれ」</span></div>
+    <div class="sl" id="L336"><span class="ln">336</span><span class="tx"></span></div>
+    <div class="sl" id="L337"><span class="ln">337</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・怒り頬]</span></div>
+    <div class="sl" id="L338"><span class="ln">338</span><span class="tx">[迪希 voice=YK211007]</span></div>
+    <div class="sl" id="L339"><span class="ln">339</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L340"><span class="ln">340</span><span class="tx">「彼を運ぶのは、待ってください[――]」</span></div>
+    <div class="sl" id="L341"><span class="ln">341</span><span class="tx"></span></div>
+    <div class="sl" id="L342"><span class="ln">342</span><span class="tx">[祥那 服・私服 左斜・腕胸 表情・怒り照れ]</span></div>
+    <div class="sl" id="L343"><span class="ln">343</span><span class="tx">[祥那 voice=SN211002]</span></div>
+    <div class="sl" id="L344"><span class="ln">344</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L345"><span class="ln">345</span><span class="tx">「えっ！？　なんで！？　なんで、お兄ちゃんを布団から出すの？　出しちゃ駄目だよ」</span></div>
+    <div class="sl" id="L346"><span class="ln">346</span><span class="tx"></span></div>
+    <div class="sl" id="L347"><span class="ln">347</span><span class="tx">[道陵氏子Ｂ voice=DB211015]</span></div>
+    <div class="sl" id="L348"><span class="ln">348</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L349"><span class="ln">349</span><span class="tx">「[淡島,あわしま]さま、これは[若宮,わかみや]さまの大切な儀式なのです」</span></div>
+    <div class="sl" id="L350"><span class="ln">350</span><span class="tx"></span></div>
+    <div class="sl" id="L351"><span class="ln">351</span><span class="tx">[祥那 服・私服 正面・腕後 表情・怒り涙 どっきり]</span></div>
+    <div class="sl" id="L352"><span class="ln">352</span><span class="tx">[祥那 voice=SN211003]</span></div>
+    <div class="sl" id="L353"><span class="ln">353</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L354"><span class="ln">354</span><span class="tx">「[淡島,あわしま]さまじゃない、[祥那,さな]は[祥那,さな][――][稜祁,たかぎ][祥那,さな]だよ！」</span></div>
+    <div class="sl" id="L355"><span class="ln">355</span><span class="tx"></span></div>
+    <div class="sl" id="L356"><span class="ln">356</span><span class="tx">[道陵氏子Ｂ voice=DB211016]</span></div>
+    <div class="sl" id="L357"><span class="ln">357</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L358"><span class="ln">358</span><span class="tx">「それでは[――][祥那,さな]さま、何もご心配になる必要はありません」</span></div>
+    <div class="sl" id="L359"><span class="ln">359</span><span class="tx"></span></div>
+    <div class="sl" id="L360"><span class="ln">360</span><span class="tx">[祥那 服・私服 正面・腕後 表情・悲しい]</span></div>
+    <div class="sl" id="L361"><span class="ln">361</span><span class="tx">[祥那 voice=SN211004]</span></div>
+    <div class="sl" id="L362"><span class="ln">362</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L363"><span class="ln">363</span><span class="tx">「お兄ちゃんは病気だから、動かしちゃいけないの[――]やっと、よくなってきたんだよ」</span></div>
+    <div class="sl" id="L364"><span class="ln">364</span><span class="tx"></span></div>
+    <div class="sl" id="L365"><span class="ln">365</span><span class="tx">[道陵氏子Ｂ voice=DB211017]</span></div>
+    <div class="sl" id="L366"><span class="ln">366</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L367"><span class="ln">367</span><span class="tx">「[若宮,わかみや]様はご病気ではありません。だからこそ、[大忌比古,おおいみひこ]神社の奥社へ、丁重にお連れするのです」</span></div>
+    <div class="sl" id="L368"><span class="ln">368</span><span class="tx"></span></div>
+    <div class="sl" id="L369"><span class="ln">369</span><span class="tx">[祥那 服・私服 正面・腕後 表情・驚き]</span></div>
+    <div class="sl" id="L370"><span class="ln">370</span><span class="tx">[祥那 voice=SN211005]</span></div>
+    <div class="sl" id="L371"><span class="ln">371</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L372"><span class="ln">372</span><span class="tx">「なんで？　なんで、神社なんかに……？」</span></div>
+    <div class="sl" id="L373"><span class="ln">373</span><span class="tx"></span></div>
+    <div class="sl" id="L374"><span class="ln">374</span><span class="tx">[道陵氏子Ｂ voice=DB211018]</span></div>
+    <div class="sl" id="L375"><span class="ln">375</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl has-xr" id="L376"><span class="ln">376</span><span class="tx">「<a class="xr" href="../../entry1/036_%E8%8D%92%E9%AD%82%E4%B8%8E%E5%92%8C%E9%AD%82.html#s1" title="词条考据：荒魂与和魂">世に[彷徨,さまよ]う[若宮,わかみや]様の[荒魂,あらたま]を、奥社の[和魂,にぎたま]へお導きする……それ</a>こそ、[星鴻祭,せいこうさい]で最も大切な儀式です」</span></div>
+    <div class="sl" id="L377"><span class="ln">377</span><span class="tx"></span></div>
+    <div class="sl" id="L378"><span class="ln">378</span><span class="tx">[祥那 服・私服 正面・腕後 表情・悲しい涙]</span></div>
+    <div class="sl" id="L379"><span class="ln">379</span><span class="tx">[祥那 voice=SN211006]</span></div>
+    <div class="sl" id="L380"><span class="ln">380</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L381"><span class="ln">381</span><span class="tx">「わかんない……なに言ってるか、わかんない」</span></div>
+    <div class="sl" id="L382"><span class="ln">382</span><span class="tx"></span></div>
+    <div class="sl" id="L383"><span class="ln">383</span><span class="tx">[道陵氏子Ｂ voice=DB211019]</span></div>
+    <div class="sl" id="L384"><span class="ln">384</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L385"><span class="ln">385</span><span class="tx">「準備が出来たか？　よし、運べ[――]」</span></div>
+    <div class="sl" id="L386"><span class="ln">386</span><span class="tx"></span></div>
+    <div class="sl" id="L387"><span class="ln">387</span><span class="tx">[祥那 服・私服 正面・腕胸 表情・泣き ぷんぷん]</span></div>
+    <div class="sl" id="L388"><span class="ln">388</span><span class="tx">[祥那 voice=SN211007]</span></div>
+    <div class="sl" id="L389"><span class="ln">389</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L390"><span class="ln">390</span><span class="tx">「駄目っ[――]お兄ちゃんを連れていっちゃ駄目っ！」</span></div>
+    <div class="sl" id="L391"><span class="ln">391</span><span class="tx"></span></div>
+    <div class="sl" id="L392"><span class="ln">392</span><span class="tx">;//祥那は氏子にすがりつくように、行くのを阻止しようとする。</span></div>
+    <div class="sl" id="L393"><span class="ln">393</span><span class="tx"></span></div>
+    <div class="sl" id="L394"><span class="ln">394</span><span class="tx">[道陵氏子Ｂ voice=DB211020]</span></div>
+    <div class="sl" id="L395"><span class="ln">395</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L396"><span class="ln">396</span><span class="tx">「おっと[――][祥那,さな]さま。私を御留めになられても無駄ですよ」</span></div>
+    <div class="sl" id="L397"><span class="ln">397</span><span class="tx"></span></div>
+    <div class="sl" id="L398"><span class="ln">398</span><span class="tx">[祥那 前 服・私服 正面・腕胸 表情・泣き]</span></div>
+    <div class="sl" id="L399"><span class="ln">399</span><span class="tx">[祥那 voice=SN211008]</span></div>
+    <div class="sl" id="L400"><span class="ln">400</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L401"><span class="ln">401</span><span class="tx">「駄目っ！　行かせない！　お兄ちゃんを行かせないもん！」</span></div>
+    <div class="sl" id="L402"><span class="ln">402</span><span class="tx"></span></div>
+    <div class="sl" id="L403"><span class="ln">403</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・驚き口閉じ]</span></div>
+    <div class="sl" id="L404"><span class="ln">404</span><span class="tx">[迪希 voice=YK211008]</span></div>
+    <div class="sl" id="L405"><span class="ln">405</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L406"><span class="ln">406</span><span class="tx">「[祥那,さな]ちゃん[――]」</span></div>
+    <div class="sl" id="L407"><span class="ln">407</span><span class="tx"></span></div>
+    <div class="sl" id="L408"><span class="ln">408</span><span class="tx">[begintrans]</span></div>
+    <div class="sl" id="L409"><span class="ln">409</span><span class="tx">[祥那 通常 服・私服 左斜・腕胸 表情・悲しい目そらし]</span></div>
+    <div class="sl" id="L410"><span class="ln">410</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・不機嫌]</span></div>
+    <div class="sl" id="L411"><span class="ln">411</span><span class="tx">[endtrans trans=normal time=200]</span></div>
+    <div class="sl" id="L412"><span class="ln">412</span><span class="tx">[道陵氏子Ｂ voice=DB211021]</span></div>
+    <div class="sl" id="L413"><span class="ln">413</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L414"><span class="ln">414</span><span class="tx">「今度は[迪希,ゆき]さまですか？　それとも、腕におぼえのある[壟峯,つかみね]の方でしょうか？」</span></div>
+    <div class="sl" id="L415"><span class="ln">415</span><span class="tx"></span></div>
+    <div class="sl" id="L416"><span class="ln">416</span><span class="tx">[碧織 服・私服 正面・腕腰 表情・呆れ目そらし]</span></div>
+    <div class="sl" id="L417"><span class="ln">417</span><span class="tx">[碧織 voice=MO211002]</span></div>
+    <div class="sl" id="L418"><span class="ln">418</span><span class="tx">【碧織】</span></div>
+    <div class="sl" id="L419"><span class="ln">419</span><span class="tx">「……」</span></div>
+    <div class="sl" id="L420"><span class="ln">420</span><span class="tx"></span></div>
+    <div class="sl" id="L421"><span class="ln">421</span><span class="tx">[祥那 前 服・私服 左斜・腕胸 表情・怒り もじもじ速]</span></div>
+    <div class="sl" id="L422"><span class="ln">422</span><span class="tx">[祥那 voice=SN211009]</span></div>
+    <div class="sl" id="L423"><span class="ln">423</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L424"><span class="ln">424</span><span class="tx">「お母さんが帰ってきたら、ちゃんとお兄ちゃんよくなるもん！　だから駄目！　絶対に行っちゃ駄目！」</span></div>
+    <div class="sl" id="L425"><span class="ln">425</span><span class="tx"></span></div>
+    <div class="sl" id="L426"><span class="ln">426</span><span class="tx">[道陵氏子Ｂ voice=DB211022]</span></div>
+    <div class="sl" id="L427"><span class="ln">427</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L428"><span class="ln">428</span><span class="tx">「私に構うな。運べ」</span></div>
+    <div class="sl" id="L429"><span class="ln">429</span><span class="tx"></span></div>
+    <div class="sl" id="L430"><span class="ln">430</span><span class="tx">[祥那 服・私服 正面・腕下 表情・泣き もじもじ速]</span></div>
+    <div class="sl" id="L431"><span class="ln">431</span><span class="tx">[祥那 voice=SN211010]</span></div>
+    <div class="sl" id="L432"><span class="ln">432</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L433"><span class="ln">433</span><span class="tx">「あっ[――]みんな運んじゃ駄目！　行っちゃ駄目！」</span></div>
+    <div class="sl" id="L434"><span class="ln">434</span><span class="tx"></span></div>
+    <div class="sl" id="L435"><span class="ln">435</span><span class="tx">;//祥那は碧織にとめられる。</span></div>
+    <div class="sl" id="L436"><span class="ln">436</span><span class="tx">[begintrans]</span></div>
+    <div class="sl" id="L437"><span class="ln">437</span><span class="tx">[碧織 服・私服 左斜・右手上 表情・目閉じ]</span></div>
+    <div class="sl" id="L438"><span class="ln">438</span><span class="tx">[祥那 通常 右]</span></div>
+    <div class="sl" id="L439"><span class="ln">439</span><span class="tx">[endtrans trans=normal time=200]</span></div>
+    <div class="sl" id="L440"><span class="ln">440</span><span class="tx">[碧織 voice=MO211003]</span></div>
+    <div class="sl" id="L441"><span class="ln">441</span><span class="tx">【碧織】</span></div>
+    <div class="sl" id="L442"><span class="ln">442</span><span class="tx">「[祥那,さな][――]」</span></div>
+    <div class="sl" id="L443"><span class="ln">443</span><span class="tx"></span></div>
+    <div class="sl" id="L444"><span class="ln">444</span><span class="tx">[祥那 もじもじ速]</span></div>
+    <div class="sl" id="L445"><span class="ln">445</span><span class="tx">[祥那 voice=SN211011]</span></div>
+    <div class="sl" id="L446"><span class="ln">446</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L447"><span class="ln">447</span><span class="tx">「[碧,みお]ねえ離して！　お兄ちゃん！　お兄ちゃーん！！」</span></div>
+    <div class="sl" id="L448"><span class="ln">448</span><span class="tx"></span></div>
+    <div class="sl" id="L449"><span class="ln">449</span><span class="tx">[碧織 服・私服 左斜・右手上 表情・悲しい]</span></div>
+    <div class="sl" id="L450"><span class="ln">450</span><span class="tx">[碧織 voice=MO211004]</span></div>
+    <div class="sl" id="L451"><span class="ln">451</span><span class="tx">【碧織】</span></div>
+    <div class="sl" id="L452"><span class="ln">452</span><span class="tx">「駄目。今は駄目よ」</span></div>
+    <div class="sl" id="L453"><span class="ln">453</span><span class="tx"></span></div>
+    <div class="sl" id="L454"><span class="ln">454</span><span class="tx">[道陵氏子Ｂ voice=DB211023]</span></div>
+    <div class="sl" id="L455"><span class="ln">455</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L456"><span class="ln">456</span><span class="tx">「助かりました。あなた方も、荒事以外に役立つときがあるのですね」</span></div>
+    <div class="sl" id="L457"><span class="ln">457</span><span class="tx"></span></div>
+    <div class="sl" id="L458"><span class="ln">458</span><span class="tx">[碧織 服・私服 左斜・右手上 表情・不機嫌]</span></div>
+    <div class="sl" id="L459"><span class="ln">459</span><span class="tx">[碧織 voice=MO211005]</span></div>
+    <div class="sl" id="L460"><span class="ln">460</span><span class="tx">【碧織】</span></div>
+    <div class="sl" id="L461"><span class="ln">461</span><span class="tx">「……」</span></div>
+    <div class="sl" id="L462"><span class="ln">462</span><span class="tx"></span></div>
+    <div class="sl" id="L463"><span class="ln">463</span><span class="tx">[愛莉 服・私服 正面・腕後 表情・怒り]</span></div>
+    <div class="sl" id="L464"><span class="ln">464</span><span class="tx">[愛莉 voice=AR211007]</span></div>
+    <div class="sl" id="L465"><span class="ln">465</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L466"><span class="ln">466</span><span class="tx">「[蘆名,あしな]さん[――]でしたね？　失礼な物言いです。[碧織,みおり]さんに謝ってください」</span></div>
+    <div class="sl" id="L467"><span class="ln">467</span><span class="tx"></span></div>
+    <div class="sl" id="L468"><span class="ln">468</span><span class="tx">[道陵氏子Ｂ voice=DB211024]</span></div>
+    <div class="sl" id="L469"><span class="ln">469</span><span class="tx">【道陵氏子Ｂ/蘆名】</span></div>
+    <div class="sl" id="L470"><span class="ln">470</span><span class="tx">「これはこれは……誠に申し訳ありませんでした。それでは、失礼させていただきます」</span></div>
+    <div class="sl" id="L471"><span class="ln">471</span><span class="tx"></span></div>
+    <div class="sl" id="L472"><span class="ln">472</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・怒り頬]</span></div>
+    <div class="sl" id="L473"><span class="ln">473</span><span class="tx">[迪希 voice=YK211009]</span></div>
+    <div class="sl" id="L474"><span class="ln">474</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L475"><span class="ln">475</span><span class="tx">「……っ」</span></div>
+    <div class="sl" id="L476"><span class="ln">476</span><span class="tx"></span></div>
+    <div class="sl" id="L477"><span class="ln">477</span><span class="tx">[愛莉 服・私服 左斜・腕下 表情・怒り]</span></div>
+    <div class="sl" id="L478"><span class="ln">478</span><span class="tx">[愛莉 voice=AR211008]</span></div>
+    <div class="sl" id="L479"><span class="ln">479</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L480"><span class="ln">480</span><span class="tx">「もう時間が……」</span></div>
+    <div class="sl" id="L481"><span class="ln">481</span><span class="tx"></span></div>
+    <div class="sl" id="L482"><span class="ln">482</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・真面目目閉じ]</span></div>
+    <div class="sl" id="L483"><span class="ln">483</span><span class="tx">[迪希 voice=YK211010]</span></div>
+    <div class="sl" id="L484"><span class="ln">484</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L485"><span class="ln">485</span><span class="tx">「わかってるわよ、そんなこと……」</span></div>
+    <div class="sl" id="L486"><span class="ln">486</span><span class="tx"></span></div>
+    <div class="sl" id="L487"><span class="ln">487</span><span class="tx">[祥那 服・私服 正面・腕胸 表情・泣き]</span></div>
+    <div class="sl" id="L488"><span class="ln">488</span><span class="tx">[祥那 voice=SN211012]</span></div>
+    <div class="sl" id="L489"><span class="ln">489</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L490"><span class="ln">490</span><span class="tx">「お兄ちゃん、連れていかれちゃった……お兄ちゃんが……」</span></div>
+    <div class="sl" id="L491"><span class="ln">491</span><span class="tx"></span></div>
+    <div class="sl" id="L492"><span class="ln">492</span><span class="tx">[碧織 服・私服 左斜・右手上 表情・悲しい目そらし]</span></div>
+    <div class="sl" id="L493"><span class="ln">493</span><span class="tx">[碧織 voice=MO211006]</span></div>
+    <div class="sl" id="L494"><span class="ln">494</span><span class="tx">【碧織】</span></div>
+    <div class="sl" id="L495"><span class="ln">495</span><span class="tx">「大丈夫。大丈夫だから」</span></div>
+    <div class="sl" id="L496"><span class="ln">496</span><span class="tx"></span></div>
+    <div class="sl" id="L497"><span class="ln">497</span><span class="tx">[祥那 服・私服 正面・腕胸 表情・悲しい]</span></div>
+    <div class="sl" id="L498"><span class="ln">498</span><span class="tx">[祥那 voice=SN211013]</span></div>
+    <div class="sl" id="L499"><span class="ln">499</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L500"><span class="ln">500</span><span class="tx">「病気なのに……苦しいのに……[祥那,さな]、まだお兄ちゃんを助けてあげられてないのに……」</span></div>
+    <div class="sl" id="L501"><span class="ln">501</span><span class="tx"></span></div>
+    <div class="sl" id="L502"><span class="ln">502</span><span class="tx">[碧織 服・私服 左斜・右手上 表情・目閉じ照]</span></div>
+    <div class="sl" id="L503"><span class="ln">503</span><span class="tx">[碧織 voice=MO211007]</span></div>
+    <div class="sl" id="L504"><span class="ln">504</span><span class="tx">【碧織】</span></div>
+    <div class="sl" id="L505"><span class="ln">505</span><span class="tx">「[祥那,さな]……」</span></div>
+    <div class="sl" id="L506"><span class="ln">506</span><span class="tx"></span></div>
+    <div class="sl" id="L507"><span class="ln">507</span><span class="tx">[祥那 服・私服 正面・腕胸 表情・泣き]</span></div>
+    <div class="sl" id="L508"><span class="ln">508</span><span class="tx">[祥那 voice=SN211014]</span></div>
+    <div class="sl" id="L509"><span class="ln">509</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L510"><span class="ln">510</span><span class="tx">「お兄ちゃん……[祥那,さな]、お兄ちゃん助けたいのに[――]ううっ、うううっ[――]うあああんっ[――]」</span></div>
+    <div class="sl" id="L511"><span class="ln">511</span><span class="tx"></span></div>
+    <div class="sl" id="L512"><span class="ln">512</span><span class="tx">[愛莉 服・私服 右斜・手胸 表情・悲しい]</span></div>
+    <div class="sl" id="L513"><span class="ln">513</span><span class="tx">[愛莉 voice=AR211009]</span></div>
+    <div class="sl" id="L514"><span class="ln">514</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L515"><span class="ln">515</span><span class="tx">「[祥那,さな]ちゃん……」</span></div>
+    <div class="sl" id="L516"><span class="ln">516</span><span class="tx"></span></div>
+    <div class="sl" id="L517"><span class="ln">517</span><span class="tx">[迪希 ため息]</span></div>
+    <div class="sl" id="L518"><span class="ln">518</span><span class="tx">[迪希 voice=YK211011]</span></div>
+    <div class="sl" id="L519"><span class="ln">519</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L520"><span class="ln">520</span><span class="tx">「……」</span></div>
+    <div class="sl" id="L521"><span class="ln">521</span><span class="tx">;「はぁ……（長いため息）」</span></div>
+    <div class="sl" id="L522"><span class="ln">522</span><span class="tx"></span></div>
+    <div class="sl" id="L523"><span class="ln">523</span><span class="tx">[視点変更・終了]</span></div>
+    <div class="sl" id="L524"><span class="ln">524</span><span class="tx"></span></div>
+    <div class="sl" id="L525"><span class="ln">525</span><span class="tx">[暗転]</span></div>
+    <div class="sl" id="L526"><span class="ln">526</span><span class="tx">[ＢＧＭ停止]</span></div>
+    <div class="sl" id="L527"><span class="ln">527</span><span class="tx"></span></div>
+    <div class="sl" id="L528"><span class="ln">528</span><span class="tx">;■■■■■　本文終了　■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L529"><span class="ln">529</span><span class="tx">;■EOF</span></div>
+    <div class="sl" id="L530"><span class="ln">530</span><span class="tx">[終了]</span></div>
+    <div class="sl" id="L531"><span class="ln">531</span><span class="tx">[next storage=S101_00_a00.txt]</span></div>
+  </div>
+  <section class="xref">
+    <h2 class="lst-h">引用本文件的词条（3）</h2>
+    <ul class="lst">
+      <li><a href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17">punitive justice·详解</a></li>
+      <li><a href="../../entry2/136_%E5%A5%A5%E7%A4%BE.html#s1">奥社</a></li>
+      <li><a href="../../entry1/036_%E8%8D%92%E9%AD%82%E4%B8%8E%E5%92%8C%E9%AD%82.html#s1">荒魂与和魂</a></li>
+    </ul>
+  </section>
+</article>
+
+</main>
+<footer class="ft">
+  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
+  <p>参考资料 · 《少女神域∽少女天獄》本篇剧本 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
+</footer>
+</body>
+</html>

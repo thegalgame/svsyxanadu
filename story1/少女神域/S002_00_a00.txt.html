@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S002_00_a00.txt</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
+   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
+      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
+   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
+      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
+   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
+(function () {
+  function run() {
+    var root = document.documentElement;
+    var hd = document.querySelector('.hd');
+
+    function sync() {
+      if (!hd) return;
+      var h = Math.round(hd.getBoundingClientRect().height);
+      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
+
+    function target() {
+      var h = location.hash;
+      if (!h || h.length < 2) return null;
+      var id = h.slice(1);
+      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
+      return document.getElementById(id);
+    }
+
+    var prev = root.style.scrollBehavior;
+
+    function instantJump() {
+      var t = target();
+      if (!t) return;
+      root.style.scrollBehavior = 'auto';
+      sync();                              /* 先更新 --hdr-h，再对齐 */
+      t.scrollIntoView({ block: 'start' });
+    }
+    function restore() {
+      root.style.scrollBehavior = prev;
+    }
+
+    if (location.hash.length > 1) {
+      instantJump();
+      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
+      window.addEventListener('load', function () {
+        instantJump();
+        setTimeout(restore, 60);
+      });
+      setTimeout(restore, 1500);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+</head>
+<body>
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
+    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
+  </div>
+</header>
+<main class="main">
+<article class="storypage">
+  <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F">《少女神域∽少女天獄》本篇剧本</a> / S002_00_a00.txt</p>
+  <h1 class="stitle">S002_00_a00.txt</h1>
+  <p class="stmeta">来源：少女神域/data/scenario/S002_00_a00.txt · 410 行 · 被 5 条词条引用</p>
+  <nav class="xj">
+    <p class="xj-h">本页被引用的位置：<b>4</b> 处，来自 5 条词条<span class="xj-tip">点行号跳到本页对应行，点词条名进词条</span></p>
+    <ul class="xj-l">
+      <li><a class="xj-ln" href="#L135" title="跳到本页第 135 行">L135</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c19">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L313" title="跳到本页第 313 行">L313</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L316" title="跳到本页第 316 行">L316</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L320" title="跳到本页第 320 行">L320</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6">キミ∽ツナグ·详解</a></li>
+    </ul>
+  </nav>
+  <p class="note">本页为剧本文件的完整原样内容（含注释与演出指令；仅由原编码转换为 UTF-8，文字未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
+  <div class="script">
+    <div class="sl" id="L1"><span class="ln">1</span><span class="tx">;//FILEID=002</span></div>
+    <div class="sl" id="L2"><span class="ln">2</span><span class="tx">*start|思い出</span></div>
+    <div class="sl" id="L3"><span class="ln">3</span><span class="tx">[initscene]</span></div>
+    <div class="sl" id="L4"><span class="ln">4</span><span class="tx">;[voicebase base=]</span></div>
+    <div class="sl" id="L5"><span class="ln">5</span><span class="tx"></span></div>
+    <div class="sl" id="L6"><span class="ln">6</span><span class="tx">;■■■■■　設定　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L7"><span class="ln">7</span><span class="tx"></span></div>
+    <div class="sl" id="L8"><span class="ln">8</span><span class="tx">;タイトル　　　SN≪S002≫日付≪3/8≫シーンタイトル≪思い出≫</span></div>
+    <div class="sl" id="L9"><span class="ln">9</span><span class="tx">;背景　　　　　SN≪S002≫日付≪3/8≫背景の設定≪京海線電車内≫</span></div>
+    <div class="sl" id="L10"><span class="ln">10</span><span class="tx">;時間　　　　　SN≪S002≫日付≪3/8≫時間の設定≪朝≫</span></div>
+    <div class="sl" id="L11"><span class="ln">11</span><span class="tx">;登場人物　　　SN≪S002≫日付≪3/8≫人物の設定≪恂（私服）、迪希（私服）、融（私服）≫</span></div>
+    <div class="sl" id="L12"><span class="ln">12</span><span class="tx">;CG　　　　　　SN≪S002≫日付≪3/8≫CGfile設定≪≫</span></div>
+    <div class="sl" id="L13"><span class="ln">13</span><span class="tx"></span></div>
+    <div class="sl" id="L14"><span class="ln">14</span><span class="tx">;■■■■■　指示ツール　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L15"><span class="ln">15</span><span class="tx"></span></div>
+    <div class="sl" id="L16"><span class="ln">16</span><span class="tx">;●[ウィンドウ表示]</span></div>
+    <div class="sl" id="L17"><span class="ln">17</span><span class="tx">;○[ノベル表示]</span></div>
+    <div class="sl" id="L18"><span class="ln">18</span><span class="tx">;■CGイベント/;//■CG背景</span></div>
+    <div class="sl" id="L19"><span class="ln">19</span><span class="tx">;□演出画像/;□演出指示</span></div>
+    <div class="sl" id="L20"><span class="ln">20</span><span class="tx">;★BGM</span></div>
+    <div class="sl" id="L21"><span class="ln">21</span><span class="tx">;▼SE</span></div>
+    <div class="sl" id="L22"><span class="ln">22</span><span class="tx">;◇内部用/;◇提案/;◇メモ/;◇バグ（バグの場合、記入者と日付を必ず）</span></div>
+    <div class="sl" id="L23"><span class="ln">23</span><span class="tx"></span></div>
+    <div class="sl" id="L24"><span class="ln">24</span><span class="tx">;■■■■■■■　本文　■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■▽■■■■■■■■■■◎</span></div>
+    <div class="sl" id="L25"><span class="ln">25</span><span class="tx"></span></div>
+    <div class="sl" id="L26"><span class="ln">26</span><span class="tx">;●[ウィンドウ表示]（済）</span></div>
+    <div class="sl" id="L27"><span class="ln">27</span><span class="tx">[BGM再生 storage=BGM02]</span></div>
+    <div class="sl" id="L28"><span class="ln">28</span><span class="tx"></span></div>
+    <div class="sl" id="L29"><span class="ln">29</span><span class="tx">*not_initscene|思い出</span></div>
+    <div class="sl" id="L30"><span class="ln">30</span><span class="tx"></span></div>
+    <div class="sl" id="L31"><span class="ln">31</span><span class="tx"></span></div>
+    <div class="sl" id="L32"><span class="ln">32</span><span class="tx">[se buf=2 time=1 fade=100 SE1021 loop]</span></div>
+    <div class="sl" id="L33"><span class="ln">33</span><span class="tx">;(SE要望 環境音・電車内の音 山口　09/10)(済　2/8)</span></div>
+    <div class="sl" id="L34"><span class="ln">34</span><span class="tx">[ウィンドウ窓]</span></div>
+    <div class="sl" id="L35"><span class="ln">35</span><span class="tx"></span></div>
+    <div class="sl" id="L36"><span class="ln">36</span><span class="tx">;[友里富士,ゆりふじ]を過ぎると、視界には田園の水平線だけが続く。</span></div>
+    <div class="sl" id="L37"><span class="ln">37</span><span class="tx">[イベント表示 file=ev_yuki_n01_00]</span></div>
+    <div class="sl" id="L38"><span class="ln">38</span><span class="tx"></span></div>
+    <div class="sl" id="L39"><span class="ln">39</span><span class="tx">車窓に目をやると、田園の水平線だけが続いていた。</span></div>
+    <div class="sl" id="L40"><span class="ln">40</span><span class="tx"></span></div>
+    <div class="sl" id="L41"><span class="ln">41</span><span class="tx">しばらくすれば山々が見え、[佳城,かいじょう]市の特異な盆地が見えてくるだろう。</span></div>
+    <div class="sl" id="L42"><span class="ln">42</span><span class="tx"></span></div>
+    <div class="sl" id="L43"><span class="ln">43</span><span class="tx">;そう、蜜柑談義で話が逸れていたが、車窓の景色から現実に引き戻されてしまった。</span></div>
+    <div class="sl" id="L44"><span class="ln">44</span><span class="tx"></span></div>
+    <div class="sl" id="L45"><span class="ln">45</span><span class="tx">俺たちの故郷である、[佳城,かいじょう]市[――]そこは特殊なある地形ゆえに全国に知られている場所だった。</span></div>
+    <div class="sl" id="L46"><span class="ln">46</span><span class="tx"></span></div>
+    <div class="sl" id="L47"><span class="ln">47</span><span class="tx">現在は休火山となり火山活動の心配はないが、広大なカルデラ盆地を形成しているのだが、[佳城,かいじょう]市は、その内側に築かれた町なのだ。</span></div>
+    <div class="sl" id="L48"><span class="ln">48</span><span class="tx"></span></div>
+    <div class="sl" id="L49"><span class="ln">49</span><span class="tx">[イベント表示 file=ev_yuki_n01_01]</span></div>
+    <div class="sl" id="L50"><span class="ln">50</span><span class="tx"></span></div>
+    <div class="sl" id="L51"><span class="ln">51</span><span class="tx">[迪希 voice=YK002000]</span></div>
+    <div class="sl" id="L52"><span class="ln">52</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L53"><span class="ln">53</span><span class="tx">「ところで、[恂,しゅん]ちゃん、[お薬,・・]は残ってる？」</span></div>
+    <div class="sl" id="L54"><span class="ln">54</span><span class="tx"></span></div>
+    <div class="sl" id="L55"><span class="ln">55</span><span class="tx">不意に[迪希,ゆき]が思い出したように聞いてきた。</span></div>
+    <div class="sl" id="L56"><span class="ln">56</span><span class="tx"></span></div>
+    <div class="sl" id="L57"><span class="ln">57</span><span class="tx">さっき、[水原,みずはら]が俺の体調のことを気にかけていたので、[迪希,ゆき]まで心配しはじめたようだ。</span></div>
+    <div class="sl" id="L58"><span class="ln">58</span><span class="tx"></span></div>
+    <div class="sl" id="L59"><span class="ln">59</span><span class="tx">長い付き合いなのだから、そんなに心配することがないぐらいわかっていると思うけれど。</span></div>
+    <div class="sl" id="L60"><span class="ln">60</span><span class="tx"></span></div>
+    <div class="sl" id="L61"><span class="ln">61</span><span class="tx">[イベント表示 file=ev_yuki_n01_02]</span></div>
+    <div class="sl" id="L62"><span class="ln">62</span><span class="tx"></span></div>
+    <div class="sl" id="L63"><span class="ln">63</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L64"><span class="ln">64</span><span class="tx">「えっと[――]」</span></div>
+    <div class="sl" id="L65"><span class="ln">65</span><span class="tx"></span></div>
+    <div class="sl" id="L66"><span class="ln">66</span><span class="tx">鞄の中を見て、すぐ取り出せるところに巾着袋を見つける。この袋の中に[迪希,ゆき]が尋ねた『薬』をいつも入れていた。</span></div>
+    <div class="sl" id="L67"><span class="ln">67</span><span class="tx"></span></div>
+    <div class="sl" id="L68"><span class="ln">68</span><span class="tx">生薬を配合した漢方薬で、長い間服用してる。薬を飲むことは生活の一部になっていて、もはや意識することも少ない。</span></div>
+    <div class="sl" id="L69"><span class="ln">69</span><span class="tx"></span></div>
+    <div class="sl" id="L70"><span class="ln">70</span><span class="tx">ただ薬自体は、苦味があって未だに好きになれない。子供のような理由だが。</span></div>
+    <div class="sl" id="L71"><span class="ln">71</span><span class="tx"></span></div>
+    <div class="sl" id="L72"><span class="ln">72</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L73"><span class="ln">73</span><span class="tx">「……」</span></div>
+    <div class="sl" id="L74"><span class="ln">74</span><span class="tx"></span></div>
+    <div class="sl" id="L75"><span class="ln">75</span><span class="tx">;//◇内部用。碧織ネタ。巾着袋は碧織から。主人公の身辺はヒロインのモチーフで溢れている。</span></div>
+    <div class="sl" id="L76"><span class="ln">76</span><span class="tx">この巾着袋[――][あの子,・・・]から貰ったものは、色が落ちて、ほつれた部分もあった。</span></div>
+    <div class="sl" id="L77"><span class="ln">77</span><span class="tx"></span></div>
+    <div class="sl" id="L78"><span class="ln">78</span><span class="tx">そうした部分にこそ愛着があって、昔から使ってきたことは誰の目にも明かなほどだ。</span></div>
+    <div class="sl" id="L79"><span class="ln">79</span><span class="tx"></span></div>
+    <div class="sl" id="L80"><span class="ln">80</span><span class="tx">それもにしても……[あの子,・・・]は元気にしてるだろうか[――]故郷が近づくほど、色々なことを思い出す。</span></div>
+    <div class="sl" id="L81"><span class="ln">81</span><span class="tx"></span></div>
+    <div class="sl" id="L82"><span class="ln">82</span><span class="tx">;それは地面に散らばった小さな石を、ひとつずつ拾い集めるような行為に似ていた。</span></div>
+    <div class="sl" id="L83"><span class="ln">83</span><span class="tx"></span></div>
+    <div class="sl" id="L84"><span class="ln">84</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L85"><span class="ln">85</span><span class="tx">「そろそろ……うん、切れそうかな」</span></div>
+    <div class="sl" id="L86"><span class="ln">86</span><span class="tx"></span></div>
+    <div class="sl" id="L87"><span class="ln">87</span><span class="tx">巾着袋の中を確かめて、返事をする。</span></div>
+    <div class="sl" id="L88"><span class="ln">88</span><span class="tx"></span></div>
+    <div class="sl" id="L89"><span class="ln">89</span><span class="tx">[迪希 voice=YK002001]</span></div>
+    <div class="sl" id="L90"><span class="ln">90</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L91"><span class="ln">91</span><span class="tx">「また、[道陵,みちおか]のおじ様にいただいてこないと……[恂,しゅん]ちゃん、何日ぐらいもつ？　私、行ってくるから」</span></div>
+    <div class="sl" id="L92"><span class="ln">92</span><span class="tx"></span></div>
+    <div class="sl" id="L93"><span class="ln">93</span><span class="tx">[迪希,ゆき]のお節介の虫が動き出したようだ。</span></div>
+    <div class="sl" id="L94"><span class="ln">94</span><span class="tx"></span></div>
+    <div class="sl" id="L95"><span class="ln">95</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L96"><span class="ln">96</span><span class="tx">「いや、いいよ。挨拶がてら自分で行ってくる」</span></div>
+    <div class="sl" id="L97"><span class="ln">97</span><span class="tx"></span></div>
+    <div class="sl" id="L98"><span class="ln">98</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L99"><span class="ln">99</span><span class="tx">「一年ぶりの帰省だし、久しぶりに色々な人と顔を合わせないとね。それに[道陵,みちおか]先生とは、薬をもらうだけの関係でもないから」</span></div>
+    <div class="sl" id="L100"><span class="ln">100</span><span class="tx"></span></div>
+    <div class="sl" id="L101"><span class="ln">101</span><span class="tx">;過ぎ去ったことを改めることはできない。</span></div>
+    <div class="sl" id="L102"><span class="ln">102</span><span class="tx"></span></div>
+    <div class="sl" id="L103"><span class="ln">103</span><span class="tx">;ただ、ゆっくりと落ち着いて、今までたどってきた道をまず確認したかった。</span></div>
+    <div class="sl" id="L104"><span class="ln">104</span><span class="tx"></span></div>
+    <div class="sl" id="L105"><span class="ln">105</span><span class="tx">[迪希 voice=YK002002]</span></div>
+    <div class="sl" id="L106"><span class="ln">106</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L107"><span class="ln">107</span><span class="tx">「それじゃあ、私の家にも来てくれる？」</span></div>
+    <div class="sl" id="L108"><span class="ln">108</span><span class="tx"></span></div>
+    <div class="sl" id="L109"><span class="ln">109</span><span class="tx">[イベント表示 file=ev_yuki_n01_03]</span></div>
+    <div class="sl" id="L110"><span class="ln">110</span><span class="tx"></span></div>
+    <div class="sl" id="L111"><span class="ln">111</span><span class="tx">[迪希,ゆき]はにっこりとこちらへ笑いかけた。</span></div>
+    <div class="sl" id="L112"><span class="ln">112</span><span class="tx"></span></div>
+    <div class="sl" id="L113"><span class="ln">113</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L114"><span class="ln">114</span><span class="tx">「そうだね、[小町,こまち]さんにも挨拶しないとな」</span></div>
+    <div class="sl" id="L115"><span class="ln">115</span><span class="tx"></span></div>
+    <div class="sl" id="L116"><span class="ln">116</span><span class="tx">[迪希 voice=YK002003]</span></div>
+    <div class="sl" id="L117"><span class="ln">117</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L118"><span class="ln">118</span><span class="tx">「ふふっ、決まりね」</span></div>
+    <div class="sl" id="L119"><span class="ln">119</span><span class="tx"></span></div>
+    <div class="sl" id="L120"><span class="ln">120</span><span class="tx">;//◇内部用。監視されている。今回は表と裏の転置が随所にある。それをひっくり返して、故郷を地獄にする。</span></div>
+    <div class="sl" id="L121"><span class="ln">121</span><span class="tx">[迪希,ゆき]のお母さん[――][小町,こまち]さんの電話口から聞こえる声を思い出す。</span></div>
+    <div class="sl" id="L122"><span class="ln">122</span><span class="tx"></span></div>
+    <div class="sl" id="L123"><span class="ln">123</span><span class="tx">[小町,こまち]さんは、月に一度以上は必ず俺に電話をかけてくれた。</span></div>
+    <div class="sl" id="L124"><span class="ln">124</span><span class="tx"></span></div>
+    <div class="sl" id="L125"><span class="ln">125</span><span class="tx">今住んでいる下宿先は[澳城,おくしろ]家[――]正確には[迪希,ゆき]と[小町,こまち]さんに用意してもらったと言った方がいい。</span></div>
+    <div class="sl" id="L126"><span class="ln">126</span><span class="tx"></span></div>
+    <div class="sl" id="L127"><span class="ln">127</span><span class="tx">帰省して[小町,こまち]さんに顔を見せて挨拶するのは、最低限の礼儀だ。</span></div>
+    <div class="sl" id="L128"><span class="ln">128</span><span class="tx"></span></div>
+    <div class="sl" id="L129"><span class="ln">129</span><span class="tx">ただ月一の連絡は、感覚的に多い気がした。</span></div>
+    <div class="sl" id="L130"><span class="ln">130</span><span class="tx"></span></div>
+    <div class="sl" id="L131"><span class="ln">131</span><span class="tx">以前、なぜこんなにも電話してくれるのか、思い切って[小町,こまち]さんに尋ねたことがあった。</span></div>
+    <div class="sl" id="L132"><span class="ln">132</span><span class="tx"></span></div>
+    <div class="sl" id="L133"><span class="ln">133</span><span class="tx">他家の大事なお子さんを預かりして、お世話をさせてもらう以上、[澳城,おくしろ]の名にふさわしい振る舞いでないと[――]でも、これは建前だと[小町,こまち]さんは言った。</span></div>
+    <div class="sl" id="L134"><span class="ln">134</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L135"><span class="ln">135</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c19" title="词条考据：punitive justice·详解">本音は[――]娘の大切な幼馴染</a>で、何より自分にとっても息子みたいな存在だから、遠慮なく頼ってほしいだけ、そう優しい声で答えてくれた。</span></div>
+    <div class="sl" id="L136"><span class="ln">136</span><span class="tx"></span></div>
+    <div class="sl" id="L137"><span class="ln">137</span><span class="tx">電話口の向こうにいる、[小町,こまち]さんの微笑む表情が見えた気がした。</span></div>
+    <div class="sl" id="L138"><span class="ln">138</span><span class="tx"></span></div>
+    <div class="sl" id="L139"><span class="ln">139</span><span class="tx">[イベント表示 file=ev_yuki_n01_02]</span></div>
+    <div class="sl" id="L140"><span class="ln">140</span><span class="tx"></span></div>
+    <div class="sl" id="L141"><span class="ln">141</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L142"><span class="ln">142</span><span class="tx">「でも今日中、っていうのは時間的に無理だと思うよ。[祥那,さな]も会いたがってるし」</span></div>
+    <div class="sl" id="L143"><span class="ln">143</span><span class="tx"></span></div>
+    <div class="sl" id="L144"><span class="ln">144</span><span class="tx">[迪希 voice=YK002004]</span></div>
+    <div class="sl" id="L145"><span class="ln">145</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L146"><span class="ln">146</span><span class="tx">「わかってる。それに、[祥那,さな]ちゃんのほうを優先するのは、当然よ」</span></div>
+    <div class="sl" id="L147"><span class="ln">147</span><span class="tx"></span></div>
+    <div class="sl" id="L148"><span class="ln">148</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L149"><span class="ln">149</span><span class="tx">「たぶん……下校までに帰ってないと、泣き出してると思う」</span></div>
+    <div class="sl" id="L150"><span class="ln">150</span><span class="tx"></span></div>
+    <div class="sl" id="L151"><span class="ln">151</span><span class="tx">[イベント表示 file=ev_yuki_n01_03]</span></div>
+    <div class="sl" id="L152"><span class="ln">152</span><span class="tx"></span></div>
+    <div class="sl" id="L153"><span class="ln">153</span><span class="tx">[迪希 voice=YK002005]</span></div>
+    <div class="sl" id="L154"><span class="ln">154</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L155"><span class="ln">155</span><span class="tx">「あははっ、一年分甘えさせてあげないと駄目よ？」</span></div>
+    <div class="sl" id="L156"><span class="ln">156</span><span class="tx"></span></div>
+    <div class="sl" id="L157"><span class="ln">157</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L158"><span class="ln">158</span><span class="tx">「ああ」</span></div>
+    <div class="sl" id="L159"><span class="ln">159</span><span class="tx"></span></div>
+    <div class="sl" id="L160"><span class="ln">160</span><span class="tx">甘えん坊の妹、[祥那,さな]がどんな態度を取るかは、だいたい想像できた。</span></div>
+    <div class="sl" id="L161"><span class="ln">161</span><span class="tx"></span></div>
+    <div class="sl" id="L162"><span class="ln">162</span><span class="tx">本当に久しぶりの帰省だと、やるべきことが多くて困る。</span></div>
+    <div class="sl" id="L163"><span class="ln">163</span><span class="tx"></span></div>
+    <div class="sl" id="L164"><span class="ln">164</span><span class="tx">帰省の足が重くなる理由の[ひとつ,・・・]は、これだった。</span></div>
+    <div class="sl" id="L165"><span class="ln">165</span><span class="tx"></span></div>
+    <div class="sl" id="L166"><span class="ln">166</span><span class="tx">[迪希,ゆき]はスマートフォンを手に取り、ひとつずつ確認するように指で操作しはじめた。</span></div>
+    <div class="sl" id="L167"><span class="ln">167</span><span class="tx"></span></div>
+    <div class="sl" id="L168"><span class="ln">168</span><span class="tx">実家に戻ってからのスケジュールを確認しているようだった。</span></div>
+    <div class="sl" id="L169"><span class="ln">169</span><span class="tx"></span></div>
+    <div class="sl" id="L170"><span class="ln">170</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L171"><span class="ln">171</span><span class="tx">「[迪希,ゆき]、土曜か日曜あたり大丈夫？　できれば、早めに挨拶しにいったほうがいいと思うから」</span></div>
+    <div class="sl" id="L172"><span class="ln">172</span><span class="tx"></span></div>
+    <div class="sl" id="L173"><span class="ln">173</span><span class="tx">[イベント表示 file=ev_yuki_n01_02]</span></div>
+    <div class="sl" id="L174"><span class="ln">174</span><span class="tx"></span></div>
+    <div class="sl" id="L175"><span class="ln">175</span><span class="tx">[迪希 voice=YK002006]</span></div>
+    <div class="sl" id="L176"><span class="ln">176</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L177"><span class="ln">177</span><span class="tx">「ごめん、まだわからないの。[家のほう,・・・・]で何かあるかもしれないし……。今、ちょっと[葵,あおい]にメール送るから、合わせて聞いておくね」</span></div>
+    <div class="sl" id="L178"><span class="ln">178</span><span class="tx"></span></div>
+    <div class="sl" id="L179"><span class="ln">179</span><span class="tx">[葵,あおい][――][迪希,ゆき]の親友、[綱坂,つなさか] [葵,あおい]のことだ。</span></div>
+    <div class="sl" id="L180"><span class="ln">180</span><span class="tx"></span></div>
+    <div class="sl" id="L181"><span class="ln">181</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L182"><span class="ln">182</span><span class="tx">「[迪希,ゆき]も[迪希,ゆき]で、いつも大変だね」</span></div>
+    <div class="sl" id="L183"><span class="ln">183</span><span class="tx"></span></div>
+    <div class="sl" id="L184"><span class="ln">184</span><span class="tx">家のこととなるとひとりで勝手に判断することはできない。そういう家であることは知っている。</span></div>
+    <div class="sl" id="L185"><span class="ln">185</span><span class="tx"></span></div>
+    <div class="sl" id="L186"><span class="ln">186</span><span class="tx">[迪希 voice=YK002007]</span></div>
+    <div class="sl" id="L187"><span class="ln">187</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L188"><span class="ln">188</span><span class="tx">「ええ。だから、こうして三人でいるほうが、どれだけ気楽で楽しいか[――]」</span></div>
+    <div class="sl" id="L189"><span class="ln">189</span><span class="tx"></span></div>
+    <div class="sl" id="L190"><span class="ln">190</span><span class="tx">[se buf=0 time=1 fade=100 SE766][wait time=800]</span></div>
+    <div class="sl" id="L191"><span class="ln">191</span><span class="tx"></span></div>
+    <div class="sl" id="L192"><span class="ln">192</span><span class="tx">彼女の言葉をさえぎるように、スマートフォンが震えた。</span></div>
+    <div class="sl" id="L193"><span class="ln">193</span><span class="tx"></span></div>
+    <div class="sl" id="L194"><span class="ln">194</span><span class="tx">;//◇内部用。メモ。葵、小町から提案。</span></div>
+    <div class="sl" id="L195"><span class="ln">195</span><span class="tx"></span></div>
+    <div class="sl" id="L196"><span class="ln">196</span><span class="tx">[se buf=0 stop=500]</span></div>
+    <div class="sl" id="L197"><span class="ln">197</span><span class="tx">[迪希 voice=YK002008]</span></div>
+    <div class="sl" id="L198"><span class="ln">198</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L199"><span class="ln">199</span><span class="tx">「ごめん、[葵,あおい]からメール[――]うん。なるほど。それは名案」</span></div>
+    <div class="sl" id="L200"><span class="ln">200</span><span class="tx"></span></div>
+    <div class="sl" id="L201"><span class="ln">201</span><span class="tx">独り言のようにつぶやくと、俺の顔を見て笑う。</span></div>
+    <div class="sl" id="L202"><span class="ln">202</span><span class="tx"></span></div>
+    <div class="sl" id="L203"><span class="ln">203</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L204"><span class="ln">204</span><span class="tx">「どうかしたの？」</span></div>
+    <div class="sl" id="L205"><span class="ln">205</span><span class="tx"></span></div>
+    <div class="sl" id="L206"><span class="ln">206</span><span class="tx">楽しげな表情の[迪希,ゆき]は、口元に人差し指を立てた。</span></div>
+    <div class="sl" id="L207"><span class="ln">207</span><span class="tx"></span></div>
+    <div class="sl" id="L208"><span class="ln">208</span><span class="tx">[イベント表示 file=ev_yuki_n01_03]</span></div>
+    <div class="sl" id="L209"><span class="ln">209</span><span class="tx"></span></div>
+    <div class="sl" id="L210"><span class="ln">210</span><span class="tx">[迪希 voice=YK002009]</span></div>
+    <div class="sl" id="L211"><span class="ln">211</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L212"><span class="ln">212</span><span class="tx">「うふふ。秘密。あと、[明日の夜,・・・・]なら大丈夫になったから、[恂,しゅん]ちゃんも憶えておいてね？」</span></div>
+    <div class="sl" id="L213"><span class="ln">213</span><span class="tx"></span></div>
+    <div class="sl" id="L214"><span class="ln">214</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L215"><span class="ln">215</span><span class="tx">「明日の夜……？　あ、ありがたいけど、急にわかるものなの？　[迪希,ゆき]だって忙しいと思ったんだけど……」</span></div>
+    <div class="sl" id="L216"><span class="ln">216</span><span class="tx"></span></div>
+    <div class="sl" id="L217"><span class="ln">217</span><span class="tx">[迪希 voice=YK002010]</span></div>
+    <div class="sl" id="L218"><span class="ln">218</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L219"><span class="ln">219</span><span class="tx">「大丈夫よ。ぜんぜん平気」</span></div>
+    <div class="sl" id="L220"><span class="ln">220</span><span class="tx"></span></div>
+    <div class="sl" id="L221"><span class="ln">221</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L222"><span class="ln">222</span><span class="tx">「大丈夫って……ほんとに大丈夫？　今回の[星鴻祭,せいこうさい]、覚えることいっぱいだって言ってたじゃないか」</span></div>
+    <div class="sl" id="L223"><span class="ln">223</span><span class="tx"></span></div>
+    <div class="sl" id="L224"><span class="ln">224</span><span class="tx">[星鴻祭,せいこうさい]というのは、何度か話題にあげた[佳城,かいじょう]市をあげて行われる『祭り』の名前だ。</span></div>
+    <div class="sl" id="L225"><span class="ln">225</span><span class="tx"></span></div>
+    <div class="sl" id="L226"><span class="ln">226</span><span class="tx">[迪希 voice=YK002011]</span></div>
+    <div class="sl" id="L227"><span class="ln">227</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L228"><span class="ln">228</span><span class="tx">「ええ。でも、私のほうはぬかりはないもの……逆に、[恂,しゅん]ちゃんのほうが大変そう」</span></div>
+    <div class="sl" id="L229"><span class="ln">229</span><span class="tx"></span></div>
+    <div class="sl" id="L230"><span class="ln">230</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L231"><span class="ln">231</span><span class="tx">「まあ、いつもより大変そうだし……正直、俺は帰りたくなかったけどね」</span></div>
+    <div class="sl" id="L232"><span class="ln">232</span><span class="tx"></span></div>
+    <div class="sl" id="L233"><span class="ln">233</span><span class="tx">思わず本音が口を突いて出てしまった。</span></div>
+    <div class="sl" id="L234"><span class="ln">234</span><span class="tx"></span></div>
+    <div class="sl" id="L235"><span class="ln">235</span><span class="tx">;//◇内部用。本編で主人公宅でメインヒロインが寝泊りするということ。祭りの決まりでもあり交通の利便性も。</span></div>
+    <div class="sl" id="L236"><span class="ln">236</span><span class="tx"></span></div>
+    <div class="sl" id="L237"><span class="ln">237</span><span class="tx">[迪希 voice=YK002012]</span></div>
+    <div class="sl" id="L238"><span class="ln">238</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L239"><span class="ln">239</span><span class="tx">「うーん、ちょっとそういう『大変さ』じゃないかも。ま、がんばってね」</span></div>
+    <div class="sl" id="L240"><span class="ln">240</span><span class="tx"></span></div>
+    <div class="sl" id="L241"><span class="ln">241</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L242"><span class="ln">242</span><span class="tx">「……？」</span></div>
+    <div class="sl" id="L243"><span class="ln">243</span><span class="tx"></span></div>
+    <div class="sl" id="L244"><span class="ln">244</span><span class="tx">どういう意味だろう[――][迪希,ゆき]に視線を向けても、彼女は微笑むだけだった。</span></div>
+    <div class="sl" id="L245"><span class="ln">245</span><span class="tx"></span></div>
+    <div class="sl" id="L246"><span class="ln">246</span><span class="tx">[水原,みずはら]のほうを向いたが、彼も肩をわざとらしく上下させて、[何も知らない,・・・・・・][――]そう体で表現していた。</span></div>
+    <div class="sl" id="L247"><span class="ln">247</span><span class="tx"></span></div>
+    <div class="sl" id="L248"><span class="ln">248</span><span class="tx">[イベント表示 file=ev_yuki_n01_02]</span></div>
+    <div class="sl" id="L249"><span class="ln">249</span><span class="tx"></span></div>
+    <div class="sl" id="L250"><span class="ln">250</span><span class="tx">[融 voice=WT002000]</span></div>
+    <div class="sl" id="L251"><span class="ln">251</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L252"><span class="ln">252</span><span class="tx">「ところでさ、[恂,しゅん][――]このまま戻らずにさ、どっか行くのもアリじゃね？」</span></div>
+    <div class="sl" id="L253"><span class="ln">253</span><span class="tx"></span></div>
+    <div class="sl" id="L254"><span class="ln">254</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L255"><span class="ln">255</span><span class="tx">「えっ？！」</span></div>
+    <div class="sl" id="L256"><span class="ln">256</span><span class="tx"></span></div>
+    <div class="sl" id="L257"><span class="ln">257</span><span class="tx">;//◇内部用。迪希、融の発言に驚く。彼女は融のポジションは澳城家の一員であることは知っており、彼女と同じく監視する役目を担っていることは知っているが、それ以外はあまり知らない。だから発言に驚いている。</span></div>
+    <div class="sl" id="L258"><span class="ln">258</span><span class="tx"></span></div>
+    <div class="sl" id="L259"><span class="ln">259</span><span class="tx">[イベント表示 file=ev_yuki_n01_04]</span></div>
+    <div class="sl" id="L260"><span class="ln">260</span><span class="tx"></span></div>
+    <div class="sl" id="L261"><span class="ln">261</span><span class="tx">[迪希 voice=YK002013]</span></div>
+    <div class="sl" id="L262"><span class="ln">262</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L263"><span class="ln">263</span><span class="tx">「ちょっと[水原,みずはら]くん[――]！」</span></div>
+    <div class="sl" id="L264"><span class="ln">264</span><span class="tx"></span></div>
+    <div class="sl" id="L265"><span class="ln">265</span><span class="tx">;//◇内部用。融のコメントは、挑発的なもの。</span></div>
+    <div class="sl" id="L266"><span class="ln">266</span><span class="tx">[融 voice=WT002001]</span></div>
+    <div class="sl" id="L267"><span class="ln">267</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L268"><span class="ln">268</span><span class="tx">「とがめることじゃないだろ。聞いてみただけなんだからさ？」</span></div>
+    <div class="sl" id="L269"><span class="ln">269</span><span class="tx"></span></div>
+    <div class="sl" id="L270"><span class="ln">270</span><span class="tx">;//◇内部用。慌てたが、冷静さを失わないように、いつもの迪希らしくして主人公に気取られないよう、普遍的な反応につとめようとする。</span></div>
+    <div class="sl" id="L271"><span class="ln">271</span><span class="tx"></span></div>
+    <div class="sl" id="L272"><span class="ln">272</span><span class="tx">[迪希 voice=YK002014]</span></div>
+    <div class="sl" id="L273"><span class="ln">273</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L274"><span class="ln">274</span><span class="tx">「それは……そうかもしれないけど、[水原,みずはら]くんなら本当に実行しそうで怖い」</span></div>
+    <div class="sl" id="L275"><span class="ln">275</span><span class="tx"></span></div>
+    <div class="sl" id="L276"><span class="ln">276</span><span class="tx">;//◇内部用横山リビルドメモ　表現が迂遠でわかりづらいのでコメントアウトして修正　（2012/10/23）</span></div>
+    <div class="sl" id="L277"><span class="ln">277</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L278"><span class="ln">278</span><span class="tx">;「まあ、パァーっとさ、何もかも忘れて、ブラブラあてのない旅なんて、俺は考えること多いからな」</span></div>
+    <div class="sl" id="L279"><span class="ln">279</span><span class="tx"></span></div>
+    <div class="sl" id="L280"><span class="ln">280</span><span class="tx">;[水原,みずはら]の投げかけた質問は、自分の中では身近な話題だった。</span></div>
+    <div class="sl" id="L281"><span class="ln">281</span><span class="tx"></span></div>
+    <div class="sl" id="L282"><span class="ln">282</span><span class="tx">;あてのない旅[――]旅をすることは、自分にとって身近で大切な事柄だった。</span></div>
+    <div class="sl" id="L283"><span class="ln">283</span><span class="tx"></span></div>
+    <div class="sl" id="L284"><span class="ln">284</span><span class="tx">;;//◇内部用この恂の心情は、体の中にある『石』の影響[――]獲物を求めて拡大侵略する性格も影響している。</span></div>
+    <div class="sl" id="L285"><span class="ln">285</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L286"><span class="ln">286</span><span class="tx">;「……いいと思う。うん、いいな」</span></div>
+    <div class="sl" id="L287"><span class="ln">287</span><span class="tx"></span></div>
+    <div class="sl" id="L288"><span class="ln">288</span><span class="tx">;無意識に言葉が口からもれていた。</span></div>
+    <div class="sl" id="L289"><span class="ln">289</span><span class="tx">;日頃から考えていたせいかもしれない。改めて肯定するように、軽く頷いた。</span></div>
+    <div class="sl" id="L290"><span class="ln">290</span><span class="tx"></span></div>
+    <div class="sl" id="L291"><span class="ln">291</span><span class="tx">[融 voice=WT002002]</span></div>
+    <div class="sl" id="L292"><span class="ln">292</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L293"><span class="ln">293</span><span class="tx">「街にいた頃からか……ずっと外へ行きたいって言ってただろ、お前。気が向かないなら、戻らないって選択肢もアリだろ」</span></div>
+    <div class="sl" id="L294"><span class="ln">294</span><span class="tx"></span></div>
+    <div class="sl" id="L295"><span class="ln">295</span><span class="tx">二十年に一度のお祭りの準備が面倒だから、気が向かないというのは確かにある。</span></div>
+    <div class="sl" id="L296"><span class="ln">296</span><span class="tx"></span></div>
+    <div class="sl" id="L297"><span class="ln">297</span><span class="tx">だけど、この戻りたくない気分には、俺だけの複雑な思いがあった。</span></div>
+    <div class="sl" id="L298"><span class="ln">298</span><span class="tx"></span></div>
+    <div class="sl" id="L299"><span class="ln">299</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L300"><span class="ln">300</span><span class="tx">「ああ。はやくここから外へ出たい、出たいって、ずっと言ってたね」</span></div>
+    <div class="sl" id="L301"><span class="ln">301</span><span class="tx"></span></div>
+    <div class="sl" id="L302"><span class="ln">302</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L303"><span class="ln">303</span><span class="tx">;//※収録説明用（台本製作後に消去）</span></div>
+    <div class="sl" id="L304"><span class="ln">304</span><span class="tx">;//この恂への質問のセリフは、前後のテンションと比べて、比較的抑え目、しっとりで。</span></div>
+    <div class="sl" id="L305"><span class="ln">305</span><span class="tx">;//文章自体は昔を懐かしむ感じ[――]それはフェイクでみせている。</span></div>
+    <div class="sl" id="L306"><span class="ln">306</span><span class="tx">;//迪希は、主人公がこのまま故郷に帰ると、生きて帰れるかどうかわからないことを知っているため。</span></div>
+    <div class="sl" id="L307"><span class="ln">307</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L308"><span class="ln">308</span><span class="tx"></span></div>
+    <div class="sl" id="L309"><span class="ln">309</span><span class="tx">[イベント表示 file=ev_yuki_n01_02]</span></div>
+    <div class="sl" id="L310"><span class="ln">310</span><span class="tx"></span></div>
+    <div class="sl" id="L311"><span class="ln">311</span><span class="tx">[迪希 voice=YK002015]</span></div>
+    <div class="sl" id="L312"><span class="ln">312</span><span class="tx">【迪希】</span></div>
+    <div class="sl has-xr" id="L313"><span class="ln">313</span><span class="tx">「<a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6" title="词条考据：キミ∽ツナグ·详解">ちっちゃい頃から……言ってた。『石壁』の向こうに、いったい何があるんだろうって</a>」</span></div>
+    <div class="sl" id="L314"><span class="ln">314</span><span class="tx"></span></div>
+    <div class="sl" id="L315"><span class="ln">315</span><span class="tx">【恂】</span></div>
+    <div class="sl has-xr" id="L316"><span class="ln">316</span><span class="tx">「<a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6" title="词条考据：キミ∽ツナグ·详解">うん、もっと色んな世界を見てみたかったんだ[――]石の中の、[佳城,かいじょう]だけじ</a>ゃなくてさ」</span></div>
+    <div class="sl" id="L317"><span class="ln">317</span><span class="tx"></span></div>
+    <div class="sl" id="L318"><span class="ln">318</span><span class="tx">[迪希 voice=YK002016]</span></div>
+    <div class="sl" id="L319"><span class="ln">319</span><span class="tx">【迪希】</span></div>
+    <div class="sl has-xr" id="L320"><span class="ln">320</span><span class="tx">「<a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6" title="词条考据：キミ∽ツナグ·详解">今でも同じ気持ち？　もう『石壁』の外、[トンネルの向こう側,・・・・・・・・・]にいるけれど</a>」</span></div>
+    <div class="sl" id="L321"><span class="ln">321</span><span class="tx"></span></div>
+    <div class="sl" id="L322"><span class="ln">322</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L323"><span class="ln">323</span><span class="tx">「まあね。[菩乃花,ほのか]さんの影響もあるけど、機会があれば、世界中を見て回りたいんだ」</span></div>
+    <div class="sl" id="L324"><span class="ln">324</span><span class="tx"></span></div>
+    <div class="sl" id="L325"><span class="ln">325</span><span class="tx">国内外を縦横無尽に駆け巡る養母の影響は大きいと思う。</span></div>
+    <div class="sl" id="L326"><span class="ln">326</span><span class="tx"></span></div>
+    <div class="sl" id="L327"><span class="ln">327</span><span class="tx">ただ、そんなことを口にしていたわりには、進学のために故郷を離れた一年は、大学と下宿先の往復が大半で、[十都川,とつかわ]市から出ていないという体たらくだが。</span></div>
+    <div class="sl" id="L328"><span class="ln">328</span><span class="tx"></span></div>
+    <div class="sl" id="L329"><span class="ln">329</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L330"><span class="ln">330</span><span class="tx">;//※収録説明用（台本製作後に消去）</span></div>
+    <div class="sl" id="L331"><span class="ln">331</span><span class="tx">;//この恂への質問のセリフは、さきの質問セリフと同じく比較的抑え目、しっとりで。</span></div>
+    <div class="sl" id="L332"><span class="ln">332</span><span class="tx">;//迪希は、主人公がこのまま故郷に帰ると、生きて帰れるかどうかわからないことを知っているため。</span></div>
+    <div class="sl" id="L333"><span class="ln">333</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L334"><span class="ln">334</span><span class="tx"></span></div>
+    <div class="sl" id="L335"><span class="ln">335</span><span class="tx">[迪希 voice=YK002017]</span></div>
+    <div class="sl" id="L336"><span class="ln">336</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L337"><span class="ln">337</span><span class="tx">「そっか……素敵だと思うよ、私も」</span></div>
+    <div class="sl" id="L338"><span class="ln">338</span><span class="tx"></span></div>
+    <div class="sl" id="L339"><span class="ln">339</span><span class="tx">;//◇内部用。迪希ネタ。佳城から出て行ってほしくない、過去の迪希。</span></div>
+    <div class="sl" id="L340"><span class="ln">340</span><span class="tx"></span></div>
+    <div class="sl" id="L341"><span class="ln">341</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L342"><span class="ln">342</span><span class="tx">「でも、[迪希,ゆき]。いつかは忘れたけれど……そうだ、たしか[草枉,そうま]一中の時だったかな」</span></div>
+    <div class="sl" id="L343"><span class="ln">343</span><span class="tx"></span></div>
+    <div class="sl" id="L344"><span class="ln">344</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L345"><span class="ln">345</span><span class="tx">;「[迪希,ゆき]からさ、[佳城,かいじょう]から出て行ってほしくないって、そんな感じのこと言われたよ。[大神川,おおみわがわ]の橋の上で」</span></div>
+    <div class="sl" id="L346"><span class="ln">346</span><span class="tx"></span></div>
+    <div class="sl" id="L347"><span class="ln">347</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L348"><span class="ln">348</span><span class="tx">「[迪希,ゆき]からさ、[佳城,かいじょう]から出て行ってほしくないって、そんな感じのこと言われたよ？」</span></div>
+    <div class="sl" id="L349"><span class="ln">349</span><span class="tx"></span></div>
+    <div class="sl" id="L350"><span class="ln">350</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L351"><span class="ln">351</span><span class="tx">;//※収録説明用（台本製作後に消去）</span></div>
+    <div class="sl" id="L352"><span class="ln">352</span><span class="tx">;//ここからは、迪希は普通のテンションで。</span></div>
+    <div class="sl" id="L353"><span class="ln">353</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L354"><span class="ln">354</span><span class="tx">;【迪希】</span></div>
+    <div class="sl" id="L355"><span class="ln">355</span><span class="tx">;「えっ？　橋って……学園に近いほうの？」</span></div>
+    <div class="sl" id="L356"><span class="ln">356</span><span class="tx"></span></div>
+    <div class="sl" id="L357"><span class="ln">357</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L358"><span class="ln">358</span><span class="tx">「どんな話の流れでそうなったのか、[迪希,ゆき]がなぜそう言ったのか、よくおぼえてないんだけど」</span></div>
+    <div class="sl" id="L359"><span class="ln">359</span><span class="tx"></span></div>
+    <div class="sl" id="L360"><span class="ln">360</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L361"><span class="ln">361</span><span class="tx">;//※収録説明用（台本製作後に消去）</span></div>
+    <div class="sl" id="L362"><span class="ln">362</span><span class="tx">;//迪希。本当はおぼえているが、無理にテンションを少しあげて変にごまかしている。</span></div>
+    <div class="sl" id="L363"><span class="ln">363</span><span class="tx">;//他人には照れを隠すように映る（融は、真意を推測できる）。</span></div>
+    <div class="sl" id="L364"><span class="ln">364</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L365"><span class="ln">365</span><span class="tx">;【迪希】</span></div>
+    <div class="sl" id="L366"><span class="ln">366</span><span class="tx">;「うわっ……[座摩橋,いすかりばし]で、そ、そんなこと言ってたんだ。ごめんなさい、私よく覚えてない……ああ」</span></div>
+    <div class="sl" id="L367"><span class="ln">367</span><span class="tx"></span></div>
+    <div class="sl" id="L368"><span class="ln">368</span><span class="tx">[迪希 voice=YK002018]</span></div>
+    <div class="sl" id="L369"><span class="ln">369</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L370"><span class="ln">370</span><span class="tx">「うわっ……そ、そんなこと言ってたんだ。ごめんなさい、私よく覚えてない……」</span></div>
+    <div class="sl" id="L371"><span class="ln">371</span><span class="tx"></span></div>
+    <div class="sl" id="L372"><span class="ln">372</span><span class="tx">どうやら照れているようだった。</span></div>
+    <div class="sl" id="L373"><span class="ln">373</span><span class="tx"></span></div>
+    <div class="sl" id="L374"><span class="ln">374</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L375"><span class="ln">375</span><span class="tx">「そっか、ちょっと気になっただけだから、別に謝るほどのことじゃないよ」</span></div>
+    <div class="sl" id="L376"><span class="ln">376</span><span class="tx"></span></div>
+    <div class="sl" id="L377"><span class="ln">377</span><span class="tx">[イベント表示 file=ev_yuki_n01_04]</span></div>
+    <div class="sl" id="L378"><span class="ln">378</span><span class="tx"></span></div>
+    <div class="sl" id="L379"><span class="ln">379</span><span class="tx">[融 voice=WT002003]</span></div>
+    <div class="sl" id="L380"><span class="ln">380</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L381"><span class="ln">381</span><span class="tx">「外を目指す男と引き留める女か。ぐひひ。青春やのう。[迪希,ゆき]みたいな女でも、青春こじらせると炸裂するんだなぁ」</span></div>
+    <div class="sl" id="L382"><span class="ln">382</span><span class="tx"></span></div>
+    <div class="sl" id="L383"><span class="ln">383</span><span class="tx">[水原,みずはら]はわざといやらしく笑った。</span></div>
+    <div class="sl" id="L384"><span class="ln">384</span><span class="tx"></span></div>
+    <div class="sl" id="L385"><span class="ln">385</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L386"><span class="ln">386</span><span class="tx">;「女の子版の厨二病って感じ？」</span></div>
+    <div class="sl" id="L387"><span class="ln">387</span><span class="tx"></span></div>
+    <div class="sl" id="L388"><span class="ln">388</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L389"><span class="ln">389</span><span class="tx">;「それそれ。少女マンガに影響されすぎ、みたいな」</span></div>
+    <div class="sl" id="L390"><span class="ln">390</span><span class="tx"></span></div>
+    <div class="sl" id="L391"><span class="ln">391</span><span class="tx">[迪希 voice=YK002019]</span></div>
+    <div class="sl" id="L392"><span class="ln">392</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L393"><span class="ln">393</span><span class="tx">「ううっ、言い返したいけど……言い返せないほど、すごく恥ずかしい」</span></div>
+    <div class="sl" id="L394"><span class="ln">394</span><span class="tx"></span></div>
+    <div class="sl" id="L395"><span class="ln">395</span><span class="tx">;身をよじらせて恥ずかしがる[迪希,ゆき]に助け舟を出そうと、話の矛先を変えようとした。</span></div>
+    <div class="sl" id="L396"><span class="ln">396</span><span class="tx"></span></div>
+    <div class="sl" id="L397"><span class="ln">397</span><span class="tx">;[next storage=S002_01_b00.txt]</span></div>
+    <div class="sl" id="L398"><span class="ln">398</span><span class="tx">;■■■■■　本文終了　■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L399"><span class="ln">399</span><span class="tx">;■EOF</span></div>
+    <div class="sl" id="L400"><span class="ln">400</span><span class="tx"></span></div>
+    <div class="sl" id="L401"><span class="ln">401</span><span class="tx">;//◇内部用横山リビルドメモ　選択肢破棄に伴い、シナリオジャンプを暫定構築　（2012/10/23）</span></div>
+    <div class="sl" id="L402"><span class="ln">402</span><span class="tx"></span></div>
+    <div class="sl" id="L403"><span class="ln">403</span><span class="tx">[ＢＧＭ停止]</span></div>
+    <div class="sl" id="L404"><span class="ln">404</span><span class="tx">[環境ＳＥ停止]</span></div>
+    <div class="sl" id="L405"><span class="ln">405</span><span class="tx">[ＳＥ停止]</span></div>
+    <div class="sl" id="L406"><span class="ln">406</span><span class="tx">[暗転]</span></div>
+    <div class="sl" id="L407"><span class="ln">407</span><span class="tx">[se buf=2 stop=500]</span></div>
+    <div class="sl" id="L408"><span class="ln">408</span><span class="tx"></span></div>
+    <div class="sl" id="L409"><span class="ln">409</span><span class="tx">[終了]</span></div>
+    <div class="sl" id="L410"><span class="ln">410</span><span class="tx">[next storage=S002_02_a00.txt]</span></div>
+  </div>
+  <section class="xref">
+    <h2 class="lst-h">引用本文件的词条（5）</h2>
+    <ul class="lst">
+      <li><a href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c19">punitive justice·详解</a></li>
+      <li><a href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6">キミ∽ツナグ·详解</a></li>
+      <li><a href="../../entry1/048_%E6%98%9F%E9%B4%BB%E7%A5%AD.html#s1">星鴻祭</a></li>
+      <li><a href="../../entry1/071_%E6%BE%B3%E5%9F%8E%E5%B0%8F%E7%94%BA.html#s1">澳城小町</a></li>
+      <li><a href="../../entry2/142_%E8%8D%89%E6%9E%89%E4%B8%80%E4%B8%AD.html#s1">草枉一中</a></li>
+    </ul>
+  </section>
+</article>
+
+</main>
+<footer class="ft">
+  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
+  <p>参考资料 · 《少女神域∽少女天獄》本篇剧本 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
+</footer>
+</body>
+</html>

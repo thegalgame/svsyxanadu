@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S004_00_a00.txt</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
+   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
+      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
+   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
+      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
+   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
+(function () {
+  function run() {
+    var root = document.documentElement;
+    var hd = document.querySelector('.hd');
+
+    function sync() {
+      if (!hd) return;
+      var h = Math.round(hd.getBoundingClientRect().height);
+      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
+
+    function target() {
+      var h = location.hash;
+      if (!h || h.length < 2) return null;
+      var id = h.slice(1);
+      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
+      return document.getElementById(id);
+    }
+
+    var prev = root.style.scrollBehavior;
+
+    function instantJump() {
+      var t = target();
+      if (!t) return;
+      root.style.scrollBehavior = 'auto';
+      sync();                              /* 先更新 --hdr-h，再对齐 */
+      t.scrollIntoView({ block: 'start' });
+    }
+    function restore() {
+      root.style.scrollBehavior = prev;
+    }
+
+    if (location.hash.length > 1) {
+      instantJump();
+      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
+      window.addEventListener('load', function () {
+        instantJump();
+        setTimeout(restore, 60);
+      });
+      setTimeout(restore, 1500);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+</head>
+<body>
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
+    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
+  </div>
+</header>
+<main class="main">
+<article class="storypage">
+  <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F">《少女神域∽少女天獄》本篇剧本</a> / S004_00_a00.txt</p>
+  <h1 class="stitle">S004_00_a00.txt</h1>
+  <p class="stmeta">来源：少女神域/data/scenario/S004_00_a00.txt · 228 行 · 被 3 条词条引用</p>
+  <nav class="xj">
+    <p class="xj-h">本页被引用的位置：<b>6</b> 处，来自 3 条词条<span class="xj-tip">点行号跳到本页对应行，点词条名进词条</span></p>
+    <ul class="xj-l">
+      <li><a class="xj-ln" href="#L72" title="跳到本页第 72 行">L72</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c4">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L74" title="跳到本页第 74 行">L74</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c4">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L119" title="跳到本页第 119 行">L119</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c4">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L121" title="跳到本页第 121 行">L121</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c22">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L121" title="跳到本页第 121 行">L121</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c4">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L121" title="跳到本页第 121 行">L121</a><a class="xj-e" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c25">永久より永遠に·详解</a></li>
+    </ul>
+  </nav>
+  <p class="note">本页为剧本文件的完整原样内容（含注释与演出指令；仅由原编码转换为 UTF-8，文字未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
+  <div class="script">
+    <div class="sl" id="L1"><span class="ln">1</span><span class="tx">;//FILEID=005</span></div>
+    <div class="sl" id="L2"><span class="ln">2</span><span class="tx">*start|石の檻</span></div>
+    <div class="sl" id="L3"><span class="ln">3</span><span class="tx">[initscene]</span></div>
+    <div class="sl" id="L4"><span class="ln">4</span><span class="tx">;[voicebase base=]</span></div>
+    <div class="sl" id="L5"><span class="ln">5</span><span class="tx"></span></div>
+    <div class="sl" id="L6"><span class="ln">6</span><span class="tx">;■■■■■　設定　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L7"><span class="ln">7</span><span class="tx"></span></div>
+    <div class="sl" id="L8"><span class="ln">8</span><span class="tx">;タイトル　　　SN≪S004≫日付≪3/8≫シーンタイトル≪石の檻≫</span></div>
+    <div class="sl" id="L9"><span class="ln">9</span><span class="tx">;背景　　　　　SN≪S004≫日付≪3/8≫背景の設定≪京海線電車内≫</span></div>
+    <div class="sl" id="L10"><span class="ln">10</span><span class="tx">;時間　　　　　SN≪S004≫日付≪3/8≫時間の設定≪朝≫</span></div>
+    <div class="sl" id="L11"><span class="ln">11</span><span class="tx">;登場人物　　　SN≪S004≫日付≪3/8≫人物の設定≪恂（私服）、迪希（私服）、融（私服）≫</span></div>
+    <div class="sl" id="L12"><span class="ln">12</span><span class="tx">;CG　　　　　　SN≪S004≫日付≪≫CGfile設定≪≫</span></div>
+    <div class="sl" id="L13"><span class="ln">13</span><span class="tx"></span></div>
+    <div class="sl" id="L14"><span class="ln">14</span><span class="tx">;■■■■■　指示ツール　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L15"><span class="ln">15</span><span class="tx"></span></div>
+    <div class="sl" id="L16"><span class="ln">16</span><span class="tx">;●[ウィンドウ表示]</span></div>
+    <div class="sl" id="L17"><span class="ln">17</span><span class="tx">;○[ノベル表示]</span></div>
+    <div class="sl" id="L18"><span class="ln">18</span><span class="tx">;■CGイベント/;//■CG背景</span></div>
+    <div class="sl" id="L19"><span class="ln">19</span><span class="tx">;□演出画像/;□演出指示</span></div>
+    <div class="sl" id="L20"><span class="ln">20</span><span class="tx">;★BGM</span></div>
+    <div class="sl" id="L21"><span class="ln">21</span><span class="tx">;▼SE</span></div>
+    <div class="sl" id="L22"><span class="ln">22</span><span class="tx">;◇内部用/;◇提案/;◇メモ/;◇バグ（バグの場合、記入者と日付を必ず）</span></div>
+    <div class="sl" id="L23"><span class="ln">23</span><span class="tx"></span></div>
+    <div class="sl" id="L24"><span class="ln">24</span><span class="tx">;■■■■■■■　本文　■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■▽■■■■■■■■■■◎</span></div>
+    <div class="sl" id="L25"><span class="ln">25</span><span class="tx"></span></div>
+    <div class="sl" id="L26"><span class="ln">26</span><span class="tx"></span></div>
+    <div class="sl" id="L27"><span class="ln">27</span><span class="tx">;▼SE。トンネル内から抜け出した音。厳密には違うが、S003_01_a00やS003_01_a10で指定しているSEを代用してもいい。（済）</span></div>
+    <div class="sl" id="L28"><span class="ln">28</span><span class="tx">;▼SE。上のSEのあとは、普通の電車の車内音に。（済）</span></div>
+    <div class="sl" id="L29"><span class="ln">29</span><span class="tx">;(SE要望 環境ＳＥトンネルから出た瞬間の音 山口　09/11)(済　2/8)</span></div>
+    <div class="sl" id="L30"><span class="ln">30</span><span class="tx"></span></div>
+    <div class="sl" id="L31"><span class="ln">31</span><span class="tx">;○[ノベル表示]（済）</span></div>
+    <div class="sl" id="L32"><span class="ln">32</span><span class="tx">;(SE要望 環境音・電車内の音 山口　09/11)(済　2/8)</span></div>
+    <div class="sl" id="L33"><span class="ln">33</span><span class="tx"></span></div>
+    <div class="sl" id="L34"><span class="ln">34</span><span class="tx"></span></div>
+    <div class="sl" id="L35"><span class="ln">35</span><span class="tx">[se buf=2 time=1 fade=100 SE1030 LOOP]</span></div>
+    <div class="sl" id="L36"><span class="ln">36</span><span class="tx">[wait time=2000]</span></div>
+    <div class="sl" id="L37"><span class="ln">37</span><span class="tx"></span></div>
+    <div class="sl" id="L38"><span class="ln">38</span><span class="tx">;[ノベル窓]</span></div>
+    <div class="sl" id="L39"><span class="ln">39</span><span class="tx"></span></div>
+    <div class="sl" id="L40"><span class="ln">40</span><span class="tx">;//◇内部用横山リビルドメモ　トンネル内をノベルにしたので、対比するために　（2012/10/24）</span></div>
+    <div class="sl" id="L41"><span class="ln">41</span><span class="tx">;●[ウィンドウ表示]（済）</span></div>
+    <div class="sl" id="L42"><span class="ln">42</span><span class="tx">[ウィンドウ窓]</span></div>
+    <div class="sl" id="L43"><span class="ln">43</span><span class="tx"></span></div>
+    <div class="sl" id="L44"><span class="ln">44</span><span class="tx"></span></div>
+    <div class="sl" id="L45"><span class="ln">45</span><span class="tx">[ev file=white time=800 sync]</span></div>
+    <div class="sl" id="L46"><span class="ln">46</span><span class="tx">[ev file=ef33_00 trans=crossfade time=1500 sync]</span></div>
+    <div class="sl" id="L47"><span class="ln">47</span><span class="tx">[BGM再生 storage=BGM18]</span></div>
+    <div class="sl" id="L48"><span class="ln">48</span><span class="tx">[wait time=1000]</span></div>
+    <div class="sl" id="L49"><span class="ln">49</span><span class="tx"></span></div>
+    <div class="sl" id="L50"><span class="ln">50</span><span class="tx"></span></div>
+    <div class="sl" id="L51"><span class="ln">51</span><span class="tx">電車がトンネルから抜け出す[――]先頭から車内に陽の光が一気に差し込まれていく。</span></div>
+    <div class="sl" id="L52"><span class="ln">52</span><span class="tx"></span></div>
+    <div class="sl" id="L53"><span class="ln">53</span><span class="tx">それは視界の一瞬の変化でしかない。しかしトンネルの圧迫感が体に残っていて、体感的にも徐々に変わっていくような心地だった。</span></div>
+    <div class="sl" id="L54"><span class="ln">54</span><span class="tx"></span></div>
+    <div class="sl" id="L55"><span class="ln">55</span><span class="tx">身構えてしまったが、通ってしまえば、どうということもなかった。</span></div>
+    <div class="sl" id="L56"><span class="ln">56</span><span class="tx"></span></div>
+    <div class="sl" id="L57"><span class="ln">57</span><span class="tx">急いで車窓の外を見る。遠くの景色を見ず、線路の近くを意識して見た。</span></div>
+    <div class="sl" id="L58"><span class="ln">58</span><span class="tx"></span></div>
+    <div class="sl" id="L59"><span class="ln">59</span><span class="tx">俺が立ちすくんでいた思い出の場所を見ようとする[――]その場所は一瞬で視界から過ぎ去っていた。</span></div>
+    <div class="sl" id="L60"><span class="ln">60</span><span class="tx"></span></div>
+    <div class="sl" id="L61"><span class="ln">61</span><span class="tx">;◇内部用横山リビルドメモ　　（2012//）</span></div>
+    <div class="sl" id="L62"><span class="ln">62</span><span class="tx"></span></div>
+    <div class="sl" id="L63"><span class="ln">63</span><span class="tx">;どう頑張っても、もうあの場所は見えないだろう。</span></div>
+    <div class="sl" id="L64"><span class="ln">64</span><span class="tx"></span></div>
+    <div class="sl" id="L65"><span class="ln">65</span><span class="tx">;不意に思った[――]今の自分にとって、あの場所はもう必要がないのかもしれない。</span></div>
+    <div class="sl" id="L66"><span class="ln">66</span><span class="tx"></span></div>
+    <div class="sl" id="L67"><span class="ln">67</span><span class="tx">;[迪希,ゆき]との繋がりを感じる大切な思い出だ。忘れることはない。</span></div>
+    <div class="sl" id="L68"><span class="ln">68</span><span class="tx"></span></div>
+    <div class="sl" id="L69"><span class="ln">69</span><span class="tx">;でも、大切という意味なら、今、この瞬間もまた同じ価値を持つのではないか？</span></div>
+    <div class="sl" id="L70"><span class="ln">70</span><span class="tx"></span></div>
+    <div class="sl" id="L71"><span class="ln">71</span><span class="tx">;菩乃花メモ。</span></div>
+    <div class="sl has-xr" id="L72"><span class="ln">72</span><span class="tx">;<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c4" title="词条考据：punitive justice·详解">過去[だけ,・・]に囚われると、前進するための力は得られない。</a></span></div>
+    <div class="sl" id="L73"><span class="ln">73</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L74"><span class="ln">74</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c4" title="词条考据：punitive justice·详解">;[菩乃花,ほのか]さんは言った[――]過去は今</a>を知る上で必ず大切なものだと。</span></div>
+    <div class="sl" id="L75"><span class="ln">75</span><span class="tx"></span></div>
+    <div class="sl" id="L76"><span class="ln">76</span><span class="tx">;そして、[菩乃花,ほのか]さんはこう付け加えた。</span></div>
+    <div class="sl" id="L77"><span class="ln">77</span><span class="tx"></span></div>
+    <div class="sl" id="L78"><span class="ln">78</span><span class="tx">;けれど、[今をよく知る,・・・・・・]ことは、過去から学び取るために必ず大切なものだと[――]。</span></div>
+    <div class="sl" id="L79"><span class="ln">79</span><span class="tx"></span></div>
+    <div class="sl" id="L80"><span class="ln">80</span><span class="tx">[暗転 trans=目閉じ time=700]</span></div>
+    <div class="sl" id="L81"><span class="ln">81</span><span class="tx">いったん目を閉じてから、再び外を見る。</span></div>
+    <div class="sl" id="L82"><span class="ln">82</span><span class="tx"></span></div>
+    <div class="sl" id="L83"><span class="ln">83</span><span class="tx">そして今度は意識して[――]遠くを見つめた。</span></div>
+    <div class="sl" id="L84"><span class="ln">84</span><span class="tx"></span></div>
+    <div class="sl" id="L85"><span class="ln">85</span><span class="tx">[背景変更 石壁 昼 ypos=1400 trans=目開け time=700]</span></div>
+    <div class="sl" id="L86"><span class="ln">86</span><span class="tx">[wait time=800]</span></div>
+    <div class="sl" id="L87"><span class="ln">87</span><span class="tx">;背景演出：石壁を初期位置（画像一番下）から画像中央くらいまでゆっくり縦スクロールさせてください。ここから（小田倉　3/23）（済）</span></div>
+    <div class="sl" id="L88"><span class="ln">88</span><span class="tx">[stage ypos=0 time=16000 nowait accel=-1]</span></div>
+    <div class="sl" id="L89"><span class="ln">89</span><span class="tx"></span></div>
+    <div class="sl" id="L90"><span class="ln">90</span><span class="tx"></span></div>
+    <div class="sl" id="L91"><span class="ln">91</span><span class="tx">[迪希 voice=YK005000]</span></div>
+    <div class="sl" id="L92"><span class="ln">92</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L93"><span class="ln">93</span><span class="tx">「『石壁』……いつもの風景ね」</span></div>
+    <div class="sl" id="L94"><span class="ln">94</span><span class="tx"></span></div>
+    <div class="sl" id="L95"><span class="ln">95</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L96"><span class="ln">96</span><span class="tx">「うん……」</span></div>
+    <div class="sl" id="L97"><span class="ln">97</span><span class="tx"></span></div>
+    <div class="sl" id="L98"><span class="ln">98</span><span class="tx">[迪希,ゆき]の言葉に促されるように、独特の景色を目で捉えていく。</span></div>
+    <div class="sl" id="L99"><span class="ln">99</span><span class="tx"></span></div>
+    <div class="sl" id="L100"><span class="ln">100</span><span class="tx">;//◇内部用。モデルは奈良県生駒山山系。</span></div>
+    <div class="sl" id="L101"><span class="ln">101</span><span class="tx">トンネルを出てしばらくすると[佳城,かいじょう]盆地の内側の山裾が現れ、その山の斜面の中腹から頂にかけて『石壁』が見えた。</span></div>
+    <div class="sl" id="L102"><span class="ln">102</span><span class="tx"></span></div>
+    <div class="sl" id="L103"><span class="ln">103</span><span class="tx">『石壁』は整然としたものではなく大小さまざまで、その姿も自然そのままのものや、明らかに人の手が加わったものがあった。</span></div>
+    <div class="sl" id="L104"><span class="ln">104</span><span class="tx"></span></div>
+    <div class="sl" id="L105"><span class="ln">105</span><span class="tx">頂のほうは城壁のように見えるが、中腹あたりでは『石壁』の並びは途切れ、断続的なものとなる。</span></div>
+    <div class="sl" id="L106"><span class="ln">106</span><span class="tx"></span></div>
+    <div class="sl" id="L107"><span class="ln">107</span><span class="tx">それでも崖を利用したもの、巨大な自然石を利用したものを中心とした壮観な石の景観に、初めて訪れた人間は驚くしかないだろう。</span></div>
+    <div class="sl" id="L108"><span class="ln">108</span><span class="tx"></span></div>
+    <div class="sl" id="L109"><span class="ln">109</span><span class="tx">;◇内部用横山　石壁に文字があるビジュアルがないので、その矛盾を解消する　（2013/03/31）</span></div>
+    <div class="sl" id="L110"><span class="ln">110</span><span class="tx">;[融 voice=WT005000]</span></div>
+    <div class="sl" id="L111"><span class="ln">111</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L112"><span class="ln">112</span><span class="tx">;「毎度、あのでかい文字観ると、帰ってきたなという気持ちになるよ」</span></div>
+    <div class="sl" id="L113"><span class="ln">113</span><span class="tx"></span></div>
+    <div class="sl" id="L114"><span class="ln">114</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L115"><span class="ln">115</span><span class="tx">;「ずっと昔からの、ランドマークみたいなものだからね」</span></div>
+    <div class="sl" id="L116"><span class="ln">116</span><span class="tx"></span></div>
+    <div class="sl" id="L117"><span class="ln">117</span><span class="tx">;車窓から[――][佳城,かいじょう]市の東にある、[貝寄,かいより]町の[出羽,いでは]山の『石壁』が見えた。</span></div>
+    <div class="sl" id="L118"><span class="ln">118</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L119"><span class="ln">119</span><span class="tx">;<a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c4" title="词条考据：キミ∽ツナグ·详解">市内でも一番知名度がある『石壁』で、その壁面に巨大な文字が、大きく刻み込まれている。</a></span></div>
+    <div class="sl" id="L120"><span class="ln">120</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L121"><span class="ln">121</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c22" title="词条考据：punitive justice·详解、キミ∽ツナグ·详解、永久より永遠に·详解">;[佳城,かいじょう]には、こうした文字が深く刻まれたままの『石壁』と、文字が磨耗して読めなくなった『石壁』の二種</a>類があった。</span></div>
+    <div class="sl" id="L122"><span class="ln">122</span><span class="tx"></span></div>
+    <div class="sl" id="L123"><span class="ln">123</span><span class="tx">;背景スクロール　ここくらいまでゆっくりとスクロール（小田倉　3/23）（済）</span></div>
+    <div class="sl" id="L124"><span class="ln">124</span><span class="tx">[stage time=500 sync]</span></div>
+    <div class="sl" id="L125"><span class="ln">125</span><span class="tx"></span></div>
+    <div class="sl" id="L126"><span class="ln">126</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L127"><span class="ln">127</span><span class="tx">;「そういえば……あの文字もよくわかってないんだよね」</span></div>
+    <div class="sl" id="L128"><span class="ln">128</span><span class="tx"></span></div>
+    <div class="sl" id="L129"><span class="ln">129</span><span class="tx">;[融 voice=WT005001]</span></div>
+    <div class="sl" id="L130"><span class="ln">130</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L131"><span class="ln">131</span><span class="tx">;「あそこだけじゃなくて、市内の『石壁』のほとんどに刻んであるよな」</span></div>
+    <div class="sl" id="L132"><span class="ln">132</span><span class="tx"></span></div>
+    <div class="sl" id="L133"><span class="ln">133</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L134"><span class="ln">134</span><span class="tx">;「うん。仏教の[梵,ぼん][字,じ]っぽくもあり陰陽道に出てきそうな文字みたいでもあり、でも実際問題として由来は現在も不明」</span></div>
+    <div class="sl" id="L135"><span class="ln">135</span><span class="tx"></span></div>
+    <div class="sl" id="L136"><span class="ln">136</span><span class="tx">;◇黒歯朶ネタ。</span></div>
+    <div class="sl" id="L137"><span class="ln">137</span><span class="tx">;[佳城,かいじょう]市の『石壁』を調査している先生が、一度話していたが[――]。</span></div>
+    <div class="sl" id="L138"><span class="ln">138</span><span class="tx"></span></div>
+    <div class="sl" id="L139"><span class="ln">139</span><span class="tx">;自分は未見だが、戦前に中国の唐代のもので、似たような文字の拓本を見つけたという論文があったそうだ。</span></div>
+    <div class="sl" id="L140"><span class="ln">140</span><span class="tx"></span></div>
+    <div class="sl" id="L141"><span class="ln">141</span><span class="tx">;しかし、続く発見がなくて論文の存在自体が近年まで忘れ去られていた……と先生は話していた。</span></div>
+    <div class="sl" id="L142"><span class="ln">142</span><span class="tx"></span></div>
+    <div class="sl" id="L143"><span class="ln">143</span><span class="tx">;加えて[佳城,かいじょう]全体で見ると、文字が磨耗して読めない『石壁』のほうが多く、どうしても資料的価値が乏しくなってしまうそうだ。</span></div>
+    <div class="sl" id="L144"><span class="ln">144</span><span class="tx"></span></div>
+    <div class="sl" id="L145"><span class="ln">145</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L146"><span class="ln">146</span><span class="tx">;「[馬渡石,まといし]のほうは違うけど……基本的には、同じ内容の文字が刻まれてるみたい」</span></div>
+    <div class="sl" id="L147"><span class="ln">147</span><span class="tx"></span></div>
+    <div class="sl" id="L148"><span class="ln">148</span><span class="tx">;[融 voice=WT005002]</span></div>
+    <div class="sl" id="L149"><span class="ln">149</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L150"><span class="ln">150</span><span class="tx">;「実は、なにも意味がなかったりしてな」</span></div>
+    <div class="sl" id="L151"><span class="ln">151</span><span class="tx"></span></div>
+    <div class="sl" id="L152"><span class="ln">152</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L153"><span class="ln">153</span><span class="tx">;「そういうことも多いさ。でも、想いは全てに宿っているから、読み取ってあげたい」</span></div>
+    <div class="sl" id="L154"><span class="ln">154</span><span class="tx"></span></div>
+    <div class="sl" id="L155"><span class="ln">155</span><span class="tx">;[融 voice=WT005003]</span></div>
+    <div class="sl" id="L156"><span class="ln">156</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L157"><span class="ln">157</span><span class="tx">;「読み取ってあげたい、か。似合うよ、そういう真面目なセリフ」</span></div>
+    <div class="sl" id="L158"><span class="ln">158</span><span class="tx"></span></div>
+    <div class="sl" id="L159"><span class="ln">159</span><span class="tx">;反対の座席からだと、南東の方角に[月山,つきやま]が見えるはずだ。</span></div>
+    <div class="sl" id="L160"><span class="ln">160</span><span class="tx"></span></div>
+    <div class="sl" id="L161"><span class="ln">161</span><span class="tx">;[佳城,かいじょう]市の南側を[巻狩,まきがり]町と[二分,にぶん]する[馬渡石,まといし]町にある山で、もちろん『石壁』がある。</span></div>
+    <div class="sl" id="L162"><span class="ln">162</span><span class="tx"></span></div>
+    <div class="sl" id="L163"><span class="ln">163</span><span class="tx">;//◇内部用。ここの石壁の近くには物語中行きませんので、ビジュアル違いの説明あり。</span></div>
+    <div class="sl" id="L164"><span class="ln">164</span><span class="tx">;//◇内部用。石壁が何世代にもわたって作られる。また、長い時間の中で『石』の暴走などがあっては解されたものもあり、新しく作られた際に内容が変わっていった。</span></div>
+    <div class="sl" id="L165"><span class="ln">165</span><span class="tx">;ただ、[出羽,いでは]山とはまた違った文字が刻まれていて、周辺のものより時代が新しいことがわかっている。</span></div>
+    <div class="sl" id="L166"><span class="ln">166</span><span class="tx"></span></div>
+    <div class="sl" id="L167"><span class="ln">167</span><span class="tx">;一度、[千方ヶ浜,ちかたがはま][――]ちいさな砂浜しかない[佳城,かいじょう]市の海岸へ行く途中、その『石壁』まで寄ったことがあった。</span></div>
+    <div class="sl" id="L168"><span class="ln">168</span><span class="tx"></span></div>
+    <div class="sl" id="L169"><span class="ln">169</span><span class="tx">;//ここからまたev_yuki_n01を入れてはどうでしょうか(山口 03/08)（済）</span></div>
+    <div class="sl" id="L170"><span class="ln">170</span><span class="tx">[イベント表示 file=ev_yuki_n01_00]</span></div>
+    <div class="sl" id="L171"><span class="ln">171</span><span class="tx"></span></div>
+    <div class="sl" id="L172"><span class="ln">172</span><span class="tx">[融 voice=WT005004]</span></div>
+    <div class="sl" id="L173"><span class="ln">173</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L174"><span class="ln">174</span><span class="tx">「しかし、やっぱどう考えても、わざわざ帰ってくるメリットがないなぁ」</span></div>
+    <div class="sl" id="L175"><span class="ln">175</span><span class="tx"></span></div>
+    <div class="sl" id="L176"><span class="ln">176</span><span class="tx">[水原,みずはら]がその話題を蒸し返した。</span></div>
+    <div class="sl" id="L177"><span class="ln">177</span><span class="tx"></span></div>
+    <div class="sl" id="L178"><span class="ln">178</span><span class="tx">[イベント表示 file=ev_yuki_n01_01]</span></div>
+    <div class="sl" id="L179"><span class="ln">179</span><span class="tx"></span></div>
+    <div class="sl" id="L180"><span class="ln">180</span><span class="tx">[迪希 voice=YK005001]</span></div>
+    <div class="sl" id="L181"><span class="ln">181</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L182"><span class="ln">182</span><span class="tx">「そんな残念そうな声で言わないの[――]あの街には、いっぱいあるのよ」</span></div>
+    <div class="sl" id="L183"><span class="ln">183</span><span class="tx"></span></div>
+    <div class="sl" id="L184"><span class="ln">184</span><span class="tx">[融 voice=WT005005]</span></div>
+    <div class="sl" id="L185"><span class="ln">185</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L186"><span class="ln">186</span><span class="tx">「なにが？」</span></div>
+    <div class="sl" id="L187"><span class="ln">187</span><span class="tx"></span></div>
+    <div class="sl" id="L188"><span class="ln">188</span><span class="tx">[イベント表示 file=ev_yuki_n01_00]</span></div>
+    <div class="sl" id="L189"><span class="ln">189</span><span class="tx"></span></div>
+    <div class="sl" id="L190"><span class="ln">190</span><span class="tx"></span></div>
+    <div class="sl" id="L191"><span class="ln">191</span><span class="tx">[迪希 voice=YK005002]</span></div>
+    <div class="sl" id="L192"><span class="ln">192</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L193"><span class="ln">193</span><span class="tx">「いいところが、ちゃんとあるの」</span></div>
+    <div class="sl" id="L194"><span class="ln">194</span><span class="tx"></span></div>
+    <div class="sl" id="L195"><span class="ln">195</span><span class="tx">無数の『石壁』に追い返されるように、中腹より下のほう……坂がゆるやかになっていく場所から、まばらに家の姿が見え始める。</span></div>
+    <div class="sl" id="L196"><span class="ln">196</span><span class="tx"></span></div>
+    <div class="sl" id="L197"><span class="ln">197</span><span class="tx">坂らしい角度がなくなる山裾に近づくと、家の数は増え、街並みと言える風景を形作り始める。</span></div>
+    <div class="sl" id="L198"><span class="ln">198</span><span class="tx"></span></div>
+    <div class="sl" id="L199"><span class="ln">199</span><span class="tx">[佳城,かいじょう]盆地のなだらかな土地は、その小さな街並みの風景を受け止め、古い時間を持った都市へと変化させていく。</span></div>
+    <div class="sl" id="L200"><span class="ln">200</span><span class="tx"></span></div>
+    <div class="sl" id="L201"><span class="ln">201</span><span class="tx">[融 voice=WT005006]</span></div>
+    <div class="sl" id="L202"><span class="ln">202</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L203"><span class="ln">203</span><span class="tx">「たしかにいいところがある。悪いところもな」</span></div>
+    <div class="sl" id="L204"><span class="ln">204</span><span class="tx"></span></div>
+    <div class="sl" id="L205"><span class="ln">205</span><span class="tx">[イベント表示 file=ev_yuki_n01_04]</span></div>
+    <div class="sl" id="L206"><span class="ln">206</span><span class="tx"></span></div>
+    <div class="sl" id="L207"><span class="ln">207</span><span class="tx">[迪希 voice=YK005003]</span></div>
+    <div class="sl" id="L208"><span class="ln">208</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L209"><span class="ln">209</span><span class="tx">「いいところ[だけ,・・]って、言ってるわけじゃないわ」</span></div>
+    <div class="sl" id="L210"><span class="ln">210</span><span class="tx"></span></div>
+    <div class="sl" id="L211"><span class="ln">211</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L212"><span class="ln">212</span><span class="tx">;「釣り合いがとればいいさ、まだみんな同じ土俵にあがってられる」</span></div>
+    <div class="sl" id="L213"><span class="ln">213</span><span class="tx"></span></div>
+    <div class="sl" id="L214"><span class="ln">214</span><span class="tx">[迪希 voice=YK005004]</span></div>
+    <div class="sl" id="L215"><span class="ln">215</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L216"><span class="ln">216</span><span class="tx">「いろんなもの、全部まとめて[佳城,かいじょう]っていう場所で……故郷って、そんなものでしょ？」</span></div>
+    <div class="sl" id="L217"><span class="ln">217</span><span class="tx"></span></div>
+    <div class="sl" id="L218"><span class="ln">218</span><span class="tx"></span></div>
+    <div class="sl" id="L219"><span class="ln">219</span><span class="tx">;■■■■■　本文終了　■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L220"><span class="ln">220</span><span class="tx">;■EOF</span></div>
+    <div class="sl" id="L221"><span class="ln">221</span><span class="tx">;//◇内部用横山リビルドメモ　選択肢破棄に伴い、シナリオジャンプを暫定構築　（2012/10/23）</span></div>
+    <div class="sl" id="L222"><span class="ln">222</span><span class="tx"></span></div>
+    <div class="sl" id="L223"><span class="ln">223</span><span class="tx">[ＢＧＭ停止]</span></div>
+    <div class="sl" id="L224"><span class="ln">224</span><span class="tx">[環境ＳＥ停止]</span></div>
+    <div class="sl" id="L225"><span class="ln">225</span><span class="tx">[暗転]</span></div>
+    <div class="sl" id="L226"><span class="ln">226</span><span class="tx">[wait time=1000]</span></div>
+    <div class="sl" id="L227"><span class="ln">227</span><span class="tx">[終了]</span></div>
+    <div class="sl" id="L228"><span class="ln">228</span><span class="tx">[next storage=S004_02_a00.txt]</span></div>
+  </div>
+  <section class="xref">
+    <h2 class="lst-h">引用本文件的词条（3）</h2>
+    <ul class="lst">
+      <li><a href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c4">punitive justice·详解</a></li>
+      <li><a href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c4">キミ∽ツナグ·详解</a></li>
+      <li><a href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c12">永久より永遠に·详解</a></li>
+    </ul>
+  </section>
+</article>
+
+</main>
+<footer class="ft">
+  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
+  <p>参考资料 · 《少女神域∽少女天獄》本篇剧本 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
+</footer>
+</body>
+</html>

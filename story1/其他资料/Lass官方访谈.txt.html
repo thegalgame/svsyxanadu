@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lass官方访谈.txt</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
+   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
+      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
+   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
+      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
+   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
+(function () {
+  function run() {
+    var root = document.documentElement;
+    var hd = document.querySelector('.hd');
+
+    function sync() {
+      if (!hd) return;
+      var h = Math.round(hd.getBoundingClientRect().height);
+      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
+
+    function target() {
+      var h = location.hash;
+      if (!h || h.length < 2) return null;
+      var id = h.slice(1);
+      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
+      return document.getElementById(id);
+    }
+
+    var prev = root.style.scrollBehavior;
+
+    function instantJump() {
+      var t = target();
+      if (!t) return;
+      root.style.scrollBehavior = 'auto';
+      sync();                              /* 先更新 --hdr-h，再对齐 */
+      t.scrollIntoView({ block: 'start' });
+    }
+    function restore() {
+      root.style.scrollBehavior = prev;
+    }
+
+    if (location.hash.length > 1) {
+      instantJump();
+      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
+      window.addEventListener('load', function () {
+        instantJump();
+        setTimeout(restore, 60);
+      });
+      setTimeout(restore, 1500);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+</head>
+<body>
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
+    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
+  </div>
+</header>
+<main class="main">
+<article class="storypage">
+  <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%85%B6%E4%BB%96%E8%B5%84%E6%96%99">其他资料</a> / Lass官方访谈.txt</p>
+  <h1 class="stitle">Lass官方访谈.txt</h1>
+  <p class="stmeta">来源：其他/Lass官方访谈.txt · 118 行 · 被 3 条词条引用</p>
+  <nav class="xj">
+    <p class="xj-h">本页被引用的位置：<b>23</b> 处，来自 3 条词条<span class="xj-tip">点行号跳到本页对应行，点词条名进词条</span></p>
+    <ul class="xj-l">
+      <li><a class="xj-ln" href="#L46" title="跳到本页第 46 行">L46</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c16">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L46" title="跳到本页第 46 行">L46</a><a class="xj-e" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c4">永久より永遠に·详解</a></li>
+      <li><a class="xj-ln" href="#L50" title="跳到本页第 50 行">L50</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c25">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L50" title="跳到本页第 50 行">L50</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c16">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L50" title="跳到本页第 50 行">L50</a><a class="xj-e" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c38">永久より永遠に·详解</a></li>
+      <li><a class="xj-ln" href="#L54" title="跳到本页第 54 行">L54</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c17">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L58" title="跳到本页第 58 行">L58</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c36">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L58" title="跳到本页第 58 行">L58</a><a class="xj-e" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c13">永久より永遠に·详解</a></li>
+      <li><a class="xj-ln" href="#L64" title="跳到本页第 64 行">L64</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L66" title="跳到本页第 66 行">L66</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c17">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L70" title="跳到本页第 70 行">L70</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c24">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L70" title="跳到本页第 70 行">L70</a><a class="xj-e" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c37">永久より永遠に·详解</a></li>
+      <li><a class="xj-ln" href="#L74" title="跳到本页第 74 行">L74</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c32">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L74" title="跳到本页第 74 行">L74</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c20">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L74" title="跳到本页第 74 行">L74</a><a class="xj-e" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c44">永久より永遠に·详解</a></li>
+      <li><a class="xj-ln" href="#L78" title="跳到本页第 78 行">L78</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c4">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L78" title="跳到本页第 78 行">L78</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c24">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L78" title="跳到本页第 78 行">L78</a><a class="xj-e" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c42">永久より永遠に·详解</a></li>
+      <li><a class="xj-ln" href="#L82" title="跳到本页第 82 行">L82</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c18">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L84" title="跳到本页第 84 行">L84</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c18">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L86" title="跳到本页第 86 行">L86</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c18">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L94" title="跳到本页第 94 行">L94</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c9">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L110" title="跳到本页第 110 行">L110</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c21">キミ∽ツナグ·详解</a></li>
+    </ul>
+  </nav>
+  <p class="stmeta">对应词条：<a href="../../entry2/192_Lass%E5%AE%98%E6%96%B9%E8%AE%BF%E8%B0%88.html">Lass官方访谈</a></p>
+  <p class="note">本页为官方资料的原样内容（仅由原编码转换为 UTF-8，文字与繁体字形未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
+  <div class="script">
+    <div class="sl" id="L1"><span class="ln">1</span><span class="tx">前言：</span></div>
+    <div class="sl" id="L2"><span class="ln">2</span><span class="tx"></span></div>
+    <div class="sl" id="L3"><span class="ln">3</span><span class="tx">收錄於公式設定書中的官方自白書，作為筆者解析這部作品的基本理論依據，大致的劇情與設定都能從這裡得到解答，經筆者翻譯後置於此處為這幾篇評論的正確性提供明確的佐證。</span></div>
+    <div class="sl" id="L4"><span class="ln">4</span><span class="tx"></span></div>
+    <div class="sl" id="L5"><span class="ln">5</span><span class="tx"></span></div>
+    <div class="sl" id="L6"><span class="ln">6</span><span class="tx">　　　逼近作品世界的謎團——劍技マナ氏個人訪談　　　</span></div>
+    <div class="sl" id="L7"><span class="ln">7</span><span class="tx"></span></div>
+    <div class="sl" id="L8"><span class="ln">8</span><span class="tx">Q：首先最初的問題，本作的企劃是由於什麼樣的原委而開始的呢？</span></div>
+    <div class="sl" id="L9"><span class="ln">9</span><span class="tx"></span></div>
+    <div class="sl" id="L10"><span class="ln">10</span><span class="tx">A：最初是由於敝社的製作線分為2條，由主要寫手的LEGIOん與輔助寫手的獅子雰麓各自負責獨立製作線的系統來進行製作。在本作，是由獅子雰麓作為寫作的主軸來製作的，由這裡作為出發點。在這之後，從獅子雰麓那裡得到了許多的企劃提案，在經過反覆曲折的退稿與修改後，最後創造出他想要描繪的世界觀，這就是這次的企劃決定的緣由。</span></div>
+    <div class="sl" id="L11"><span class="ln">11</span><span class="tx"></span></div>
+    <div class="sl" id="L12"><span class="ln">12</span><span class="tx">Q：在都市的設定與描寫上相當地細緻呢，是由某座城市作為原型的嗎？</span></div>
+    <div class="sl" id="L13"><span class="ln">13</span><span class="tx"></span></div>
+    <div class="sl" id="L14"><span class="ln">14</span><span class="tx">A：以神奈川縣鎌倉市為主，以及參考了許多東北地區與近畿地區的土地。順便一提架空創造出來的地方相當的少，幾乎都是參考實際存在的場所。</span></div>
+    <div class="sl" id="L15"><span class="ln">15</span><span class="tx"></span></div>
+    <div class="sl" id="L16"><span class="ln">16</span><span class="tx">Q：這樣的話，果然還是有做外出勘景與取材旅行的活動嗎？</span></div>
+    <div class="sl" id="L17"><span class="ln">17</span><span class="tx"></span></div>
+    <div class="sl" id="L18"><span class="ln">18</span><span class="tx">A：從敝社的第1部作品『青與蒼的點滴』開始，就有外出勘景的慣例。在某種意義上，也是順便當成員工旅行而開心地去進行的吧（笑）。</span></div>
+    <div class="sl" id="L19"><span class="ln">19</span><span class="tx"></span></div>
+    <div class="sl" id="L20"><span class="ln">20</span><span class="tx">Q：話說回來，不只是神社等故事的關鍵設施，就連茶館與肉店也在作品中加入了解說，有執著到這種地步的理由嗎？</span></div>
+    <div class="sl" id="L21"><span class="ln">21</span><span class="tx"></span></div>
+    <div class="sl" id="L22"><span class="ln">22</span><span class="tx">A：這是獅子雰麓的執著呢。劍技與LEGIOん，都沒有執著到這種地步呢（笑）。將設定塞得非常滿好像就是他的做法呢。他似乎是如果不把所有存在的東西都加以說明就無法寫出劇本的類型，就算只是在旁邊看，也總會覺得那是非常費工夫的做法呢……我是這麼想的。</span></div>
+    <div class="sl" id="L23"><span class="ln">23</span><span class="tx"></span></div>
+    <div class="sl" id="L24"><span class="ln">24</span><span class="tx">Q：不只是事件CG，在演出上使用的圖畫也非常多，背景與時間差分都很豐富呢，光是要備齊這些，在製圖方面也相當辛苦吧？</span></div>
+    <div class="sl" id="L25"><span class="ln">25</span><span class="tx"></span></div>
+    <div class="sl" id="L26"><span class="ln">26</span><span class="tx">A：要表現出獅子雰麓的世界觀的話，不如說就算這樣數量還是不太夠吧。但是呢，不管是預算還是時間都不是無限的……我認為製圖師真的已經很努力了。</span></div>
+    <div class="sl" id="L27"><span class="ln">27</span><span class="tx"></span></div>
+    <div class="sl" id="L28"><span class="ln">28</span><span class="tx">Q：由於設定的龐大，所以在劇本方面是否也有許多的麻煩之處呢……？</span></div>
+    <div class="sl" id="L29"><span class="ln">29</span><span class="tx"></span></div>
+    <div class="sl" id="L30"><span class="ln">30</span><span class="tx">A：對獅子雰麓來說，反而是覺得第一次能像這樣寫到如此地步感覺還不錯吧……對我來說，要管理起來可是非常麻煩的（汗）。如此費時的作業需要留意，也有演變成喧鬧爭吵的情況發生過呢……。</span></div>
+    <div class="sl" id="L31"><span class="ln">31</span><span class="tx"></span></div>
+    <div class="sl" id="L32"><span class="ln">32</span><span class="tx">Q：雖然各女主角的結局有著相當戲劇性的內容，但來自玩家的反應如何呢？</span></div>
+    <div class="sl" id="L33"><span class="ln">33</span><span class="tx"></span></div>
+    <div class="sl" id="L34"><span class="ln">34</span><span class="tx">A：從「很感動呢」之類的，到「沒有比較稍微接近Happy End的結局嗎」之類的，收到了各式各樣的意見。就我個人來說，是意圖瞄準了像這樣讓意見分歧而製作的，雖然是如同理想一般得到了這樣的感想……但說真的，想讓劇本稍微累積一點份量再呈現出來才是真心話。能做到這種地步是第一次，我想這比起這次的結局擁有更大的意義。</span></div>
+    <div class="sl" id="L35"><span class="ln">35</span><span class="tx"></span></div>
+    <div class="sl" id="L36"><span class="ln">36</span><span class="tx">Q：菩乃花與葵、融等配角給人的印象也相當深刻，想要見到更多他們的活躍的呼聲也很多嗎？</span></div>
+    <div class="sl" id="L37"><span class="ln">37</span><span class="tx"></span></div>
+    <div class="sl" id="L38"><span class="ln">38</span><span class="tx">A：是呢。尤其是葵沒有得到任何回報便落得死於非命的下場，也收到了相當多希望能想點辦法的意見。她在本篇中沒有被提及的故事，稍微以新撰小說的形式收錄在這本公式設定書當中，希望各位能夠去閱讀。</span></div>
+    <div class="sl" id="L39"><span class="ln">39</span><span class="tx"></span></div>
+    <div class="sl" id="L40"><span class="ln">40</span><span class="tx">Q：話說劇中菩乃花所使用的格鬥術・席拉是？</span></div>
+    <div class="sl" id="L41"><span class="ln">41</span><span class="tx"></span></div>
+    <div class="sl" id="L42"><span class="ln">42</span><span class="tx">A：所謂的席拉，主要是在東南亞流傳的傳統武術。是和日本的柔術與合氣道接近的技術體系，使用武器的技法，赤手空拳與武器對抗的技法都包含在內。到了近代被作為近身格鬥技的技術體系來整合，變化為更加具有實戰性的技術。菩乃花所使用的，是由於文化人類學方面的興趣而學習的席拉，應該是混合了軍隊式CQC的我流技術。</span></div>
+    <div class="sl" id="L43"><span class="ln">43</span><span class="tx"></span></div>
+    <div class="sl" id="L44"><span class="ln">44</span><span class="tx">Q：原來如此，是那麼厲害的東西啊……。那麼，接下來終於，差不多該要提出逼近作品世界『謎團』的問題了。首先是關於『石』。說起來，『石』到底是怎麼樣的存在，是從何而來的東西呢？</span></div>
+    <div class="sl" id="L45"><span class="ln">45</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L46"><span class="ln">46</span><span class="tx"><a class="xr" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c4" title="词条考据：キミ∽ツナグ·详解、永久より永遠に·详解">A：佳城市原本的名稱是『忌部野』，從大陸渡海而來的咒術集團『黑齒朵之一族』造訪了這片土地。黑齒朵之一族自唐代的始祖開始，代代都以確立</a>獨自的咒術體系為目標，懷抱著要讓一族復興的悲願。『石』也是作為那些研究的一環而誕生出的產物。『石』有著將人類的生氣吸收並蓄積的特性，被吸收了生氣的人類會怪物化，再去尋求獻給『石』的祭品的人類，是一種有效率的生氣收集蓄積系統。再加上，在平安京鳥羽上皇的時代，黑齒朵之一族的少女在宮中暗中活動，因而被陰陽師所追討，引發了她透過咒術化為怪物（魔緣）的事件。怪物在陰陽師的活躍之下被打倒，蓄積了大量生氣的少女的身軀化為岩石，散落到了各地。此一事件在後世轉變為『金毛白面九尾之妖狐』的傳說。四散的少女之石中最大的一枚碎片，與忌部野之石相互牽引融合，使它的威力與危害都向外擴大。然後為了阻止那些危害，在崇德上皇的委託之下，由陰陽師・安倍泰成所指揮，建造了最古老的石壁。但不久後，崇德上皇由於陷入了潛伏在宮中的黑齒朵之一族的圈套而被流放到了讚岐，崇德上皇之子波智皇子在那裡出生。皇子在源平合戰的幕後討伐黑齒朵之一族，最終好不容易才抵達忌部野的殺生石，他以自身的存在為代價，將殺生石封印於體內。</span></div>
+    <div class="sl" id="L47"><span class="ln">47</span><span class="tx"></span></div>
+    <div class="sl" id="L48"><span class="ln">48</span><span class="tx">Q：『石』是由稜祁家的男性來繼承的東西嗎？</span></div>
+    <div class="sl" id="L49"><span class="ln">49</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L50"><span class="ln">50</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c25" title="词条考据：punitive justice·详解、キミ∽ツナグ·详解、永久より永遠に·详解">A：沒錯。波智皇子為了要封印黑齒朵之一族所孕育出的最惡的殺生石的災厄，使用了自身的肉體。讓『石』不論經過多少世代都持續轉生寄宿在體內，是因</a>為要削弱『石』的詛咒力量所做出的選擇。當時，有4位平家的公主作為『石』的活祭品被送來此處，她們與皇子相互交心，為這項壯烈的殺生石封印提供協助，在後世構成了佳城市名門的血脈。稜祁家在過去的時代被稱為寒河江家，比起家名本身，寄宿了『石』的男性的存在要更加受到重視。</span></div>
+    <div class="sl" id="L51"><span class="ln">51</span><span class="tx"></span></div>
+    <div class="sl" id="L52"><span class="ln">52</span><span class="tx">Q：由於『石』而產生變異的人類，只有四家流傳的刀劍能對其造成傷害嗎？</span></div>
+    <div class="sl" id="L53"><span class="ln">53</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L54"><span class="ln">54</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c17" title="词条考据：キミ∽ツナグ·详解">A：『石』的由來就如以上所述，由於是黑齒朵之一族的特殊咒術所孕育出的存在，對於不具有對咒術性效果的普通的物理攻擊，</a>即使受到傷害也會立刻再生。四家所流傳的武具，是為了討伐黑齒朵之一族而反覆研究的波智皇子所製造出的東西，具有對咒術性效果，尤其是對抗『石』的效力。不過，如果給予了一定程度影響的物理性攻擊，使用像核爆那種大規模的破壞兵器的話應該也是有打倒的可能性存在的。</span></div>
+    <div class="sl" id="L55"><span class="ln">55</span><span class="tx"></span></div>
+    <div class="sl" id="L56"><span class="ln">56</span><span class="tx">Q：在迪希、碧織、愛莉的Bad End中，在那之後全人類都會像恂一樣產生異變嗎？</span></div>
+    <div class="sl" id="L57"><span class="ln">57</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L58"><span class="ln">58</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c36" title="词条考据：punitive justice·详解、永久より永遠に·详解">A：各種Bad End的狀態，造成了自從『石』被封印以來最大的暴走事</a>件。首先，佳城市的所有居民都會被吸收生氣而產生異變，進而持續吞噬周遭的人類。只要石壁的封印還有效果，第一波的危害應該會被阻擋在城市內（石壁內），如果『石』的力量與恂的生存本能超越了封印的話，也有危害範圍朝城市外擴大的可能性存在。在本作的世界中，尚不知是否有能夠對抗『石』的咒術者存在，如果應對方式錯誤的話，那麼全人類都被吞噬產生異變的可能性也是相當大的。</span></div>
+    <div class="sl" id="L59"><span class="ln">59</span><span class="tx"></span></div>
+    <div class="sl" id="L60"><span class="ln">60</span><span class="tx">Q：在歷史上，還有其他『石』的力量完全解放的前例嗎？</span></div>
+    <div class="sl" id="L61"><span class="ln">61</span><span class="tx"></span></div>
+    <div class="sl" id="L62"><span class="ln">62</span><span class="tx">A：自從被波智皇子封印以後，直到恂為止都沒有完全解放的案例發生過。</span></div>
+    <div class="sl" id="L63"><span class="ln">63</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L64"><span class="ln">64</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6" title="词条考据：キミ∽ツナグ·详解">Q：佳城市的『石壁』，是為了封印『石』的力量而存在的東西嗎？</a></span></div>
+    <div class="sl" id="L65"><span class="ln">65</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L66"><span class="ln">66</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c17" title="词条考据：キミ∽ツナグ·详解">A：沒錯。是在陰陽師・安倍泰成的指揮之下，為了將『石』的影響封閉在內而建造的。在波智皇子的封印之前，受到『石』的</a>影響而怪物化的存在，有著會再去尋求生氣而分散在周圍，將『石』的祭品集中過來的習性。為了將包括那些人們在內的『石』的影響，封閉在石壁的範圍內而設下的結界。即使是那個時代最高位的陰陽師，也難以將『石』直接封印，花費時間建造從遠處包圍的結界就已經是竭盡全力了。隨著時代變遷，當初的咒術性意義並沒有被正確地傳承下去，而是以信仰的形式數度建造了新的石壁。</span></div>
+    <div class="sl" id="L67"><span class="ln">67</span><span class="tx"></span></div>
+    <div class="sl" id="L68"><span class="ln">68</span><span class="tx">Q：接下來是關於祥那的ED。在最後，祥那是維持著人類的姿態就這樣成為了不老不死的存在嗎？</span></div>
+    <div class="sl" id="L69"><span class="ln">69</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L70"><span class="ln">70</span><span class="tx"><a class="xr" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c37" title="词条考据：キミ∽ツナグ·详解、永久より永遠に·详解">A：本來只有寄宿著『石』的男性會被稱為『若宮』，在其血緣下出生的女性則被稱為『淡島』。身為淡島的祥那，實際上與寄宿著『石』的恂一樣，天</a>生就具有與『石』的親和性非常高的體質。由於『石』最初就是為了收集並蓄積名為生氣的生命能量而被製造出來的裝置般的存在，因此當『石』轉移到負傷的祥那身上時，便能夠修復宿主肉體的損傷，為何祥那能夠維持著人類的姿態就這樣成為不老不死的存在尚不明白……由於至今為止除了懷著寄宿了『石』的孩子以外，並沒有女性體內寄宿著『石』的前例，應該要當作是一種特殊的狀態來看待。</span></div>
+    <div class="sl" id="L71"><span class="ln">71</span><span class="tx"></span></div>
+    <div class="sl" id="L72"><span class="ln">72</span><span class="tx">Q：恂是作為普通的人類而復活的嗎？</span></div>
+    <div class="sl" id="L73"><span class="ln">73</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L74"><span class="ln">74</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c32" title="词条考据：punitive justice·详解、キミ∽ツナグ·详解、永久より永遠に·详解">A：是呢，應該是作為普通的人類而復活的。在『石』轉移給祥那之際，恂自身的存在本身便消滅了。這並非是單純的消滅，而是自己的生命本身也溶解，與生氣結晶的『石』一同溶入了祥那的體內。因為如此，在祥那</a>體內的不只是『石』，恂的組成情報也存在著。</span></div>
+    <div class="sl" id="L75"><span class="ln">75</span><span class="tx"></span></div>
+    <div class="sl" id="L76"><span class="ln">76</span><span class="tx">Q：讓恂復活的人物的真面目是？</span></div>
+    <div class="sl" id="L77"><span class="ln">77</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L78"><span class="ln">78</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c4" title="词条考据：punitive justice·详解、キミ∽ツナグ·详解、永久より永遠に·详解">A：在最後與祥那對話的人物是皇子。留下了子嗣，並且創造出代代將『石』的詛咒削弱的封印系統的波智皇子，他是在詛</a>咒解開的最後的瞬間現身的。歷代宿主的精神與記憶也與『石』一同被繼承了下來。再者，由於在恂復活的階段時所有的詛咒力量都已歸零，果然恂應該是作為『普通』的人類復活的呢。</span></div>
+    <div class="sl" id="L79"><span class="ln">79</span><span class="tx"></span></div>
+    <div class="sl" id="L80"><span class="ln">80</span><span class="tx">Q：直到恂復活的時間點，究竟經過了多久的時間呢？</span></div>
+    <div class="sl" id="L81"><span class="ln">81</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L82"><span class="ln">82</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c18" title="词条考据：キミ∽ツナグ·详解">A：從祥那在中途就已經放棄去計算的情形來看，無法準確去推估</a>呢……恐怕應該已經有千年之久了吧。</span></div>
+    <div class="sl" id="L83"><span class="ln">83</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L84"><span class="ln">84</span><span class="tx">Q：在那之後，那兩人<a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c18" title="词条考据：キミ∽ツナグ·详解">究竟會怎麼樣呢？</a></span></div>
+    <div class="sl" id="L85"><span class="ln">85</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L86"><span class="ln">86</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c18" title="词条考据：キミ∽ツナグ·详解">A：在千年後，除了兩人以外的人類究竟如何了，在那個世界會如何生存呢。這些就任憑各位</a>去想像了。</span></div>
+    <div class="sl" id="L87"><span class="ln">87</span><span class="tx"></span></div>
+    <div class="sl" id="L88"><span class="ln">88</span><span class="tx">Q：那麼，接下來要問的是除了『石』以外的部分。首先，恂在菩乃花的房間內看見的老舊相片，那究竟是拍到了誰呢？</span></div>
+    <div class="sl" id="L89"><span class="ln">89</span><span class="tx"></span></div>
+    <div class="sl" id="L90"><span class="ln">90</span><span class="tx">A：身穿裙裝的女性，是恂的祖母稜祁（寒河江）和泉。身穿黑色制服的女性，是黑羊齒鼎。創造出『石』的黑齒朵之一族，在後世轉變為『黑羊齒』的姓氏，鼎就是那一族的後裔。黑齒朵之一族在源平合戰的時代遭到討伐，到了近代因為熱衷於西洋魔術，而被名為禁書目錄聖省的組織盯上，遭到了幾乎就要滅絕的處境。鼎是那一族極少數的生存者之一。在拍攝這張相片的時候，身為魔術師（魔女）的黑羊齒鼎就已經對祭典造成了影響的可能性相當高。</span></div>
+    <div class="sl" id="L91"><span class="ln">91</span><span class="tx"></span></div>
+    <div class="sl" id="L92"><span class="ln">92</span><span class="tx">Q：在恂所見到的夢境中，一名女性從倉庫中拿出了鴦，那是實際發生過的事情嗎？</span></div>
+    <div class="sl" id="L93"><span class="ln">93</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L94"><span class="ln">94</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c9" title="词条考据：キミ∽ツナグ·详解">A：是實際發生過的事情。懷著寄宿了『石』的男孩的女性記憶，也會透過被繼承的『石』而復甦。那應該是2代前的繼承者稜</a>祁元的妻子・和泉的記憶。</span></div>
+    <div class="sl" id="L95"><span class="ln">95</span><span class="tx"></span></div>
+    <div class="sl" id="L96"><span class="ln">96</span><span class="tx">Q：葵在料理中所放入的東西是？</span></div>
+    <div class="sl" id="L97"><span class="ln">97</span><span class="tx"></span></div>
+    <div class="sl" id="L98"><span class="ln">98</span><span class="tx">A：澳城家將與道陵義明所調配的，能抑制住怪物化的藥相反的，能促進其覺醒的藥，以及便於施加暗示催眠的藥交給了她。澳城廣常為了在這次的大祭（自己的世代）斷絕『石』的繼承而在暗中進行了各種活動，為了在大祭的期限內使怪物化發生，讓葵偷偷地放入了能促進怪物化的藥。</span></div>
+    <div class="sl" id="L99"><span class="ln">99</span><span class="tx"></span></div>
+    <div class="sl" id="L100"><span class="ln">100</span><span class="tx">Q：那麼，道陵義明替恂開的處方藥的效果是？</span></div>
+    <div class="sl" id="L101"><span class="ln">101</span><span class="tx"></span></div>
+    <div class="sl" id="L102"><span class="ln">102</span><span class="tx">A：恂原本的體質就很虛弱，主要是有益健康的漢方藥成分，為了不讓他受到石壁封印的影響而導致身體狀況惡化，將『石』的影響抑制住的藥也是常備處方。義明不但擁有出色的現代醫學與漢方藥學的知識，也繼承了道陵家所流傳的只給予『石』影響的藥物的知識。</span></div>
+    <div class="sl" id="L103"><span class="ln">103</span><span class="tx"></span></div>
+    <div class="sl" id="L104"><span class="ln">104</span><span class="tx">Q：融從最初開始就是在得知一切的情況下行動的嗎？</span></div>
+    <div class="sl" id="L105"><span class="ln">105</span><span class="tx"></span></div>
+    <div class="sl" id="L106"><span class="ln">106</span><span class="tx">A：雖然與祭典有關的情報，有許多是只有各家的當主層級才能掌握的，但融在澳城家的關係者當中也是取得了相當深入的情報的人。融所採用的方法，並不是直接了當地表達反對。在整座城市中，有關聯的所有人都成為盯上恂的性命的敵人的情況下，考慮到即使自己提出反對意見，被排斥・刪除的可能也很高，所以他隱藏真心，將自身置於間諜的角色上，侵入到能夠精通內部情報的位置。到了大祭的最終局面時誘發內部的混亂，雖然摸索出讓恂生存下去的道路，但結果卻被察覺他背叛的小町所手刃。</span></div>
+    <div class="sl" id="L107"><span class="ln">107</span><span class="tx"></span></div>
+    <div class="sl" id="L108"><span class="ln">108</span><span class="tx">Q：澳城家與道陵家，似乎在佳城市的都市開發上暗地裡有所勾結，請說明一下他們計畫的全貌。</span></div>
+    <div class="sl" id="L109"><span class="ln">109</span><span class="tx"></span></div>
+    <div class="sl has-xr" id="L110"><span class="ln">110</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c21" title="词条考据：キミ∽ツナグ·详解">A：最初，大忌比古神社的各家氏子間是沒有上下關係之分的，但隨著時代變遷家族的興盛便出現了差別。身為澳城家當主的廣常，終其一生都為了無法阻止自己的摯</a>友在祭典上遭到殺害的過去而一直後悔著，為了讓自己在佳城市的權勢強大到能如他所願地掌控祭典，而賭上了人生。作為結果，對中央的財政界也拓展了連繫，招攬企業進駐佳城市與推動都市開發，成功地得到了其他名門所無法比擬與動搖的影響力。於佳城灣建造Mega Float（超大型浮體式建築物）的計畫，也是其中之一。對廣常來說，為了和古老的舊習與宿命做出了斷，構築出佳城市新的時代，他懷著信念推動事情的進展。另一方面，道陵家的得子為了守護家族與女兒而協助廣常的計畫，但對於宛如佳城市的絕對權力者般為所欲為的廣常，她也並非打從心底贊同他的做法。</span></div>
+    <div class="sl" id="L111"><span class="ln">111</span><span class="tx"></span></div>
+    <div class="sl" id="L112"><span class="ln">112</span><span class="tx">Q：非常感謝。在直截了當地解答了許多謎團後的現在，讓人想要再一次從頭開始玩一遍遊戲了呢。那麼，這是最後的問題了，劍技先生您今後，有想要試著創作的作品嗎？</span></div>
+    <div class="sl" id="L113"><span class="ln">113</span><span class="tx"></span></div>
+    <div class="sl" id="L114"><span class="ln">114</span><span class="tx">A：這是從以前開始就有提過的事情，想要做RPG呢……雖然大概是不可能的（笑）。在與某北海道超有名的老牌RPG製作廠商・E社的製作人會面過後，總會有著「請做出エロRPG遊戲製作大師吧」的願望。這是敝社的，不如說是我的最終目標呢……。以個人的興趣來說，有著想要製作充滿慾望的鬼畜凌辱遊戲的野心呢，不能以Lass社的名義來發表，或許會秘密變更名稱來製作也說不定。還有，在相當早期的遊戲中有一部名為『無人島物語』的我很喜歡的作品。由於發生事故而漂流到無人島的人們在那裡堅強地過著原始的生活，憑著智慧與勇氣越過各種難關，最後離開了島嶼的故事，我想試著創作那種需要使用頭腦，時常伴隨著緊張感的充滿趣味的遊戲呢。</span></div>
+    <div class="sl" id="L115"><span class="ln">115</span><span class="tx"></span></div>
+    <div class="sl" id="L116"><span class="ln">116</span><span class="tx">Q：包括RPG在內也會期待的！那麼，請對讀者們說句話吧。</span></div>
+    <div class="sl" id="L117"><span class="ln">117</span><span class="tx"></span></div>
+    <div class="sl" id="L118"><span class="ln">118</span><span class="tx">A：各位能夠閱讀這次的公式設定書，真的是非常感謝。這次的作品是由年輕製作群的力量所構成的，我想應該會成為與至今為止的Lass作品相比稍微帶有點異樣色彩的作品吧，能讓各位感受到樂趣的話就是我們的榮幸。現在（2013年7月），下一部與下下一部作品也在製作中。我們會以至今為止的反省為基礎，創作出能讓各位感受到更多樂趣的商品的。今後也希望各位能多多關照Lass。</span></div>
+  </div>
+  <section class="xref">
+    <h2 class="lst-h">引用本文件的词条（3）</h2>
+    <ul class="lst">
+      <li><a href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c1">punitive justice·详解</a></li>
+      <li><a href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c2">キミ∽ツナグ·详解</a></li>
+      <li><a href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c1">永久より永遠に·详解</a></li>
+    </ul>
+  </section>
+</article>
+
+</main>
+<footer class="ft">
+  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
+  <p>参考资料 · 其他资料 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
+</footer>
+</body>
+</html>

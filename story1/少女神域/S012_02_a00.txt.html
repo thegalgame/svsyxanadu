@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S012_02_a00.txt</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
+   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
+      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
+   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
+      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
+   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
+(function () {
+  function run() {
+    var root = document.documentElement;
+    var hd = document.querySelector('.hd');
+
+    function sync() {
+      if (!hd) return;
+      var h = Math.round(hd.getBoundingClientRect().height);
+      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
+
+    function target() {
+      var h = location.hash;
+      if (!h || h.length < 2) return null;
+      var id = h.slice(1);
+      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
+      return document.getElementById(id);
+    }
+
+    var prev = root.style.scrollBehavior;
+
+    function instantJump() {
+      var t = target();
+      if (!t) return;
+      root.style.scrollBehavior = 'auto';
+      sync();                              /* 先更新 --hdr-h，再对齐 */
+      t.scrollIntoView({ block: 'start' });
+    }
+    function restore() {
+      root.style.scrollBehavior = prev;
+    }
+
+    if (location.hash.length > 1) {
+      instantJump();
+      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
+      window.addEventListener('load', function () {
+        instantJump();
+        setTimeout(restore, 60);
+      });
+      setTimeout(restore, 1500);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+</head>
+<body>
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
+    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
+  </div>
+</header>
+<main class="main">
+<article class="storypage">
+  <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F">《少女神域∽少女天獄》本篇剧本</a> / S012_02_a00.txt</p>
+  <h1 class="stitle">S012_02_a00.txt</h1>
+  <p class="stmeta">来源：少女神域/data/scenario/S012_02_a00.txt · 513 行 · 被 2 条词条引用</p>
+  <nav class="xj">
+    <p class="xj-h">本页被引用的位置：<b>1</b> 处，来自 2 条词条<span class="xj-tip">点行号跳到本页对应行，点词条名进词条</span></p>
+    <ul class="xj-l">
+      <li><a class="xj-ln" href="#L153" title="跳到本页第 153 行">L153</a><a class="xj-e" href="../../entry2/167_%E6%A2%A7%E6%A1%90%E3%81%AE%E9%A3%B4.html#s1">梧桐の飴</a></li>
+    </ul>
+  </nav>
+  <p class="note">本页为剧本文件的完整原样内容（含注释与演出指令；仅由原编码转换为 UTF-8，文字未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
+  <div class="script">
+    <div class="sl" id="L1"><span class="ln">1</span><span class="tx">;//FILEID=042</span></div>
+    <div class="sl" id="L2"><span class="ln">2</span><span class="tx">*start|迪希の冗談</span></div>
+    <div class="sl" id="L3"><span class="ln">3</span><span class="tx">[initscene]</span></div>
+    <div class="sl" id="L4"><span class="ln">4</span><span class="tx">;[voicebase base=]</span></div>
+    <div class="sl" id="L5"><span class="ln">5</span><span class="tx"></span></div>
+    <div class="sl" id="L6"><span class="ln">6</span><span class="tx">;■■■■■　設定　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L7"><span class="ln">7</span><span class="tx"></span></div>
+    <div class="sl" id="L8"><span class="ln">8</span><span class="tx">;タイトル　　　SN≪012≫日付≪3/10≫シーンタイトル≪迪希の冗談≫</span></div>
+    <div class="sl" id="L9"><span class="ln">9</span><span class="tx">;背景　　　　　SN≪012≫日付≪3/10≫背景の設定≪≫</span></div>
+    <div class="sl" id="L10"><span class="ln">10</span><span class="tx">;時間　　　　　SN≪012≫日付≪3/10≫時間の設定≪朝≫</span></div>
+    <div class="sl" id="L11"><span class="ln">11</span><span class="tx">;登場人物　　　SN≪012≫日付≪3/10≫人物の設定≪迪希（私服）、碧織（私服）、愛莉（私服）、祥那（私服）、菩乃花（私服）≫</span></div>
+    <div class="sl" id="L12"><span class="ln">12</span><span class="tx">;CG　　　　　　SN≪012≫日付≪3/10≫CGfile設定≪≫</span></div>
+    <div class="sl" id="L13"><span class="ln">13</span><span class="tx"></span></div>
+    <div class="sl" id="L14"><span class="ln">14</span><span class="tx">;■■■■■　指示ツール　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L15"><span class="ln">15</span><span class="tx"></span></div>
+    <div class="sl" id="L16"><span class="ln">16</span><span class="tx">;●[ウィンドウ表示]</span></div>
+    <div class="sl" id="L17"><span class="ln">17</span><span class="tx">;○[ノベル表示]</span></div>
+    <div class="sl" id="L18"><span class="ln">18</span><span class="tx">;■CGイベント/;//■CG背景</span></div>
+    <div class="sl" id="L19"><span class="ln">19</span><span class="tx">;□演出画像/;□演出指示</span></div>
+    <div class="sl" id="L20"><span class="ln">20</span><span class="tx">;★BGM</span></div>
+    <div class="sl" id="L21"><span class="ln">21</span><span class="tx">;▼SE</span></div>
+    <div class="sl" id="L22"><span class="ln">22</span><span class="tx">;◇内部用/;◇提案/;◇メモ/;◇バグ（バグの場合、記入者と日付を必ず）</span></div>
+    <div class="sl" id="L23"><span class="ln">23</span><span class="tx"></span></div>
+    <div class="sl" id="L24"><span class="ln">24</span><span class="tx">;■■■■■■■　本文　■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■▽■■■■■■■■■■◎</span></div>
+    <div class="sl" id="L25"><span class="ln">25</span><span class="tx">;//■CG背景。bg_004_00	主人公の家・居間（済）</span></div>
+    <div class="sl" id="L26"><span class="ln">26</span><span class="tx">[BGM再生 storage=BGM03]</span></div>
+    <div class="sl" id="L27"><span class="ln">27</span><span class="tx">[背景変更 主人公の家・居間 昼]</span></div>
+    <div class="sl" id="L28"><span class="ln">28</span><span class="tx"></span></div>
+    <div class="sl" id="L29"><span class="ln">29</span><span class="tx">;●[ウィンドウ表示]（済）</span></div>
+    <div class="sl" id="L30"><span class="ln">30</span><span class="tx">[ウィンドウ窓]</span></div>
+    <div class="sl" id="L31"><span class="ln">31</span><span class="tx"></span></div>
+    <div class="sl" id="L32"><span class="ln">32</span><span class="tx">[祥那 voice=SN042000]</span></div>
+    <div class="sl" id="L33"><span class="ln">33</span><span class="tx">[祥那 通常 中 服・私服 正面・腕後 表情・ギャグ驚き]</span></div>
+    <div class="sl" id="L34"><span class="ln">34</span><span class="tx"></span></div>
+    <div class="sl" id="L35"><span class="ln">35</span><span class="tx"></span></div>
+    <div class="sl" id="L36"><span class="ln">36</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L37"><span class="ln">37</span><span class="tx">「えー！？　[祥那,さな]、ヨーグルト食べられないの！？　[――]あむっ」</span></div>
+    <div class="sl" id="L38"><span class="ln">38</span><span class="tx"></span></div>
+    <div class="sl" id="L39"><span class="ln">39</span><span class="tx">[祥那 服・私服 正面・腕後 表情・笑顔]</span></div>
+    <div class="sl" id="L40"><span class="ln">40</span><span class="tx"></span></div>
+    <div class="sl" id="L41"><span class="ln">41</span><span class="tx">[祥那,さな]は不満を口にしたあと、間髪入れずにオムレツをほおばった。</span></div>
+    <div class="sl" id="L42"><span class="ln">42</span><span class="tx"></span></div>
+    <div class="sl" id="L43"><span class="ln">43</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L44"><span class="ln">44</span><span class="tx">「うん、そうらしいよ」</span></div>
+    <div class="sl" id="L45"><span class="ln">45</span><span class="tx"></span></div>
+    <div class="sl" id="L46"><span class="ln">46</span><span class="tx">[――]朝食はサラダとコーンスープ、『[越塚,こしづか]ハム』の厚切りベーコンを焼いて、[鮪,まぐろ]ツナと少量のドライトマトを細かく刻んでいれたオムレツを用意した。</span></div>
+    <div class="sl" id="L47"><span class="ln">47</span><span class="tx"></span></div>
+    <div class="sl" id="L48"><span class="ln">48</span><span class="tx">サラダは、[迪希,ゆき]が塩と砂糖を間違えて甘くなったドレッシングに合わせて、ルッコラのような味が強い野菜と、アスパラガスや[そら豆,ファーベ]など歯ざわりのよいものを合わせた。</span></div>
+    <div class="sl" id="L49"><span class="ln">49</span><span class="tx"></span></div>
+    <div class="sl" id="L50"><span class="ln">50</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L51"><span class="ln">51</span><span class="tx">「あと牛乳も駄目だよね？　乳製品が駄目ってことは」</span></div>
+    <div class="sl" id="L52"><span class="ln">52</span><span class="tx"></span></div>
+    <div class="sl" id="L53"><span class="ln">53</span><span class="tx">[祥那 服・私服 正面・腕後 表情・呆然]</span></div>
+    <div class="sl" id="L54"><span class="ln">54</span><span class="tx">[祥那 voice=SN042001]</span></div>
+    <div class="sl" id="L55"><span class="ln">55</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L56"><span class="ln">56</span><span class="tx">「えー……[迪希,ゆき]ねえ、ほんと？」</span></div>
+    <div class="sl" id="L57"><span class="ln">57</span><span class="tx"></span></div>
+    <div class="sl" id="L58"><span class="ln">58</span><span class="tx">[祥那,さな]は、自分のコップに牛乳のおかわりを注いでくれている[迪希,ゆき]を見上げた。</span></div>
+    <div class="sl" id="L59"><span class="ln">59</span><span class="tx"></span></div>
+    <div class="sl" id="L60"><span class="ln">60</span><span class="tx">[祥那 右]</span></div>
+    <div class="sl" id="L61"><span class="ln">61</span><span class="tx">[迪希 通常 左 服・私服 右斜・右手顎 表情・悲しい]</span></div>
+    <div class="sl" id="L62"><span class="ln">62</span><span class="tx"></span></div>
+    <div class="sl" id="L63"><span class="ln">63</span><span class="tx">[迪希 voice=YK042000]</span></div>
+    <div class="sl" id="L64"><span class="ln">64</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L65"><span class="ln">65</span><span class="tx">「残念だけど[祥那,さな]ちゃん、そうなっちゃうの」</span></div>
+    <div class="sl" id="L66"><span class="ln">66</span><span class="tx"></span></div>
+    <div class="sl" id="L67"><span class="ln">67</span><span class="tx">[祥那 服・私服 正面・腕後 表情・悲しい目そらし]</span></div>
+    <div class="sl" id="L68"><span class="ln">68</span><span class="tx">[祥那 voice=SN042002]</span></div>
+    <div class="sl" id="L69"><span class="ln">69</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L70"><span class="ln">70</span><span class="tx">「[祥那,さな]、悲しいなあ……いつも食べてるのに」</span></div>
+    <div class="sl" id="L71"><span class="ln">71</span><span class="tx"></span></div>
+    <div class="sl" id="L72"><span class="ln">72</span><span class="tx">[迪希,ゆき]は[祥那,さな]の頭をなで、席に戻る前に話しかけた。</span></div>
+    <div class="sl" id="L73"><span class="ln">73</span><span class="tx"></span></div>
+    <div class="sl" id="L74"><span class="ln">74</span><span class="tx">[迪希 voice=YK042001]</span></div>
+    <div class="sl" id="L75"><span class="ln">75</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L76"><span class="ln">76</span><span class="tx">「気持ちはわかるわ。私も大好きなもの、食べれなくなるから」</span></div>
+    <div class="sl" id="L77"><span class="ln">77</span><span class="tx"></span></div>
+    <div class="sl" id="L78"><span class="ln">78</span><span class="tx">[祥那 服・私服 正面・腕後 表情・怪訝 もじもじ]</span></div>
+    <div class="sl" id="L79"><span class="ln">79</span><span class="tx">[祥那 voice=SN042003]</span></div>
+    <div class="sl" id="L80"><span class="ln">80</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L81"><span class="ln">81</span><span class="tx">「[祥那,さな]、成長期なのに……」</span></div>
+    <div class="sl" id="L82"><span class="ln">82</span><span class="tx"></span></div>
+    <div class="sl" id="L83"><span class="ln">83</span><span class="tx">[祥那 stopaction]</span></div>
+    <div class="sl" id="L84"><span class="ln">84</span><span class="tx">[祥那 服・私服 正面・腕後 表情・通常]</span></div>
+    <div class="sl" id="L85"><span class="ln">85</span><span class="tx">[――]朝食が始まったあと、家の味に馴れていた[祥那,さな]は妙な顔をしたが、すぐいつもの調子で食べ始めた。</span></div>
+    <div class="sl" id="L86"><span class="ln">86</span><span class="tx"></span></div>
+    <div class="sl" id="L87"><span class="ln">87</span><span class="tx">それから[愛莉,あいり]ちゃんや[碧織,みおり]ちゃんの顔もうかがったが、どうやら今日の朝食の味は、大丈夫だったようだ。</span></div>
+    <div class="sl" id="L88"><span class="ln">88</span><span class="tx"></span></div>
+    <div class="sl" id="L89"><span class="ln">89</span><span class="tx">最後に[迪希,ゆき]をみて[――]彼女もこちらを見ていたが、相手を安心させるように何度か軽く頷いた。</span></div>
+    <div class="sl" id="L90"><span class="ln">90</span><span class="tx"></span></div>
+    <div class="sl" id="L91"><span class="ln">91</span><span class="tx">[祥那 服・私服 正面・腕胸 表情・怒り 憤慨]</span></div>
+    <div class="sl" id="L92"><span class="ln">92</span><span class="tx">[祥那 voice=SN042004]</span></div>
+    <div class="sl" id="L93"><span class="ln">93</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L94"><span class="ln">94</span><span class="tx">「[――]健康優良児の[祥那,さな]、やっぱり異議あり！」</span></div>
+    <div class="sl" id="L95"><span class="ln">95</span><span class="tx"></span></div>
+    <div class="sl" id="L96"><span class="ln">96</span><span class="tx">[祥那,さな]は一気に牛乳を飲み干すと、おもむろに席を立った。</span></div>
+    <div class="sl" id="L97"><span class="ln">97</span><span class="tx"></span></div>
+    <div class="sl" id="L98"><span class="ln">98</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L99"><span class="ln">99</span><span class="tx">「こら、まだ食事中だろ？」</span></div>
+    <div class="sl" id="L100"><span class="ln">100</span><span class="tx"></span></div>
+    <div class="sl" id="L101"><span class="ln">101</span><span class="tx">[祥那 服・私服 正面・腕下 表情・真面目]</span></div>
+    <div class="sl" id="L102"><span class="ln">102</span><span class="tx">[祥那 voice=SN042005]</span></div>
+    <div class="sl" id="L103"><span class="ln">103</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L104"><span class="ln">104</span><span class="tx">「大事な話ー」</span></div>
+    <div class="sl" id="L105"><span class="ln">105</span><span class="tx"></span></div>
+    <div class="sl" id="L106"><span class="ln">106</span><span class="tx">[祥那,さな]は席に戻った[迪希,ゆき]のほうへ、今度は自分から近づいた。</span></div>
+    <div class="sl" id="L107"><span class="ln">107</span><span class="tx"></span></div>
+    <div class="sl" id="L108"><span class="ln">108</span><span class="tx">[begintrans]</span></div>
+    <div class="sl" id="L109"><span class="ln">109</span><span class="tx">[祥那 右中 服・私服 正面・腕下 表情・真面目 back]</span></div>
+    <div class="sl" id="L110"><span class="ln">110</span><span class="tx">[迪希 左中 服・私服 正面・片腕組 表情・通常]</span></div>
+    <div class="sl" id="L111"><span class="ln">111</span><span class="tx">[endtrans trans=normal time=300]</span></div>
+    <div class="sl" id="L112"><span class="ln">112</span><span class="tx">そして、[祥那,さな]は甘えるように後ろから彼女の肩に手を置くと、[迪希,ゆき]も妹の手に自分の手を重ねて話しかけた。</span></div>
+    <div class="sl" id="L113"><span class="ln">113</span><span class="tx"></span></div>
+    <div class="sl" id="L114"><span class="ln">114</span><span class="tx">[祥那 服・私服 正面・腕下 表情・通常 もじもじ]</span></div>
+    <div class="sl" id="L115"><span class="ln">115</span><span class="tx">[祥那 voice=SN042006]</span></div>
+    <div class="sl" id="L116"><span class="ln">116</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L117"><span class="ln">117</span><span class="tx">「[迪希,ゆき]ねえ、やっぱり[祥那,さな]って成長期だよー」</span></div>
+    <div class="sl" id="L118"><span class="ln">118</span><span class="tx"></span></div>
+    <div class="sl" id="L119"><span class="ln">119</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・通常目閉じ]</span></div>
+    <div class="sl" id="L120"><span class="ln">120</span><span class="tx"></span></div>
+    <div class="sl" id="L121"><span class="ln">121</span><span class="tx">[迪希 voice=YK042002]</span></div>
+    <div class="sl" id="L122"><span class="ln">122</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L123"><span class="ln">123</span><span class="tx">「そうね、[祥那,さな]ちゃんまだまだ大きくなるものね」</span></div>
+    <div class="sl" id="L124"><span class="ln">124</span><span class="tx"></span></div>
+    <div class="sl" id="L125"><span class="ln">125</span><span class="tx">[祥那 服・私服 正面・腕下 表情・ギャグ泣き もじもじ]</span></div>
+    <div class="sl" id="L126"><span class="ln">126</span><span class="tx">[祥那 voice=SN042007]</span></div>
+    <div class="sl" id="L127"><span class="ln">127</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L128"><span class="ln">128</span><span class="tx">「成長期だから牛乳飲みたいし、ヨーグルトにブルーベリージャムかけたい！　食べたい食べたい！」</span></div>
+    <div class="sl" id="L129"><span class="ln">129</span><span class="tx"></span></div>
+    <div class="sl" id="L130"><span class="ln">130</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L131"><span class="ln">131</span><span class="tx">「ジャムは成長期とは関係ないと思うけど……」</span></div>
+    <div class="sl" id="L132"><span class="ln">132</span><span class="tx"></span></div>
+    <div class="sl" id="L133"><span class="ln">133</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・笑顔目閉じ]</span></div>
+    <div class="sl" id="L134"><span class="ln">134</span><span class="tx"></span></div>
+    <div class="sl" id="L135"><span class="ln">135</span><span class="tx">[迪希 voice=YK042003]</span></div>
+    <div class="sl" id="L136"><span class="ln">136</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L137"><span class="ln">137</span><span class="tx">「[祥那,さな]ちゃん、私はアプリコットのジャムが好きよ」</span></div>
+    <div class="sl" id="L138"><span class="ln">138</span><span class="tx"></span></div>
+    <div class="sl" id="L139"><span class="ln">139</span><span class="tx">[祥那 服・私服 正面・腕下 表情・怪訝]</span></div>
+    <div class="sl" id="L140"><span class="ln">140</span><span class="tx">[祥那 voice=SN042008]</span></div>
+    <div class="sl" id="L141"><span class="ln">141</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L142"><span class="ln">142</span><span class="tx">「えっと、アプリコットって[――]」</span></div>
+    <div class="sl" id="L143"><span class="ln">143</span><span class="tx"></span></div>
+    <div class="sl" id="L144"><span class="ln">144</span><span class="tx">[愛莉 出 奥 右端 服・私服 正面・手胸 表情・通常 back]</span></div>
+    <div class="sl" id="L145"><span class="ln">145</span><span class="tx">[愛莉 voice=AR042000]</span></div>
+    <div class="sl" id="L146"><span class="ln">146</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L147"><span class="ln">147</span><span class="tx">「[杏,あんず]ですよ、[祥那,さな]ちゃん」</span></div>
+    <div class="sl" id="L148"><span class="ln">148</span><span class="tx"></span></div>
+    <div class="sl" id="L149"><span class="ln">149</span><span class="tx">[祥那 服・私服 正面・腕下 表情・通常ウィンク]</span></div>
+    <div class="sl" id="L150"><span class="ln">150</span><span class="tx">[――][杏,あんず]という名前なら、[祥那,さな]にもよくわかるはずだ。</span></div>
+    <div class="sl" id="L151"><span class="ln">151</span><span class="tx"></span></div>
+    <div class="sl" id="L152"><span class="ln">152</span><span class="tx">[愛莉 消]</span></div>
+    <div class="sl has-xr" id="L153"><span class="ln">153</span><span class="tx"><a class="xr" href="../../entry2/167_%E6%A2%A7%E6%A1%90%E3%81%AE%E9%A3%B4.html#s1" title="词条考据：梧桐の飴">何故なら、学園から家に帰る途中[――][白鷺,しらさぎ]町と[巻狩,まきがり]町の境に、自家製の[飴,あめ]や駄菓子の老</a>舗である『[梧桐,ごとう]の[飴,あめ]』があるからだ。</span></div>
+    <div class="sl" id="L154"><span class="ln">154</span><span class="tx"></span></div>
+    <div class="sl" id="L155"><span class="ln">155</span><span class="tx">ここで昔から、[菩乃花,ほのか]さんは好物のあんず棒をよく買い、それに付き添う[祥那,さな]も、[杏,あんず]のお菓子をよく買ってもらっていた。</span></div>
+    <div class="sl" id="L156"><span class="ln">156</span><span class="tx"></span></div>
+    <div class="sl" id="L157"><span class="ln">157</span><span class="tx">[祥那 服・私服 正面・腕下 表情・笑顔 笑う]</span></div>
+    <div class="sl" id="L158"><span class="ln">158</span><span class="tx">[祥那 voice=SN042009]</span></div>
+    <div class="sl" id="L159"><span class="ln">159</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L160"><span class="ln">160</span><span class="tx">「[祥那,さな]、[杏,あんず]の砂糖がけ大好きー！　あっ、[碧,みお]ねえも好きだよねー？　[祥那,さな]、昔もらったよ」</span></div>
+    <div class="sl" id="L161"><span class="ln">161</span><span class="tx"></span></div>
+    <div class="sl" id="L162"><span class="ln">162</span><span class="tx">[碧織 出 奥 右端 服・私服 正面・腕下 表情・笑顔口閉じ]</span></div>
+    <div class="sl" id="L163"><span class="ln">163</span><span class="tx">[碧織 voice=MO042000]</span></div>
+    <div class="sl" id="L164"><span class="ln">164</span><span class="tx">【碧織】</span></div>
+    <div class="sl" id="L165"><span class="ln">165</span><span class="tx">「ええ、そうね」</span></div>
+    <div class="sl" id="L166"><span class="ln">166</span><span class="tx"></span></div>
+    <div class="sl" id="L167"><span class="ln">167</span><span class="tx">[begintrans]</span></div>
+    <div class="sl" id="L168"><span class="ln">168</span><span class="tx">[祥那 服・私服 正面・腕下 表情・通常ウィンク]</span></div>
+    <div class="sl" id="L169"><span class="ln">169</span><span class="tx">[碧織 消]</span></div>
+    <div class="sl" id="L170"><span class="ln">170</span><span class="tx">[endtrans trans=normal time=300]</span></div>
+    <div class="sl" id="L171"><span class="ln">171</span><span class="tx">[祥那 voice=SN042010]</span></div>
+    <div class="sl" id="L172"><span class="ln">172</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L173"><span class="ln">173</span><span class="tx">「……[迪希,ゆき]ねえ、駄目？」</span></div>
+    <div class="sl" id="L174"><span class="ln">174</span><span class="tx"></span></div>
+    <div class="sl" id="L175"><span class="ln">175</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・真面目目閉じ]</span></div>
+    <div class="sl" id="L176"><span class="ln">176</span><span class="tx"></span></div>
+    <div class="sl" id="L177"><span class="ln">177</span><span class="tx">[迪希 voice=YK042004]</span></div>
+    <div class="sl" id="L178"><span class="ln">178</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L179"><span class="ln">179</span><span class="tx">「難しいかもしれないけれど……一度、私からも聞いておくわ」</span></div>
+    <div class="sl" id="L180"><span class="ln">180</span><span class="tx"></span></div>
+    <div class="sl" id="L181"><span class="ln">181</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L182"><span class="ln">182</span><span class="tx">「あと[祥那,さな]、ちゃんと献立は考えるし、代わりになるものも色々と考えるからさ[――]ほら、席に戻りな」</span></div>
+    <div class="sl" id="L183"><span class="ln">183</span><span class="tx"></span></div>
+    <div class="sl" id="L184"><span class="ln">184</span><span class="tx">[祥那 服・私服 正面・腕下 表情・怪訝]</span></div>
+    <div class="sl" id="L185"><span class="ln">185</span><span class="tx">[祥那 voice=SN042011]</span></div>
+    <div class="sl" id="L186"><span class="ln">186</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L187"><span class="ln">187</span><span class="tx">「……むー」</span></div>
+    <div class="sl" id="L188"><span class="ln">188</span><span class="tx"></span></div>
+    <div class="sl" id="L189"><span class="ln">189</span><span class="tx">;[祥那,さな]は自分の言葉が聞こえなかったのか、[迪希,ゆき]にまた話しかけていた。</span></div>
+    <div class="sl" id="L190"><span class="ln">190</span><span class="tx"></span></div>
+    <div class="sl" id="L191"><span class="ln">191</span><span class="tx">[祥那 服・私服 正面・腕下 表情・照れ もじもじ遅]</span></div>
+    <div class="sl" id="L192"><span class="ln">192</span><span class="tx">[祥那 voice=SN042012]</span></div>
+    <div class="sl" id="L193"><span class="ln">193</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L194"><span class="ln">194</span><span class="tx">「[祥那,さな]、お母さんや[迪希,ゆき]ねえみたいに、ばいんばいんに胸が大きくなりたいのにー」</span></div>
+    <div class="sl" id="L195"><span class="ln">195</span><span class="tx"></span></div>
+    <div class="sl" id="L196"><span class="ln">196</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・通常ウィンク]</span></div>
+    <div class="sl" id="L197"><span class="ln">197</span><span class="tx"></span></div>
+    <div class="sl" id="L198"><span class="ln">198</span><span class="tx">[迪希 voice=YK042005]</span></div>
+    <div class="sl" id="L199"><span class="ln">199</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L200"><span class="ln">200</span><span class="tx">「あら[――]」</span></div>
+    <div class="sl" id="L201"><span class="ln">201</span><span class="tx"></span></div>
+    <div class="sl" id="L202"><span class="ln">202</span><span class="tx">[祥那,さな]はおもむろに、後ろから[迪希,ゆき]の胸を触った。</span></div>
+    <div class="sl" id="L203"><span class="ln">203</span><span class="tx"></span></div>
+    <div class="sl" id="L204"><span class="ln">204</span><span class="tx">[祥那 服・私服 正面・腕下 表情・笑顔]</span></div>
+    <div class="sl" id="L205"><span class="ln">205</span><span class="tx">[祥那 voice=SN042013]</span></div>
+    <div class="sl" id="L206"><span class="ln">206</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L207"><span class="ln">207</span><span class="tx">「[迪希,ゆき]ねえみたいに、ふかふかになりたいなー」</span></div>
+    <div class="sl" id="L208"><span class="ln">208</span><span class="tx"></span></div>
+    <div class="sl" id="L209"><span class="ln">209</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・照れ目そらし]</span></div>
+    <div class="sl" id="L210"><span class="ln">210</span><span class="tx"></span></div>
+    <div class="sl" id="L211"><span class="ln">211</span><span class="tx">[迪希 voice=YK042006]</span></div>
+    <div class="sl" id="L212"><span class="ln">212</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L213"><span class="ln">213</span><span class="tx">「あらあら……大丈夫、きっと[祥那,さな]ちゃんもなるわよ」</span></div>
+    <div class="sl" id="L214"><span class="ln">214</span><span class="tx"></span></div>
+    <div class="sl" id="L215"><span class="ln">215</span><span class="tx">[祥那 服・私服 正面・腕下 表情・ギャグ泣き ぷんぷん]</span></div>
+    <div class="sl" id="L216"><span class="ln">216</span><span class="tx">[祥那 voice=SN042014]</span></div>
+    <div class="sl" id="L217"><span class="ln">217</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L218"><span class="ln">218</span><span class="tx">「ほんと？　[祥那,さな]もこんな感じで、ばいんばいんってなる？」</span></div>
+    <div class="sl" id="L219"><span class="ln">219</span><span class="tx"></span></div>
+    <div class="sl" id="L220"><span class="ln">220</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・笑顔目閉じ]</span></div>
+    <div class="sl" id="L221"><span class="ln">221</span><span class="tx"></span></div>
+    <div class="sl" id="L222"><span class="ln">222</span><span class="tx">[迪希 voice=YK042007]</span></div>
+    <div class="sl" id="L223"><span class="ln">223</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L224"><span class="ln">224</span><span class="tx">「なるなる。ね、[恂,しゅん]ちゃんもそう思うわよね？」</span></div>
+    <div class="sl" id="L225"><span class="ln">225</span><span class="tx"></span></div>
+    <div class="sl" id="L226"><span class="ln">226</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L227"><span class="ln">227</span><span class="tx">;「……あっ」</span></div>
+    <div class="sl" id="L228"><span class="ln">228</span><span class="tx"></span></div>
+    <div class="sl" id="L229"><span class="ln">229</span><span class="tx">;[祥那,さな]と[迪希,ゆき]が何気なく会話をしていたので、思考が停止したように、じっと眺めてしまっていた。</span></div>
+    <div class="sl" id="L230"><span class="ln">230</span><span class="tx"></span></div>
+    <div class="sl" id="L231"><span class="ln">231</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L232"><span class="ln">232</span><span class="tx">「えっと[――]ちょ、ちょっと[祥那,さな]っ、やめなさい」</span></div>
+    <div class="sl" id="L233"><span class="ln">233</span><span class="tx"></span></div>
+    <div class="sl" id="L234"><span class="ln">234</span><span class="tx">[祥那 服・私服 正面・腕下 表情・悲しい目そらし]</span></div>
+    <div class="sl" id="L235"><span class="ln">235</span><span class="tx">[祥那 voice=SN042015]</span></div>
+    <div class="sl" id="L236"><span class="ln">236</span><span class="tx">【祥那】</span></div>
+    <div class="sl" id="L237"><span class="ln">237</span><span class="tx">「えー？　ふかふかしてただけなのにー」</span></div>
+    <div class="sl" id="L238"><span class="ln">238</span><span class="tx"></span></div>
+    <div class="sl" id="L239"><span class="ln">239</span><span class="tx">[迪希 左端 time=500 accel=-1]</span></div>
+    <div class="sl" id="L240"><span class="ln">240</span><span class="tx">[祥那 左中 time=500 accel=-1]</span></div>
+    <div class="sl" id="L241"><span class="ln">241</span><span class="tx">慌てて[祥那,さな]に向かって言いながら、さりげなく、気づかれないように周囲を見た[――]。</span></div>
+    <div class="sl" id="L242"><span class="ln">242</span><span class="tx"></span></div>
+    <div class="sl" id="L243"><span class="ln">243</span><span class="tx">[愛莉 出 奥 右中 服・私服 正面・手胸 表情・驚き]</span></div>
+    <div class="sl" id="L244"><span class="ln">244</span><span class="tx">[愛莉 voice=AR042001]</span></div>
+    <div class="sl" id="L245"><span class="ln">245</span><span class="tx">【愛莉】</span></div>
+    <div class="sl" id="L246"><span class="ln">246</span><span class="tx">「……はぁ」</span></div>
+    <div class="sl" id="L247"><span class="ln">247</span><span class="tx"></span></div>
+    <div class="sl" id="L248"><span class="ln">248</span><span class="tx">[愛莉,あいり]ちゃんは、感心するように[迪希,ゆき]を[――]いや視線は胸のほうに注がれていた。</span></div>
+    <div class="sl" id="L249"><span class="ln">249</span><span class="tx"></span></div>
+    <div class="sl" id="L250"><span class="ln">250</span><span class="tx">それから[碧織,みおり]ちゃんは[――]。</span></div>
+    <div class="sl" id="L251"><span class="ln">251</span><span class="tx"></span></div>
+    <div class="sl" id="L252"><span class="ln">252</span><span class="tx">[碧織 出 奥 右端 服・私服 正面・腕下 表情・驚き小]</span></div>
+    <div class="sl" id="L253"><span class="ln">253</span><span class="tx">[碧織 voice=MO042001]</span></div>
+    <div class="sl" id="L254"><span class="ln">254</span><span class="tx">【碧織】</span></div>
+    <div class="sl" id="L255"><span class="ln">255</span><span class="tx">「[――]どうしました、[稜祁,たかぎ]先輩」</span></div>
+    <div class="sl" id="L256"><span class="ln">256</span><span class="tx"></span></div>
+    <div class="sl" id="L257"><span class="ln">257</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L258"><span class="ln">258</span><span class="tx">「あ、ごめん……何もない」</span></div>
+    <div class="sl" id="L259"><span class="ln">259</span><span class="tx"></span></div>
+    <div class="sl" id="L260"><span class="ln">260</span><span class="tx">[――]こちらをじっと見つめているのがわかった。</span></div>
+    <div class="sl" id="L261"><span class="ln">261</span><span class="tx"></span></div>
+    <div class="sl" id="L262"><span class="ln">262</span><span class="tx">[祥那,さな]が席に戻るのを見届けから[迪希,ゆき]のほうを見ると、相変わらず彼女は笑顔のままだった。</span></div>
+    <div class="sl" id="L263"><span class="ln">263</span><span class="tx"></span></div>
+    <div class="sl" id="L264"><span class="ln">264</span><span class="tx">;□演出指示。暗転。（済）</span></div>
+    <div class="sl" id="L265"><span class="ln">265</span><span class="tx">[暗転]</span></div>
+    <div class="sl" id="L266"><span class="ln">266</span><span class="tx">[ＢＧＭ停止]</span></div>
+    <div class="sl" id="L267"><span class="ln">267</span><span class="tx">[wait time=1000]</span></div>
+    <div class="sl" id="L268"><span class="ln">268</span><span class="tx">;□演出画像。ef68_00	台所（主人公家）（済）</span></div>
+    <div class="sl" id="L269"><span class="ln">269</span><span class="tx">[BGM再生 storage=BGM02]</span></div>
+    <div class="sl" id="L270"><span class="ln">270</span><span class="tx">[ev file=ef68_00]</span></div>
+    <div class="sl" id="L271"><span class="ln">271</span><span class="tx"></span></div>
+    <div class="sl" id="L272"><span class="ln">272</span><span class="tx">[愛莉,あいり]ちゃんは、[祥那,さな]と二人でしばらくテレビ番組を見たあと、自室に一度戻りますと言って居間を出ていった。</span></div>
+    <div class="sl" id="L273"><span class="ln">273</span><span class="tx"></span></div>
+    <div class="sl" id="L274"><span class="ln">274</span><span class="tx">[碧織,みおり]ちゃんも、朝食後すぐに居間を出た。彼女がその後どこへ行ったのかは分からない。</span></div>
+    <div class="sl" id="L275"><span class="ln">275</span><span class="tx"></span></div>
+    <div class="sl" id="L276"><span class="ln">276</span><span class="tx">[――]このように、基本的に幼馴染たちには、ここで自由に過ごしてもらうようにしている。</span></div>
+    <div class="sl" id="L277"><span class="ln">277</span><span class="tx"></span></div>
+    <div class="sl" id="L278"><span class="ln">278</span><span class="tx">第二の家として自由に暮らしてほしい[――]夕食会のあと、[菩乃花,ほのか]さんは高らかに宣言し、自分もまたそれを支持したからだ。</span></div>
+    <div class="sl" id="L279"><span class="ln">279</span><span class="tx"></span></div>
+    <div class="sl" id="L280"><span class="ln">280</span><span class="tx">朝食が終わったあと、[迪希,ゆき]と二人で片付けを行っていた。</span></div>
+    <div class="sl" id="L281"><span class="ln">281</span><span class="tx"></span></div>
+    <div class="sl" id="L282"><span class="ln">282</span><span class="tx">[愛莉,あいり]ちゃんも手伝いを申し出てくれたが、片付けとなると台所に三人は手狭すぎたので、次の機会に、ということにしてもらった。</span></div>
+    <div class="sl" id="L283"><span class="ln">283</span><span class="tx"></span></div>
+    <div class="sl" id="L284"><span class="ln">284</span><span class="tx">一応、食事や帰宅の時間の目安は、夕食会が終わったあとに、みんなで話し合っておいた。</span></div>
+    <div class="sl" id="L285"><span class="ln">285</span><span class="tx"></span></div>
+    <div class="sl" id="L286"><span class="ln">286</span><span class="tx">しかし、それを強制するようなことはせず、連絡だけしてもらえれば参加は自由、ということにした。</span></div>
+    <div class="sl" id="L287"><span class="ln">287</span><span class="tx"></span></div>
+    <div class="sl" id="L288"><span class="ln">288</span><span class="tx">幼馴染たちや[祥那,さな]は[祭事,さいじ]の練習があり、それぞれのペースやプライベートもある[――]ならばサポートしやすい自分が、彼女たちに合わせるべきだと思ったからだ。</span></div>
+    <div class="sl" id="L289"><span class="ln">289</span><span class="tx"></span></div>
+    <div class="sl" id="L290"><span class="ln">290</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L291"><span class="ln">291</span><span class="tx">「その、部屋の手伝いのときもそうだけど……ああいうの、やめてくれない？」</span></div>
+    <div class="sl" id="L292"><span class="ln">292</span><span class="tx"></span></div>
+    <div class="sl" id="L293"><span class="ln">293</span><span class="tx">[迪希 voice=YK042008]</span></div>
+    <div class="sl" id="L294"><span class="ln">294</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L295"><span class="ln">295</span><span class="tx">「今日は[祥那,さな]ちゃんと、仲良くスキンシップしただけじゃない」</span></div>
+    <div class="sl" id="L296"><span class="ln">296</span><span class="tx"></span></div>
+    <div class="sl" id="L297"><span class="ln">297</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L298"><span class="ln">298</span><span class="tx">「昨日も言ったけど、こっちも健全な男なんだからさ。困るよ」</span></div>
+    <div class="sl" id="L299"><span class="ln">299</span><span class="tx"></span></div>
+    <div class="sl" id="L300"><span class="ln">300</span><span class="tx">[迪希 voice=YK042009]</span></div>
+    <div class="sl" id="L301"><span class="ln">301</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L302"><span class="ln">302</span><span class="tx">「ああいうのって、やっぱり男の子はドキドキするの？」</span></div>
+    <div class="sl" id="L303"><span class="ln">303</span><span class="tx"></span></div>
+    <div class="sl" id="L304"><span class="ln">304</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L305"><span class="ln">305</span><span class="tx">「正直に言うと……する。だから困る」</span></div>
+    <div class="sl" id="L306"><span class="ln">306</span><span class="tx"></span></div>
+    <div class="sl" id="L307"><span class="ln">307</span><span class="tx">[迪希 voice=YK042010]</span></div>
+    <div class="sl" id="L308"><span class="ln">308</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L309"><span class="ln">309</span><span class="tx">「ふーん、するんだ」</span></div>
+    <div class="sl" id="L310"><span class="ln">310</span><span class="tx"></span></div>
+    <div class="sl" id="L311"><span class="ln">311</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L312"><span class="ln">312</span><span class="tx">「だから、あんまり男の子を弄ぶのはよくない。[祥那,さな]の教育にも悪い」</span></div>
+    <div class="sl" id="L313"><span class="ln">313</span><span class="tx"></span></div>
+    <div class="sl" id="L314"><span class="ln">314</span><span class="tx">[迪希 voice=YK042011]</span></div>
+    <div class="sl" id="L315"><span class="ln">315</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L316"><span class="ln">316</span><span class="tx">「えっ、ここで[祥那,さな]ちゃんの名前持ち出すの？　卑怯よ、それ」</span></div>
+    <div class="sl" id="L317"><span class="ln">317</span><span class="tx"></span></div>
+    <div class="sl" id="L318"><span class="ln">318</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L319"><span class="ln">319</span><span class="tx">「……いや、卑怯じゃないと思う」</span></div>
+    <div class="sl" id="L320"><span class="ln">320</span><span class="tx"></span></div>
+    <div class="sl" id="L321"><span class="ln">321</span><span class="tx">[迪希,ゆき]とそんなをしながら、台所の片付けを続けた。</span></div>
+    <div class="sl" id="L322"><span class="ln">322</span><span class="tx"></span></div>
+    <div class="sl" id="L323"><span class="ln">323</span><span class="tx"></span></div>
+    <div class="sl" id="L324"><span class="ln">324</span><span class="tx">;//■CG背景。bg_004_00	主人公の家・居間（済）</span></div>
+    <div class="sl" id="L325"><span class="ln">325</span><span class="tx">[背景変更 主人公の家・居間 昼]</span></div>
+    <div class="sl" id="L326"><span class="ln">326</span><span class="tx"></span></div>
+    <div class="sl" id="L327"><span class="ln">327</span><span class="tx"></span></div>
+    <div class="sl" id="L328"><span class="ln">328</span><span class="tx">[迪希 出 通常 中 服・私服 正面・片手顎 表情・通常]</span></div>
+    <div class="sl" id="L329"><span class="ln">329</span><span class="tx"></span></div>
+    <div class="sl" id="L330"><span class="ln">330</span><span class="tx">[迪希 voice=YK042012]</span></div>
+    <div class="sl" id="L331"><span class="ln">331</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L332"><span class="ln">332</span><span class="tx">「あ。そうだ、[恂,しゅん]ちゃん。聞いてくれる？」</span></div>
+    <div class="sl" id="L333"><span class="ln">333</span><span class="tx"></span></div>
+    <div class="sl" id="L334"><span class="ln">334</span><span class="tx">残ったスプーンや皿を重ねながら、[迪希,ゆき]は話しかけてきた。</span></div>
+    <div class="sl" id="L335"><span class="ln">335</span><span class="tx"></span></div>
+    <div class="sl" id="L336"><span class="ln">336</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L337"><span class="ln">337</span><span class="tx">「何？」</span></div>
+    <div class="sl" id="L338"><span class="ln">338</span><span class="tx"></span></div>
+    <div class="sl" id="L339"><span class="ln">339</span><span class="tx">[迪希 服・私服 正面・片手顎 表情・笑顔目閉じ]</span></div>
+    <div class="sl" id="L340"><span class="ln">340</span><span class="tx"></span></div>
+    <div class="sl" id="L341"><span class="ln">341</span><span class="tx">[迪希 voice=YK042013]</span></div>
+    <div class="sl" id="L342"><span class="ln">342</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L343"><span class="ln">343</span><span class="tx">「実はね、シャワーに入ってから……ブラしてなかったの」</span></div>
+    <div class="sl" id="L344"><span class="ln">344</span><span class="tx"></span></div>
+    <div class="sl" id="L345"><span class="ln">345</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L346"><span class="ln">346</span><span class="tx">「ぶっ！？　だ、だからいい加減に[――]！」</span></div>
+    <div class="sl" id="L347"><span class="ln">347</span><span class="tx"></span></div>
+    <div class="sl" id="L348"><span class="ln">348</span><span class="tx">[迪希 服・私服 正面・片手顎 表情・笑顔目閉じ口閉じ]</span></div>
+    <div class="sl" id="L349"><span class="ln">349</span><span class="tx"></span></div>
+    <div class="sl" id="L350"><span class="ln">350</span><span class="tx"></span></div>
+    <div class="sl" id="L351"><span class="ln">351</span><span class="tx">[迪希 voice=YK042014]</span></div>
+    <div class="sl" id="L352"><span class="ln">352</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L353"><span class="ln">353</span><span class="tx">「本当のことよ。だから[祥那,さな]ちゃんにあんまり触られると、色々とわかっちゃうから、少し危なかったわ」</span></div>
+    <div class="sl" id="L354"><span class="ln">354</span><span class="tx"></span></div>
+    <div class="sl" id="L355"><span class="ln">355</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L356"><span class="ln">356</span><span class="tx">「いや……どう反応すればいいの？」</span></div>
+    <div class="sl" id="L357"><span class="ln">357</span><span class="tx"></span></div>
+    <div class="sl" id="L358"><span class="ln">358</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・通常ウィンク]</span></div>
+    <div class="sl" id="L359"><span class="ln">359</span><span class="tx"></span></div>
+    <div class="sl" id="L360"><span class="ln">360</span><span class="tx">[迪希 voice=YK042015]</span></div>
+    <div class="sl" id="L361"><span class="ln">361</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L362"><span class="ln">362</span><span class="tx">「ドキドキすれば、いいんじゃない？」</span></div>
+    <div class="sl" id="L363"><span class="ln">363</span><span class="tx"></span></div>
+    <div class="sl" id="L364"><span class="ln">364</span><span class="tx">[――]気がつけば朝食を作るときと同じように、[迪希,ゆき]と二人だけになっていた。</span></div>
+    <div class="sl" id="L365"><span class="ln">365</span><span class="tx"></span></div>
+    <div class="sl" id="L366"><span class="ln">366</span><span class="tx">昨日と同じような展開になっていて、正直困る。</span></div>
+    <div class="sl" id="L367"><span class="ln">367</span><span class="tx"></span></div>
+    <div class="sl" id="L368"><span class="ln">368</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L369"><span class="ln">369</span><span class="tx">「うーん……じゃあ[迪希,ゆき]、部屋に行って、してきてください」</span></div>
+    <div class="sl" id="L370"><span class="ln">370</span><span class="tx"></span></div>
+    <div class="sl" id="L371"><span class="ln">371</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・怪訝]</span></div>
+    <div class="sl" id="L372"><span class="ln">372</span><span class="tx"></span></div>
+    <div class="sl" id="L373"><span class="ln">373</span><span class="tx">[迪希 voice=YK042016]</span></div>
+    <div class="sl" id="L374"><span class="ln">374</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L375"><span class="ln">375</span><span class="tx">「なんだか、斜め上の反応ね」</span></div>
+    <div class="sl" id="L376"><span class="ln">376</span><span class="tx"></span></div>
+    <div class="sl" id="L377"><span class="ln">377</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L378"><span class="ln">378</span><span class="tx">「だって、そう言うしかないじゃないか」</span></div>
+    <div class="sl" id="L379"><span class="ln">379</span><span class="tx"></span></div>
+    <div class="sl" id="L380"><span class="ln">380</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・苦笑]</span></div>
+    <div class="sl" id="L381"><span class="ln">381</span><span class="tx"></span></div>
+    <div class="sl" id="L382"><span class="ln">382</span><span class="tx">[迪希 voice=YK042017]</span></div>
+    <div class="sl" id="L383"><span class="ln">383</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L384"><span class="ln">384</span><span class="tx">「締め付けちゃうから、嫌なの。でもさすがに、外に行くときは着けるけどね」</span></div>
+    <div class="sl" id="L385"><span class="ln">385</span><span class="tx"></span></div>
+    <div class="sl" id="L386"><span class="ln">386</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L387"><span class="ln">387</span><span class="tx">「……」</span></div>
+    <div class="sl" id="L388"><span class="ln">388</span><span class="tx"></span></div>
+    <div class="sl" id="L389"><span class="ln">389</span><span class="tx">[迪希,ゆき]の発言が真実かどうかはともかく[――]言葉には、どうしても反応してしまう。</span></div>
+    <div class="sl" id="L390"><span class="ln">390</span><span class="tx"></span></div>
+    <div class="sl" id="L391"><span class="ln">391</span><span class="tx">[菩乃花,ほのか]さんや[祥那,さな]で馴れていたはずの状況だが、目の前の幼馴染はやはり[――]異性なのだと思った。</span></div>
+    <div class="sl" id="L392"><span class="ln">392</span><span class="tx"></span></div>
+    <div class="sl" id="L393"><span class="ln">393</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・笑顔目閉じ]</span></div>
+    <div class="sl" id="L394"><span class="ln">394</span><span class="tx"></span></div>
+    <div class="sl" id="L395"><span class="ln">395</span><span class="tx">[迪希 voice=YK042018]</span></div>
+    <div class="sl" id="L396"><span class="ln">396</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L397"><span class="ln">397</span><span class="tx">「あははっ、本当に[恂,しゅん]ちゃん、恥ずかしそうな顔してる」</span></div>
+    <div class="sl" id="L398"><span class="ln">398</span><span class="tx"></span></div>
+    <div class="sl" id="L399"><span class="ln">399</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L400"><span class="ln">400</span><span class="tx">「……当たり前だよ、もう」</span></div>
+    <div class="sl" id="L401"><span class="ln">401</span><span class="tx"></span></div>
+    <div class="sl" id="L402"><span class="ln">402</span><span class="tx">[迪希 服・私服 左斜・腕下 表情・通常]</span></div>
+    <div class="sl" id="L403"><span class="ln">403</span><span class="tx"></span></div>
+    <div class="sl" id="L404"><span class="ln">404</span><span class="tx">[迪希 voice=YK042019]</span></div>
+    <div class="sl" id="L405"><span class="ln">405</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L406"><span class="ln">406</span><span class="tx">「ちゃんと私のことも、一人の女性として見てくれて、ありがと」</span></div>
+    <div class="sl" id="L407"><span class="ln">407</span><span class="tx"></span></div>
+    <div class="sl" id="L408"><span class="ln">408</span><span class="tx">[迪希,ゆき]のことを女性と見ていないわけがない。見ているからこそ、ひとつ屋根の下で暮らしていくのに頭を悩ませているわけであって……。</span></div>
+    <div class="sl" id="L409"><span class="ln">409</span><span class="tx"></span></div>
+    <div class="sl" id="L410"><span class="ln">410</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L411"><span class="ln">411</span><span class="tx">「何度も言ってるけど、俺も男だからね？　理性ある紳士でいたいんだって」</span></div>
+    <div class="sl" id="L412"><span class="ln">412</span><span class="tx"></span></div>
+    <div class="sl" id="L413"><span class="ln">413</span><span class="tx">[迪希 服・私服 正面・片手顎 表情・真面目]</span></div>
+    <div class="sl" id="L414"><span class="ln">414</span><span class="tx"></span></div>
+    <div class="sl" id="L415"><span class="ln">415</span><span class="tx">[迪希 voice=YK042020]</span></div>
+    <div class="sl" id="L416"><span class="ln">416</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L417"><span class="ln">417</span><span class="tx">「そうね。[恂,しゅん]ちゃんの努力と理性に免じて、私も反省しましょう」</span></div>
+    <div class="sl" id="L418"><span class="ln">418</span><span class="tx"></span></div>
+    <div class="sl" id="L419"><span class="ln">419</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L420"><span class="ln">420</span><span class="tx">「うん……そうしてくれると助かる」</span></div>
+    <div class="sl" id="L421"><span class="ln">421</span><span class="tx"></span></div>
+    <div class="sl" id="L422"><span class="ln">422</span><span class="tx">[迪希 服・私服 正面・片手顎 表情・通常]</span></div>
+    <div class="sl" id="L423"><span class="ln">423</span><span class="tx">[迪希,ゆき]は真面目な顔でこちらを見ていたが、次第に微笑みだした。</span></div>
+    <div class="sl" id="L424"><span class="ln">424</span><span class="tx"></span></div>
+    <div class="sl" id="L425"><span class="ln">425</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L426"><span class="ln">426</span><span class="tx">「……また、何か企んでるの？」</span></div>
+    <div class="sl" id="L427"><span class="ln">427</span><span class="tx"></span></div>
+    <div class="sl" id="L428"><span class="ln">428</span><span class="tx">[迪希 服・私服 正面・片手顎 表情・通常目閉じ]</span></div>
+    <div class="sl" id="L429"><span class="ln">429</span><span class="tx"></span></div>
+    <div class="sl" id="L430"><span class="ln">430</span><span class="tx">[迪希 voice=YK042021]</span></div>
+    <div class="sl" id="L431"><span class="ln">431</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L432"><span class="ln">432</span><span class="tx">「ふふっ、ちょっと楽しくてね」</span></div>
+    <div class="sl" id="L433"><span class="ln">433</span><span class="tx"></span></div>
+    <div class="sl" id="L434"><span class="ln">434</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L435"><span class="ln">435</span><span class="tx">「楽しくないよ、こっちは」</span></div>
+    <div class="sl" id="L436"><span class="ln">436</span><span class="tx"></span></div>
+    <div class="sl" id="L437"><span class="ln">437</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・笑顔目閉じ口閉じ]</span></div>
+    <div class="sl" id="L438"><span class="ln">438</span><span class="tx"></span></div>
+    <div class="sl" id="L439"><span class="ln">439</span><span class="tx">[迪希 voice=YK042022]</span></div>
+    <div class="sl" id="L440"><span class="ln">440</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L441"><span class="ln">441</span><span class="tx">「そういうことじゃなくて……[恂,しゅん]ちゃんとこうして、二人で無邪気に話せるのが楽しいの」</span></div>
+    <div class="sl" id="L442"><span class="ln">442</span><span class="tx"></span></div>
+    <div class="sl" id="L443"><span class="ln">443</span><span class="tx">[――][迪希,ゆき]の微笑みは、本当に心の底から楽しそうな笑顔になっていった。</span></div>
+    <div class="sl" id="L444"><span class="ln">444</span><span class="tx"></span></div>
+    <div class="sl" id="L445"><span class="ln">445</span><span class="tx">[迪希 服・私服 右斜・腕下 表情・通常２ウィンク]</span></div>
+    <div class="sl" id="L446"><span class="ln">446</span><span class="tx"></span></div>
+    <div class="sl" id="L447"><span class="ln">447</span><span class="tx">[迪希 voice=YK042023]</span></div>
+    <div class="sl" id="L448"><span class="ln">448</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L449"><span class="ln">449</span><span class="tx">「それに下着の話だって、男の子の友達っぽいでしょう？　[水原,みずはら]くんみたいに、親密って感じがしない？」</span></div>
+    <div class="sl" id="L450"><span class="ln">450</span><span class="tx"></span></div>
+    <div class="sl" id="L451"><span class="ln">451</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L452"><span class="ln">452</span><span class="tx">「親密かもしれないけど[――]」</span></div>
+    <div class="sl" id="L453"><span class="ln">453</span><span class="tx"></span></div>
+    <div class="sl" id="L454"><span class="ln">454</span><span class="tx">[迪希 服・私服 右斜・腕下 表情・笑顔照れ]</span></div>
+    <div class="sl" id="L455"><span class="ln">455</span><span class="tx"></span></div>
+    <div class="sl" id="L456"><span class="ln">456</span><span class="tx">[迪希 voice=YK042024]</span></div>
+    <div class="sl" id="L457"><span class="ln">457</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L458"><span class="ln">458</span><span class="tx">「私だって、初めて[恂,しゅん]ちゃんにこんなことするから、やっぱり恥ずかしいもの」</span></div>
+    <div class="sl" id="L459"><span class="ln">459</span><span class="tx"></span></div>
+    <div class="sl" id="L460"><span class="ln">460</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L461"><span class="ln">461</span><span class="tx">「……だったら、やめない？」</span></div>
+    <div class="sl" id="L462"><span class="ln">462</span><span class="tx"></span></div>
+    <div class="sl" id="L463"><span class="ln">463</span><span class="tx">[迪希 服・私服 右斜・腕下 表情・通常２]</span></div>
+    <div class="sl" id="L464"><span class="ln">464</span><span class="tx"></span></div>
+    <div class="sl" id="L465"><span class="ln">465</span><span class="tx">[迪希 voice=YK042025]</span></div>
+    <div class="sl" id="L466"><span class="ln">466</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L467"><span class="ln">467</span><span class="tx">「でも、なんだか楽しいの。[和気藹々,わきあいあい]とした感じがあって、親密な友達って感じがして……昔、目の前で[ある二人,・・・・]を見ていて、憧れていたから」</span></div>
+    <div class="sl" id="L468"><span class="ln">468</span><span class="tx"></span></div>
+    <div class="sl" id="L469"><span class="ln">469</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L470"><span class="ln">470</span><span class="tx">「[迪希,ゆき]……」</span></div>
+    <div class="sl" id="L471"><span class="ln">471</span><span class="tx"></span></div>
+    <div class="sl" id="L472"><span class="ln">472</span><span class="tx">それから、彼女は自分の隣に来た[――]。</span></div>
+    <div class="sl" id="L473"><span class="ln">473</span><span class="tx"></span></div>
+    <div class="sl" id="L474"><span class="ln">474</span><span class="tx">[迪希 前 服・私服 正面・片腕組 表情・通常目閉じ]</span></div>
+    <div class="sl" id="L475"><span class="ln">475</span><span class="tx"></span></div>
+    <div class="sl" id="L476"><span class="ln">476</span><span class="tx">[迪希 voice=YK042026]</span></div>
+    <div class="sl" id="L477"><span class="ln">477</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L478"><span class="ln">478</span><span class="tx">「今はこんな風に、昔みたいな距離で居られる[――]お互い、変な距離なんて取らずにね」</span></div>
+    <div class="sl" id="L479"><span class="ln">479</span><span class="tx"></span></div>
+    <div class="sl" id="L480"><span class="ln">480</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L481"><span class="ln">481</span><span class="tx">「ちょ、ちょっと……」</span></div>
+    <div class="sl" id="L482"><span class="ln">482</span><span class="tx"></span></div>
+    <div class="sl" id="L483"><span class="ln">483</span><span class="tx">[――]自分と[迪希,ゆき]の、お互いの肩が触れ合っていた。</span></div>
+    <div class="sl" id="L484"><span class="ln">484</span><span class="tx"></span></div>
+    <div class="sl" id="L485"><span class="ln">485</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・笑顔目閉じ口閉じ]</span></div>
+    <div class="sl" id="L486"><span class="ln">486</span><span class="tx"></span></div>
+    <div class="sl" id="L487"><span class="ln">487</span><span class="tx">[迪希 voice=YK042027]</span></div>
+    <div class="sl" id="L488"><span class="ln">488</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L489"><span class="ln">489</span><span class="tx">「このまま、子供のときみたいに、ぎゅっと抱き合っちゃおうか？」</span></div>
+    <div class="sl" id="L490"><span class="ln">490</span><span class="tx"></span></div>
+    <div class="sl" id="L491"><span class="ln">491</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L492"><span class="ln">492</span><span class="tx">「それは[――]いやそれは駄目だよ！？」</span></div>
+    <div class="sl" id="L493"><span class="ln">493</span><span class="tx"></span></div>
+    <div class="sl" id="L494"><span class="ln">494</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・笑顔目閉じ]</span></div>
+    <div class="sl" id="L495"><span class="ln">495</span><span class="tx"></span></div>
+    <div class="sl" id="L496"><span class="ln">496</span><span class="tx">[迪希 voice=YK042028]</span></div>
+    <div class="sl" id="L497"><span class="ln">497</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L498"><span class="ln">498</span><span class="tx">「ふふっ……冗談よ、冗談」</span></div>
+    <div class="sl" id="L499"><span class="ln">499</span><span class="tx"></span></div>
+    <div class="sl" id="L500"><span class="ln">500</span><span class="tx">そう言って笑う[迪希,ゆき]の顔を見たとき、少しだけ[――]。</span></div>
+    <div class="sl" id="L501"><span class="ln">501</span><span class="tx"></span></div>
+    <div class="sl" id="L502"><span class="ln">502</span><span class="tx">ほんの少しだけ自分の胸の中に、不思議な切なさが通り抜けていった心地がした。</span></div>
+    <div class="sl" id="L503"><span class="ln">503</span><span class="tx"></span></div>
+    <div class="sl" id="L504"><span class="ln">504</span><span class="tx">理由はわからなかった[――]気づかないうちに、[迪希,ゆき]の笑顔に何かを見つけたからだろうか？</span></div>
+    <div class="sl" id="L505"><span class="ln">505</span><span class="tx"></span></div>
+    <div class="sl" id="L506"><span class="ln">506</span><span class="tx">;□演出指示。S013_00_a00.txtへ（済）</span></div>
+    <div class="sl" id="L507"><span class="ln">507</span><span class="tx"></span></div>
+    <div class="sl" id="L508"><span class="ln">508</span><span class="tx">[暗転]</span></div>
+    <div class="sl" id="L509"><span class="ln">509</span><span class="tx">[ＢＧＭ停止]</span></div>
+    <div class="sl" id="L510"><span class="ln">510</span><span class="tx">;■■■■■　本文終了　■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L511"><span class="ln">511</span><span class="tx">;■EOF</span></div>
+    <div class="sl" id="L512"><span class="ln">512</span><span class="tx">[終了]</span></div>
+    <div class="sl" id="L513"><span class="ln">513</span><span class="tx">[next storage=S013_00_a00.txt]</span></div>
+  </div>
+  <section class="xref">
+    <h2 class="lst-h">引用本文件的词条（2）</h2>
+    <ul class="lst">
+      <li><a href="../../entry2/115_%E5%B7%BB%E7%8B%A9%E7%94%BA.html#s1">巻狩町</a></li>
+      <li><a href="../../entry2/167_%E6%A2%A7%E6%A1%90%E3%81%AE%E9%A3%B4.html#s1">梧桐の飴</a></li>
+    </ul>
+  </section>
+</article>
+
+</main>
+<footer class="ft">
+  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
+  <p>参考资料 · 《少女神域∽少女天獄》本篇剧本 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S005_00_a00.txt</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../assets/style.css">
+<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
+   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
+      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
+   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
+      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
+   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
+(function () {
+  function run() {
+    var root = document.documentElement;
+    var hd = document.querySelector('.hd');
+
+    function sync() {
+      if (!hd) return;
+      var h = Math.round(hd.getBoundingClientRect().height);
+      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
+    }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('orientationchange', sync);
+    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
+
+    function target() {
+      var h = location.hash;
+      if (!h || h.length < 2) return null;
+      var id = h.slice(1);
+      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
+      return document.getElementById(id);
+    }
+
+    var prev = root.style.scrollBehavior;
+
+    function instantJump() {
+      var t = target();
+      if (!t) return;
+      root.style.scrollBehavior = 'auto';
+      sync();                              /* 先更新 --hdr-h，再对齐 */
+      t.scrollIntoView({ block: 'start' });
+    }
+    function restore() {
+      root.style.scrollBehavior = prev;
+    }
+
+    if (location.hash.length > 1) {
+      instantJump();
+      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
+      window.addEventListener('load', function () {
+        instantJump();
+        setTimeout(restore, 60);
+      });
+      setTimeout(restore, 1500);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+</head>
+<body>
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
+    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
+  </div>
+</header>
+<main class="main">
+<article class="storypage">
+  <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F">《少女神域∽少女天獄》本篇剧本</a> / S005_00_a00.txt</p>
+  <h1 class="stitle">S005_00_a00.txt</h1>
+  <p class="stmeta">来源：少女神域/data/scenario/S005_00_a00.txt · 487 行 · 被 2 条词条引用</p>
+  <nav class="xj">
+    <p class="xj-h">本页被引用的位置：<b>1</b> 处，来自 2 条词条<span class="xj-tip">点行号跳到本页对应行，点词条名进词条</span></p>
+    <ul class="xj-l">
+      <li><a class="xj-ln" href="#L142" title="跳到本页第 142 行">L142</a><a class="xj-e" href="../../entry2/164_%E8%A6%8B%E6%AB%93%E9%A2%A8%E6%99%82%E8%A8%88%E5%8F%B0.html#s1">見櫓風時計台</a></li>
+    </ul>
+  </nav>
+  <p class="note">本页为剧本文件的完整原样内容（含注释与演出指令；仅由原编码转换为 UTF-8，文字未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
+  <div class="script">
+    <div class="sl" id="L1"><span class="ln">1</span><span class="tx">;//FILEID=007</span></div>
+    <div class="sl" id="L2"><span class="ln">2</span><span class="tx">*start|男同士の友情</span></div>
+    <div class="sl" id="L3"><span class="ln">3</span><span class="tx">[initscene]</span></div>
+    <div class="sl" id="L4"><span class="ln">4</span><span class="tx">;[voicebase base=]</span></div>
+    <div class="sl" id="L5"><span class="ln">5</span><span class="tx"></span></div>
+    <div class="sl" id="L6"><span class="ln">6</span><span class="tx">;■■■■■　設定　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L7"><span class="ln">7</span><span class="tx"></span></div>
+    <div class="sl" id="L8"><span class="ln">8</span><span class="tx">;タイトル　　　SN≪S005≫日付≪3/8≫シーンタイトル≪男同士の友情≫</span></div>
+    <div class="sl" id="L9"><span class="ln">9</span><span class="tx">;背景　　　　　SN≪S005≫日付≪3/8≫背景の設定≪佳城市内（商店街、汎用道１）≫</span></div>
+    <div class="sl" id="L10"><span class="ln">10</span><span class="tx">;時間　　　　　SN≪S005≫日付≪3/8≫時間の設定≪昼≫</span></div>
+    <div class="sl" id="L11"><span class="ln">11</span><span class="tx">;登場人物　　　SN≪S005≫日付≪3/8≫人物の設定≪恂（私服）、迪希（私服）、融（私服）、葵（私服）≫</span></div>
+    <div class="sl" id="L12"><span class="ln">12</span><span class="tx">;CG　　　　　　SN≪S004≫日付≪≫CGfile設定≪≫</span></div>
+    <div class="sl" id="L13"><span class="ln">13</span><span class="tx"></span></div>
+    <div class="sl" id="L14"><span class="ln">14</span><span class="tx">;■■■■■　指示ツール　■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L15"><span class="ln">15</span><span class="tx"></span></div>
+    <div class="sl" id="L16"><span class="ln">16</span><span class="tx">;●[ウィンドウ表示]</span></div>
+    <div class="sl" id="L17"><span class="ln">17</span><span class="tx">;○[ノベル表示]</span></div>
+    <div class="sl" id="L18"><span class="ln">18</span><span class="tx">;■CGイベント/;//■CG背景</span></div>
+    <div class="sl" id="L19"><span class="ln">19</span><span class="tx">;□演出画像/;□演出指示</span></div>
+    <div class="sl" id="L20"><span class="ln">20</span><span class="tx">;★BGM</span></div>
+    <div class="sl" id="L21"><span class="ln">21</span><span class="tx">;▼SE</span></div>
+    <div class="sl" id="L22"><span class="ln">22</span><span class="tx">;◇内部用/;◇提案/;◇メモ/;◇バグ（バグの場合、記入者と日付を必ず）</span></div>
+    <div class="sl" id="L23"><span class="ln">23</span><span class="tx"></span></div>
+    <div class="sl" id="L24"><span class="ln">24</span><span class="tx">;■■■■■■■　本文　■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■▽■■■■■■■■■■◎</span></div>
+    <div class="sl" id="L25"><span class="ln">25</span><span class="tx">;//◇内部用。S004プロット葵との出会いをこちらに持ってくる。融→迪希→葵、全員の一旦の紹介。融と葵の対比は迪希と澳城迪希の対比。間を挟んで迪希。二人の友人から主人公と迪希を浮かび上がらせる。</span></div>
+    <div class="sl" id="L26"><span class="ln">26</span><span class="tx">;//◇内部用。佳城駅モデルは、ＪＲ佐那具駅とＪＲ鎌倉駅。</span></div>
+    <div class="sl" id="L27"><span class="ln">27</span><span class="tx"></span></div>
+    <div class="sl" id="L28"><span class="ln">28</span><span class="tx">;□演出画像。汎用空。このあたりはＳＥと汎用空で通す。（済）</span></div>
+    <div class="sl" id="L29"><span class="ln">29</span><span class="tx">[se buf=0 time=1 fade=30 SE331]</span></div>
+    <div class="sl" id="L30"><span class="ln">30</span><span class="tx">[wait time=1500]</span></div>
+    <div class="sl" id="L31"><span class="ln">31</span><span class="tx">[se buf=2 time=1 fade=100 SE213]</span></div>
+    <div class="sl" id="L32"><span class="ln">32</span><span class="tx">[wait time=1000]</span></div>
+    <div class="sl" id="L33"><span class="ln">33</span><span class="tx">[se buf=2 stop=1200]</span></div>
+    <div class="sl" id="L34"><span class="ln">34</span><span class="tx">[ev file=ef18_00]</span></div>
+    <div class="sl" id="L35"><span class="ln">35</span><span class="tx"></span></div>
+    <div class="sl" id="L36"><span class="ln">36</span><span class="tx"></span></div>
+    <div class="sl" id="L37"><span class="ln">37</span><span class="tx">;●[ウィンドウ表示]（済）</span></div>
+    <div class="sl" id="L38"><span class="ln">38</span><span class="tx"></span></div>
+    <div class="sl" id="L39"><span class="ln">39</span><span class="tx">;[ウィンドウ窓]</span></div>
+    <div class="sl" id="L40"><span class="ln">40</span><span class="tx"></span></div>
+    <div class="sl" id="L41"><span class="ln">41</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L42"><span class="ln">42</span><span class="tx">;「迪希、少し荷物持とうか？」</span></div>
+    <div class="sl" id="L43"><span class="ln">43</span><span class="tx"></span></div>
+    <div class="sl" id="L44"><span class="ln">44</span><span class="tx">;【迪希】</span></div>
+    <div class="sl" id="L45"><span class="ln">45</span><span class="tx">;「ありがと。でも大丈夫、これぐらい平気よ」</span></div>
+    <div class="sl" id="L46"><span class="ln">46</span><span class="tx"></span></div>
+    <div class="sl" id="L47"><span class="ln">47</span><span class="tx">;○[ノベル表示]（済）</span></div>
+    <div class="sl" id="L48"><span class="ln">48</span><span class="tx">[ノベル窓]</span></div>
+    <div class="sl" id="L49"><span class="ln">49</span><span class="tx"></span></div>
+    <div class="sl" id="L50"><span class="ln">50</span><span class="tx">電車から降りて、[佳城,かいじょう]駅の屋根のない方のホームに出る。</span></div>
+    <div class="sl" id="L51"><span class="ln">51</span><span class="tx"></span></div>
+    <div class="sl" id="L52"><span class="ln">52</span><span class="tx">[se buf=2 time=1 fade=60 SE1020 loop time=2500]</span></div>
+    <div class="sl" id="L53"><span class="ln">53</span><span class="tx"></span></div>
+    <div class="sl" id="L54"><span class="ln">54</span><span class="tx">;初めて駅を使ったときと同じ、[侘,わび]しい風景が変わらずにあった。</span></div>
+    <div class="sl" id="L55"><span class="ln">55</span><span class="tx"></span></div>
+    <div class="sl" id="L56"><span class="ln">56</span><span class="tx">雨をしのぐために、トタンと木材で作られた待合場所が目につく。</span></div>
+    <div class="sl" id="L57"><span class="ln">57</span><span class="tx">四、五人ほどしか座れないベンチが一つだけあり、[十都川,とつかわ]駅のような近代的な設備はない。</span></div>
+    <div class="sl" id="L58"><span class="ln">58</span><span class="tx">;そして、ホームの申し訳程度しかないフェンス越しに、どこまでも見渡せた。</span></div>
+    <div class="sl" id="L59"><span class="ln">59</span><span class="tx"></span></div>
+    <div class="sl" id="L60"><span class="ln">60</span><span class="tx">;//◇内部用横山リビルドメモ　　（2013/01/08）</span></div>
+    <div class="sl" id="L61"><span class="ln">61</span><span class="tx">;大小の石や砂が入り混じる、コンクリートで出来たホームに立って周囲を見た。</span></div>
+    <div class="sl" id="L62"><span class="ln">62</span><span class="tx">;駅の南側には[佳城,かいじょう]盆地の山々が見え、線路そば近くは田畑が広がっている。</span></div>
+    <div class="sl" id="L63"><span class="ln">63</span><span class="tx">;北側と比べて、なだらかな土地が少なく、家やビルが身を寄せ合うように建っていた。</span></div>
+    <div class="sl" id="L64"><span class="ln">64</span><span class="tx"></span></div>
+    <div class="sl" id="L65"><span class="ln">65</span><span class="tx">;遠くを眺めると、[大神川,おおみわがわ]の広くゆったりとした流れが見える。</span></div>
+    <div class="sl" id="L66"><span class="ln">66</span><span class="tx">;川にかかる大きな[都下野橋,とがのばし]が見え、その先に町が広がっていた。</span></div>
+    <div class="sl" id="L67"><span class="ln">67</span><span class="tx">;目をひきつけるものは遠景にしかなかった。</span></div>
+    <div class="sl" id="L68"><span class="ln">68</span><span class="tx"></span></div>
+    <div class="sl" id="L69"><span class="ln">69</span><span class="tx">;■CGイベント。ホームの碧織を再度表示。（済）</span></div>
+    <div class="sl" id="L70"><span class="ln">70</span><span class="tx"></span></div>
+    <div class="sl" id="L71"><span class="ln">71</span><span class="tx">[newlay name=ＥＶレイヤ１ file=ev_miori_n01_00 show zoom=80 opacity=0 level=7]</span></div>
+    <div class="sl" id="L72"><span class="ln">72</span><span class="tx">[ＥＶレイヤ１ opacity=100 time=10000 accel=-1 nowait]</span></div>
+    <div class="sl" id="L73"><span class="ln">73</span><span class="tx"></span></div>
+    <div class="sl" id="L74"><span class="ln">74</span><span class="tx">線路をまたぐ赤錆びた緑色の高架橋の階段をのぼりながら、俺は考える。</span></div>
+    <div class="sl" id="L75"><span class="ln">75</span><span class="tx">あの子は[――][碧織,みおり]ちゃんはどこに消えたのか。</span></div>
+    <div class="sl" id="L76"><span class="ln">76</span><span class="tx">フェンスを飛び越えて、一瞬で遠くへ去ってしまったのだろうか？</span></div>
+    <div class="sl" id="L77"><span class="ln">77</span><span class="tx">あり得ない。</span></div>
+    <div class="sl" id="L78"><span class="ln">78</span><span class="tx">階段をのぼる三人分のくぐもった足音を耳にしながら、あれは現実ではないと思い直す。</span></div>
+    <div class="sl" id="L79"><span class="ln">79</span><span class="tx"></span></div>
+    <div class="sl" id="L80"><span class="ln">80</span><span class="tx">;□演出画像。汎用空。（済）</span></div>
+    <div class="sl" id="L81"><span class="ln">81</span><span class="tx">;□演出指示。空に戻る。一瞬、思い返した演出で。（済）</span></div>
+    <div class="sl" id="L82"><span class="ln">82</span><span class="tx">[フラッシュ nosync]</span></div>
+    <div class="sl" id="L83"><span class="ln">83</span><span class="tx">[ＥＶレイヤ１ opacity=0 time=500 accel=-1 sync]</span></div>
+    <div class="sl" id="L84"><span class="ln">84</span><span class="tx">[stopaction]</span></div>
+    <div class="sl" id="L85"><span class="ln">85</span><span class="tx">[ＥＶレイヤ１ hide]</span></div>
+    <div class="sl" id="L86"><span class="ln">86</span><span class="tx">[dellay name=ＥＶレイヤ１]</span></div>
+    <div class="sl" id="L87"><span class="ln">87</span><span class="tx">;[ev file=ef18_00]</span></div>
+    <div class="sl" id="L88"><span class="ln">88</span><span class="tx"></span></div>
+    <div class="sl" id="L89"><span class="ln">89</span><span class="tx"></span></div>
+    <div class="sl" id="L90"><span class="ln">90</span><span class="tx"></span></div>
+    <div class="sl" id="L91"><span class="ln">91</span><span class="tx">高架橋を渡り終えると、すぐ改札口がある。</span></div>
+    <div class="sl" id="L92"><span class="ln">92</span><span class="tx">降りた側とは違い、駅舎側のホームには雨をさける屋根があった。</span></div>
+    <div class="sl" id="L93"><span class="ln">93</span><span class="tx">しかし改札機は二つだけで、古い駅舎の出入り口に無理に設置され、隙間には古い鉄柵が置かれていたが、子どもでも乗り越えられる高さだった。</span></div>
+    <div class="sl" id="L94"><span class="ln">94</span><span class="tx"></span></div>
+    <div class="sl" id="L95"><span class="ln">95</span><span class="tx">駅舎には駅員が一人もいない。</span></div>
+    <div class="sl" id="L96"><span class="ln">96</span><span class="tx">田舎の駅らしい光景だ。</span></div>
+    <div class="sl" id="L97"><span class="ln">97</span><span class="tx"></span></div>
+    <div class="sl" id="L98"><span class="ln">98</span><span class="tx">;[暗転]</span></div>
+    <div class="sl" id="L99"><span class="ln">99</span><span class="tx">[se buf=2 stop=1000]</span></div>
+    <div class="sl" id="L100"><span class="ln">100</span><span class="tx"></span></div>
+    <div class="sl" id="L101"><span class="ln">101</span><span class="tx">;//■CG背景。商店街（青空から、ゆっくりとフェードして消去し、商店街背景を表示）。（済）</span></div>
+    <div class="sl" id="L102"><span class="ln">102</span><span class="tx">[背景変更 黒背景 time=2000 nosync]</span></div>
+    <div class="sl" id="L103"><span class="ln">103</span><span class="tx">[BGM再生 storage=BGM03 time=8000]</span></div>
+    <div class="sl" id="L104"><span class="ln">104</span><span class="tx">[se buf=2 fade=80 SE452 loop time=8000]</span></div>
+    <div class="sl" id="L105"><span class="ln">105</span><span class="tx">[背景変更 商店街 昼 time=2000]</span></div>
+    <div class="sl" id="L106"><span class="ln">106</span><span class="tx"></span></div>
+    <div class="sl" id="L107"><span class="ln">107</span><span class="tx">;▼SE。環境音。街のにぎわい１。通常時と祭日時と二つほしい。(済　10/03)</span></div>
+    <div class="sl" id="L108"><span class="ln">108</span><span class="tx"></span></div>
+    <div class="sl" id="L109"><span class="ln">109</span><span class="tx">;●[ウィンドウ表示]（済）</span></div>
+    <div class="sl" id="L110"><span class="ln">110</span><span class="tx">[ウィンドウ窓]</span></div>
+    <div class="sl" id="L111"><span class="ln">111</span><span class="tx"></span></div>
+    <div class="sl" id="L112"><span class="ln">112</span><span class="tx">[融 出 前 中 服・私服 正面・腕下 表情・ギャグ怪訝]</span></div>
+    <div class="sl" id="L113"><span class="ln">113</span><span class="tx">[融 voice=WT007000]</span></div>
+    <div class="sl" id="L114"><span class="ln">114</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L115"><span class="ln">115</span><span class="tx">「なーんにも変わらないな、ほんとに」</span></div>
+    <div class="sl" id="L116"><span class="ln">116</span><span class="tx"></span></div>
+    <div class="sl" id="L117"><span class="ln">117</span><span class="tx">[水原,みずはら]は商店街の通りを、退屈そうに見つめた。</span></div>
+    <div class="sl" id="L118"><span class="ln">118</span><span class="tx"></span></div>
+    <div class="sl" id="L119"><span class="ln">119</span><span class="tx">駅舎を出ると、目の前に広いバスターミナルがある。</span></div>
+    <div class="sl" id="L120"><span class="ln">120</span><span class="tx"></span></div>
+    <div class="sl" id="L121"><span class="ln">121</span><span class="tx">ターミナルの脇をそう歩かないうちに、目の前に[馬渡石門前,まといしもんぜん]商店街が現れる。</span></div>
+    <div class="sl" id="L122"><span class="ln">122</span><span class="tx"></span></div>
+    <div class="sl" id="L123"><span class="ln">123</span><span class="tx">ここは[佳城,かいじょう]市で一番賑わいのある商店街だ。</span></div>
+    <div class="sl" id="L124"><span class="ln">124</span><span class="tx"></span></div>
+    <div class="sl" id="L125"><span class="ln">125</span><span class="tx">百年を越すような歴史ある店も立ち並ぶ、文字通り[佳城,かいじょう]市の繁栄の中心だった。</span></div>
+    <div class="sl" id="L126"><span class="ln">126</span><span class="tx"></span></div>
+    <div class="sl" id="L127"><span class="ln">127</span><span class="tx">[se buf=2 time=1200 fade=30][wait time=500]</span></div>
+    <div class="sl" id="L128"><span class="ln">128</span><span class="tx"></span></div>
+    <div class="sl" id="L129"><span class="ln">129</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L130"><span class="ln">130</span><span class="tx">「でも見慣れた風景は、こう……安心感みたいなの感じない？」</span></div>
+    <div class="sl" id="L131"><span class="ln">131</span><span class="tx"></span></div>
+    <div class="sl" id="L132"><span class="ln">132</span><span class="tx">一年離れたくらいでは郷愁よりは、安心感の方が上だった。</span></div>
+    <div class="sl" id="L133"><span class="ln">133</span><span class="tx"></span></div>
+    <div class="sl" id="L134"><span class="ln">134</span><span class="tx">[融 服・私服 正面・腕下 表情・不機嫌]</span></div>
+    <div class="sl" id="L135"><span class="ln">135</span><span class="tx">[融 voice=WT007001]</span></div>
+    <div class="sl" id="L136"><span class="ln">136</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L137"><span class="ln">137</span><span class="tx">「野暮ったいだけだろ、こんなの」</span></div>
+    <div class="sl" id="L138"><span class="ln">138</span><span class="tx"></span></div>
+    <div class="sl" id="L139"><span class="ln">139</span><span class="tx">石壁の外に出たがっていた俺よりも、[水原,みずはら]の方が田舎臭い[――]古風な地方都市を毛嫌いしているようだった。</span></div>
+    <div class="sl" id="L140"><span class="ln">140</span><span class="tx"></span></div>
+    <div class="sl" id="L141"><span class="ln">141</span><span class="tx">;//◇内部用。モデルは清澄公園の見櫓風時計台。</span></div>
+    <div class="sl has-xr" id="L142"><span class="ln">142</span><span class="tx"><a class="xr" href="../../entry2/164_%E8%A6%8B%E6%AB%93%E9%A2%A8%E6%99%82%E8%A8%88%E5%8F%B0.html#s1" title="词条考据：見櫓風時計台">バスターミナルのそばには江戸時代の[見櫓,みやぐら]風の時計台があり、朝、昼、夕方とチャイ</a>ムが鳴る。</span></div>
+    <div class="sl" id="L143"><span class="ln">143</span><span class="tx"></span></div>
+    <div class="sl" id="L144"><span class="ln">144</span><span class="tx">[水原,みずはら]に話しかけながら時計台を見ると、もう昼のチャイムの時間は過ぎていた。</span></div>
+    <div class="sl" id="L145"><span class="ln">145</span><span class="tx"></span></div>
+    <div class="sl" id="L146"><span class="ln">146</span><span class="tx">;◇佳城市メモ。これは儀式のための伏線。</span></div>
+    <div class="sl" id="L147"><span class="ln">147</span><span class="tx">[融 服・私服 斜め・腕下 表情・不機嫌]</span></div>
+    <div class="sl" id="L148"><span class="ln">148</span><span class="tx">[融 voice=WT007002]</span></div>
+    <div class="sl" id="L149"><span class="ln">149</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L150"><span class="ln">150</span><span class="tx">「二十四時間やってるの、コンビニぐらいだぜ？　そのコンビニだって祭りの日には、八時ぐらいで閉まるし」</span></div>
+    <div class="sl" id="L151"><span class="ln">151</span><span class="tx"></span></div>
+    <div class="sl" id="L152"><span class="ln">152</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L153"><span class="ln">153</span><span class="tx">「シャッター街になるぐらいだったら、ましなほうさ」</span></div>
+    <div class="sl" id="L154"><span class="ln">154</span><span class="tx"></span></div>
+    <div class="sl" id="L155"><span class="ln">155</span><span class="tx">[背景変更・暗転無し・黒枠表示 商店街 昼 zoom=120 xpos=150]</span></div>
+    <div class="sl" id="L156"><span class="ln">156</span><span class="tx">[stage xpos=-150 time=30000 nowait]</span></div>
+    <div class="sl" id="L157"><span class="ln">157</span><span class="tx">日本全国の商店街が大型店舗の出店の影響で、どんどんシャッター街に変わっているという話を大学の授業でも聞いた。</span></div>
+    <div class="sl" id="L158"><span class="ln">158</span><span class="tx"></span></div>
+    <div class="sl" id="L159"><span class="ln">159</span><span class="tx">人間は便利さに流されてると、元の不便さには戻れない。</span></div>
+    <div class="sl" id="L160"><span class="ln">160</span><span class="tx"></span></div>
+    <div class="sl" id="L161"><span class="ln">161</span><span class="tx">この[佳城,かいじょう]も例外ではないが、ここの住民たちは比較的古き良き文化を守る気概があるようだ。</span></div>
+    <div class="sl" id="L162"><span class="ln">162</span><span class="tx"></span></div>
+    <div class="sl" id="L163"><span class="ln">163</span><span class="tx">[水原,みずはら]に言わせれば、ただ余所者を受け入れない保守的な土地柄と言われそうだが……。</span></div>
+    <div class="sl" id="L164"><span class="ln">164</span><span class="tx"></span></div>
+    <div class="sl" id="L165"><span class="ln">165</span><span class="tx">[stopaction]</span></div>
+    <div class="sl" id="L166"><span class="ln">166</span><span class="tx">[背景変更・暗転無し 商店街 昼]</span></div>
+    <div class="sl" id="L167"><span class="ln">167</span><span class="tx"></span></div>
+    <div class="sl" id="L168"><span class="ln">168</span><span class="tx">[融 出 通常 中 服・私服 正面・腕下 表情・通常]</span></div>
+    <div class="sl" id="L169"><span class="ln">169</span><span class="tx">[迪希,ゆき]を待ちながら、[水原,みずはら]と商店街の前で昔と同じように話を続ける。</span></div>
+    <div class="sl" id="L170"><span class="ln">170</span><span class="tx"></span></div>
+    <div class="sl" id="L171"><span class="ln">171</span><span class="tx">[迪希,ゆき]は実家の頼まれものを買うために、一旦、俺たちと別れて商店街に寄っているところだ。</span></div>
+    <div class="sl" id="L172"><span class="ln">172</span><span class="tx"></span></div>
+    <div class="sl" id="L173"><span class="ln">173</span><span class="tx">すぐに戻ると言っていたので、彼女の荷物番は俺だけでよかったが、ここで別れるはずだった[水原,みずはら]も、時間つぶしに付き合ってくれている。</span></div>
+    <div class="sl" id="L174"><span class="ln">174</span><span class="tx"></span></div>
+    <div class="sl" id="L175"><span class="ln">175</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L176"><span class="ln">176</span><span class="tx">「もしかして、このあと『たこせん』に寄るの？」</span></div>
+    <div class="sl" id="L177"><span class="ln">177</span><span class="tx"></span></div>
+    <div class="sl" id="L178"><span class="ln">178</span><span class="tx">[融 服・私服 斜め・腕下 表情・通常目閉じ 頷き]</span></div>
+    <div class="sl" id="L179"><span class="ln">179</span><span class="tx">[融 voice=WT007003]</span></div>
+    <div class="sl" id="L180"><span class="ln">180</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L181"><span class="ln">181</span><span class="tx">「ああ。[十都川,とつかわ]のほうだと、古いシューティングの[筐体,きょうたい]置いてないからな」</span></div>
+    <div class="sl" id="L182"><span class="ln">182</span><span class="tx"></span></div>
+    <div class="sl" id="L183"><span class="ln">183</span><span class="tx">;◇佳城市メモ。商店街のゲームセンター『たこせん』。モデルは江古田の『えびせん』。</span></div>
+    <div class="sl" id="L184"><span class="ln">184</span><span class="tx">『たこせん』というのは市内で唯一となった古いゲームセンターのことで、商店街の中にある、古い洋館めいた建物の二階にある。</span></div>
+    <div class="sl" id="L185"><span class="ln">185</span><span class="tx"></span></div>
+    <div class="sl" id="L186"><span class="ln">186</span><span class="tx">一回のプレイ料金が五十円のものがほとんど。</span></div>
+    <div class="sl" id="L187"><span class="ln">187</span><span class="tx"></span></div>
+    <div class="sl" id="L188"><span class="ln">188</span><span class="tx">新作の入荷は遅いが、バランスのとれたゲームラインナップで、同好の士にとって楽園のような場所だった。</span></div>
+    <div class="sl" id="L189"><span class="ln">189</span><span class="tx"></span></div>
+    <div class="sl" id="L190"><span class="ln">190</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L191"><span class="ln">191</span><span class="tx">「久しぶりに聞いたね、『たこせん』って名前も」</span></div>
+    <div class="sl" id="L192"><span class="ln">192</span><span class="tx"></span></div>
+    <div class="sl" id="L193"><span class="ln">193</span><span class="tx">[融 服・私服 斜め・右手前 表情・苦笑]</span></div>
+    <div class="sl" id="L194"><span class="ln">194</span><span class="tx">[融 voice=WT007004]</span></div>
+    <div class="sl" id="L195"><span class="ln">195</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L196"><span class="ln">196</span><span class="tx">「学園のときは、しょっちゅうだったのにな[――]今思えば、変なゲーセンの名前だぜ」</span></div>
+    <div class="sl" id="L197"><span class="ln">197</span><span class="tx"></span></div>
+    <div class="sl" id="L198"><span class="ln">198</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L199"><span class="ln">199</span><span class="tx">「[草枉,そうま]一中のころ[――]初めて、[水原,みずはら]に連れてきてもらった時から学園の三年間まで、ずっとだったね」</span></div>
+    <div class="sl" id="L200"><span class="ln">200</span><span class="tx"></span></div>
+    <div class="sl" id="L201"><span class="ln">201</span><span class="tx">[融 服・私服 正面・腕組 表情・苦笑]</span></div>
+    <div class="sl" id="L202"><span class="ln">202</span><span class="tx">[融 voice=WT007005]</span></div>
+    <div class="sl" id="L203"><span class="ln">203</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L204"><span class="ln">204</span><span class="tx">「お前、もっぱらギャラリーだったな。才能あるんだから、やれって言ってたのによ」</span></div>
+    <div class="sl" id="L205"><span class="ln">205</span><span class="tx"></span></div>
+    <div class="sl" id="L206"><span class="ln">206</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L207"><span class="ln">207</span><span class="tx">「買いかぶりだよ。[水原,みずはら]みたいに、努力もしなかったし」</span></div>
+    <div class="sl" id="L208"><span class="ln">208</span><span class="tx"></span></div>
+    <div class="sl" id="L209"><span class="ln">209</span><span class="tx">ゲームではあるものの、当時の彼らは修行僧か試合前のボクサーのようなストイックさで打ち込んでいた。</span></div>
+    <div class="sl" id="L210"><span class="ln">210</span><span class="tx"></span></div>
+    <div class="sl" id="L211"><span class="ln">211</span><span class="tx">;彼は苦笑したが、すぐに何かに気づいたような表情に変わる。</span></div>
+    <div class="sl" id="L212"><span class="ln">212</span><span class="tx"></span></div>
+    <div class="sl" id="L213"><span class="ln">213</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L214"><span class="ln">214</span><span class="tx">;「お前さ、覚えてる？　一年下の[真壁,まかべ]」</span></div>
+    <div class="sl" id="L215"><span class="ln">215</span><span class="tx"></span></div>
+    <div class="sl" id="L216"><span class="ln">216</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L217"><span class="ln">217</span><span class="tx">;「おぼえてるよ。金髪キャラの女の子しか愛せないって、ずっと言ってた子だよね？」</span></div>
+    <div class="sl" id="L218"><span class="ln">218</span><span class="tx"></span></div>
+    <div class="sl" id="L219"><span class="ln">219</span><span class="tx">;思い出す[――]明るい性格で、[水原,みずはら]に憧れていた取り巻きの一人だった。</span></div>
+    <div class="sl" id="L220"><span class="ln">220</span><span class="tx"></span></div>
+    <div class="sl" id="L221"><span class="ln">221</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L222"><span class="ln">222</span><span class="tx">;「あいつがさ、俺のハイスコア抜いて、今トップらしいんだ。抜いておかないと、先輩としてダメだろ？」</span></div>
+    <div class="sl" id="L223"><span class="ln">223</span><span class="tx"></span></div>
+    <div class="sl" id="L224"><span class="ln">224</span><span class="tx">;[水原,みずはら]は不敵に笑う[――]彼らしい反応に、こちらも自然と笑って返した。</span></div>
+    <div class="sl" id="L225"><span class="ln">225</span><span class="tx"></span></div>
+    <div class="sl" id="L226"><span class="ln">226</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L227"><span class="ln">227</span><span class="tx">;「昔、店長が貴重な同人誌とグッズを譲る格闘ゲームの大会開いてさ、[真壁,まかべ]くんが[水原,みずはら]に真っ向勝負挑んでいたのが懐かしいね」</span></div>
+    <div class="sl" id="L228"><span class="ln">228</span><span class="tx"></span></div>
+    <div class="sl" id="L229"><span class="ln">229</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L230"><span class="ln">230</span><span class="tx">;「ああ。軽くフルボッコにしてやったけどな」</span></div>
+    <div class="sl" id="L231"><span class="ln">231</span><span class="tx"></span></div>
+    <div class="sl" id="L232"><span class="ln">232</span><span class="tx">『たこせん』にも、懐かしい人の顔、さまざまな思い出がたくさんあった。</span></div>
+    <div class="sl" id="L233"><span class="ln">233</span><span class="tx"></span></div>
+    <div class="sl" id="L234"><span class="ln">234</span><span class="tx">学園の先輩や後輩など、実際に身近にいた人も多かったが、『たこせん』の交流ノート上の名前だけでしか知らない人もいた。</span></div>
+    <div class="sl" id="L235"><span class="ln">235</span><span class="tx"></span></div>
+    <div class="sl" id="L236"><span class="ln">236</span><span class="tx">それでも、ノートと鉛筆だけで交流できることは新鮮で、非常に楽しかった。</span></div>
+    <div class="sl" id="L237"><span class="ln">237</span><span class="tx"></span></div>
+    <div class="sl" id="L238"><span class="ln">238</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L239"><span class="ln">239</span><span class="tx">;「店長の[久,ひさ]さん、元気かな」</span></div>
+    <div class="sl" id="L240"><span class="ln">240</span><span class="tx"></span></div>
+    <div class="sl" id="L241"><span class="ln">241</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L242"><span class="ln">242</span><span class="tx">;「五十超えて、いまだに夏と冬に上京して頑張ってるらしいぜ？　あと新刊漁り終えたら、レイヤーさんをバリバリ激写してるとか」</span></div>
+    <div class="sl" id="L243"><span class="ln">243</span><span class="tx"></span></div>
+    <div class="sl" id="L244"><span class="ln">244</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L245"><span class="ln">245</span><span class="tx">;「すごいね。店長、まだまだ現役なんだ」</span></div>
+    <div class="sl" id="L246"><span class="ln">246</span><span class="tx"></span></div>
+    <div class="sl" id="L247"><span class="ln">247</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L248"><span class="ln">248</span><span class="tx">;「俺も、末はああなっちまうのかなーって、割と素で悩むときがあるよ。オタクの貫き方は、年取れば取るほど、修羅の道さ」</span></div>
+    <div class="sl" id="L249"><span class="ln">249</span><span class="tx"></span></div>
+    <div class="sl" id="L250"><span class="ln">250</span><span class="tx">;[オタク,・・・]な部分は、[水原,みずはら]という人間を語る上で外せない一面だ。</span></div>
+    <div class="sl" id="L251"><span class="ln">251</span><span class="tx"></span></div>
+    <div class="sl" id="L252"><span class="ln">252</span><span class="tx">;同時に、彼ほどではなかったにせよ、自分自身にオタクな部分が存在して、彼と打ち解けるにあたって大切な要素のひとつでもあった。</span></div>
+    <div class="sl" id="L253"><span class="ln">253</span><span class="tx"></span></div>
+    <div class="sl" id="L254"><span class="ln">254</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L255"><span class="ln">255</span><span class="tx">;「いや、良い人生じゃないか」</span></div>
+    <div class="sl" id="L256"><span class="ln">256</span><span class="tx"></span></div>
+    <div class="sl" id="L257"><span class="ln">257</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L258"><span class="ln">258</span><span class="tx">;「そうか？」</span></div>
+    <div class="sl" id="L259"><span class="ln">259</span><span class="tx"></span></div>
+    <div class="sl" id="L260"><span class="ln">260</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L261"><span class="ln">261</span><span class="tx">;「楽しめなくなるよりかは、昔と同じく楽しんで、良い時間が過ごせる……それは、良い人生だよ」</span></div>
+    <div class="sl" id="L262"><span class="ln">262</span><span class="tx"></span></div>
+    <div class="sl" id="L263"><span class="ln">263</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L264"><span class="ln">264</span><span class="tx">;「はははっ、そう思えるようになったら、覚悟完了なんだろうな」</span></div>
+    <div class="sl" id="L265"><span class="ln">265</span><span class="tx"></span></div>
+    <div class="sl" id="L266"><span class="ln">266</span><span class="tx">[融 服・私服 正面・腕構 表情・笑顔口閉じ]</span></div>
+    <div class="sl" id="L267"><span class="ln">267</span><span class="tx">[水原,みずはら]は準備運動するかのように、指を動かしながら話を続ける。</span></div>
+    <div class="sl" id="L268"><span class="ln">268</span><span class="tx"></span></div>
+    <div class="sl" id="L269"><span class="ln">269</span><span class="tx">;◇融ネタ。恂ネタ。迪希ネタ。佳城市立草枉第一中学校一年Ｅ組。</span></div>
+    <div class="sl" id="L270"><span class="ln">270</span><span class="tx">彼の、何かに[臨,のぞ]むときのクセは、初めて出会ったときから変わっていない。</span></div>
+    <div class="sl" id="L271"><span class="ln">271</span><span class="tx"></span></div>
+    <div class="sl" id="L272"><span class="ln">272</span><span class="tx">;一中の一年Ｅ組から始まって、高校～[惺鳳館,せいほうかん]学園のときでも、今の[十都川,とつかわ]大学のときでも同じだ。</span></div>
+    <div class="sl" id="L273"><span class="ln">273</span><span class="tx"></span></div>
+    <div class="sl" id="L274"><span class="ln">274</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L275"><span class="ln">275</span><span class="tx">「そういえば、『[Ａ∵Ａ,エー・エー]・レソナクラス』のポスター、[十都川,とつかわ]のゲームセンターに貼ってあったね」</span></div>
+    <div class="sl" id="L276"><span class="ln">276</span><span class="tx"></span></div>
+    <div class="sl" id="L277"><span class="ln">277</span><span class="tx">[融 服・私服 正面・腕下 表情・通常]</span></div>
+    <div class="sl" id="L278"><span class="ln">278</span><span class="tx">[融 voice=WT007006]</span></div>
+    <div class="sl" id="L279"><span class="ln">279</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L280"><span class="ln">280</span><span class="tx">「さっき携帯で『たこせん』のサイト見てたら、入荷してるらしいぜ？」</span></div>
+    <div class="sl" id="L281"><span class="ln">281</span><span class="tx"></span></div>
+    <div class="sl" id="L282"><span class="ln">282</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L283"><span class="ln">283</span><span class="tx">「早いね。平気で二、三ヶ月遅れるときあるのに」</span></div>
+    <div class="sl" id="L284"><span class="ln">284</span><span class="tx"></span></div>
+    <div class="sl" id="L285"><span class="ln">285</span><span class="tx">[融 服・私服 斜め・右手前 表情・苦笑]</span></div>
+    <div class="sl" id="L286"><span class="ln">286</span><span class="tx">[融 voice=WT007007]</span></div>
+    <div class="sl" id="L287"><span class="ln">287</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L288"><span class="ln">288</span><span class="tx">「オンライン対戦できる環境にしたらしいぜ？　おんぼろなゲーセンなのに、らしくないよな」</span></div>
+    <div class="sl" id="L289"><span class="ln">289</span><span class="tx"></span></div>
+    <div class="sl" id="L290"><span class="ln">290</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L291"><span class="ln">291</span><span class="tx">;「殊勝なこころがけ……と思ったけど、『アイドルプロデューサー３』やりたいだけだよね」</span></div>
+    <div class="sl" id="L292"><span class="ln">292</span><span class="tx"></span></div>
+    <div class="sl" id="L293"><span class="ln">293</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L294"><span class="ln">294</span><span class="tx">;「大型筐体ウザいって、あれだけぼやいてたのにな」</span></div>
+    <div class="sl" id="L295"><span class="ln">295</span><span class="tx"></span></div>
+    <div class="sl" id="L296"><span class="ln">296</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L297"><span class="ln">297</span><span class="tx">「今回の目標はランク入り？」</span></div>
+    <div class="sl" id="L298"><span class="ln">298</span><span class="tx"></span></div>
+    <div class="sl" id="L299"><span class="ln">299</span><span class="tx">;//◇内部用。『3days』ネタ。</span></div>
+    <div class="sl" id="L300"><span class="ln">300</span><span class="tx">[融 服・私服 斜め・腕下 表情・怒り笑い]</span></div>
+    <div class="sl" id="L301"><span class="ln">301</span><span class="tx">[融 voice=WT007008]</span></div>
+    <div class="sl" id="L302"><span class="ln">302</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L303"><span class="ln">303</span><span class="tx">「何県かは忘れたけど、[綾篠,あやしの]ファリシダって店舗の、なんとかモンキーってヤツが一位なんで、そいつを越えようかな？」</span></div>
+    <div class="sl" id="L304"><span class="ln">304</span><span class="tx"></span></div>
+    <div class="sl" id="L305"><span class="ln">305</span><span class="tx">[水原,みずはら]はいつもの調子で自分に話す[――]基本的に、彼は有言実行タイプだ。</span></div>
+    <div class="sl" id="L306"><span class="ln">306</span><span class="tx"></span></div>
+    <div class="sl" id="L307"><span class="ln">307</span><span class="tx">飄々としていて、気分屋のようにも見えるが、昔から一度決めたことは必ず実現するまで諦めず、結果を出すために努力を惜しまなかった。</span></div>
+    <div class="sl" id="L308"><span class="ln">308</span><span class="tx"></span></div>
+    <div class="sl" id="L309"><span class="ln">309</span><span class="tx">そういうところも、[水原,みずはら]の周囲に人が集まる理由なのかもしれない。</span></div>
+    <div class="sl" id="L310"><span class="ln">310</span><span class="tx"></span></div>
+    <div class="sl" id="L311"><span class="ln">311</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L312"><span class="ln">312</span><span class="tx">「頑張ってね」</span></div>
+    <div class="sl" id="L313"><span class="ln">313</span><span class="tx"></span></div>
+    <div class="sl" id="L314"><span class="ln">314</span><span class="tx">[融 服・私服 斜め・親指立て 表情・通常ウィンク 頷き]</span></div>
+    <div class="sl" id="L315"><span class="ln">315</span><span class="tx">[融 voice=WT007009]</span></div>
+    <div class="sl" id="L316"><span class="ln">316</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L317"><span class="ln">317</span><span class="tx">「ああ。[いつもどおり,・・・・・・]大いに期待してくれ。色々とな」</span></div>
+    <div class="sl" id="L318"><span class="ln">318</span><span class="tx"></span></div>
+    <div class="sl" id="L319"><span class="ln">319</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L320"><span class="ln">320</span><span class="tx">「ははっ、色々ってなにさ」</span></div>
+    <div class="sl" id="L321"><span class="ln">321</span><span class="tx"></span></div>
+    <div class="sl" id="L322"><span class="ln">322</span><span class="tx">[融 服・私服 正面・腕組 表情・通常ウィンク]</span></div>
+    <div class="sl" id="L323"><span class="ln">323</span><span class="tx">いつもどおり[――][水原,みずはら]は軽々と何でもこなし、初対面の人でも親しい友人のように話せ、すぐ仲良く出来る。</span></div>
+    <div class="sl" id="L324"><span class="ln">324</span><span class="tx"></span></div>
+    <div class="sl" id="L325"><span class="ln">325</span><span class="tx">自分とは正反対のような存在だ。でも不思議と、どこかで繋がる部分を感じていた。</span></div>
+    <div class="sl" id="L326"><span class="ln">326</span><span class="tx"></span></div>
+    <div class="sl" id="L327"><span class="ln">327</span><span class="tx">だから彼と息が合い、ともに過ごした時間だけ仲も深まり、親友と呼べるようになったのかもしれない。</span></div>
+    <div class="sl" id="L328"><span class="ln">328</span><span class="tx"></span></div>
+    <div class="sl" id="L329"><span class="ln">329</span><span class="tx">;◇融メモ。両親の仕事。</span></div>
+    <div class="sl" id="L330"><span class="ln">330</span><span class="tx">逆に、彼と出会わなかったら[――]彼の父親が警察官で、[佳城,かいじょう]署の署長になるために、家族ともども引っ越してこなかったら、どうなっていたのだろう？</span></div>
+    <div class="sl" id="L331"><span class="ln">331</span><span class="tx"></span></div>
+    <div class="sl" id="L332"><span class="ln">332</span><span class="tx">少なくとも、『たこせん』で過ごした楽しい時間は、一生経験出来なかったはずだ。</span></div>
+    <div class="sl" id="L333"><span class="ln">333</span><span class="tx"></span></div>
+    <div class="sl" id="L334"><span class="ln">334</span><span class="tx">[融 服・私服 正面・腕下 表情・通常]</span></div>
+    <div class="sl" id="L335"><span class="ln">335</span><span class="tx">[融 voice=WT007010]</span></div>
+    <div class="sl" id="L336"><span class="ln">336</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L337"><span class="ln">337</span><span class="tx">「[恂,しゅん]、お前も行こうぜ。『たこせん』」</span></div>
+    <div class="sl" id="L338"><span class="ln">338</span><span class="tx"></span></div>
+    <div class="sl" id="L339"><span class="ln">339</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L340"><span class="ln">340</span><span class="tx">「えっ[――]」</span></div>
+    <div class="sl" id="L341"><span class="ln">341</span><span class="tx"></span></div>
+    <div class="sl" id="L342"><span class="ln">342</span><span class="tx">[融 服・私服 正面・腕構 表情・笑顔口閉じ]</span></div>
+    <div class="sl" id="L343"><span class="ln">343</span><span class="tx">[融 voice=WT007011]</span></div>
+    <div class="sl" id="L344"><span class="ln">344</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L345"><span class="ln">345</span><span class="tx">「祭りなんて忘れてさ、久しぶりに一緒に遊ばないか？　このままパァーっと、どうだ？」</span></div>
+    <div class="sl" id="L346"><span class="ln">346</span><span class="tx"></span></div>
+    <div class="sl" id="L347"><span class="ln">347</span><span class="tx">列車の中でも似たようなことを言っていたが、それは魅力的な[――]しかし、拒むしかない提案だった。</span></div>
+    <div class="sl" id="L348"><span class="ln">348</span><span class="tx"></span></div>
+    <div class="sl" id="L349"><span class="ln">349</span><span class="tx">[融 消]</span></div>
+    <div class="sl" id="L350"><span class="ln">350</span><span class="tx">[stage xpos=-100 time=1000 sync]</span></div>
+    <div class="sl" id="L351"><span class="ln">351</span><span class="tx">どう答えようか迷い、商店街の奥へ視線を泳がせると、こちらに戻ってくる[迪希,ゆき]の姿が見えた。</span></div>
+    <div class="sl" id="L352"><span class="ln">352</span><span class="tx"></span></div>
+    <div class="sl" id="L353"><span class="ln">353</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L354"><span class="ln">354</span><span class="tx">;//※収録説明用（台本製作後に消去）</span></div>
+    <div class="sl" id="L355"><span class="ln">355</span><span class="tx">;//まだこのときは距離があって、向こうにいる人間へ呼びかけるように。</span></div>
+    <div class="sl" id="L356"><span class="ln">356</span><span class="tx">;//===================================</span></div>
+    <div class="sl" id="L357"><span class="ln">357</span><span class="tx">;□演出指示。まだ迪希立ち絵見せず。(済)</span></div>
+    <div class="sl" id="L358"><span class="ln">358</span><span class="tx"></span></div>
+    <div class="sl" id="L359"><span class="ln">359</span><span class="tx">[迪希 voice=YK007000]</span></div>
+    <div class="sl" id="L360"><span class="ln">360</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L361"><span class="ln">361</span><span class="tx">「待たせちゃって、ごめんなさい[――]」</span></div>
+    <div class="sl" id="L362"><span class="ln">362</span><span class="tx"></span></div>
+    <div class="sl" id="L363"><span class="ln">363</span><span class="tx">遠くから呼びかける、幼馴染の声がしっかりと耳に届いた。</span></div>
+    <div class="sl" id="L364"><span class="ln">364</span><span class="tx"></span></div>
+    <div class="sl" id="L365"><span class="ln">365</span><span class="tx">[stage xpos=0 time=500 sync]</span></div>
+    <div class="sl" id="L366"><span class="ln">366</span><span class="tx">[融 出 通常 中 服・私服 正面・腕下 表情・通常]</span></div>
+    <div class="sl" id="L367"><span class="ln">367</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L368"><span class="ln">368</span><span class="tx">「……ごめん。俺は、やっぱり遠慮しておくよ」</span></div>
+    <div class="sl" id="L369"><span class="ln">369</span><span class="tx"></span></div>
+    <div class="sl" id="L370"><span class="ln">370</span><span class="tx">[融 服・私服 正面・腕下 表情・苦笑]</span></div>
+    <div class="sl" id="L371"><span class="ln">371</span><span class="tx">[融 voice=WT007012]</span></div>
+    <div class="sl" id="L372"><span class="ln">372</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L373"><span class="ln">373</span><span class="tx">「そっか」</span></div>
+    <div class="sl" id="L374"><span class="ln">374</span><span class="tx"></span></div>
+    <div class="sl" id="L375"><span class="ln">375</span><span class="tx">[水原,みずはら]は短く答えると、苦笑した。こちらの返答をわかっていたような表情だった。</span></div>
+    <div class="sl" id="L376"><span class="ln">376</span><span class="tx"></span></div>
+    <div class="sl" id="L377"><span class="ln">377</span><span class="tx">[融 服・私服 正面・腕組 表情・笑顔口閉じ]</span></div>
+    <div class="sl" id="L378"><span class="ln">378</span><span class="tx">[融 voice=WT007013]</span></div>
+    <div class="sl" id="L379"><span class="ln">379</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L380"><span class="ln">380</span><span class="tx">「俺とお前の仲だろ？　気にするな」</span></div>
+    <div class="sl" id="L381"><span class="ln">381</span><span class="tx"></span></div>
+    <div class="sl" id="L382"><span class="ln">382</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L383"><span class="ln">383</span><span class="tx">「ありがとう、[水原,みずはら]……でも、いじわるだよ」</span></div>
+    <div class="sl" id="L384"><span class="ln">384</span><span class="tx"></span></div>
+    <div class="sl" id="L385"><span class="ln">385</span><span class="tx">断らざるを得ない誘いだとわかっているのに。</span></div>
+    <div class="sl" id="L386"><span class="ln">386</span><span class="tx"></span></div>
+    <div class="sl" id="L387"><span class="ln">387</span><span class="tx">[融 服・私服 斜め・右手前 表情・通常ウィンク]</span></div>
+    <div class="sl" id="L388"><span class="ln">388</span><span class="tx">[融 voice=WT007014]</span></div>
+    <div class="sl" id="L389"><span class="ln">389</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L390"><span class="ln">390</span><span class="tx">「ははっ、それも気にするなって」</span></div>
+    <div class="sl" id="L391"><span class="ln">391</span><span class="tx"></span></div>
+    <div class="sl" id="L392"><span class="ln">392</span><span class="tx">いつもと変わらない親友の態度[――]昔から彼のこういう部分を、自分は尊敬していた。</span></div>
+    <div class="sl" id="L393"><span class="ln">393</span><span class="tx"></span></div>
+    <div class="sl" id="L394"><span class="ln">394</span><span class="tx">そして、彼は自分の答えをわかった上で提案していたのだろうとも思い、器用な親友の振る舞いに対して、心の中で苦笑した。</span></div>
+    <div class="sl" id="L395"><span class="ln">395</span><span class="tx"></span></div>
+    <div class="sl" id="L396"><span class="ln">396</span><span class="tx">;□演出指示。迪希立ち絵見せる。遠景。(済)</span></div>
+    <div class="sl" id="L397"><span class="ln">397</span><span class="tx">;【融】</span></div>
+    <div class="sl" id="L398"><span class="ln">398</span><span class="tx">;「じゃあ、[例のブツ,・・・・]の件もあるし、また連絡するわ」</span></div>
+    <div class="sl" id="L399"><span class="ln">399</span><span class="tx"></span></div>
+    <div class="sl" id="L400"><span class="ln">400</span><span class="tx">;【恂】</span></div>
+    <div class="sl" id="L401"><span class="ln">401</span><span class="tx">;「うん。それまでは絶対にバレないようにするさ」</span></div>
+    <div class="sl" id="L402"><span class="ln">402</span><span class="tx"></span></div>
+    <div class="sl" id="L403"><span class="ln">403</span><span class="tx">[迪希 服・私服 正面・腕下組 表情・通常 奥 左 trans=showslide_r time=300]</span></div>
+    <div class="sl" id="L404"><span class="ln">404</span><span class="tx"></span></div>
+    <div class="sl" id="L405"><span class="ln">405</span><span class="tx">そんな話をしているところへ、用事を済ませた[迪希,ゆき]が戻ってきた。</span></div>
+    <div class="sl" id="L406"><span class="ln">406</span><span class="tx"></span></div>
+    <div class="sl" id="L407"><span class="ln">407</span><span class="tx">;□演出指示。迪希立ち絵見せる。融と同じサイズの立ち絵。(済)</span></div>
+    <div class="sl" id="L408"><span class="ln">408</span><span class="tx"></span></div>
+    <div class="sl" id="L409"><span class="ln">409</span><span class="tx">[融 右 time=500 accel=-1 sync]</span></div>
+    <div class="sl" id="L410"><span class="ln">410</span><span class="tx">[迪希 出 通常 左 服・私服 右斜・腕下 表情・苦笑]</span></div>
+    <div class="sl" id="L411"><span class="ln">411</span><span class="tx"></span></div>
+    <div class="sl" id="L412"><span class="ln">412</span><span class="tx">[迪希 voice=YK007001]</span></div>
+    <div class="sl" id="L413"><span class="ln">413</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L414"><span class="ln">414</span><span class="tx">「[水原,みずはら]くんも、つき合わせちゃってごめんなさいね」</span></div>
+    <div class="sl" id="L415"><span class="ln">415</span><span class="tx"></span></div>
+    <div class="sl" id="L416"><span class="ln">416</span><span class="tx">[融 服・私服 正面・腕組 表情・通常目閉じ]</span></div>
+    <div class="sl" id="L417"><span class="ln">417</span><span class="tx">[融 voice=WT007015]</span></div>
+    <div class="sl" id="L418"><span class="ln">418</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L419"><span class="ln">419</span><span class="tx">「いや、ちょうどいい暇つぶしになったさ」</span></div>
+    <div class="sl" id="L420"><span class="ln">420</span><span class="tx"></span></div>
+    <div class="sl" id="L421"><span class="ln">421</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L422"><span class="ln">422</span><span class="tx">「それじゃ[水原,みずはら]、またね」</span></div>
+    <div class="sl" id="L423"><span class="ln">423</span><span class="tx"></span></div>
+    <div class="sl" id="L424"><span class="ln">424</span><span class="tx">[融 服・私服 正面・腕下 表情・通常]</span></div>
+    <div class="sl" id="L425"><span class="ln">425</span><span class="tx">[融 消 trans=showslide_l time=300 delayrun=500]</span></div>
+    <div class="sl" id="L426"><span class="ln">426</span><span class="tx">[融 voice=WT007016]</span></div>
+    <div class="sl" id="L427"><span class="ln">427</span><span class="tx">【融】</span></div>
+    <div class="sl" id="L428"><span class="ln">428</span><span class="tx">「おう、またな[――]」</span></div>
+    <div class="sl" id="L429"><span class="ln">429</span><span class="tx"></span></div>
+    <div class="sl" id="L430"><span class="ln">430</span><span class="tx">[迪希 服・私服 右斜・腕下 表情・通常]</span></div>
+    <div class="sl" id="L431"><span class="ln">431</span><span class="tx">[迪希 中 time=500]</span></div>
+    <div class="sl" id="L432"><span class="ln">432</span><span class="tx">[水原,みずはら]は言い終わらないうちに背を向け、軽く手を振りながら、商店街の奥へ歩き去っていった。</span></div>
+    <div class="sl" id="L433"><span class="ln">433</span><span class="tx"></span></div>
+    <div class="sl" id="L434"><span class="ln">434</span><span class="tx">昼時は少し過ぎていたが、賑わいはあまり変わらず、すぐに彼の姿は人の多さにまぎれて見えなくなった。</span></div>
+    <div class="sl" id="L435"><span class="ln">435</span><span class="tx"></span></div>
+    <div class="sl" id="L436"><span class="ln">436</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L437"><span class="ln">437</span><span class="tx">「頼まれたものはあった？」</span></div>
+    <div class="sl" id="L438"><span class="ln">438</span><span class="tx"></span></div>
+    <div class="sl" id="L439"><span class="ln">439</span><span class="tx">[迪希 服・私服 正面・片腕組 表情・通常 頷き]</span></div>
+    <div class="sl" id="L440"><span class="ln">440</span><span class="tx"></span></div>
+    <div class="sl" id="L441"><span class="ln">441</span><span class="tx">[迪希 voice=YK007002]</span></div>
+    <div class="sl" id="L442"><span class="ln">442</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L443"><span class="ln">443</span><span class="tx">「おかげさまで。ねえ、[恂,しゅん]ちゃん、何を話してたの？」</span></div>
+    <div class="sl" id="L444"><span class="ln">444</span><span class="tx"></span></div>
+    <div class="sl" id="L445"><span class="ln">445</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L446"><span class="ln">446</span><span class="tx">「男同士の友情、かな？」</span></div>
+    <div class="sl" id="L447"><span class="ln">447</span><span class="tx"></span></div>
+    <div class="sl" id="L448"><span class="ln">448</span><span class="tx">[迪希 服・私服 左斜・右手顎 表情・怪訝]</span></div>
+    <div class="sl" id="L449"><span class="ln">449</span><span class="tx"></span></div>
+    <div class="sl" id="L450"><span class="ln">450</span><span class="tx">[迪希 voice=YK007003]</span></div>
+    <div class="sl" id="L451"><span class="ln">451</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L452"><span class="ln">452</span><span class="tx">「なにそれ……あっ。もしかして、また[水原,みずはら]くんに、いかがわしいもの預かるように頼まれてたんじゃない？」</span></div>
+    <div class="sl" id="L453"><span class="ln">453</span><span class="tx"></span></div>
+    <div class="sl" id="L454"><span class="ln">454</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L455"><span class="ln">455</span><span class="tx">「いかがわしいって……。もう学園のときみたいに、[迪希,ゆき]に燃やされるようなものなんて、なにもないって」</span></div>
+    <div class="sl" id="L456"><span class="ln">456</span><span class="tx"></span></div>
+    <div class="sl" id="L457"><span class="ln">457</span><span class="tx">忌まわしい記憶が不意に蘇ってくる。</span></div>
+    <div class="sl" id="L458"><span class="ln">458</span><span class="tx"></span></div>
+    <div class="sl" id="L459"><span class="ln">459</span><span class="tx">;立ち絵表情について：ここはにこやかに笑わせてください（小田倉　3/11）(済3/18)</span></div>
+    <div class="sl" id="L460"><span class="ln">460</span><span class="tx">[迪希 服・私服 左斜・腕下 表情・笑顔目閉じ]</span></div>
+    <div class="sl" id="L461"><span class="ln">461</span><span class="tx">;[迪希 服・私服 左斜・左手髪 表情・通常 delayrun=ラベル0]</span></div>
+    <div class="sl" id="L462"><span class="ln">462</span><span class="tx"></span></div>
+    <div class="sl" id="L463"><span class="ln">463</span><span class="tx">[迪希 voice=YK007004]</span></div>
+    <div class="sl" id="L464"><span class="ln">464</span><span class="tx">【迪希】</span></div>
+    <div class="sl" id="L465"><span class="ln">465</span><span class="tx">「本当？　ま、いいわ。明日からそういう情報も、みんなできっちり共有していきましょう」</span></div>
+    <div class="sl" id="L466"><span class="ln">466</span><span class="tx"></span></div>
+    <div class="sl" id="L467"><span class="ln">467</span><span class="tx">【恂】</span></div>
+    <div class="sl" id="L468"><span class="ln">468</span><span class="tx">「明日？」</span></div>
+    <div class="sl" id="L469"><span class="ln">469</span><span class="tx"></span></div>
+    <div class="sl" id="L470"><span class="ln">470</span><span class="tx">何で今日、この瞬間からではないのだろう？</span></div>
+    <div class="sl" id="L471"><span class="ln">471</span><span class="tx"></span></div>
+    <div class="sl" id="L472"><span class="ln">472</span><span class="tx">[迪希,ゆき]の笑顔を見つめたが、馴染みある彼女の笑顔だということしか、自分にはわからなかった。</span></div>
+    <div class="sl" id="L473"><span class="ln">473</span><span class="tx"></span></div>
+    <div class="sl" id="L474"><span class="ln">474</span><span class="tx">[se buf=0 stop=1000]</span></div>
+    <div class="sl" id="L475"><span class="ln">475</span><span class="tx"></span></div>
+    <div class="sl" id="L476"><span class="ln">476</span><span class="tx">;◇佳城市メモ。</span></div>
+    <div class="sl" id="L477"><span class="ln">477</span><span class="tx">[暗転]</span></div>
+    <div class="sl" id="L478"><span class="ln">478</span><span class="tx">[ＢＧＭ停止]</span></div>
+    <div class="sl" id="L479"><span class="ln">479</span><span class="tx">[wait time=1000]</span></div>
+    <div class="sl" id="L480"><span class="ln">480</span><span class="tx">[se buf=2 stop=500]</span></div>
+    <div class="sl" id="L481"><span class="ln">481</span><span class="tx"></span></div>
+    <div class="sl" id="L482"><span class="ln">482</span><span class="tx">;■■■■■　本文終了　■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></div>
+    <div class="sl" id="L483"><span class="ln">483</span><span class="tx">;■EOF</span></div>
+    <div class="sl" id="L484"><span class="ln">484</span><span class="tx"></span></div>
+    <div class="sl" id="L485"><span class="ln">485</span><span class="tx">;//◇内部用横山リビルドメモ　選択肢破棄に伴い、ジャンプ先修正　（2012/10/31）</span></div>
+    <div class="sl" id="L486"><span class="ln">486</span><span class="tx">[終了]</span></div>
+    <div class="sl" id="L487"><span class="ln">487</span><span class="tx">[next storage=S005_01_a00.txt]</span></div>
+  </div>
+  <section class="xref">
+    <h2 class="lst-h">引用本文件的词条（2）</h2>
+    <ul class="lst">
+      <li><a href="../../entry2/164_%E8%A6%8B%E6%AB%93%E9%A2%A8%E6%99%82%E8%A8%88%E5%8F%B0.html#s1">見櫓風時計台</a></li>
+      <li><a href="../../entry2/137_%E9%A6%AC%E6%B8%A1%E7%9F%B3%E9%96%80%E5%89%8D%E5%95%86%E5%BA%97%E8%A1%97.html#s1">馬渡石門前商店街</a></li>
+    </ul>
+  </section>
+</article>
+
+</main>
+<footer class="ft">
+  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
+  <p>参考资料 · 《少女神域∽少女天獄》本篇剧本 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
+</footer>
+</body>
+</html>
