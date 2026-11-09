@@ -3,6 +3,9 @@
 /img_opt/
 /img_thumb/
 
+# 本地发布用的批处理，不进仓库
+/发布到GitHub.bat
+
 # 系统杂项
 Thumbs.db
 desktop.ini
