@@ -1,11 +1,38 @@
 // 图片灯箱：点击缩略图查看大图
 // 支持：← → 切换、Esc 关闭、滚轮缩放（以光标为中心）、中键拖拽平移
+//
+// 加载模型（2026-11-09 重写，解决「切换卡住」）：
+//   1. 切换一律先出「压缩大图」（data-full = img_opt，全站最大 0.19MB），
+//      绝不因为原图没到而空白，也绝不阻塞左右切换；
+//   2. 原图（data-orig，jsDelivr，5–16MB）只在「原图优先」模式下后台拉取，
+//      到达后替换当前显示；失败则保留压缩图，不重试、不串图；
+//   3. 所有异步回调都核对「代次令牌 token」，切走即作废，杜绝旧请求回写画面；
+//   4. 打开灯箱时预取相邻 ±2 张压缩大图（每张 ≤0.2MB），左右切换基本 0 延迟；
+//   5. 灯箱顶部两条独立进度条：压缩大图 / 原图。file:// 下没有 XHR 进度，
+//      自动降级为浏览器原生加载（进度行标注「本地预览」）。
 (function () {
   var box = null, img = null, zoomBadge = null;
   var cur = 0, items = [];
   var MIN = 1, MAX = 5;          // 缩放范围 100%–500%
   var scale = 1, tx = 0, ty = 0; // 当前缩放与平移量
   var drag = null;               // 中键拖拽状态 {x, y, tx, ty}
+
+  // ---------- 加载状态 ----------
+  var IS_FILE = location.protocol === 'file:';
+  // 跨域图片（原图在别的仓库，走 jsDelivr / raw）不能用 XHR 取 blob：
+  // 那条链路会 301 到 raw.githubusercontent.com，XHR 遇跨域重定向会静默挂起，
+  // 表现为进度条永远停在 0%。而浏览器原生 <img> 不受此限（file:// 下能出图就是证明），
+  // 所以跨域一律走原生直载，只是拿不到精确字节进度。
+  function isCross(u) {
+    return /^https?:/i.test(u) && u.indexOf(location.origin + '/') !== 0;
+  }
+  var token = 0;                 // 代次：每次切换 +1，旧回调据此作废
+  var xhrFull = null, xhrOrig = null;
+  var cacheFull = {}, keyFull = [];   // 压缩大图 blob 缓存
+  var cacheOrig = {}, keyOrig = [];   // 原图 blob 缓存
+  var LIM_FULL = 48, LIM_ORIG = 3;    // 上限（原图单张 5–16MB，只留最近 3 张）
+  var pendFull = {};                  // 预取中的 URL，防重复请求
+  var inflight = {};                  // url → 等待者列表（同一 URL 共享一个请求）
 
   function ensureBox() {
     if (box) return box;
@@ -18,6 +45,18 @@
       '<button class="lb-nav lb-next" type="button" aria-label="下一张">&#8250;</button>' +
       '<figure class="lb-fig"><img alt=""><figcaption></figcaption></figure>' +
       '<div class="lb-zoom">100%</div>' +
+      '<div class="lb-load">' +
+        '<div class="ld-row" data-k="full">' +
+          '<span class="ld-lab">压缩大图</span>' +
+          '<span class="ld-bar"><i></i></span>' +
+          '<span class="ld-num">等待</span>' +
+        '</div>' +
+        '<div class="ld-row" data-k="orig">' +
+          '<span class="ld-lab">原图</span>' +
+          '<span class="ld-bar"><i></i></span>' +
+          '<span class="ld-num">等待</span>' +
+        '</div>' +
+      '</div>' +
       '<div class="lb-hint">滚轮缩放 · 中键拖拽平移 · ← → 切换 · Esc 关闭</div>';
     document.body.appendChild(box);
     img = box.querySelector('img');
@@ -104,24 +143,302 @@
     box.addEventListener('dragstart', function (e) { e.preventDefault(); });
   }
 
+  // ---------- 进度条 / 缓存 / 带进度的加载 ----------
+  function fmtMB(n) {
+    if (!n) return '0MB';
+    var m = n / 1048576;
+    return (m >= 10 ? m.toFixed(0) : m.toFixed(1)) + 'MB';
+  }
+
+  // 更新某一行（'full' | 'orig'）
+  // state: wait 等待 / run 加载中 / done 已完成 / fail 失败 / none 不适用
+  function setRow(k, state, pct, note) {
+    if (!box) return;
+    var r = box.querySelector('.ld-row[data-k="' + k + '"]');
+    if (!r) return;
+    r.className = 'ld-row ' + state;
+    var bar = r.querySelector('.ld-bar > i');
+    if (bar) {
+      var w = (state === 'done' || state === 'pulse') ? 100
+            : (state === 'run' ? Math.max(3, Math.min(100, pct || 0)) : 0);
+      bar.style.width = w + '%';
+    }
+    var num = r.querySelector('.ld-num');
+    if (num) num.textContent = note || '';
+  }
+
+  function touch(keys, url) {
+    var i = keys.indexOf(url);
+    if (i >= 0) keys.splice(i, 1);
+    keys.push(url);
+  }
+
+  function put(cache, keys, lim, url, blobUrl) {
+    if (cache[url]) {                       // 已有同一 URL 的 blob：复用，丢弃新的
+      try { URL.revokeObjectURL(blobUrl); } catch (e) {}
+      touch(keys, url);
+      return cache[url];
+    }
+    cache[url] = blobUrl;
+    keys.push(url);
+    while (keys.length > lim) {
+      var k = keys.shift();
+      var v = cache[k];
+      if (v) { try { URL.revokeObjectURL(v); } catch (e) {} delete cache[k]; }
+    }
+    return blobUrl;
+  }
+
+  /* 带进度的图片加载。
+   * url   目标地址（相对或 jsDelivr 绝对地址）
+   * kind  'full' | 'orig'，决定缓存池、上限与进度行
+   * live  () => boolean，返回 false 表示这次请求已过期（用户切走了）
+   * cb    (err, displayUrl)  err 为字符串时表示失败
+   * silent  true = 后台预取：不改进度行、失败静默
+   * 返回可 abort 的 XHR（已命中缓存或 file:// 降级时返回 null）
+   *
+   * 同一 URL 只发一个请求：预取与手动打开撞车时共享结果，
+   * 避免「两次下载同一张、后到的把前一个 blob 撤销」导致图裂。
+   */
+  function loadImg(url, kind, live, cb, silent) {
+    var cache = kind === 'full' ? cacheFull : cacheOrig;
+    var keys = kind === 'full' ? keyFull : keyOrig;
+    var lim = kind === 'full' ? LIM_FULL : LIM_ORIG;
+
+    if (cache[url]) {                       // 命中缓存：0 延迟
+      touch(keys, url);
+      cb(null, cache[url]);
+      return null;
+    }
+    if (IS_FILE || isCross(url)) {
+      // file:// 与跨域原图都取不到 blob：原生 <img> 直载。
+      // 跨域没有 XHR，拿不到 lengthComputable，用「脉冲条」表示仍在传输。
+      if (!silent) {
+        if (IS_FILE) setRow(kind, 'run', 0, '本地预览');
+        else setRow(kind, 'pulse', 100, '直连加载中…');
+      }
+      var pre = new Image();
+      var settled = false;
+      pre.onload = function () {
+        if (settled) return;
+        settled = true;
+        cb(null, url);
+      };
+      pre.onerror = function () {
+        if (settled) return;
+        settled = true;
+        cb('direct');
+      };
+      pre.src = url;
+      return {
+        abort: function () { settled = true; pre.onload = pre.onerror = null; pre.src = ''; },
+        __got: 1           // 视为「已在走直连」，不再触发 XHR 兜底
+      };
+    }
+    // 已有同 URL 的在途请求：挂上去等结果，不重复下载
+    if (inflight[url]) { inflight[url].push({ live: live, cb: cb, silent: !!silent }); return null; }
+
+    var waiters = inflight[url] = [{ live: live, cb: cb, silent: !!silent }];
+    function settle(err, u) {
+      if (inflight[url] === waiters) delete inflight[url];
+      for (var i = 0; i < waiters.length; i++) {
+        if (waiters[i].live()) waiters[i].cb(err, u);
+      }
+    }
+
+    if (!silent) setRow(kind, 'run', 0, '0%');
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'blob';
+    xhr.timeout = 120000;
+
+    // 迟迟拿不到首字节时给出「在连」的说明，避免 0% 看起来像卡死
+    var gotByte = false;
+    var stall = setTimeout(function () {
+      if (gotByte) return;
+      for (var i = 0; i < waiters.length; i++) {
+        if (waiters[i].live() && !waiters[i].silent) {
+          setRow(kind, 'run', 4, '连接中…（原图在境外 CDN，较慢）');
+          break;
+        }
+      }
+    }, 8000);
+    xhr.__got = 0;
+    xhr.onprogress = function (e) {
+      xhr.__got = e.loaded || 0;
+      var showProg = false;
+      for (var i = 0; i < waiters.length; i++) {
+        if (waiters[i].live() && !waiters[i].silent) { showProg = true; break; }
+      }
+      if (!showProg) return;
+      if (e.lengthComputable && e.total > 0) {
+        var p = e.loaded / e.total * 100;
+        var got = (e.loaded / 1048576).toFixed(1);
+        setRow(kind, 'run', p, Math.floor(p) + '% ' + got + '/' + fmtMB(e.total));
+      } else {
+        setRow(kind, 'run', 15, fmtMB(e.loaded));
+      }
+      gotByte = true;
+    };
+    xhr.onload = function () {
+      clearTimeout(stall);
+      if (xhr.status >= 200 && xhr.status < 300 && xhr.response) {
+        settle(null, put(cache, keys, lim, url, URL.createObjectURL(xhr.response)));
+      } else {
+        settle('http ' + xhr.status);
+      }
+    };
+    xhr.onerror = function () { clearTimeout(stall); settle('error'); };
+    xhr.ontimeout = function () { clearTimeout(stall); settle('timeout'); };
+    xhr.onabort = function () { clearTimeout(stall); settle('abort'); };
+    xhr.send();
+    return xhr;
+  }
+
+  // 先解码再换 src：避免「旧图消失 → 空白 → 新图」的闪断。
+  // 解码失败就保持原样（不把 img.src 设成坏地址，否则整张图会破掉）。
+  function swapIn(url, live) {
+    var pre = new Image();
+    pre.onload = function () { if (live()) { img.src = url; } };
+    pre.src = url;
+  }
+
+  // 预取相邻 ±2 张压缩大图（每张 ≤0.2MB，代价极低），让左右切换近乎 0 延迟
+  function prefetchNear(i) {
+    var n = items.length;
+    if (n < 2) return;
+    var order = [i + 1, i - 1, i + 2, i - 2];
+    for (var m = 0; m < order.length; m++) {
+      var j = ((order[m] % n) + n) % n;
+      if (j === i) continue;
+      var el = items[j];
+      if (!el) continue;
+      var u = el.getAttribute('data-full') || el.getAttribute('href');
+      if (!u || cacheFull[u] || pendFull[u]) continue;
+      pendFull[u] = 1;
+      (function (target) {
+        loadImg(target, 'full', function () { return true; }, function () {
+          delete pendFull[target];
+        }, true);
+      })(u);
+    }
+  }
+
   // ---------- 显示 / 隐藏 ----------
   function show(i) {
     if (!items.length) return;
     cur = (i + items.length) % items.length;
     var b = ensureBox();
-    var cap = b.querySelector('figcaption');
     var a = items[cur];
-    if (window.__lazyNow) window.__lazyNow(a);   // 目标图若尚未懒加载，立即加载（跳过队列）
-    img.src = a.getAttribute('data-full') || a.getAttribute('href');
+    var myTok = ++token;
+    function live() { return token === myTok; }
+
+    // 切走即中止上一张的请求，释放连接（否则慢网下连接池被占满，越切越卡）
+    if (xhrFull) { try { xhrFull.abort(); } catch (e) {} xhrFull = null; }
+    if (xhrOrig) { try { xhrOrig.abort(); } catch (e) {} xhrOrig = null; }
+
+    var full = a.getAttribute('data-full') || a.getAttribute('href');
+    var orig = a.getAttribute('data-orig');
+    var pri = window.__origPriority ? window.__origPriority() : 'compressed';
+    if (window.__lazyNow) window.__lazyNow(a);   // 顺手确保页面上的缩略图本体也在加载
+
     img.alt = a.getAttribute('data-alt') || '';
-    cap.textContent = a.getAttribute('data-cap') || '';
-    reset();
+    var capText = a.getAttribute('data-cap') || '';
+    if (items.length > 1) {
+      capText = (capText ? capText + '　' : '') + '（' + (cur + 1) + ' / ' + items.length + '）';
+    }
+    b.querySelector('figcaption').textContent = capText;
     b.classList.add('on');
     document.body.style.overflow = 'hidden';
+    img.classList.remove('orig-loading');
+    reset();
+
+    // 原图行先摆出预期状态，避免用户以为「没反应」
+    if (!orig) setRow('orig', 'none', 0, '无原图存档');
+    else if (pri === 'orig') setRow('orig', 'wait', 0, '马上加载原图');
+    else setRow('orig', 'wait', 0, '先显示压缩图，随后载入原图');
+
+    // 1) 压缩大图：有缓存 0 延迟；否则边下边显示进度
+    if (cacheFull[full]) {
+      touch(keyFull, full);
+      img.src = cacheFull[full];
+      setRow('full', 'done', 100, '已就绪（缓存）');
+    } else {
+      setRow('full', 'run', 0, '0%');
+      xhrFull = loadImg(full, 'full', live, function (err, u) {
+        if (!live()) return;
+        if (err) {
+          // 取不到 blob（CORS / 断网）时退回浏览器原生加载，仍然能看图
+          setRow('full', 'run', 0, '改用直连');
+          img.src = full;
+          return;
+        }
+        swapIn(u, live);
+        setRow('full', 'done', 100, '已就绪');
+      });
+    }
+
+    // 2) 原图：两种模式都加载，最终在灯箱内替换为原图（不需要新开标签页）
+    //    「原图优先」立即并行拉取；「压缩优先」等压缩图先画出来（260ms）再拉，
+    //    避免原图抢带宽把首屏拖慢。失败/超时一律保留压缩图，不重试、不串图。
+    if (orig) {
+      var origDone = false;
+      var startOrig = function () {
+        if (!live() || origDone) return;
+        img.classList.add('orig-loading');
+
+        // 兜底通道：XHR 久无字节时，改用普通 Image 直接加载。
+        // 普通 img 不受 XHR 的 CORS 限制，只要浏览器能显示就能出来——
+        // 这也是「另开标签页才看得到原图」时那条能走通的路。
+        // 兜底通道只对同域 XHR 有意义：跨域本身已走原生 Image 直载，无需再兜一次
+        var fallback = null;
+        if (!isCross(orig)) {
+          fallback = setTimeout(function () {
+            if (origDone || !live()) return;
+            // 已经在收字节说明线路可用，只是慢——继续等，不要另起一个请求抢带宽
+            if (xhrOrig && xhrOrig.__got > 0) return;
+            setRow('orig', 'pulse', 100, '直连加载中…');
+            var pre = new Image();
+            pre.onload = function () {
+              if (origDone || !live()) return;
+              origDone = true;
+              if (xhrOrig) { try { xhrOrig.abort(); } catch (e) {} xhrOrig = null; }
+              img.src = orig;                    // 浏览器已缓存，换上即显示
+              img.classList.remove('orig-loading');
+              setRow('orig', 'done', 100, '已显示原图');
+            };
+            pre.src = orig;
+          }, 10000);
+        }
+
+        xhrOrig = loadImg(orig, 'orig', live, function (err, u) {
+          if (origDone || !live()) return;
+          clearTimeout(fallback);
+          if (err) {
+            setRow('orig', 'fail', 0,
+              err === 'direct' ? '直连失败，保留压缩图'
+              : err === 'timeout' ? '超时，保留压缩图' : '失败，保留压缩图');
+            img.classList.remove('orig-loading');
+            return;
+          }
+          origDone = true;
+          swapIn(u, live);
+          img.classList.remove('orig-loading');
+          setRow('orig', 'done', 100, '已显示原图');
+        });
+      };
+      if (pri === 'orig') startOrig();
+      else setTimeout(startOrig, 260);
+    }
+
+    prefetchNear(cur);
   }
 
   function hide() {
     if (!box) return;
+    token++;                        // 作废所有在途回调
+    if (xhrFull) { try { xhrFull.abort(); } catch (e) {} xhrFull = null; }
+    if (xhrOrig) { try { xhrOrig.abort(); } catch (e) {} xhrOrig = null; }
     box.classList.remove('on');
     document.body.style.overflow = '';
     if (drag) { drag = null; img.classList.remove('dragging', 'notrans'); }
@@ -133,13 +450,8 @@
       e.preventDefault();
       items = Array.prototype.slice.call(document.querySelectorAll('.fg-lb'));
       var idx = items.indexOf(a);
+      if (idx < 0) return;
       show(idx);
-      var cap = a.closest('.fg');
-      if (cap && cap.querySelector('figcaption')) {
-        box.querySelector('figcaption').textContent =
-          (cap.querySelector('figcaption').textContent || '') +
-          (items.length > 1 ? '　（' + (idx + 1) + ' / ' + items.length + '）' : '');
-      }
       return;
     }
     if (e.target.closest && (e.target.closest('.lb-close') || e.target.closest('.lb-bg'))) {
@@ -156,6 +468,11 @@
     else if (e.key === 'ArrowLeft') show(cur - 1);
     else if (e.key === 'ArrowRight') show(cur + 1);
   });
+
+  // 供「原图/压缩图 优先」按钮调用：切换模式后立即按新策略重载当前图
+  window.__lbRefresh = function () {
+    if (box && box.classList.contains('on')) show(cur);
+  };
 })();
 
 /* ---------- 图片懒加载（GitHub / github.io 加载优化） ----------
@@ -257,4 +574,58 @@
   } else {
     init();
   }
+})();
+
+/* ---------- 原图 / 压缩图 优先切换 ----------
+ * 两种模式的区别现在很明确（2026-11-09 重写）：
+ *   压缩优先（默认）——只加载 img_opt 压缩大图（全站单张 ≤0.2MB，秒开），
+ *                     不请求原图，省流量、切换最快；
+ *   原图优先        ——仍先显示压缩大图兜底（绝不空白），后台并行拉原图，
+ *                     到达后替换为原图；失败/超时保留压缩图，不影响切换。
+ * 两种模式都不会阻塞左右切换。灯箱顶部有两条独立进度条（压缩大图 / 原图）。
+ * 仅当页面存在 data-orig 时才显示按钮（当前未挂原图则不出现）。
+ * 按钮与提示贴在页面标题（h1）之后，不再固定在右下角。
+ * 切换模式时若灯箱正开着，立即按新策略重载当前图。
+ */
+(function () {
+  var KEY = 'origPriority';
+  function getP() { try { return localStorage.getItem(KEY) || 'compressed'; } catch (e) { return 'compressed'; } }
+  function setP(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  var bar = null, btn = null, hint = null;
+  function paint() {
+    if (!btn) return;
+    var p = getP();
+    btn.textContent = p === 'orig' ? '优先：原图' : '优先：压缩图';
+    btn.setAttribute('aria-pressed', p === 'orig' ? 'true' : 'false');
+    btn.classList.toggle('on-orig', p === 'orig');
+    if (hint) hint.classList.toggle('show', p === 'orig');
+  }
+  function ensure() {
+    if (bar || !document.querySelector('.fg-lb[data-orig]')) return;
+    bar = document.createElement('div');
+    bar.className = 'orig-bar';
+    btn = document.createElement('button');
+    btn.id = 'origToggle';
+    btn.type = 'button';
+    btn.addEventListener('click', function () {
+      setP(getP() === 'orig' ? 'compressed' : 'orig');
+      paint();
+      if (window.__lbRefresh) window.__lbRefresh();   // 灯箱开着就立即生效
+    });
+    hint = document.createElement('span');
+    hint.className = 'orig-hint';
+    hint.textContent = '提示：两种模式都会在灯箱内载入原图（单张 5–16MB，来自另一个 GitHub 仓库）。'
+      + '「压缩图优先」先显示压缩大图、随后自动替换为原图；「原图优先」则立即开始下载原图。'
+      + '灯箱左上角两条进度条分别显示压缩大图与原图的进度，加载期间可正常左右切换。';
+    bar.appendChild(btn);
+    bar.appendChild(hint);
+    var h1 = document.querySelector('h1');
+    if (h1 && h1.parentNode) h1.parentNode.insertBefore(bar, h1.nextSibling);
+    else document.body.appendChild(bar);
+    paint();
+  }
+  window.__origPriority = getP;
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ensure);
+  else ensure();
+  window.addEventListener('storage', function () { paint(); });
 })();

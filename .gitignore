@@ -2,6 +2,7 @@
 /img/
 /img_opt/
 /img_thumb/
+/img原图/
 
 # 本地发布用的批处理，不进仓库
 /发布到GitHub.bat
