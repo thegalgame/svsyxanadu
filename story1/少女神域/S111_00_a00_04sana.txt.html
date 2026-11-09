@@ -6,74 +6,8 @@
 <title>S111_00_a00_04sana.txt</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="../../assets/style.css">
-<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
-   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
-      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
-   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
-      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
-   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
-(function () {
-  function run() {
-    var root = document.documentElement;
-    var hd = document.querySelector('.hd');
-
-    function sync() {
-      if (!hd) return;
-      var h = Math.round(hd.getBoundingClientRect().height);
-      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
-    }
-    sync();
-    window.addEventListener('resize', sync);
-    window.addEventListener('orientationchange', sync);
-    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
-
-    function target() {
-      var h = location.hash;
-      if (!h || h.length < 2) return null;
-      var id = h.slice(1);
-      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
-      return document.getElementById(id);
-    }
-
-    var prev = root.style.scrollBehavior;
-
-    function instantJump() {
-      var t = target();
-      if (!t) return;
-      root.style.scrollBehavior = 'auto';
-      sync();                              /* 先更新 --hdr-h，再对齐 */
-      t.scrollIntoView({ block: 'start' });
-    }
-    function restore() {
-      root.style.scrollBehavior = prev;
-    }
-
-    if (location.hash.length > 1) {
-      instantJump();
-      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
-      window.addEventListener('load', function () {
-        instantJump();
-        setTimeout(restore, 60);
-      });
-      setTimeout(restore, 1500);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', run);
-  } else {
-    run();
-  }
-})();
-</script>
 </head>
 <body>
-<header class="hd">
-  <div class="hd-in">
-    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
-    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
-  </div>
-</header>
 <main class="main">
 <article class="storypage">
   <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F">《少女神域∽少女天獄》本篇剧本</a> / S111_00_a00_04sana.txt</p>
@@ -82,48 +16,48 @@
   <nav class="xj">
     <p class="xj-h">本页被引用的位置：<b>36</b> 处，来自 1 条词条<span class="xj-tip">点行号跳到本页对应行，点词条名进词条</span></p>
     <ul class="xj-l">
-      <li><a class="xj-ln" href="#L2" title="跳到本页第 2 行">L2</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L15" title="跳到本页第 15 行">L15</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L75" title="跳到本页第 75 行">L75</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c18">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L93" title="跳到本页第 93 行">L93</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c33">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L139" title="跳到本页第 139 行">L139</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L157" title="跳到本页第 157 行">L157</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c16">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L184" title="跳到本页第 184 行">L184</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c8">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L185" title="跳到本页第 185 行">L185</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c8">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L191" title="跳到本页第 191 行">L191</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L192" title="跳到本页第 192 行">L192</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L193" title="跳到本页第 193 行">L193</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L272" title="跳到本页第 272 行">L272</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c22">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L273" title="跳到本页第 273 行">L273</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c22">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L375" title="跳到本页第 375 行">L375</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L377" title="跳到本页第 377 行">L377</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L582" title="跳到本页第 582 行">L582</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c14">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L598" title="跳到本页第 598 行">L598</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L599" title="跳到本页第 599 行">L599</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L600" title="跳到本页第 600 行">L600</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L613" title="跳到本页第 613 行">L613</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c6">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L615" title="跳到本页第 615 行">L615</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c33">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L618" title="跳到本页第 618 行">L618</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c34">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L657" title="跳到本页第 657 行">L657</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c24">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L671" title="跳到本页第 671 行">L671</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c32">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L678" title="跳到本页第 678 行">L678</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c37">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L741" title="跳到本页第 741 行">L741</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c29">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L747" title="跳到本页第 747 行">L747</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c29">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L809" title="跳到本页第 809 行">L809</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c30">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L816" title="跳到本页第 816 行">L816</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c10">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L833" title="跳到本页第 833 行">L833</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c36">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L836" title="跳到本页第 836 行">L836</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c28">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L838" title="跳到本页第 838 行">L838</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c35">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L840" title="跳到本页第 840 行">L840</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c35">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L846" title="跳到本页第 846 行">L846</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c31">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L853" title="跳到本页第 853 行">L853</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c27">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L855" title="跳到本页第 855 行">L855</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c31">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L2~%2Astart%7C%E3%83%A1%E3%83%88%E3%82%B7%E3%82%A7%E3%83%A9%E2%85%A3" title="跳到本页第 2 行">L2</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L15~%3B%E4%B8%83%E5%B9%B4%E5%BE%8C%E3%81%AE%E3%82%A8%E3%83%94%E3%83%AD%E3%83%BC%E3%82%B0%E3%80%82%E5%85%A8%E7%B7%A8%E3%80%81%EF%BC%A3%EF%BC%A7%E3%81%A7%E3%80%82" title="跳到本页第 15 行">L15</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L75~%E3%80%8C%E5%86%B7%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%84%E3%81%97%E3%80%81%E7%86%B1%E3%81%8F%E3%82%82%E3%81%AA%E3%81%84%E2%80%A6%E2%80%A6%E6%8C%87%E5%85%88%E3%81%A8" title="跳到本页第 75 行">L75</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c18~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L93~%E3%80%8C%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E5%A4%A2%E3%81%8B%E3%82%89%E9%86%92%E3%82%81%E3%81%9F%E3%82%89%E3%80%81" title="跳到本页第 93 行">L93</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c33~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L139~%E3%80%8C%E3%81%AF%E3%82%84%E3%81%8F%E3%81%8D%E3%81%A6%E3%81%BB%E3%81%97%E3%81%84%E3%81%AA%E2%80%A6%E2%80%A6%E3%81%93%E3%81%93%E3%80%81%E3%81%99%E3%81%94%E3%81%8F" title="跳到本页第 139 行">L139</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L157~%E3%80%8C%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83%E3%82%93%E3%81%AB%E4%BC%9A%E3%81%84%E3%81%9F%E3%81%84%5B%E2%80%95%E2%80%95%5D%E3%81%BF%E3%82%93%E3%81%AA" title="跳到本页第 157 行">L157</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c16~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L184~%E3%81%A0%E3%81%A3%E3%81%A6%E3%80%81%E6%B4%9E%E7%AA%9F%E3%81%AE%E4%B8%AD%E3%81%AE%E5%85%89%E3%81%A7%E3%82%8F%E3%81%8B%E3%82%8B%E3%82%82%E3%81%AE%E3%80%82" title="跳到本页第 184 行">L184</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c8~S109_00_a01_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L185~%E6%9C%9D%E3%81%8C%E3%81%8D%E3%81%9F%E3%82%93%E3%81%A0%E3%80%82%E3%81%9F%E3%81%B6%E3%82%93%E2%80%A6%E2%80%A6%E3%81%86%E3%81%86%E3%82%93%E3%80%81%E3%81%9C%E3%81%A3" title="跳到本页第 185 行">L185</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c8~S109_00_a01_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L191~%E3%81%8A%E3%81%84%E3%81%97%E3%81%84%E3%83%91%E3%83%B3%E3%81%8C%E9%A3%9F%E3%81%B9%E3%81%9F%E3%81%84%E3%80%82" title="跳到本页第 191 行">L191</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21~S105_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L192~%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E6%96%99%E7%90%86%E3%80%81%E3%81%AF%E3%82%84%E3%81%8F%E9%A3%9F%E3%81%B9%E3%81%9F%E3%81%84%E3%80%82" title="跳到本页第 192 行">L192</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21~S105_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L193~%E3%81%8A%E6%AF%8D%E3%81%95%E3%82%93%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC%E3%81%AE%E5%8C%82%E3%81%84%E3%82%82%E3%80%81%E3%81%AF%E3%82%84%E3%81%8F%E3%80%81" title="跳到本页第 193 行">L193</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21~S105_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L272~%E8%90%BD%E3%81%A1%E3%81%A6%E3%81%84%E3%81%9F%E7%9F%B3%E3%81%A7%E3%80%81%E5%B2%A9%E3%81%AB%E6%A8%A1%E6%A7%98%E3%82%92%E6%9B%B8%E3%81%8F%E3%81%93%E3%81%A8%E3%81%AB" title="跳到本页第 272 行">L272</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c22~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L273~%E5%B0%8F%E3%81%95%E3%81%8F%E3%80%81%E3%83%90%E3%83%83%E3%83%86%E3%83%B3%E3%81%AE%E5%BD%A2%E3%81%AB%E5%82%B7%E3%82%92%E3%81%A4%E3%81%91%E3%82%8B%E3%81%AE%E3%80%82" title="跳到本页第 273 行">L273</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c22~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L375~%E3%81%9A%E3%81%A3%E3%81%A8%E3%80%81%E7%9B%AE%E3%82%92%E9%96%89%E3%81%98%E3%81%A6%E3%81%8A%E3%81%93%E3%81%86%E3%81%A3%E3%81%A6%E6%80%9D%E3%81%A3%E3%81%9F%E3%80%82" title="跳到本页第 375 行">L375</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L377~%E5%85%A8%E7%84%B6%E7%9C%A0%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%84%E3%81%91%E3%82%8C%E3%81%A9%E3%80%81%E5%AF%9D%E3%81%A6%E3%82%8B%E3%81%B5%E3%82%8A%E3%82%92%E3%81%97" title="跳到本页第 377 行">L377</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L582~%E3%81%A0%E3%81%A3%E3%81%A6%E3%82%82%E3%81%86%E3%80%81%5B%E7%A5%A5%E9%82%A3%2C%E3%81%95%E3%81%AA%5D%E3%81%AF%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83" title="跳到本页第 582 行">L582</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c14~S097_00_a00_01yuki">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L598~%E7%A5%A5%E9%82%A3%20voice%3DSN238029%5D" title="跳到本页第 598 行">L598</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L599~%E3%80%90%E7%A5%A5%E9%82%A3%E3%80%91" title="跳到本页第 599 行">L599</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L600~%E3%80%8C%E4%BD%95%E3%82%82%E5%A4%89%E3%82%8F%E3%82%89%E3%81%AA%E3%81%84%E3%81%97%E3%80%81%E8%AA%B0%E3%82%82%E6%9D%A5%E3%81%A6%E3%81%8F%E3%82%8C%E3%81%AA%E3%81%84" title="跳到本页第 600 行">L600</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L613~%E5%AF%92%E3%81%95%E3%82%82%E3%80%81%E7%86%B1%E3%81%95%E3%82%82%E3%80%81%E3%81%8A%E3%81%AA%E3%81%8B%E3%82%82%E3%81%99%E3%81%8B%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3" title="跳到本页第 613 行">L613</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c6~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L615~%E3%81%9A%E3%81%A3%E3%81%A8%E3%80%81%5B%E7%A5%A5%E9%82%A3%2C%E3%81%95%E3%81%AA%5D%E3%81%AF%E3%81%93%E3%81%93%E3%81%AB%E6%9D%A5%E3%81%9F%E3%81%A8" title="跳到本页第 615 行">L615</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c33~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L618~%E3%80%8C%E3%81%9D%E3%82%8C%E3%81%AF%E9%81%95%E3%81%86%E3%82%88%5B%E2%80%95%E2%80%95%5D%E3%81%84%E3%81%BE" title="跳到本页第 618 行">L618</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c34~S109_00_a01_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L657~%E3%80%8C%E5%83%95%E3%81%AF%E3%80%81%E6%9C%80%E5%88%9D%E3%81%AE%E5%A4%A2%E3%81%95%5B%E2%80%95%E2%80%95%5D%E4%B8%80%E7%95%AA%E5%8F%B6%E3%81%88%E3%81%9F" title="跳到本页第 657 行">L657</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c24~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L671~%E3%80%8C%E3%81%A7%E3%82%82%E3%80%81%5B%E7%A5%A5%E9%82%A3%2C%E3%81%95%E3%81%AA%5D%E3%81%A1%E3%82%83%E3%82%93%E3%81%AA%E3%82%89%E3%80%81%E3%81%8D" title="跳到本页第 671 行">L671</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c32~Lass%E5%AE%98%E6%96%B9%E8%AE%BF%E8%B0%88.txt%EF%BC%9A%20%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L678~%E3%80%8C%E5%83%95%E3%81%AE%E3%80%81%E7%8B%AC%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AA%E5%B9%B8%E3%81%9B%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84" title="跳到本页第 678 行">L678</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c37~S108_00_a00.txt%EF%BC%88%E5%BE%97%E5%AD%90">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L741~%E3%81%AE%E6%89%8B%E3%82%92%E6%8F%A1%E3%81%A3%E3%81%A6%E3%81%84%E3%81%9F%E3%81%AE%E3%81%AF%5B%E2%80%95%E2%80%95%5D%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83" title="跳到本页第 741 行">L741</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c29~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L747~%E3%80%8C%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83%E3%82%93%EF%BC%9F%20%E3%81%BB%E3%82%93%E3%82%82%E3%81%AE%EF%BC%9F%E3%80%8D" title="跳到本页第 747 行">L747</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c29~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L809~%E3%80%8C%E3%82%8F%E3%81%8B%E3%82%93%E3%81%AA%E3%81%84%E2%80%A6%E2%80%A6%E3%81%A7%E3%82%82%E3%80%81%E6%B3%A3%E3%81%84%E3%81%A6%E3%82%8B%E3%82%93%E3%81%A0%E3%81%AD" title="跳到本页第 809 行">L809</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c30~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L816~%E3%80%8C%E3%81%86%E3%81%86%E3%82%93%E3%80%81%E3%81%8A%E3%81%BC%E3%81%88%E3%81%A6%E3%81%AA%E3%81%84%5B%E2%80%95%E2%80%95%5D%E3%81%A7%E3%82%82%E3%80%81" title="跳到本页第 816 行">L816</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c10~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L833~%E3%81%9D%E3%81%97%E3%81%A6%5B%E2%80%95%E2%80%95%5D%E4%BB%A3%E3%82%8F%E3%82%8A%E3%81%AB%E3%80%81%E5%A4%A7%E5%88%87%E3%81%AA%E4%BD%95%E3%81%8B%E3%82%92" title="跳到本页第 833 行">L833</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c36~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L836~%E3%80%8C%5B%E7%A5%A5%E9%82%A3%2C%E3%81%95%E3%81%AA%5D%E3%80%81%E5%AE%B6%E3%81%AB%E5%B8%B0%E3%82%8D%E3%81%86%E3%82%88%E3%80%82%E3%81%BF%E3%82%93" title="跳到本页第 836 行">L836</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c28~S105_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L838~%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83%E3%82%93%E3%81%AF%E3%80%81%5B%E7%A5%A5%E9%82%A3%2C%E3%81%95%E3%81%AA%5D%E3%81%AE%E6%89%8B%E3%82%92%E3%81%97" title="跳到本页第 838 行">L838</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c35~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L840~%E3%82%82%E3%80%81%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E6%89%8B%E3%82%92%E3%81%97%E3%81%A3%E3%81%8B%E3%82%8A%E3%81%A8%E6%8F%A1%E3%81%A3%E3%81%9F" title="跳到本页第 840 行">L840</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c35~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L846~%E4%BB%8A%E3%81%AF%E3%81%9F%E3%81%A0%E3%80%81%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E6%89%8B%E3%81%AE%E6%B8%A9%E3%81%8B%E3%81%95%E3%82%92%E6%84%9F" title="跳到本页第 846 行">L846</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c31~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L853~%E3%81%AE%E6%89%8B%E3%82%92%E7%B5%B6%E5%AF%BE%E3%81%AB%E9%9B%A2%E3%81%95%E3%81%AA%E3%81%84%E3%80%81%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E6%89%8B" title="跳到本页第 853 行">L853</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c27~S105_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L855~%E3%81%8A%E5%85%84%E3%81%A1%E3%82%83%E3%82%93%E3%81%8C%E3%81%84%E3%81%A6%E3%81%8F%E3%82%8C%E3%82%8C%E3%81%B0%E3%80%81%E3%82%82%E3%81%86%E4%BD%95%E3%81%8C%E5%BE%85" title="跳到本页第 855 行">L855</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c31~S111_00_a00_04sana">punitive justice·详解</a></li>
     </ul>
   </nav>
   <p class="note">本页为剧本文件的完整原样内容（含注释与演出指令；仅由原编码转换为 UTF-8，文字未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
   <div class="script">
     <div class="sl" id="L1"><span class="ln">1</span><span class="tx">;//FILEID=238</span></div>
-    <div class="sl has-xr" id="L2"><span class="ln">2</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11" title="词条考据：punitive justice·详解">*start</a>|メトシェラⅣ</span></div>
+    <div class="sl has-xr" id="L2"><span class="ln">2</span><span class="tx">*start|<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11~S111_00_a00_04sana" title="词条考据：punitive justice·详解">メトシェラⅣ</a></span></div>
     <div class="sl" id="L3"><span class="ln">3</span><span class="tx">[initscene]</span></div>
     <div class="sl" id="L4"><span class="ln">4</span><span class="tx">;[voicebase base=]</span></div>
     <div class="sl" id="L5"><span class="ln">5</span><span class="tx"></span></div>
@@ -136,7 +70,7 @@
     <div class="sl" id="L12"><span class="ln">12</span><span class="tx">;CG　　　　　　SN≪111≫日付≪???≫CGfile設定≪≫</span></div>
     <div class="sl" id="L13"><span class="ln">13</span><span class="tx"></span></div>
     <div class="sl" id="L14"><span class="ln">14</span><span class="tx">;■■■■■■■　本文　■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■■□■■■■■■■■■■■■■■■■■■■■■■▽■■■■■■■■■■◎</span></div>
-    <div class="sl has-xr" id="L15"><span class="ln">15</span><span class="tx">;<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11" title="词条考据：punitive justice·详解">七年後のエピローグ。全編、ＣＧで</a>。(済)</span></div>
+    <div class="sl has-xr" id="L15"><span class="ln">15</span><span class="tx">;<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11~S111_00_a00_04sana" title="词条考据：punitive justice·详解">七年後のエピローグ。全編、ＣＧで</a>。(済)</span></div>
     <div class="sl" id="L16"><span class="ln">16</span><span class="tx"></span></div>
     <div class="sl" id="L17"><span class="ln">17</span><span class="tx">*not_initscene|メトシェラⅣ</span></div>
     <div class="sl" id="L18"><span class="ln">18</span><span class="tx"></span></div>
@@ -196,7 +130,7 @@
     <div class="sl" id="L72"><span class="ln">72</span><span class="tx"></span></div>
     <div class="sl" id="L73"><span class="ln">73</span><span class="tx">[祥那 voice=SN238001]</span></div>
     <div class="sl" id="L74"><span class="ln">74</span><span class="tx">【祥那】</span></div>
-    <div class="sl has-xr" id="L75"><span class="ln">75</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c18" title="词条考据：punitive justice·详解">冷たくないし、熱くもない……指先とか普通に動くのに、全然感触がない</a>」</span></div>
+    <div class="sl has-xr" id="L75"><span class="ln">75</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c18~S111_00_a00_04sana" title="词条考据：punitive justice·详解">冷たくないし、熱くもない……指先とか普通に動くのに、全然感触がない</a>」</span></div>
     <div class="sl" id="L76"><span class="ln">76</span><span class="tx"></span></div>
     <div class="sl" id="L77"><span class="ln">77</span><span class="tx">エアコンもコタツもホットカーペットもないのに、[祥那,さな]、全然寒くない。</span></div>
     <div class="sl" id="L78"><span class="ln">78</span><span class="tx"></span></div>
@@ -214,7 +148,7 @@
     <div class="sl" id="L90"><span class="ln">90</span><span class="tx"></span></div>
     <div class="sl" id="L91"><span class="ln">91</span><span class="tx">[祥那 voice=SN238003]</span></div>
     <div class="sl" id="L92"><span class="ln">92</span><span class="tx">【祥那】</span></div>
-    <div class="sl has-xr" id="L93"><span class="ln">93</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c33" title="词条考据：punitive justice·详解">お兄ちゃんの夢から醒めたら、[祥那,さな]、変わっちゃっ</a>てた」</span></div>
+    <div class="sl has-xr" id="L93"><span class="ln">93</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c33~S111_00_a00_04sana" title="词条考据：punitive justice·详解">お兄ちゃんの夢から醒めたら、[祥那,さな]、変わっちゃってた</a>」</span></div>
     <div class="sl" id="L94"><span class="ln">94</span><span class="tx"></span></div>
     <div class="sl" id="L95"><span class="ln">95</span><span class="tx">[祥那,さな]、どうしよう……。</span></div>
     <div class="sl" id="L96"><span class="ln">96</span><span class="tx"></span></div>
@@ -260,7 +194,7 @@
     <div class="sl" id="L136"><span class="ln">136</span><span class="tx"></span></div>
     <div class="sl" id="L137"><span class="ln">137</span><span class="tx">[祥那 voice=SN238007]</span></div>
     <div class="sl" id="L138"><span class="ln">138</span><span class="tx">【祥那】</span></div>
-    <div class="sl has-xr" id="L139"><span class="ln">139</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11" title="词条考据：punitive justice·详解">はやくきてほしいな……ここ、すごく寂しい</a>」</span></div>
+    <div class="sl has-xr" id="L139"><span class="ln">139</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c11~S111_00_a00_04sana" title="词条考据：punitive justice·详解">はやくきてほしいな……ここ、すごく寂しい</a>」</span></div>
     <div class="sl" id="L140"><span class="ln">140</span><span class="tx"></span></div>
     <div class="sl" id="L141"><span class="ln">141</span><span class="tx">一人でいるのは、寂しい[――]寒くも熱くもないのに、寂しくて[祥那,さな]、体が震えだしそう。</span></div>
     <div class="sl" id="L142"><span class="ln">142</span><span class="tx"></span></div>
@@ -278,7 +212,7 @@
     <div class="sl" id="L154"><span class="ln">154</span><span class="tx"></span></div>
     <div class="sl" id="L155"><span class="ln">155</span><span class="tx">[祥那 voice=SN238009]</span></div>
     <div class="sl" id="L156"><span class="ln">156</span><span class="tx">【祥那】</span></div>
-    <div class="sl has-xr" id="L157"><span class="ln">157</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c16" title="词条考据：punitive justice·详解">お兄ちゃんに会いたい[――]みんなに会いたい[――</a>]」</span></div>
+    <div class="sl has-xr" id="L157"><span class="ln">157</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c16~S111_00_a00_04sana" title="词条考据：punitive justice·详解">お兄ちゃんに会いたい[――]みんなに会いたい[――</a>]」</span></div>
     <div class="sl" id="L158"><span class="ln">158</span><span class="tx"></span></div>
     <div class="sl" id="L159"><span class="ln">159</span><span class="tx">お兄ちゃん[――]みんな[――]。</span></div>
     <div class="sl" id="L160"><span class="ln">160</span><span class="tx"></span></div>
@@ -305,16 +239,16 @@
     <div class="sl" id="L181"><span class="ln">181</span><span class="tx">[祥那,さな]には、よくわからなくなってきた。</span></div>
     <div class="sl" id="L182"><span class="ln">182</span><span class="tx"></span></div>
     <div class="sl" id="L183"><span class="ln">183</span><span class="tx">でも、たぶん一日はたっていた。</span></div>
-    <div class="sl has-xr" id="L184"><span class="ln">184</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c8" title="词条考据：punitive justice·详解">だって、洞窟の中の光でわかるもの。</a></span></div>
-    <div class="sl has-xr" id="L185"><span class="ln">185</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c8" title="词条考据：punitive justice·详解">朝がきたんだ</a>。たぶん……ううん、ぜったい、そうだと思う。</span></div>
+    <div class="sl has-xr" id="L184"><span class="ln">184</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c8~S109_00_a01_04sana" title="词条考据：punitive justice·详解">だって、洞窟の中の光でわかるもの。</a></span></div>
+    <div class="sl has-xr" id="L185"><span class="ln">185</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c8~S109_00_a01_04sana" title="词条考据：punitive justice·详解">朝がきたんだ</a>。たぶん……ううん、ぜったい、そうだと思う。</span></div>
     <div class="sl" id="L186"><span class="ln">186</span><span class="tx"></span></div>
     <div class="sl" id="L187"><span class="ln">187</span><span class="tx">よく、わかんなくなってきた。</span></div>
     <div class="sl" id="L188"><span class="ln">188</span><span class="tx">だって[祥那,さな]、お腹がぜんぜんすかないから。</span></div>
     <div class="sl" id="L189"><span class="ln">189</span><span class="tx">冷たさも、温かさも、ご飯がほしいかどうかも、よくわかんなくなってきた……。</span></div>
     <div class="sl" id="L190"><span class="ln">190</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L191"><span class="ln">191</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21" title="词条考据：punitive justice·详解">おいしいパンが食べたい。</a></span></div>
-    <div class="sl has-xr" id="L192"><span class="ln">192</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21" title="词条考据：punitive justice·详解">お兄ちゃんの料理、はやく食べたい。</a></span></div>
-    <div class="sl has-xr" id="L193"><span class="ln">193</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21" title="词条考据：punitive justice·详解">お母さんのコーヒーの匂いも、はやく、はやく[――</a>]。</span></div>
+    <div class="sl has-xr" id="L191"><span class="ln">191</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21~S105_00_a00_04sana" title="词条考据：punitive justice·详解">おいしいパンが食べたい。</a></span></div>
+    <div class="sl has-xr" id="L192"><span class="ln">192</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21~S105_00_a00_04sana" title="词条考据：punitive justice·详解">お兄ちゃんの料理、はやく食べたい。</a></span></div>
+    <div class="sl has-xr" id="L193"><span class="ln">193</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c21~S105_00_a00_04sana" title="词条考据：punitive justice·详解">お母さんのコーヒーの匂いも、はやく、はやく[――</a>]。</span></div>
     <div class="sl" id="L194"><span class="ln">194</span><span class="tx"></span></div>
     <div class="sl" id="L195"><span class="ln">195</span><span class="tx">[暗転]</span></div>
     <div class="sl" id="L196"><span class="ln">196</span><span class="tx">[se buf=0 stop=1000]</span></div>
@@ -393,8 +327,8 @@
     <div class="sl" id="L269"><span class="ln">269</span><span class="tx">だから[祥那,さな]、自分で日にちを決めることにした。</span></div>
     <div class="sl" id="L270"><span class="ln">270</span><span class="tx">決める前は、何日たっていたのかは、もうわからない。</span></div>
     <div class="sl" id="L271"><span class="ln">271</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L272"><span class="ln">272</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c22" title="词条考据：punitive justice·详解">落ちていた石で、岩に模様を書くことにした。</a></span></div>
-    <div class="sl has-xr" id="L273"><span class="ln">273</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c22" title="词条考据：punitive justice·详解">小さく、バッテンの形に傷をつけるの</a>。</span></div>
+    <div class="sl has-xr" id="L272"><span class="ln">272</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c22~S111_00_a00_04sana" title="词条考据：punitive justice·详解">落ちていた石で、岩に模様を書くことにした。</a></span></div>
+    <div class="sl has-xr" id="L273"><span class="ln">273</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c22~S111_00_a00_04sana" title="词条考据：punitive justice·详解">小さく、バッテンの形に傷をつけるの</a>。</span></div>
     <div class="sl" id="L274"><span class="ln">274</span><span class="tx">洞窟が暗くなって、また明るくなれば、模様を増やしていく。</span></div>
     <div class="sl" id="L275"><span class="ln">275</span><span class="tx"></span></div>
     <div class="sl" id="L276"><span class="ln">276</span><span class="tx">こうすれば、[祥那,さな]がここにどれだけいるのかわかる。</span></div>
@@ -496,9 +430,9 @@
     <div class="sl" id="L372"><span class="ln">372</span><span class="tx"></span></div>
     <div class="sl" id="L373"><span class="ln">373</span><span class="tx">石を拾ってきて積み上げるのも、いい感じの石が見つからなくて無理。</span></div>
     <div class="sl" id="L374"><span class="ln">374</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L375"><span class="ln">375</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17" title="词条考据：punitive justice·详解">ずっと、目を閉じておこうって思った。</a></span></div>
+    <div class="sl has-xr" id="L375"><span class="ln">375</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17~S111_00_a00_04sana" title="词条考据：punitive justice·详解">ずっと、目を閉じておこうって思った。</a></span></div>
     <div class="sl" id="L376"><span class="ln">376</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L377"><span class="ln">377</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17" title="词条考据：punitive justice·详解">全然眠たくないけれど、寝てるふりをしていたら、誰かが[祥那,さな]を</a>起こしてくれると思うから。</span></div>
+    <div class="sl has-xr" id="L377"><span class="ln">377</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c17~S111_00_a00_04sana" title="词条考据：punitive justice·详解">全然眠たくないけれど、寝てるふりをしていたら、誰かが[祥那,さな]を起こしてくれると思うから</a>。</span></div>
     <div class="sl" id="L378"><span class="ln">378</span><span class="tx"></span></div>
     <div class="sl" id="L379"><span class="ln">379</span><span class="tx">誰かが[――]きっと[――]。</span></div>
     <div class="sl" id="L380"><span class="ln">380</span><span class="tx"></span></div>
@@ -703,7 +637,7 @@
     <div class="sl" id="L579"><span class="ln">579</span><span class="tx"></span></div>
     <div class="sl" id="L580"><span class="ln">580</span><span class="tx">たぶん、その声は[――][お兄ちゃん,・・・・・]かもしれない。</span></div>
     <div class="sl" id="L581"><span class="ln">581</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L582"><span class="ln">582</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c14" title="词条考据：punitive justice·详解">だってもう、[祥那,さな]はお兄ちゃんの声をずっと聞いていなかったから、本当のお兄ちゃんの声がよくわからなか</a>った。</span></div>
+    <div class="sl has-xr" id="L582"><span class="ln">582</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c14~S097_00_a00_01yuki" title="词条考据：punitive justice·详解">だってもう、[祥那,さな]はお兄ちゃんの声をずっと聞いていなかったから、本当のお兄ちゃんの声がよくわからなかった</a>。</span></div>
     <div class="sl" id="L583"><span class="ln">583</span><span class="tx"></span></div>
     <div class="sl" id="L584"><span class="ln">584</span><span class="tx">ただ、お兄ちゃんかもしれない人と話すのは、すこしうれしかった。</span></div>
     <div class="sl" id="L585"><span class="ln">585</span><span class="tx"></span></div>
@@ -719,9 +653,9 @@
     <div class="sl" id="L595"><span class="ln">595</span><span class="tx">【恂】</span></div>
     <div class="sl" id="L596"><span class="ln">596</span><span class="tx">「なぜだい？」</span></div>
     <div class="sl" id="L597"><span class="ln">597</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L598"><span class="ln">598</span><span class="tx">[祥那 <a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20" title="词条考据：punitive justice·详解">voice=SN238029]</a></span></div>
-    <div class="sl has-xr" id="L599"><span class="ln">599</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20" title="词条考据：punitive justice·详解">【祥那】</a></span></div>
-    <div class="sl has-xr" id="L600"><span class="ln">600</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20" title="词条考据：punitive justice·详解">「何も変わらないし、誰も来てくれないし……何も変わらないの</a>」</span></div>
+    <div class="sl has-xr" id="L598"><span class="ln">598</span><span class="tx">[<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20~S111_00_a00_04sana" title="词条考据：punitive justice·详解">祥那 voice=SN238029]</a></span></div>
+    <div class="sl has-xr" id="L599"><span class="ln">599</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20~S111_00_a00_04sana" title="词条考据：punitive justice·详解">【祥那】</a></span></div>
+    <div class="sl has-xr" id="L600"><span class="ln">600</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c20~S111_00_a00_04sana" title="词条考据：punitive justice·详解">「何も変わらないし、誰も来てくれないし……何も変わらないの</a>」</span></div>
     <div class="sl" id="L601"><span class="ln">601</span><span class="tx"></span></div>
     <div class="sl" id="L602"><span class="ln">602</span><span class="tx">【恂】</span></div>
     <div class="sl" id="L603"><span class="ln">603</span><span class="tx">「そうなのかい？」</span></div>
@@ -734,12 +668,12 @@
     <div class="sl" id="L610"><span class="ln">610</span><span class="tx"></span></div>
     <div class="sl" id="L611"><span class="ln">611</span><span class="tx">[祥那,さな]はもう、人間じゃなくなっちゃったから……。</span></div>
     <div class="sl" id="L612"><span class="ln">612</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L613"><span class="ln">613</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c6" title="词条考据：punitive justice·详解">寒さも、熱さも、おなかもすかなくなって……トイレはいかずにすむけど、年も取らないんだもん</a>。</span></div>
+    <div class="sl has-xr" id="L613"><span class="ln">613</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c6~S111_00_a00_04sana" title="词条考据：punitive justice·详解">寒さも、熱さも、おなかもすかなくなって……トイレはいかずにすむけど、年も取らないんだもん</a>。</span></div>
     <div class="sl" id="L614"><span class="ln">614</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L615"><span class="ln">615</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c33" title="词条考据：punitive justice·详解">ずっと、[祥那,さな]はここに来たときのまま[――]服は、もうボロボロになって、なくなっちゃっ</a>たし。</span></div>
+    <div class="sl has-xr" id="L615"><span class="ln">615</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c33~S111_00_a00_04sana" title="词条考据：punitive justice·详解">ずっと、[祥那,さな]はここに来たときのまま[――]服は、もうボロボロになって、なくなっちゃったし</a>。</span></div>
     <div class="sl" id="L616"><span class="ln">616</span><span class="tx"></span></div>
     <div class="sl" id="L617"><span class="ln">617</span><span class="tx">【恂】</span></div>
-    <div class="sl has-xr" id="L618"><span class="ln">618</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c34" title="词条考据：punitive justice·详解">それは違うよ[――]いま[祥那,さな]ちゃんがこうしているのは、きっと意味がある</a>んだ」</span></div>
+    <div class="sl has-xr" id="L618"><span class="ln">618</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c34~S109_00_a01_04sana" title="词条考据：punitive justice·详解">それは違うよ[――]いま[祥那,さな]ちゃんがこうしているのは、きっと意味があるんだ</a>」</span></div>
     <div class="sl" id="L619"><span class="ln">619</span><span class="tx"></span></div>
     <div class="sl" id="L620"><span class="ln">620</span><span class="tx">[祥那 voice=SN238031]</span></div>
     <div class="sl" id="L621"><span class="ln">621</span><span class="tx">【祥那】</span></div>
@@ -778,7 +712,7 @@
     <div class="sl" id="L654"><span class="ln">654</span><span class="tx">お兄ちゃんのようで、お兄ちゃんじゃない人は、恥ずかしそうに笑った気がした。</span></div>
     <div class="sl" id="L655"><span class="ln">655</span><span class="tx"></span></div>
     <div class="sl" id="L656"><span class="ln">656</span><span class="tx">【恂/皇子】</span></div>
-    <div class="sl has-xr" id="L657"><span class="ln">657</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c24" title="词条考据：punitive justice·详解">僕は、最初の夢さ[――]一番叶えたくて、叶えられなかった夢。でも、やっと最後に叶った</a>」</span></div>
+    <div class="sl has-xr" id="L657"><span class="ln">657</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c24~S111_00_a00_04sana" title="词条考据：punitive justice·详解">僕は、最初の夢さ[――]一番叶えたくて、叶えられなかった夢。でも、やっと最後に叶った</a>」</span></div>
     <div class="sl" id="L658"><span class="ln">658</span><span class="tx"></span></div>
     <div class="sl" id="L659"><span class="ln">659</span><span class="tx">[祥那 voice=SN238035]</span></div>
     <div class="sl" id="L660"><span class="ln">660</span><span class="tx">【祥那】</span></div>
@@ -792,14 +726,14 @@
     <div class="sl" id="L668"><span class="ln">668</span><span class="tx">悲しそう[――]ああ、悲しいってこと、[祥那,さな]、思い出してきたのかな？</span></div>
     <div class="sl" id="L669"><span class="ln">669</span><span class="tx"></span></div>
     <div class="sl" id="L670"><span class="ln">670</span><span class="tx">【恂/皇子】</span></div>
-    <div class="sl has-xr" id="L671"><span class="ln">671</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c32" title="词条考据：punitive justice·详解">でも、[祥那,さな]ちゃんなら、きっとその幸せと共に、前に進んでくれると</a>思う」</span></div>
+    <div class="sl has-xr" id="L671"><span class="ln">671</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c32~Lass%E5%AE%98%E6%96%B9%E8%AE%BF%E8%B0%88.txt%EF%BC%9A%20%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91" title="词条考据：punitive justice·详解">でも、[祥那,さな]ちゃんなら、きっとその幸せと共に、前に進んでくれると思う</a>」</span></div>
     <div class="sl" id="L672"><span class="ln">672</span><span class="tx"></span></div>
     <div class="sl" id="L673"><span class="ln">673</span><span class="tx">[祥那 voice=SN238036]</span></div>
     <div class="sl" id="L674"><span class="ln">674</span><span class="tx">【祥那】</span></div>
     <div class="sl" id="L675"><span class="ln">675</span><span class="tx">「そうなの？」</span></div>
     <div class="sl" id="L676"><span class="ln">676</span><span class="tx"></span></div>
     <div class="sl" id="L677"><span class="ln">677</span><span class="tx">【恂/皇子】</span></div>
-    <div class="sl has-xr" id="L678"><span class="ln">678</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c37" title="词条考据：punitive justice·详解">僕の、独りよがりな幸せかもしれないけど[―</a>―]でも、僕は君たち[兄妹,ふたり]に、感謝したかったんだ」</span></div>
+    <div class="sl has-xr" id="L678"><span class="ln">678</span><span class="tx">「僕の、独りよがりな幸せかもしれないけど[――]<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c37~S108_00_a00.txt%EF%BC%88%E5%BE%97%E5%AD%90" title="词条考据：punitive justice·详解">でも、僕は君たち[兄妹,ふたり]に、感謝したかったんだ</a>」</span></div>
     <div class="sl" id="L679"><span class="ln">679</span><span class="tx"></span></div>
     <div class="sl" id="L680"><span class="ln">680</span><span class="tx">[祥那 voice=SN238037]</span></div>
     <div class="sl" id="L681"><span class="ln">681</span><span class="tx">【祥那】</span></div>
@@ -862,13 +796,13 @@
     <div class="sl" id="L738"><span class="ln">738</span><span class="tx">【恂】</span></div>
     <div class="sl" id="L739"><span class="ln">739</span><span class="tx">「あ……ここは……」</span></div>
     <div class="sl" id="L740"><span class="ln">740</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L741"><span class="ln">741</span><span class="tx">[<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c29" title="词条考据：punitive justice·详解">祥那,さな]の手を握っていたのは[――]お兄ちゃんだ</a>った。</span></div>
+    <div class="sl has-xr" id="L741"><span class="ln">741</span><span class="tx">[<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c29~S111_00_a00_04sana" title="词条考据：punitive justice·详解">祥那,さな]の手を握っていたのは[――]お兄ちゃんだった</a>。</span></div>
     <div class="sl" id="L742"><span class="ln">742</span><span class="tx"></span></div>
     <div class="sl" id="L743"><span class="ln">743</span><span class="tx">不思議すぎて、[祥那,さな]はお兄ちゃんが、本当にお兄ちゃんなのか、よくわからなかった。</span></div>
     <div class="sl" id="L744"><span class="ln">744</span><span class="tx"></span></div>
     <div class="sl" id="L745"><span class="ln">745</span><span class="tx">[祥那 voice=SN238040]</span></div>
     <div class="sl" id="L746"><span class="ln">746</span><span class="tx">【祥那】</span></div>
-    <div class="sl has-xr" id="L747"><span class="ln">747</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c29" title="词条考据：punitive justice·详解">お兄ちゃん？　ほんもの</a>？」</span></div>
+    <div class="sl has-xr" id="L747"><span class="ln">747</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c29~S111_00_a00_04sana" title="词条考据：punitive justice·详解">お兄ちゃん？　ほんもの</a>？」</span></div>
     <div class="sl" id="L748"><span class="ln">748</span><span class="tx"></span></div>
     <div class="sl" id="L749"><span class="ln">749</span><span class="tx">【恂】</span></div>
     <div class="sl" id="L750"><span class="ln">750</span><span class="tx">「[祥那,さな]……かい？　その前に、本物ってなんだよ……」</span></div>
@@ -930,14 +864,14 @@
     <div class="sl" id="L806"><span class="ln">806</span><span class="tx"></span></div>
     <div class="sl" id="L807"><span class="ln">807</span><span class="tx">[祥那 voice=SN238045]</span></div>
     <div class="sl" id="L808"><span class="ln">808</span><span class="tx">【祥那】</span></div>
-    <div class="sl has-xr" id="L809"><span class="ln">809</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c30" title="词条考据：punitive justice·详解">わかんない……でも、泣いてるんだね</a>」</span></div>
+    <div class="sl has-xr" id="L809"><span class="ln">809</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c30~S111_00_a00_04sana" title="词条考据：punitive justice·详解">わかんない……でも、泣いてるんだね</a>」</span></div>
     <div class="sl" id="L810"><span class="ln">810</span><span class="tx"></span></div>
     <div class="sl" id="L811"><span class="ln">811</span><span class="tx">【恂】</span></div>
     <div class="sl" id="L812"><span class="ln">812</span><span class="tx">「[祥那,さな]、何かあったの？」</span></div>
     <div class="sl" id="L813"><span class="ln">813</span><span class="tx"></span></div>
     <div class="sl" id="L814"><span class="ln">814</span><span class="tx">[祥那 voice=SN238046]</span></div>
     <div class="sl" id="L815"><span class="ln">815</span><span class="tx">【祥那】</span></div>
-    <div class="sl has-xr" id="L816"><span class="ln">816</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c10" title="词条考据：punitive justice·详解">ううん、おぼえてない[――]でも、泣いちゃうことは起きたんだと思う</a>」</span></div>
+    <div class="sl has-xr" id="L816"><span class="ln">816</span><span class="tx">「<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c10~S111_00_a00_04sana" title="词条考据：punitive justice·详解">ううん、おぼえてない[――]でも、泣いちゃうことは起きたんだと思う</a>」</span></div>
     <div class="sl" id="L817"><span class="ln">817</span><span class="tx"></span></div>
     <div class="sl" id="L818"><span class="ln">818</span><span class="tx">【恂】</span></div>
     <div class="sl" id="L819"><span class="ln">819</span><span class="tx">「ははっ、何だよそれ」</span></div>
@@ -954,29 +888,29 @@
     <div class="sl" id="L830"><span class="ln">830</span><span class="tx">【祥那】</span></div>
     <div class="sl" id="L831"><span class="ln">831</span><span class="tx">「何だろうね……本当に」</span></div>
     <div class="sl" id="L832"><span class="ln">832</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L833"><span class="ln">833</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c36" title="词条考据：punitive justice·详解">そして[――]代わりに、大切な何かを失ってしまったことがわかったから</a>。</span></div>
+    <div class="sl has-xr" id="L833"><span class="ln">833</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c36~S111_00_a00_04sana" title="词条考据：punitive justice·详解">そして[――]代わりに、大切な何かを失ってしまったことがわかったから</a>。</span></div>
     <div class="sl" id="L834"><span class="ln">834</span><span class="tx"></span></div>
     <div class="sl" id="L835"><span class="ln">835</span><span class="tx">【恂】</span></div>
-    <div class="sl has-xr" id="L836"><span class="ln">836</span><span class="tx">「[祥那,さな]、<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c28" title="词条考据：punitive justice·详解">家に帰ろうよ。みんなも心配してるよ</a>」</span></div>
+    <div class="sl has-xr" id="L836"><span class="ln">836</span><span class="tx">「[祥那,さな]、<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c28~S105_00_a00_04sana" title="词条考据：punitive justice·详解">家に帰ろうよ。みんなも心配してるよ</a>」</span></div>
     <div class="sl" id="L837"><span class="ln">837</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L838"><span class="ln">838</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c35" title="词条考据：punitive justice·详解">お兄ちゃんは、[祥那,さな]の手をしっかりと握ってくれた。</a></span></div>
+    <div class="sl has-xr" id="L838"><span class="ln">838</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c35~S111_00_a00_04sana" title="词条考据：punitive justice·详解">お兄ちゃんは、[祥那,さな]の手をしっかりと握ってくれた。</a></span></div>
     <div class="sl" id="L839"><span class="ln">839</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L840"><span class="ln">840</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c35" title="词条考据：punitive justice·详解">[祥那,さな]も、お兄ちゃんの手をしっかり</a>と握った。</span></div>
+    <div class="sl has-xr" id="L840"><span class="ln">840</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c35~S111_00_a00_04sana" title="词条考据：punitive justice·详解">[祥那,さな]も、お兄ちゃんの手をしっかりと握った</a>。</span></div>
     <div class="sl" id="L841"><span class="ln">841</span><span class="tx"></span></div>
     <div class="sl" id="L842"><span class="ln">842</span><span class="tx">[祥那 voice=SN238048]</span></div>
     <div class="sl" id="L843"><span class="ln">843</span><span class="tx">【祥那】</span></div>
     <div class="sl" id="L844"><span class="ln">844</span><span class="tx">「うん……そうだね。帰ろう、[祥那,さな]たちの家に」</span></div>
     <div class="sl" id="L845"><span class="ln">845</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L846"><span class="ln">846</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c31" title="词条考据：punitive justice·详解">今はただ、お兄ちゃんの手の温かさを感じたい[――</a>]。</span></div>
+    <div class="sl has-xr" id="L846"><span class="ln">846</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c31~S111_00_a00_04sana" title="词条考据：punitive justice·详解">今はただ、お兄ちゃんの手の温かさを感じたい[――</a>]。</span></div>
     <div class="sl" id="L847"><span class="ln">847</span><span class="tx"></span></div>
     <div class="sl" id="L848"><span class="ln">848</span><span class="tx">【恂】</span></div>
     <div class="sl" id="L849"><span class="ln">849</span><span class="tx">「でも、僕ら二人ともこんな姿じゃ、みんな驚くだろうね」</span></div>
     <div class="sl" id="L850"><span class="ln">850</span><span class="tx"></span></div>
     <div class="sl" id="L851"><span class="ln">851</span><span class="tx">お兄ちゃんは[祥那,さな]に笑いかけてくれた。</span></div>
     <div class="sl" id="L852"><span class="ln">852</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L853"><span class="ln">853</span><span class="tx">[<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c27" title="词条考据：punitive justice·详解">祥那,さな]の手を絶対に離さない、お兄ちゃんの手の優しい力を、じっと感じてい</a>たい。</span></div>
+    <div class="sl has-xr" id="L853"><span class="ln">853</span><span class="tx">[<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c27~S105_00_a00_04sana" title="词条考据：punitive justice·详解">祥那,さな]の手を絶対に離さない、お兄ちゃんの手の優しい力を、じっと感じていたい</a>。</span></div>
     <div class="sl" id="L854"><span class="ln">854</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L855"><span class="ln">855</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c31" title="词条考据：punitive justice·详解">お兄ちゃんがいてくれれば、もう何が待っていようと[――]怖くない</a>。</span></div>
+    <div class="sl has-xr" id="L855"><span class="ln">855</span><span class="tx"><a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c31~S111_00_a00_04sana" title="词条考据：punitive justice·详解">お兄ちゃんがいてくれれば、もう何が待っていようと[――]怖くない</a>。</span></div>
     <div class="sl" id="L856"><span class="ln">856</span><span class="tx"></span></div>
     <div class="sl" id="L857"><span class="ln">857</span><span class="tx">[msgoff]</span></div>
     <div class="sl" id="L858"><span class="ln">858</span><span class="tx">[ホワイトアウト time=3000]</span></div>
@@ -998,15 +932,12 @@
   <section class="xref">
     <h2 class="lst-h">引用本文件的词条（1）</h2>
     <ul class="lst">
-      <li><a href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c2">punitive justice·详解</a></li>
+      <li><a href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c2~S109_00_a01_04sana">punitive justice·详解</a></li>
     </ul>
   </section>
 </article>
 
 </main>
-<footer class="ft">
-  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
-  <p>参考资料 · 《少女神域∽少女天獄》本篇剧本 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
-</footer>
+<script src="../../assets/chrome.js" defer></script>
 </body>
 </html>

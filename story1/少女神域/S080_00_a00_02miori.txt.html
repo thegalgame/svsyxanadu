@@ -6,74 +6,8 @@
 <title>S080_00_a00_02miori.txt</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="../../assets/style.css">
-<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
-   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
-      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
-   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
-      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
-   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
-(function () {
-  function run() {
-    var root = document.documentElement;
-    var hd = document.querySelector('.hd');
-
-    function sync() {
-      if (!hd) return;
-      var h = Math.round(hd.getBoundingClientRect().height);
-      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
-    }
-    sync();
-    window.addEventListener('resize', sync);
-    window.addEventListener('orientationchange', sync);
-    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
-
-    function target() {
-      var h = location.hash;
-      if (!h || h.length < 2) return null;
-      var id = h.slice(1);
-      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
-      return document.getElementById(id);
-    }
-
-    var prev = root.style.scrollBehavior;
-
-    function instantJump() {
-      var t = target();
-      if (!t) return;
-      root.style.scrollBehavior = 'auto';
-      sync();                              /* 先更新 --hdr-h，再对齐 */
-      t.scrollIntoView({ block: 'start' });
-    }
-    function restore() {
-      root.style.scrollBehavior = prev;
-    }
-
-    if (location.hash.length > 1) {
-      instantJump();
-      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
-      window.addEventListener('load', function () {
-        instantJump();
-        setTimeout(restore, 60);
-      });
-      setTimeout(restore, 1500);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', run);
-  } else {
-    run();
-  }
-})();
-</script>
 </head>
 <body>
-<header class="hd">
-  <div class="hd-in">
-    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
-    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
-  </div>
-</header>
 <main class="main">
 <article class="storypage">
   <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F">《少女神域∽少女天獄》本篇剧本</a> / S080_00_a00_02miori.txt</p>
@@ -82,8 +16,8 @@
   <nav class="xj">
     <p class="xj-h">本页被引用的位置：<b>2</b> 处，来自 1 条词条<span class="xj-tip">点行号跳到本页对应行，点词条名进词条</span></p>
     <ul class="xj-l">
-      <li><a class="xj-ln" href="#L454" title="跳到本页第 454 行">L454</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c12">キミ∽ツナグ·详解</a></li>
-      <li><a class="xj-ln" href="#L456" title="跳到本页第 456 行">L456</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c13">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L454~%E3%81%A1%E3%82%83%E3%82%93%E3%81%AF%E5%BE%AE%E7%AC%91%E3%82%93%E3%81%A7%E3%81%84%E3%81%9F%5B%E2%80%95%E2%80%95%5D%E3%81%A8%E3%81%A6%E3%82%82%E3%80%81" title="跳到本页第 454 行">L454</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c12~S080_00_a00_02mior">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L456~%E3%81%9D%E3%82%8C%E3%82%92%E8%A6%8B%E3%81%9F%E3%81%A8%E3%81%8D%E3%80%81%E5%83%95%E3%81%AF%E5%BD%BC%E5%A5%B3%E3%82%92%E3%82%82%E3%81%86%E6%89%8B%E6%94%BE%E3%81%97" title="跳到本页第 456 行">L456</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c13~S000_00_a00.txt%EF%BC%9A%20%E6%97%A5">キミ∽ツナグ·详解</a></li>
     </ul>
   </nav>
   <p class="note">本页为剧本文件的完整原样内容（含注释与演出指令；仅由原编码转换为 UTF-8，文字未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
@@ -541,9 +475,9 @@
     <div class="sl" id="L451"><span class="ln">451</span><span class="tx">【碧織】</span></div>
     <div class="sl" id="L452"><span class="ln">452</span><span class="tx">「こうやって普通に話して、普通に手を繋いで、一緒に部屋に帰り、一緒に一つの布団で寝たり[――]」</span></div>
     <div class="sl" id="L453"><span class="ln">453</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L454"><span class="ln">454</span><span class="tx">[<a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c12" title="词条考据：キミ∽ツナグ·详解">碧織,みおり]ちゃんは微笑んでいた[――]とても、悲しそうな響き</a>と共に。</span></div>
+    <div class="sl has-xr" id="L454"><span class="ln">454</span><span class="tx">[<a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c12~S080_00_a00_02mior" title="词条考据：キミ∽ツナグ·详解">碧織,みおり]ちゃんは微笑んでいた[――]とても、悲しそうな響きと共に</a>。</span></div>
     <div class="sl" id="L455"><span class="ln">455</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L456"><span class="ln">456</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c13" title="词条考据：キミ∽ツナグ·详解">それを見たとき、僕は彼女をもう手放したくないと思った</a>。</span></div>
+    <div class="sl has-xr" id="L456"><span class="ln">456</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c13~S000_00_a00.txt%EF%BC%9A%20%E6%97%A5" title="词条考据：キミ∽ツナグ·详解">それを見たとき、僕は彼女をもう手放したくないと思った</a>。</span></div>
     <div class="sl" id="L457"><span class="ln">457</span><span class="tx"></span></div>
     <div class="sl" id="L458"><span class="ln">458</span><span class="tx">【恂】</span></div>
     <div class="sl" id="L459"><span class="ln">459</span><span class="tx">「昔なら、昔のように出来たと思う。でもさ[――]」</span></div>
@@ -593,15 +527,12 @@
   <section class="xref">
     <h2 class="lst-h">引用本文件的词条（1）</h2>
     <ul class="lst">
-      <li><a href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c12">キミ∽ツナグ·详解</a></li>
+      <li><a href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c12~S080_00_a00_02mior">キミ∽ツナグ·详解</a></li>
     </ul>
   </section>
 </article>
 
 </main>
-<footer class="ft">
-  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
-  <p>参考资料 · 《少女神域∽少女天獄》本篇剧本 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
-</footer>
+<script src="../../assets/chrome.js" defer></script>
 </body>
 </html>

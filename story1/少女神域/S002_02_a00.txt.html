@@ -6,74 +6,8 @@
 <title>S002_02_a00.txt</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="../../assets/style.css">
-<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
-   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
-      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
-   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
-      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
-   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
-(function () {
-  function run() {
-    var root = document.documentElement;
-    var hd = document.querySelector('.hd');
-
-    function sync() {
-      if (!hd) return;
-      var h = Math.round(hd.getBoundingClientRect().height);
-      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
-    }
-    sync();
-    window.addEventListener('resize', sync);
-    window.addEventListener('orientationchange', sync);
-    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
-
-    function target() {
-      var h = location.hash;
-      if (!h || h.length < 2) return null;
-      var id = h.slice(1);
-      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
-      return document.getElementById(id);
-    }
-
-    var prev = root.style.scrollBehavior;
-
-    function instantJump() {
-      var t = target();
-      if (!t) return;
-      root.style.scrollBehavior = 'auto';
-      sync();                              /* 先更新 --hdr-h，再对齐 */
-      t.scrollIntoView({ block: 'start' });
-    }
-    function restore() {
-      root.style.scrollBehavior = prev;
-    }
-
-    if (location.hash.length > 1) {
-      instantJump();
-      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
-      window.addEventListener('load', function () {
-        instantJump();
-        setTimeout(restore, 60);
-      });
-      setTimeout(restore, 1500);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', run);
-  } else {
-    run();
-  }
-})();
-</script>
 </head>
 <body>
-<header class="hd">
-  <div class="hd-in">
-    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
-    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
-  </div>
-</header>
 <main class="main">
 <article class="storypage">
   <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F">《少女神域∽少女天獄》本篇剧本</a> / S002_02_a00.txt</p>
@@ -82,12 +16,12 @@
   <nav class="xj">
     <p class="xj-h">本页被引用的位置：<b>6</b> 处，来自 5 条词条<span class="xj-tip">点行号跳到本页对应行，点词条名进词条</span></p>
     <ul class="xj-l">
-      <li><a class="xj-ln" href="#L45" title="跳到本页第 45 行">L45</a><a class="xj-e" href="../../entry2/127_%E6%B9%AF%E6%AE%BF%E5%B1%B1.html#s1">湯殿山</a></li>
-      <li><a class="xj-ln" href="#L67" title="跳到本页第 67 行">L67</a><a class="xj-e" href="../../entry1/028_%E7%9F%B3%E5%A3%81.html#s1">石壁</a></li>
-      <li><a class="xj-ln" href="#L69" title="跳到本页第 69 行">L69</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6">キミ∽ツナグ·详解</a></li>
-      <li><a class="xj-ln" href="#L69" title="跳到本页第 69 行">L69</a><a class="xj-e" href="../../entry1/028_%E7%9F%B3%E5%A3%81.html#s1">石壁</a></li>
-      <li><a class="xj-ln" href="#L71" title="跳到本页第 71 行">L71</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6">キミ∽ツナグ·详解</a></li>
-      <li><a class="xj-ln" href="#L93" title="跳到本页第 93 行">L93</a><a class="xj-e" href="../../entry2/110_%E5%BF%8C%E9%83%A8%E9%87%8E.html#s1">忌部野</a></li>
+      <li><a class="xj-ln" href="#L45~%E5%82%BE%E3%81%8D%E3%81%8C%E6%AC%A1%E7%AC%AC%E3%81%AB%E6%88%BB%E3%81%A3%E3%81%A6%E3%81%84%E3%81%8F%E3%81%A8%E3%80%81%E5%BD%BC%E6%96%B9%E3%81%AB" title="跳到本页第 45 行">L45</a><a class="xj-e" href="../../entry2/127_%E6%B9%AF%E6%AE%BF%E5%B1%B1.html#s1">湯殿山</a></li>
+      <li><a class="xj-ln" href="#L67~%E3%82%AB%E3%83%AB%E3%83%87%E3%83%A9%E7%9B%86%E5%9C%B0%E3%81%AE%E4%B8%AD%E3%81%AB%E3%81%82%E3%82%8B%E7%94%BA%E3%81%A8%E3%81%84%E3%81%86%E3%81%A0%E3%81%91%E3%81%A7" title="跳到本页第 67 行">L67</a><a class="xj-e" href="../../entry1/028_%E7%9F%B3%E5%A3%81.html#s1">石壁</a></li>
+      <li><a class="xj-ln" href="#L69~%E5%B8%82%E3%82%92%E5%8F%96%E3%82%8A%E5%9B%B2%E3%82%80%E3%82%88%E3%81%86%E3%81%AB%E9%9A%86%E8%B5%B7%E3%81%99%E3%82%8B%E5%B1%B1%E3%80%85%E3%81%A0%E3%81%91%E3%81%A7" title="跳到本页第 69 行">L69</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6~S002_00_a00.txt%EF%BC%88%E8%BF%AA%E5%B8%8C">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L69~%E5%B8%82%E3%82%92%E5%8F%96%E3%82%8A%E5%9B%B2%E3%82%80%E3%82%88%E3%81%86%E3%81%AB%E9%9A%86%E8%B5%B7%E3%81%99%E3%82%8B%E5%B1%B1%E3%80%85%E3%81%A0%E3%81%91%E3%81%A7" title="跳到本页第 69 行">L69</a><a class="xj-e" href="../../entry1/028_%E7%9F%B3%E5%A3%81.html#s1">石壁</a></li>
+      <li><a class="xj-ln" href="#L71~%E3%81%9D%E3%81%AE%E5%B1%B1%E3%80%85%E3%81%AB%E3%81%AF%E5%8F%A4%E4%BB%A3%E3%81%AE%E4%BA%BA%E3%80%85%E3%81%8C%E7%AB%8B%E3%81%A6%E3%81%9F%E3%81%A8%E3%81%84%E3%81%86" title="跳到本页第 71 行">L71</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6~S002_00_a00.txt%EF%BC%88%E8%BF%AA%E5%B8%8C">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L93~%E3%81%9D%E3%82%8C%E3%81%BE%E3%81%A7%E3%81%AF%E3%80%81%5B%E5%BF%8C%E9%83%A8%E9%87%8E%2C%E3%81%84%E3%81%B9%E3%81%AE%5D%E3%81%A8%E3%81%84%E3%81%86" title="跳到本页第 93 行">L93</a><a class="xj-e" href="../../entry2/110_%E5%BF%8C%E9%83%A8%E9%87%8E.html#s1">忌部野</a></li>
     </ul>
   </nav>
   <p class="note">本页为剧本文件的完整原样内容（含注释与演出指令；仅由原编码转换为 UTF-8，文字未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
@@ -136,7 +70,7 @@
     <div class="sl" id="L42"><span class="ln">42</span><span class="tx">【恂】</span></div>
     <div class="sl" id="L43"><span class="ln">43</span><span class="tx">「そろそろか……」</span></div>
     <div class="sl" id="L44"><span class="ln">44</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L45"><span class="ln">45</span><span class="tx"><a class="xr" href="../../entry2/127_%E6%B9%AF%E6%AE%BF%E5%B1%B1.html#s1" title="词条考据：湯殿山">傾きが次第に戻っていくと、彼方に[湯殿山,ゆどのやま]の大きな姿が、さりげなく</a>姿を見せる。</span></div>
+    <div class="sl has-xr" id="L45"><span class="ln">45</span><span class="tx"><a class="xr" href="../../entry2/127_%E6%B9%AF%E6%AE%BF%E5%B1%B1.html#s1" title="词条考据：湯殿山">傾きが次第に戻っていくと、彼方に[湯殿山,ゆどのやま]の大きな姿が、さりげなく姿を見せる</a>。</span></div>
     <div class="sl" id="L46"><span class="ln">46</span><span class="tx"></span></div>
     <div class="sl" id="L47"><span class="ln">47</span><span class="tx">;最初、その[裾野,すその]の風景を見ずにいた。どうしても[あれ,・・]を見てしまうからだ。</span></div>
     <div class="sl" id="L48"><span class="ln">48</span><span class="tx"></span></div>
@@ -160,9 +94,9 @@
     <div class="sl" id="L66"><span class="ln">66</span><span class="tx"></span></div>
     <div class="sl has-xr" id="L67"><span class="ln">67</span><span class="tx"><a class="xr" href="../../entry1/028_%E7%9F%B3%E5%A3%81.html#s1" title="词条考据：石壁">カルデラ盆地の中にある町というだけでも特徴的ではあるが、故郷の風景をより[異様,いよう]なものにしているのが、『石壁』の存在だ。</a></span></div>
     <div class="sl" id="L68"><span class="ln">68</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L69"><span class="ln">69</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6" title="词条考据：キミ∽ツナグ·详解、石壁">[佳城,かいじょう]市を取り囲むように隆起する山々だけでも、何か石の檻に閉じ込められたような閉塞感を与えるのだが[――]。</a></span></div>
+    <div class="sl has-xr" id="L69"><span class="ln">69</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6~S002_00_a00.txt%EF%BC%88%E8%BF%AA%E5%B8%8C" title="词条考据：キミ∽ツナグ·详解、石壁">[佳城,かいじょう]市を取り囲むように隆起する山々だけでも、何か石の檻に閉じ込められたような閉塞感を与えるのだが[――]。</a></span></div>
     <div class="sl" id="L70"><span class="ln">70</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L71"><span class="ln">71</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6" title="词条考据：キミ∽ツナグ·详解">その山々には古代の人々</a>が立てたという『石壁』が連なっているのだ。</span></div>
+    <div class="sl has-xr" id="L71"><span class="ln">71</span><span class="tx"><a class="xr" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6~S002_00_a00.txt%EF%BC%88%E8%BF%AA%E5%B8%8C" title="词条考据：キミ∽ツナグ·详解">その山々には古代の人々が立てたという『石壁』が連なっているのだ</a>。</span></div>
     <div class="sl" id="L72"><span class="ln">72</span><span class="tx"></span></div>
     <div class="sl" id="L73"><span class="ln">73</span><span class="tx">それらの『石壁』は盆地の外側からもいくつか確認できるが、尾根を越えれば、その内側には、今見えている以上の大小さまざまな石の壁が存在する。</span></div>
     <div class="sl" id="L74"><span class="ln">74</span><span class="tx"></span></div>
@@ -184,7 +118,7 @@
     <div class="sl" id="L90"><span class="ln">90</span><span class="tx"></span></div>
     <div class="sl" id="L91"><span class="ln">91</span><span class="tx">南海路[――]江戸と[上方,かみがた]を行き来する[菱垣廻船,ひがきかいせん]や[樽廻船,たるかいせん]の船員が、[佳城,かいじょう]湾にせり出す山と『石壁』を見て[海の城,・・・]だと呼んだのが最初だ。</span></div>
     <div class="sl" id="L92"><span class="ln">92</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L93"><span class="ln">93</span><span class="tx"><a class="xr" href="../../entry2/110_%E5%BF%8C%E9%83%A8%E9%87%8E.html#s1" title="词条考据：忌部野">それまでは、[忌部野,いべの]という古い土地の名前で呼ばれ</a>ていた。</span></div>
+    <div class="sl has-xr" id="L93"><span class="ln">93</span><span class="tx"><a class="xr" href="../../entry2/110_%E5%BF%8C%E9%83%A8%E9%87%8E.html#s1" title="词条考据：忌部野">それまでは、[忌部野,いべの]という古い土地の名前で呼ばれていた</a>。</span></div>
     <div class="sl" id="L94"><span class="ln">94</span><span class="tx"></span></div>
     <div class="sl" id="L95"><span class="ln">95</span><span class="tx">[迪希 voice=YK003001]</span></div>
     <div class="sl" id="L96"><span class="ln">96</span><span class="tx">【迪希】</span></div>
@@ -443,7 +377,7 @@
   <section class="xref">
     <h2 class="lst-h">引用本文件的词条（5）</h2>
     <ul class="lst">
-      <li><a href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6">キミ∽ツナグ·详解</a></li>
+      <li><a href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c6~S002_00_a00.txt%EF%BC%88%E8%BF%AA%E5%B8%8C">キミ∽ツナグ·详解</a></li>
       <li><a href="../../entry2/132_%E5%B2%A9%E8%9C%82%E5%A6%99%E8%A6%8B%E9%81%BA%E8%B7%A1%E7%BE%A4.html#s1">岩蜂妙見遺跡群</a></li>
       <li><a href="../../entry2/110_%E5%BF%8C%E9%83%A8%E9%87%8E.html#s1">忌部野</a></li>
       <li><a href="../../entry2/127_%E6%B9%AF%E6%AE%BF%E5%B1%B1.html#s1">湯殿山</a></li>
@@ -453,9 +387,6 @@
 </article>
 
 </main>
-<footer class="ft">
-  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
-  <p>参考资料 · 《少女神域∽少女天獄》本篇剧本 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
-</footer>
+<script src="../../assets/chrome.js" defer></script>
 </body>
 </html>

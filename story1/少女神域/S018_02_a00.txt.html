@@ -6,74 +6,8 @@
 <title>S018_02_a00.txt</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="../../assets/style.css">
-<script>/* 锚点落点修正（由 build_html.py 内联进每页 <head>，不再单独发请求）
-   1) 实测粘性导航栏高度写入 --hdr-h，供 style.css 的 scroll-padding-top 使用
-      （导航栏在窄屏会换行变高，写死数值必然会遮挡目标行）；
-   2) 首次进入带 #锚点 的页面时，浏览器会按 scroll-behavior:smooth 从顶部
-      缓慢滚过整个页面（长剧本上万像素要滚数秒），这里改为瞬时对齐。
-   内联原因：线上实测每个请求的 RTT≈550ms，1.7KB 的小文件也不值一条往返。 */
-(function () {
-  function run() {
-    var root = document.documentElement;
-    var hd = document.querySelector('.hd');
-
-    function sync() {
-      if (!hd) return;
-      var h = Math.round(hd.getBoundingClientRect().height);
-      if (h > 0) root.style.setProperty('--hdr-h', h + 'px');
-    }
-    sync();
-    window.addEventListener('resize', sync);
-    window.addEventListener('orientationchange', sync);
-    if (window.ResizeObserver && hd) new ResizeObserver(sync).observe(hd);
-
-    function target() {
-      var h = location.hash;
-      if (!h || h.length < 2) return null;
-      var id = h.slice(1);
-      try { id = decodeURIComponent(id); } catch (e) { /* 原样使用 */ }
-      return document.getElementById(id);
-    }
-
-    var prev = root.style.scrollBehavior;
-
-    function instantJump() {
-      var t = target();
-      if (!t) return;
-      root.style.scrollBehavior = 'auto';
-      sync();                              /* 先更新 --hdr-h，再对齐 */
-      t.scrollIntoView({ block: 'start' });
-    }
-    function restore() {
-      root.style.scrollBehavior = prev;
-    }
-
-    if (location.hash.length > 1) {
-      instantJump();
-      /* 字体/懒加载图片把布局撑开后再校一次，然后恢复平滑滚动 */
-      window.addEventListener('load', function () {
-        instantJump();
-        setTimeout(restore, 60);
-      });
-      setTimeout(restore, 1500);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', run);
-  } else {
-    run();
-  }
-})();
-</script>
 </head>
 <body>
-<header class="hd">
-  <div class="hd-in">
-    <a class="logo" href="../../index.html">少女神域<span>用语词典</span></a>
-    <nav class="nav"><a href="../../index.html">首页</a><a href="../../cat/规.html">编纂说明</a><a href="../../cat/歌.html">歌词</a><a href="../../cat/世.html">世界线用语</a><a href="../../cat/神.html">世界观用语</a><a href="../../cat/祭.html">祭礼·神事</a><a href="../../cat/人.html">登场人物</a><a href="../../cat/家.html">四家·门第</a><a href="../../cat/场.html">佳城市·地名</a><a href="../../cat/学.html">学校·机构</a><a href="../../cat/宝.html">神具·古玉·宝刀</a><a href="../../cat/食.html">饮食·店铺</a><a href="../../cat/杂.html">杂学</a><a href="../../gallery.html">图片资料</a><a href="../../story.html" class="on">参考资料</a></nav>
-  </div>
-</header>
 <main class="main">
 <article class="storypage">
   <p class="crumb"><a href="../../index.html">首页</a> / <a href="../../story.html">参考资料</a> / <a href="../../story.html#%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F">《少女神域∽少女天獄》本篇剧本</a> / S018_02_a00.txt</p>
@@ -82,9 +16,9 @@
   <nav class="xj">
     <p class="xj-h">本页被引用的位置：<b>3</b> 处，来自 3 条词条<span class="xj-tip">点行号跳到本页对应行，点词条名进词条</span></p>
     <ul class="xj-l">
-      <li><a class="xj-ln" href="#L47" title="跳到本页第 47 行">L47</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c24">punitive justice·详解</a></li>
-      <li><a class="xj-ln" href="#L47" title="跳到本页第 47 行">L47</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c24">キミ∽ツナグ·详解</a></li>
-      <li><a class="xj-ln" href="#L47" title="跳到本页第 47 行">L47</a><a class="xj-e" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c42">永久より永遠に·详解</a></li>
+      <li><a class="xj-ln" href="#L47~%3B%2F%2F%E2%97%87%E5%86%85%E9%83%A8%E7%94%A8%E3%80%82%E4%BB%8A%E5%9B%9E%E3%81%AE%E4%B8%96%E4%BB%A3%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E3%80%81" title="跳到本页第 47 行">L47</a><a class="xj-e" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c24~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a class="xj-ln" href="#L47~%3B%2F%2F%E2%97%87%E5%86%85%E9%83%A8%E7%94%A8%E3%80%82%E4%BB%8A%E5%9B%9E%E3%81%AE%E4%B8%96%E4%BB%A3%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E3%80%81" title="跳到本页第 47 行">L47</a><a class="xj-e" href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c24~Lass%E5%AE%98%E6%96%B9%E8%AE%BF%E8%B0%88.txt%EF%BC%9A%20%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91">キミ∽ツナグ·详解</a></li>
+      <li><a class="xj-ln" href="#L47~%3B%2F%2F%E2%97%87%E5%86%85%E9%83%A8%E7%94%A8%E3%80%82%E4%BB%8A%E5%9B%9E%E3%81%AE%E4%B8%96%E4%BB%A3%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E3%80%81" title="跳到本页第 47 行">L47</a><a class="xj-e" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c42~S018_02_a00.txt%EF%BC%88%E9%96%8B%E7%99%BC">永久より永遠に·详解</a></li>
     </ul>
   </nav>
   <p class="note">本页为剧本文件的完整原样内容（含注释与演出指令；仅由原编码转换为 UTF-8，文字未作改动）。文中<em>带底色下划</em>的句子是词典词条考据引用的位置，悬停加深、点击跳转对应词条。</p>
@@ -135,7 +69,7 @@
     <div class="sl" id="L44"><span class="ln">44</span><span class="tx">土台の階段をのぼっても、巨石は自分の身長を優に越えていた。</span></div>
     <div class="sl" id="L45"><span class="ln">45</span><span class="tx">その巨石の周りに苔むした小さな墓が四つ、それに古びた普通サイズの墓が三つ、そして石碑が一枚建っていた。</span></div>
     <div class="sl" id="L46"><span class="ln">46</span><span class="tx"></span></div>
-    <div class="sl has-xr" id="L47"><span class="ln">47</span><span class="tx">;//<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c24" title="词条考据：punitive justice·详解、キミ∽ツナグ·详解、永久より永遠に·详解">◇内部用。今回の世代のように、男＝転生体（若宮）のほかに、女性（淡島）が生まれることがある。これは全て分家</a>としてわかれ、佳城の家と繋がりを持つようになった。現在では稜祁家自体は廃絶したような状態なので、家同士の繋がりばらばらである。女性（淡島）もまた『石』の影響を受けており、怪物化はしないものの、生気（オド）を人より多く含有し、また他人にその生命力を影響させることが出来る（愛莉と祥那の関係）。この人への影響は『石』の力の転用でもあるが、同時に撒き餌のような意味を持ち、『石』が生気（オド）を収集するための本能的な性質が、形を変えて顕現している。祥那の千年エンドの布石でもあるが、同時に黒羊歯鼎がより生気（オド）を得た『石』を得ようと、各家に分家の女性を配して、より生気（オド）を持つ子供を生ませて、吸収させようとした。現状、主人公とヒロインたちは厳密に言えば全て稜祁家の血が混じっている（ただし、長い歴史のなかで家同士の人間が婚姻することもあったので、普通の状況ではある）</span></div>
+    <div class="sl has-xr" id="L47"><span class="ln">47</span><span class="tx">;//◇内部用。今回の世代のように、<a class="xr" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c42~S018_02_a00.txt%EF%BC%88%E9%96%8B%E7%99%BC" title="词条考据：キミ∽ツナグ·详解、永久より永遠に·详解">男＝転生体（若宮）のほかに、女性（淡島）が生まれることがある</a>。これは全て分家としてわかれ、佳城の家と繋がりを持つようになった。現在では稜祁家自体は廃絶したような状態なので、家同士の繋がりばらばらである。<a class="xr" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c42~S018_02_a00.txt%EF%BC%88%E9%96%8B%E7%99%BC" title="词条考据：永久より永遠に·详解">女性（淡島）もまた『石』の影響を受けており、怪物化はしないものの、生気（オド）を人より多く含有し、また他人にその生命力を影響させることが出来る（愛莉と祥那の関係</a>）。この人への影響は『石』の力の転用でもあるが、同時に撒き餌のような意味を持ち、『<a class="xr" href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c42~S018_02_a00.txt%EF%BC%88%E9%96%8B%E7%99%BC" title="词条考据：キミ∽ツナグ·详解、永久より永遠に·详解">石』が生気（オド）を収集するための本能的な性質が、形を変えて顕現している</a>。<a class="xr" href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c24~S111_00_a00_04sana" title="词条考据：punitive justice·详解、キミ∽ツナグ·详解、永久より永遠に·详解">祥那の千年エンドの布石でもある</a>が、同時に黒羊歯鼎がより生気（オド）を得た『石』を得ようと、各家に分家の女性を配して、より生気（オド）を持つ子供を生ませて、吸収させようとした。現状、主人公とヒロインたちは厳密に言えば全て稜祁家の血が混じっている（ただし、長い歴史のなかで家同士の人間が婚姻することもあったので、普通の状況ではある）</span></div>
     <div class="sl" id="L48"><span class="ln">48</span><span class="tx"></span></div>
     <div class="sl" id="L49"><span class="ln">49</span><span class="tx">この墓には[稜祁,たかぎ]家のほか、[寒河江,さがえ]家[――]祖母の家のものがあった。</span></div>
     <div class="sl" id="L50"><span class="ln">50</span><span class="tx">あとは[赤染,あかぞめ]家[――]これは母の家だそうだ[――][那波,ななみ]家、小さな墓には[毛利,もうり]家、[海東,かいどう]家と書かれていた。</span></div>
@@ -927,17 +861,14 @@
   <section class="xref">
     <h2 class="lst-h">引用本文件的词条（3）</h2>
     <ul class="lst">
-      <li><a href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c24">punitive justice·详解</a></li>
-      <li><a href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c8">キミ∽ツナグ·详解</a></li>
-      <li><a href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c1">永久より永遠に·详解</a></li>
+      <li><a href="../../entry2/190_punitive_justice-%E8%AF%A6%E8%A7%A3.html#c24~S111_00_a00_04sana">punitive justice·详解</a></li>
+      <li><a href="../../entry2/188_%E3%82%AD%E3%83%9F~%E3%83%84%E3%83%8A%E3%82%B0-%E8%AF%A6%E8%A7%A3.html#c8~S099_00_a00_02mior">キミ∽ツナグ·详解</a></li>
+      <li><a href="../../entry2/189_%E6%B0%B8%E4%B9%85%E3%82%88%E3%82%8A%E6%B0%B8%E9%81%A0%E3%81%AB-%E8%AF%A6%E8%A7%A3.html#c1~Lass%E5%AE%98%E6%96%B9%E8%AE%BF%E8%B0%88.txt%EF%BC%9A%20%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91">永久より永遠に·详解</a></li>
     </ul>
   </section>
 </article>
 
 </main>
-<footer class="ft">
-  <p>少女神域∽少女天獄 用语词典 · 离线 HTML 文件库</p>
-  <p>参考资料 · 《少女神域∽少女天獄》本篇剧本 · 收录依据与资料来源见 <a href="../../entry1/004_%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E7%AE%80%E4%BB%8B.html">《参考资料简介》</a></p>
-</footer>
+<script src="../../assets/chrome.js" defer></script>
 </body>
 </html>

@@ -17,12 +17,20 @@
   }
 }
 *{box-sizing:border-box}
-/* 锚点落点统一避开粘性导航栏：高度由 anchor.js 实测写入 --hdr-h
-   （导航栏在窄屏会换行变高，不能写死），再留 10px 呼吸空间。
+/* 页头高度：chrome.js 会按实测值写到 <html> 的行内样式上，这里只是脚本到位前的估值，
+   按导航换行行数分三档（宽屏两行、中屏三行、窄屏四行），免得内容先上跳再下沉。
+   改导航项数后若发现首屏轻跳，按实测值调这三档即可。 */
+:root{--hdr-h:117px}
+@media (max-width:1150px){:root{--hdr-h:152px}}
+@media (max-width:760px){:root{--hdr-h:188px}}
+/* 锚点落点统一避开固定导航栏：高度由 assets/chrome.js 实测写入 --hdr-h，
+   再留 10px 呼吸空间。
    注意：这里只用 scroll-padding-top，目标元素上不要再写 scroll-margin-top，
    两者会相加，导致跳过头。 */
-html{scroll-behavior:smooth; scroll-padding-top:calc(var(--hdr-h, 72px) + 10px)}
+html{scroll-behavior:smooth; scroll-padding-top:calc(var(--hdr-h) + 10px)}
 body{
+  /* 页头固定，用等高内边距把正文顶下来 */
+  padding-top:var(--hdr-h);
   margin:0; background:var(--bg); color:var(--fg);
   /* 中文字体优先：本站内容为中文（HTML 库与 JIS 补丁无关），
      不使用日文明朝体（Yu Mincho / MS Mincho / Hiragino），
@@ -37,7 +45,7 @@ a.w{color:var(--accent); border-bottom:1px dotted var(--accent)}
 a.w:hover{text-decoration:none; border-bottom-style:solid}
 
 /* ---------- 头部 ---------- */
-.hd{position:sticky; top:0; z-index:20; background:rgba(20,16,15,.94);
+.hd{position:fixed; top:0; left:0; right:0; z-index:20; background:rgba(20,16,15,.94);
     border-bottom:1px solid var(--line); backdrop-filter:blur(8px)}
 @media (prefers-color-scheme: light){.hd{background:rgba(246,243,239,.94)}}
 .hd-in{max-width:1180px; margin:0 auto; padding:12px 20px;
@@ -312,6 +320,14 @@ rt{color:var(--ruby); font-size:.62em; font-weight:400; line-height:1.1;
 .ft{border-top:1px solid var(--line); padding:20px; text-align:center;
     color:var(--dim); font-size:13.5px; font-family:system-ui,sans-serif}
 .ft p{margin:2px 0}
+/* 交叉引用按引文定位失败时的提示（引文被改写才出现，正常阅读不会看到） */
+#pos-miss{position:fixed; left:50%; bottom:26px; transform:translate(-50%,14px);
+          z-index:60; max-width:min(88vw, 620px); padding:10px 16px; border-radius:8px;
+          background:var(--panel2); color:var(--fg); border:1px solid var(--line);
+          box-shadow:0 6px 22px rgba(0,0,0,.28);
+          font:13.5px/1.6 system-ui,sans-serif; text-align:center;
+          opacity:0; pointer-events:none; transition:opacity .2s, transform .2s}
+#pos-miss.show{opacity:1; transform:translate(-50%,0)}
 
 /* ---------- 参考资料（剧本 / 资料页） ---------- */
 .story-sec{margin:0 0 34px}
@@ -343,6 +359,10 @@ rt{color:var(--ruby); font-size:.62em; font-weight:400; line-height:1.1;
 /* 从顶部跳转条或词条锚点跳进来时，目标行给出明确落点 */
 .sl:target{background:var(--xr-bg-h); box-shadow:inset 3px 0 0 var(--accent)}
 .sl:target .ln{color:var(--accent); opacity:1; font-weight:700}
+/* 按引文定位到的行（行号可能已变，锚点落在这一行）与人手动点击时的短暂闪烁 */
+.sl.flash{background:var(--xr-bg-h); box-shadow:inset 3px 0 0 var(--accent);
+          transition:background .4s, box-shadow .4s}
+.sl.flash .ln{color:var(--accent); opacity:1; font-weight:700}
 .sl .ln{flex:0 0 46px; text-align:right; color:var(--dim); opacity:.5;
         font-family:ui-monospace,Consolas,"Courier New",monospace;
         font-size:12px; line-height:1.78; user-select:none}
@@ -371,6 +391,58 @@ rt{color:var(--ruby); font-size:.62em; font-weight:400; line-height:1.1;
 .srcline{margin:18px 0 0; color:var(--dim); font-size:14px; font-family:system-ui,sans-serif}
 /* 「引用本文件的词条」区 */
 .xref{margin:26px 0 0; padding-top:18px; border-top:1px solid var(--line)}
+/* ---------- 设定用语集（原文页）的条目层级 ---------- */
+/* 条目标题：原书红标，用左侧粗线标出，与正文段落拉开层次 */
+.set-h{font-size:19px; font-weight:700; color:var(--fg); line-height:1.5;
+       margin:34px 16px 10px; padding-left:12px; border-left:4px solid var(--accent);
+       letter-spacing:.02em}
+.set-h:first-child{margin-top:8px}
+/* 卷首两节无原书标题，标作「巻頭言」「作品紹介」，用弱化样式与书中条目区分 */
+.set-h.set-h-meta{font-size:13.5px; font-weight:600; color:var(--dim);
+                  border-left-color:var(--line); letter-spacing:.16em; margin-top:26px}
+/* ● 起头的从属条目（四件古玉、四家一重织等） */
+.set-h3{font-size:16px; font-weight:600; color:var(--accent); line-height:1.6;
+        margin:22px 16px 6px; padding-left:12px; border-left:4px solid var(--line)}
+/* ・ 起头的列举项：缩进、不带行号 */
+.sl.set-li{padding-left:62px}
+.sl.set-li .tx::before{content:"";}
+/* （…）独占一行的编者按／补注 */
+.sl.set-note{color:var(--dim); font-size:14.5px;
+             font-family:system-ui,sans-serif; padding-left:62px}
+/* 段落间距（原书空行） */
+.sl.gap{height:9px}
+/* 书末奥付（版权页）：原样转录，用细框圈出，与用語集正文区分开 */
+.colo{margin:6px 16px 0; padding:12px 18px 14px; border:1px solid var(--line);
+      border-radius:var(--radius); background:var(--panel);
+      font-family:system-ui,sans-serif; font-size:14px; line-height:1.85; color:var(--dim)}
+.colo p{margin:0}
+.colo .c-h{margin:0 0 4px; color:var(--fg); font-weight:700; font-size:15px}
+.colo .c-role{margin:10px 0 0; color:var(--fg)}
+.colo .c-role+.c-h{margin-top:12px}
+.colo .c-date{margin:14px 0 10px; color:var(--accent); font-weight:700; letter-spacing:.05em}
+.colo .c-url{color:var(--dim); font-size:13px}
+.colo .c-ind{padding-left:1.6em; color:var(--fg)}
+.colo .c-fine{margin:6px 0 0; font-size:12.5px; line-height:1.8; opacity:.85}
+
+/* ---------- 制作人员名单 ---------- */
+.staff{margin:16px 0 6px; border:1px solid var(--line); border-radius:var(--radius);
+       background:var(--panel); overflow:hidden}
+.staff-row{display:grid; grid-template-columns:228px 1fr; gap:2px 20px;
+           padding:11px 16px; border-top:1px solid var(--line)}
+.staff-row:first-child{border-top:none}
+.staff-role b{display:block; font-weight:600; font-size:14.5px; color:var(--fg); line-height:1.7}
+.staff-role span{display:block; color:var(--dim); font-size:12px; line-height:1.6;
+                 font-family:system-ui,sans-serif}
+.staff-names{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap;
+             gap:3px 16px; font-size:15px; line-height:1.75}
+.staff-names li{white-space:nowrap}
+.staff-names .cv{color:var(--dim); font-size:13px}
+@media (max-width:680px){
+  .staff-row{grid-template-columns:1fr; gap:4px}
+  .staff-role b,.staff-role span{display:inline; margin-right:8px}
+  .staff-names li{white-space:normal}
+}
+
 /* 源文件残缺提示（如《锁缚之狐》翻译末句中断） */
 .tr-note{margin:10px 0 0; padding:7px 11px; border-left:3px solid var(--accent2);
          background:var(--panel2); border-radius:0 6px 6px 0;

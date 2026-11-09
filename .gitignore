@@ -1,0 +1,9 @@
+# 站点图片不随仓库重复上传（仓库里已有的图片保持原样，不会被删除）
+/img/
+/img_opt/
+/img_thumb/
+
+# 系统杂项
+Thumbs.db
+desktop.ini
+.DS_Store
