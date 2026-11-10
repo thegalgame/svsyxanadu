@@ -3,6 +3,7 @@
   --bg:#14100f; --panel:#1d1817; --panel2:#241e1c; --line:#3a3130;
   --fg:#e9e2dc; --dim:#a2968f; --accent:#e0a36b; --accent2:#c8794f;
   --ruby:#7fb4c9; --tag:#6f8f5a; --radius:8px;
+  --ok:#6fd48a;                     /* 完成态（预取进度条）：暗色主题用亮绿 */
   /* 剧本内「被引句子」高亮：底纹 + 下缘实线，深浅两套主题各自取值 */
   --xr-bg:rgba(224,163,107,.20); --xr-bg-h:rgba(224,163,107,.38);
   --xr-bd:rgba(224,163,107,.78);
@@ -12,6 +13,7 @@
     --bg:#f6f3ef; --panel:#fff; --panel2:#f2ede7; --line:#ddd4cb;
     --fg:#2a2320; --dim:#6d635c; --accent:#9a5a1e; --accent2:#b4661f;
     --ruby:#1c5f7d; --tag:#4a6b32;
+    --ok:#2f7a45;
     --xr-bg:rgba(154,90,30,.17); --xr-bg-h:rgba(154,90,30,.30);
     --xr-bd:rgba(154,90,30,.72);
   }
@@ -501,9 +503,33 @@ rt{color:var(--ruby); font-size:.62em; font-weight:400; line-height:1.1;
         background:rgba(140,140,140,.22)}
 .pf-bar>i{display:block; height:100%; width:0; border-radius:3px;
           background:var(--accent); transition:width .25s linear}
-.pf-num{flex:0 0 auto; font-variant-numeric:tabular-nums; color:var(--dim)}
-.pf-row.done .pf-bar>i{background:#6fd48a}
-.pf-row.done .pf-num{color:#8fd9a3}
+.pf-num{flex:1 1 auto; display:flex; align-items:center; gap:9px; flex-wrap:wrap;
+        font-variant-numeric:tabular-nums; color:var(--dim)}
+.pf-cnt{flex:0 0 auto; font-weight:600; color:var(--fg)}
+.pf-byte,.pf-spd{flex:0 0 auto; white-space:nowrap}
+.pf-byte::before,.pf-spd::before{content:''; display:inline-block; width:1px; height:11px;
+        background:var(--line); margin-right:9px; vertical-align:-1px}
+.pf-spd{color:var(--accent)}
+/* 原图走跨域直连时拿不到字节进度，用整条轨道的流动斜纹表示「还在传」，
+   避免 0 / 20 看着像卡死（作用在轨道上，0% 时也看得见） */
+.pf-row.pulse .pf-bar{
+  background-image:repeating-linear-gradient(-45deg,rgba(140,140,140,.45) 0 6px,transparent 6px 12px);
+  background-size:17px 17px; animation:pfBarFlow 1s linear infinite}
+@keyframes pfBarFlow{from{background-position:0 0}to{background-position:17px 0}}
+@media (prefers-reduced-motion:reduce){.pf-row.pulse .pf-bar{animation:none}}
+.pf-row.done .pf-bar>i{background:var(--ok)}
+.pf-row.done .pf-num{color:var(--ok)}
+.pf-row.done .pf-cnt{color:inherit}
+/* 整条线路取不到时不要显示成「完成」的绿色 */
+.pf-row.bad .pf-bar>i{background:#b1554f}
+@media (max-width:640px){
+  .pf-bar{flex:1 1 110px}
+}
+@media (max-width:520px){
+  /* 窄屏会换行，行首留着竖线不好看，直接去掉分隔 */
+  .pf-byte::before,.pf-spd::before{display:none}
+  .pf-num{row-gap:2px}
+}
 
 /* 歌词页：歌词 / 翻译 切换按钮 */
 .lyr-bar{margin:14px 0 2px; display:flex; align-items:center; gap:12px;
