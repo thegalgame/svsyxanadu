@@ -26,11 +26,21 @@
   function isCross(u) {
     return /^https?:/i.test(u) && u.indexOf(location.origin + '/') !== 0;
   }
+  // jsDelivr 对这批仓库一律 301 到 raw.githubusercontent.com，而 raw 在部分网络下不可达
+  // ——这就是「有人能看原图、有人看不到」的成因。失败时换 ghproxy 镜像再试一次。
+  function mirrorOf(u) {
+    var m = /^https?:\/\/cdn\.jsdelivr\.net\/gh\/([^\/]+)\/([^@\/]+)@([^\/]+)\/(.+)$/.exec(u);
+    if (!m) return null;
+    return 'https://ghproxy.net/https://raw.githubusercontent.com/'
+      + m[1] + '/' + m[2] + '/' + m[3] + '/' + m[4];
+  }
   var token = 0;                 // 代次：每次切换 +1，旧回调据此作废
   var xhrFull = null, xhrOrig = null;
   var cacheFull = {}, keyFull = [];   // 压缩大图 blob 缓存
   var cacheOrig = {}, keyOrig = [];   // 原图 blob 缓存
-  var LIM_FULL = 48, LIM_ORIG = 3;    // 上限（原图单张 5–16MB，只留最近 3 张）
+  // 压缩大图（≤0.2MB）全留；原图单张 5–16MB，留 32 张够一页用（预取完的不要被立刻淘汰，
+  // 否则预取了也等于白下）。再多由浏览器自己回收 blob。
+  var LIM_FULL = 128, LIM_ORIG = 32;
   var pendFull = {};                  // 预取中的 URL，防重复请求
   var inflight = {};                  // url → 等待者列表（同一 URL 共享一个请求）
 
@@ -219,19 +229,35 @@
       }
       var pre = new Image();
       var settled = false;
-      pre.onload = function () {
+      var mirror = mirrorOf(url);
+      function finish(u) {
         if (settled) return;
         settled = true;
-        cb(null, url);
-      };
-      pre.onerror = function () {
+        cb(null, u);
+      }
+      function giveUp() {
         if (settled) return;
         settled = true;
         cb('direct');
+      }
+      pre.onload = function () { finish(url); };
+      pre.onerror = function () {
+        if (settled) return;
+        // 主线路（jsDelivr→raw）不通时换镜像再试一次，能显著提高「有人打得开有人打不开」的命中率
+        if (!mirror) { giveUp(); return; }
+        if (!silent) setRow(kind, 'pulse', 100, '换镜像线路重试…');
+        var pre2 = new Image();
+        pre2.onload = function () { finish(mirror); };
+        pre2.onerror = giveUp;
+        pre2.src = mirror;
       };
       pre.src = url;
       return {
-        abort: function () { settled = true; pre.onload = pre.onerror = null; pre.src = ''; },
+        abort: function () {
+          settled = true;
+          pre.onload = pre.onerror = null;
+          pre.src = '';
+        },
         __got: 1           // 视为「已在走直连」，不再触发 XHR 兜底
       };
     }
@@ -324,7 +350,157 @@
     }
   }
 
-  // ---------- 显示 / 隐藏 ----------
+  // ---------- 页面级预取：不点开也把本页大图备好 ----------
+  // 之前只有打开灯箱才拉 data-full，用户在页面上停留再久，灯箱要的图也一个字节都没下过。
+  // 现在进页面就按顺序把本页所有压缩大图（img_opt，单张 ≤0.2MB）抓进 blob 缓存，
+  // 点开即显示；队列一张接一张，只要没抓完就不让网络闲着。
+  var pfQueue = [], pfIdx = 0, pfTotal = 0, pfDone = 0, pfActive = 0;
+  var PF_PARALLEL = 2;          // 并发：留出连接给「点开插队」，不至于被预取占满
+  var pfEl = null, pfRow = null, pfFill = null, pfNum = null;
+
+  function pfBuildUI() {
+    if (pfEl || !document.querySelector('.fg-lb')) return;
+    if (pfTotal < 3) return;      // 只有一两张图的页面不值得占一条进度
+    pfEl = document.createElement('div');
+    pfEl.className = 'pf-box';
+    pfEl.innerHTML =
+      '<div class="pf-row">' +
+        '<span class="pf-lab">本页大图</span>' +
+        '<span class="pf-bar"><i></i></span>' +
+        '<span class="pf-num">0 / 0</span>' +
+      '</div>' +
+      '<div class="pf-row pf-orig-row" hidden>' +
+        '<span class="pf-lab">原图</span>' +
+        '<span class="pf-bar"><i></i></span>' +
+        '<span class="pf-num">0 / 0</span>' +
+      '</div>';
+    var h1 = document.querySelector('h1');
+    if (h1 && h1.parentNode) h1.parentNode.insertBefore(pfEl, h1.nextSibling);
+    else document.body.appendChild(pfEl);
+    pfRow = pfEl.querySelector('.pf-row:not(.pf-orig-row)');
+    pfFill = pfRow.querySelector('.pf-bar > i');
+    pfNum = pfRow.querySelector('.pf-num');
+    ogRow = pfEl.querySelector('.pf-orig-row');
+    ogFill = ogRow.querySelector('.pf-bar > i');
+    ogNum = ogRow.querySelector('.pf-num');
+  }
+
+  // 原图预取：单并发、只在「原图优先」模式下跑。
+  // 压缩优先模式不碰原图——一页 20 张原图 100~300MB，不该在用户没要求时烧流量。
+  var ogRow = null, ogFill = null, ogNum = null;
+  var ogQueue = [], ogIdx = 0, ogTotal = 0, ogDone = 0, ogActive = 0, ogStarted = false;
+
+  function ogPaint() {
+    if (!ogRow) return;
+    var pct = ogTotal ? (ogDone / ogTotal * 100) : 0;
+    ogFill.style.width = pct + '%';
+    ogRow.classList.toggle('done', ogTotal > 0 && ogDone >= ogTotal);
+    ogNum.textContent = (ogTotal && ogDone >= ogTotal)
+      ? '已全部缓存（' + ogTotal + '）'
+      : ogDone + ' / ' + ogTotal;
+  }
+
+  function ogPump() {
+    while (ogActive < 1 && ogIdx < ogQueue.length) {
+      var job = ogQueue[ogIdx++];
+      if (!job || job.done) continue;
+      if (cacheOrig[job.url]) { job.done = true; ogDone++; continue; }
+      ogActive++;
+      (function (j) {
+        loadImg(j.url, 'orig', function () { return true; }, function () {
+          ogActive--;
+          if (!j.done) { j.done = true; ogDone++; }
+          ogPaint();
+          setTimeout(ogPump, 0);
+        }, true);
+      })(job);
+      return;      // 单并发：原图动辄十几 MB，多开只会互相拖慢
+    }
+    ogPaint();
+  }
+
+  function ogStart() {
+    if (ogStarted) return;
+    if (window.__origPriority && window.__origPriority() !== 'orig') return;
+    var els = document.querySelectorAll('.fg-lb[data-orig]');
+    if (!els.length) return;
+    var seen = {}, list = [];
+    for (var i = 0; i < els.length; i++) {
+      var u = els[i].getAttribute('data-orig');
+      if (!u || seen[u]) continue;
+      seen[u] = 1;
+      list.push({ url: u, done: false });
+    }
+    ogStarted = true;
+    ogQueue = list;
+    ogTotal = list.length;
+    if (ogRow) ogRow.hidden = false;
+    ogPaint();
+    ogPump();
+  }
+  window.__pfOrigStart = ogStart;   // 模式切换成「原图优先」时由此启动
+
+  function pfPaint() {
+    if (!pfEl || !pfRow) return;
+    var pct = pfTotal ? (pfDone / pfTotal * 100) : 0;
+    pfFill.style.width = pct + '%';
+    var fin = pfTotal > 0 && pfDone >= pfTotal;
+    pfRow.classList.toggle('done', fin);
+    pfNum.textContent = fin ? '已全部缓存（' + pfTotal + '）' : pfDone + ' / ' + pfTotal;
+  }
+
+  function pfPump() {
+    while (pfActive < PF_PARALLEL && pfIdx < pfQueue.length) {
+      var job = pfQueue[pfIdx++];
+      if (!job || job.done) continue;
+      if (cacheFull[job.url]) { job.done = true; pfDone++; continue; }
+      pfActive++;
+      (function (j) {
+        // live 恒 true：预取结果与灯箱当前显示哪张无关，切图不该丢弃已下完的缓存
+        loadImg(j.url, 'full', function () { return true; }, function () {
+          pfActive--;
+          if (!j.done) { j.done = true; pfDone++; }
+          pfPaint();
+          if (pfDone >= pfTotal) ogStart();   // 压缩大图备齐后，若选了「原图优先」接着抓原图
+          setTimeout(pfPump, 0);   // 一张接一张，不空转
+        }, true);
+      })(job);
+    }
+    pfPaint();
+    if (pfTotal && pfDone >= pfTotal) ogStart();
+  }
+
+  function pfStart() {
+    var els = document.querySelectorAll('.fg-lb');
+    if (!els.length) return;
+    var seen = {}, list = [];
+    for (var i = 0; i < els.length; i++) {
+      var u = els[i].getAttribute('data-full') || els[i].getAttribute('href');
+      if (!u || seen[u]) continue;
+      seen[u] = 1;
+      list.push({ url: u, done: false });
+    }
+    pfQueue = list;
+    pfTotal = list.length;
+    pfBuildUI();
+    pfPaint();
+    pfPump();
+  }
+
+  // 供灯箱调用：点开某张时把它提到队首（已在队列里就不动，靠 inflight 共享避免重复下载）
+  function pfPrioritize(url) {
+    if (!url) return;
+    for (var i = pfIdx; i < pfQueue.length; i++) {
+      if (pfQueue[i].url === url && !pfQueue[i].done) {
+        var j = pfQueue.splice(i, 1)[0];
+        pfQueue.splice(pfIdx, 0, j);
+        pfPump();
+        return;
+      }
+    }
+  }
+
+
   function show(i) {
     if (!items.length) return;
     cur = (i + items.length) % items.length;
@@ -341,6 +517,7 @@
     var orig = a.getAttribute('data-orig');
     var pri = window.__origPriority ? window.__origPriority() : 'compressed';
     if (window.__lazyNow) window.__lazyNow(a);   // 顺手确保页面上的缩略图本体也在加载
+    pfPrioritize(full);                          // 点开即插队，不必等预取排到它
 
     img.alt = a.getAttribute('data-alt') || '';
     var capText = a.getAttribute('data-cap') || '';
@@ -473,6 +650,10 @@
   window.__lbRefresh = function () {
     if (box && box.classList.contains('on')) show(cur);
   };
+
+  // 等首屏自己的图先跑完，再开始后台预取，避免抢首屏带宽
+  if (document.readyState === 'complete') setTimeout(pfStart, 300);
+  else window.addEventListener('load', function () { setTimeout(pfStart, 300); });
 })();
 
 /* ---------- 图片懒加载（GitHub / github.io 加载优化） ----------
@@ -611,6 +792,7 @@
       setP(getP() === 'orig' ? 'compressed' : 'orig');
       paint();
       if (window.__lbRefresh) window.__lbRefresh();   // 灯箱开着就立即生效
+      if (window.__pfOrigStart) window.__pfOrigStart();   // 切到「原图优先」就开始后台预取原图
     });
     hint = document.createElement('span');
     hint.className = 'orig-hint';

@@ -491,6 +491,20 @@ rt{color:var(--ruby); font-size:.62em; font-weight:400; line-height:1.1;
 .orig-hint.show{color:#ff9bbb; font-weight:600}
 .lb img.orig-loading{cursor:progress}
 
+/* 本页大图预取进度：进页面就后台缓存 img_opt，点开即显示；原图行只在「原图优先」时出现 */
+.pf-box{display:flex; flex-direction:column; gap:6px; margin:8px 0 18px;
+        font:13px/1.4 system-ui,sans-serif; color:var(--dim)}
+.pf-row{display:flex; align-items:center; gap:10px}
+.pf-row[hidden]{display:none}
+.pf-lab{flex:0 0 66px; letter-spacing:.02em}
+.pf-bar{flex:0 1 220px; height:5px; border-radius:3px; overflow:hidden;
+        background:rgba(140,140,140,.22)}
+.pf-bar>i{display:block; height:100%; width:0; border-radius:3px;
+          background:var(--accent); transition:width .25s linear}
+.pf-num{flex:0 0 auto; font-variant-numeric:tabular-nums; color:var(--dim)}
+.pf-row.done .pf-bar>i{background:#6fd48a}
+.pf-row.done .pf-num{color:#8fd9a3}
+
 /* 歌词页：歌词 / 翻译 切换按钮 */
 .lyr-bar{margin:14px 0 2px; display:flex; align-items:center; gap:12px;
          flex-wrap:wrap}
