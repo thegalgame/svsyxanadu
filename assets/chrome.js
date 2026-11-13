@@ -87,7 +87,9 @@
       ' | 如有错漏，欢迎指正 | 联系方式：QQ：3099637681<br>\n' +
       '     游戏原版权方与现版权方：Lass | DMM<br>\n' +
       '    <a href="https://web.archive.org/web/20180601000000*/lass.jp" target="_blank" rel="noopener">原lass历史官网快照</a> |\n' +
-      '\t\t\t\t<a href="https://dlsoft.dmm.co.jp/detail/russ_0144/?i3_ref=search&i3_ord=1" target="_blank" rel="noopener">正版购买链接</a><br></p>\n';
+      '\t\t\t\t<a href="https://dlsoft.dmm.co.jp/detail/russ_0144/?i3_ref=search&i3_ord=1" target="_blank" rel="noopener">正版购买链接</a> |\n' +
+      '\t\t\t\t<a href="https://mobile.moegirl.org.cn/%E5%B0%91%E5%A5%B3%E7%A5%9E%E5%9F%9F%E5%B0%91%E5%A5%B3%E5%A4%A9%E7%8B%B1" target="_blank" rel="noopener">萌娘百科</a> |\n' +
+      '\t\t\t\t<a href="https://vndb.org/v9208" target="_blank" rel="noopener">VNDB</a><br></p>\n';
     document.body.appendChild(ft);
     fillStats();
   }
